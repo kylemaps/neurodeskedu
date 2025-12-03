@@ -19,6 +19,7 @@ parts:
       - file: structural_imaging/sct_toolbox_example
       - file: structural_imaging/freesurfer_example
       - file: structural_imaging/brain_extraction_different_tools
+      - file: structural_imaging/MFCSC
 
   - caption: "Functional Imaging"
     chapters:
