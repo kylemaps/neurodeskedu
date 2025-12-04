@@ -21,8 +21,10 @@ for file in "${notebook_list[@]}"; do
   if [[ -z "${entries[$caption]}" ]]; then
     entries[$caption]=""
   fi
+  # Remove extension from file path
+  file_no_ext="${file%.*}"
   # Append the file entry to the appropriate section
-  entries[$caption]+="    - file: $file\n"
+  entries[$caption]+="    - file: $file_no_ext\n"
 done
 
 
