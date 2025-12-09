@@ -1,34 +1,92 @@
-# This file contains the order and numbering for all sections in the book.
-# Each entry has the following schema:
-#
-# - title: mytitle   # Title of chapter or section
-# - file: /myurl  # URL of section relative to the /content/ folder.
-#   sections:  # Contains a list of more entries that make up the chapter's sections
-#   expand_sections: true  # if you'd like the sections of this chapter to always
-#     be expanded in the sidebar.
-
 format: jb-book
 root: intro
-
 parts:
+  - caption: "Workflows"
+    chapters:
+    - file: workflows/AA_Neurodesk_demo_tour
+    - file: workflows/bids_conversion
+    - file: workflows/MRIQC
+    - file: workflows/nipype_full
+    - file: workflows/nipype_short
+    - file: workflows/papermill-slurm-submission-example
+    - file: workflows/PyBIDS
+    - file: workflows/pydra_preproc_ants
+    - file: workflows/RISE_slideshow
+
   - caption: "Structural Imaging"
     chapters:
-    # A chapter w/ a collection of sections beneath it
-      - file: structural_imaging/nipype_module_example
-      - file: structural_imaging/qsmxt_example
-      - file: structural_imaging/sct_toolbox_example
-      - file: structural_imaging/freesurfer_example
-      - file: structural_imaging/brain_extraction_different_tools
-      - file: structural_imaging/MFCSC
+    - file: structural_imaging/brain_extraction_different_tools
+    - file: structural_imaging/freesurfer
+    - file: structural_imaging/FSL_course_bet
+    - file: structural_imaging/MFCSC
+    - file: structural_imaging/qsmxt
+    - file: structural_imaging/sct_toolbox
+
+  - caption: "Spectroscopy"
+    chapters:
+    - file: spectroscopy/lcmodel
+    - file: spectroscopy/osprey
+
+  - caption: "Diffusion Imaging"
+    chapters:
+    - file: diffusion_imaging/Diffusion_TBSS_Demo
+    - file: diffusion_imaging/MRtrix_1
+    - file: diffusion_imaging/MRtrix_2
+    - file: diffusion_imaging/MRtrix_3
+    - file: diffusion_imaging/mrtrix3tissue
 
   - caption: "Functional Imaging"
     chapters:
-      - file: functional_imaging/nipype_fsl_all_levels_flanker
-      - file: functional_imaging/fmriprep_example
-      - file: functional_imaging/first_and_second_level_spm
-      - file: functional_imaging/intro_to_preprocessing
+    - file: functional_imaging/AFNI_preprocessing_only
+    - file: functional_imaging/AFNI_preprocessing_plus_glm
+    - file: functional_imaging/AFNI_preprocessing_plus_glm_group
+    - file: functional_imaging/aslprep
+    - file: functional_imaging/deepretinotopy
+    - file: functional_imaging/first_and_second_level_spm
+    - file: functional_imaging/fmriprep
+    - file: functional_imaging/fsl_all_levels_flanker_nipype
+    - file: functional_imaging/FSL_preproc_glm
+    - file: functional_imaging/FSLnets_course_practical
+    - file: functional_imaging/intro_to_preprocessing
+    - file: functional_imaging/mri_vol2surf
+    - file: functional_imaging/NiWrap
+    - file: functional_imaging/process_five_echo_dataset
 
-  - caption: "Workflow"
+  - caption: "Electrophysiology"
     chapters:
-      - file: workflows/Nipype_on_NeuroDesk_RISE
-      - file: workflows/RISE_slideshow
+    - file: electrophysiology/eeg_with_mne
+
+  - caption: "Tutorials"
+    chapters:
+    - file: tutorials/electrophysiology/EEG_mne-python
+    - file: tutorials/electrophysiology/fieldtrip
+    - file: tutorials/electrophysiology/intro
+    - file: tutorials/functional_imaging/connectomeWorkbench
+    - file: tutorials/functional_imaging/fmriprep
+    - file: tutorials/functional_imaging/intro
+    - file: tutorials/functional_imaging/mriqc
+    - file: tutorials/functional_imaging/physio
+    - file: tutorials/functional_imaging/physio_batch_workflow
+    - file: tutorials/functional_imaging/spm
+    - file: tutorials/intro
+    - file: tutorials/multimodal_imaging/intro
+    - file: tutorials/multimodal_imaging/MFCSC
+    - file: tutorials/open_data/datalad
+    - file: tutorials/open_data/intro
+    - file: tutorials/open_data/osfclient
+    - file: tutorials/phase_processing/intro
+    - file: tutorials/phase_processing/qsm
+    - file: tutorials/phase_processing/swi
+    - file: tutorials/phase_processing/unwrapping
+    - file: tutorials/programming/conda
+    - file: tutorials/programming/intro
+    - file: tutorials/programming/matlab
+    - file: tutorials/reproducibility/datalad-run
+    - file: tutorials/reproducibility/intro
+    - file: tutorials/spectroscopy/intro
+    - file: tutorials/spectroscopy/lcmodel
+    - file: tutorials/spectroscopy/mrsiproc
+    - file: tutorials/structural_imaging/freesurfer
+    - file: tutorials/structural_imaging/intro
+    - file: tutorials/structural_imaging/structuralconnectivity
+
