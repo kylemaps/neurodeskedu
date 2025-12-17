@@ -1,42 +1,85 @@
 #!/bin/bash
 
-# Define the list of notebook files
-notebook_list=($(find . -type f \( -name "*.ipynb" -o -name "*.md" \) | sed 's|^\./||' | grep -v "^intro.md$" | sort))
+# Build a two-level TOC: part (top folder) -> caption (subfolder label) -> sections (notebooks)
 
-# Function to capitalize the first letter of each word
+set -eo pipefail
+
+# Function to capitalize the first letter of each word (snake_case -> Title Case)
 capitalize() {
   echo "$1" | awk -F'_' '{for(i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) tolower(substr($i,2))}1' OFS=' '
 }
 
-# Initialize associative arrays to hold the entries for each caption
-declare -A entries
+# Collect notebooks/markdown files, ignoring build/git artifacts and the root intro
+readarray -t notebook_list < <(find . -type f \( -name "*.ipynb" -o -name "*.md" \) \
+  ! -path "./_build/*" ! -path "./.git/*" | sed 's|^\./||' | sort)
 
-# Loop through each file in the list
+declare -A section_entries   # key: "parent|||subfolder" -> list of section lines (4-space indent)
+declare -A direct_entries    # key: parent -> list of direct chapter lines (2-space indent)
+declare -A subfolders        # key: parent -> space-delimited subfolder list
+declare -A parents_seen
+parents=()
+
 for file in "${notebook_list[@]}"; do
-  # Extract the text before the slash
-  prefix=$(echo "$file" | cut -d'/' -f1)
-  # Capitalize the first letter of each word
-  caption=$(capitalize "$prefix")
-  # Initialize the array if not already initialized
-  if [[ -z "${entries[$caption]}" ]]; then
-    entries[$caption]=""
+  # Skip the global intro; it is the book root
+  [[ "$file" == "intro.md" ]] && continue
+
+  # Require at least one slash so we know the parent folder
+  [[ "$file" != */* ]] && continue
+
+  parent=${file%%/*}
+  rest=${file#*/}
+
+  # Track parents in stable order of discovery
+  if [[ -z "${parents_seen[$parent]}" ]]; then
+    parents_seen[$parent]=1
+    parents+=("$parent")
   fi
-  # Remove extension from file path
+
+  # If there is no deeper subfolder, treat the file as a direct chapter under the part
+  if [[ "$rest" != */* ]]; then
+    file_no_ext="${file%.*}"
+    direct_entries[$parent]+="  - file: $file_no_ext\n"
+    continue
+  fi
+
+  # Otherwise capture the subfolder and section entry
+  subfolder=${rest%%/*}
   file_no_ext="${file%.*}"
-  # Append the file entry to the appropriate section
-  entries[$caption]+="    - file: $file_no_ext\n"
+  key="$parent|||$subfolder"
+
+  # Track unique subfolders per parent
+  if [[ " ${subfolders[$parent]} " != *" ${subfolder} "* ]]; then
+    subfolders[$parent]+=" ${subfolder}"
+  fi
+
+  section_entries[$key]+="    - file: $file_no_ext\n"
 done
 
-
-# Write the entries to _toc.yml
+# Write the TOC
 {
   echo "format: jb-book"
   echo "root: intro"
   echo "parts:"
 
-  for caption in "${!entries[@]}"; do
-    echo "  - caption: \"$caption\""
-    echo "    chapters:"
-    echo -e "${entries[$caption]}"
+  # Sort parents alphabetically for deterministic output
+  for parent in $(printf "%s\n" "${parents[@]}" | sort); do
+    echo "- part: $(capitalize "$parent")"
+    echo "  chapters:"
+
+    # Direct chapters (files directly under the parent folder)
+    if [[ -n "${direct_entries[$parent]:-}" ]]; then
+      echo -e "${direct_entries[$parent]}"
+    fi
+
+    # Caption + sections per subfolder
+    read -ra subs <<< "${subfolders[$parent]:-}"
+    if (( ${#subs[@]} )); then
+      for subfolder in $(printf "%s\n" "${subs[@]}" | sort); do
+        key="$parent|||$subfolder"
+        echo "  - caption: \"$(capitalize "$subfolder")\""
+        echo "    sections:"
+        echo -e "${section_entries[$key]}"
+      done
+    fi
   done
 } > _toc.yml
