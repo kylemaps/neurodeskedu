@@ -17,15 +17,6 @@ execute:
   run_in_temp: true
   execution_show_tb: True
 
-launch_buttons:
-  jupyterhub_url: "https://play-america.neurodesk.org"
-  notebook_interface: "jupyterlab"
-  jupyterhub_servers:
-    - text: "Run in America"
-      url: "https://play-america.neurodesk.org"
-    - text: "Run in Europe"
-      url: "https://play-europe.neurodesk.org"
-
 # Information about where the book exists on the web
 repository:
   url: https://github.com/neurodesk/neurodeskedu # Online location of your book
@@ -53,6 +44,14 @@ sphinx:
     html_theme_options:
       show_navbar_depth: 2
       navigation_depth: 3
+      launch_buttons:
+        jupyterhub_url: "https://play-america.neurodesk.org"
+        notebook_interface: "jupyterlab"
+        jupyterhub_servers:
+          - text: "Run in America"
+            url: "https://play-america.neurodesk.org"
+          - text: "Run in Europe"
+            url: "https://play-europe.neurodesk.org"
   local_extensions:
     multiple_jupyterhub: _ext
 
