@@ -112,7 +112,7 @@ jobs:
           - name: Update rendered notebooks with DOI
             run: |
               echo "Update rendered notebooks with DOI"
-              curl --output "add-doi-button.js" "https://raw.githubusercontent.com/neurodesk/neurodeskedu/refs/heads/main/.github/scripts/add-doi-button.js"
+              curl --output "add-doi-button.js" "https://raw.githubusercontent.com/iishiishii/example-notebooks/refs/heads/main/.github/scripts/add-doi-button.js"
               echo "NOTEBOOK_NAME: $NOTEBOOK_NAME"
               NOTEBOOK_HTML="${NOTEBOOK_NAME}.html"
               echo "NOTEBOOK_HTML: $NOTEBOOK_HTML"
