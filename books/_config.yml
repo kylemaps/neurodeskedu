@@ -16,6 +16,7 @@ execute:
   stderr_output: show
   run_in_temp: true
   execution_show_tb: True
+  kernel_name: python3
 
 # Information about where the book exists on the web
 repository:
