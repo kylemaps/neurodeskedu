@@ -127,6 +127,11 @@ jobs:
     - name: Set notebook name
       run: echo "NOTEBOOK=$(basename -s .ipynb ${{ matrix.notebooks }})" >> $GITHUB_ENV
 
+    - name: Configure Git
+      run: |
+        git config --global user.email "mail.neurodesk@gmail.com"
+        git config --global user.name "vnm-neurodesk"
+
     - name: Install dependencies
       shell: bash
       run: |
