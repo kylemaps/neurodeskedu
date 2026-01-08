@@ -8,3 +8,8 @@ __pycache__/
 
 # Jupyter Notebook checkpoints
 .ipynb_checkpoints/
+
+# Notebook execution outputs
+books/**/*.nii.gz
+books/**/*.nii
+books/**/ds004884/
