@@ -183,6 +183,19 @@ jobs:
         
         jupyter-book build ${{ matrix.notebooks }}
 
+    - name: Upload notebook build logs
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: notebook-logs-${{ matrix.notebooks }}
+        path: |
+          books/_build/**/reports/*.log
+          books/_build/**/reports/*.err.log
+          books/_build/**/.jupyter_cache/
+        retention-days: 7
+        if-no-files-found: ignore
+
+
     # The following steps are commented out because we moved deployment to the build-structure job.
     # This prevents race conditions when multiple notebooks are tested in parallel.
     # - name: Restructure
