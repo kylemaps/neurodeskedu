@@ -124,6 +124,9 @@ jobs:
     steps:
     - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
 
+    - name: Set notebook name
+      run: echo "NOTEBOOK=$(basename -s .ipynb ${{ matrix.notebooks }})" >> $GITHUB_ENV
+
     - name: Install dependencies
       shell: bash
       run: |
@@ -187,7 +190,7 @@ jobs:
       if: always()
       uses: actions/upload-artifact@v4
       with:
-        name: notebook-logs-${{ matrix.notebooks }}
+        name: notebook-logs-${{ env.NOTEBOOK }}
         path: |
           books/_build/**/reports/*.log
           books/_build/**/reports/*.err.log
