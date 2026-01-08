@@ -129,6 +129,37 @@ jobs:
       run: |
         mamba install -c conda-forge -y r-irkernel ipykernel "jupyter-book<2.0.0" ghp-import
 
+    - name: Fix notebook kernelspec
+      shell: bash
+      run: |
+        python3 << 'EOF'
+        import json
+        import sys
+        
+        notebook_path = "books/${{ matrix.notebooks }}"
+        try:
+            with open(notebook_path, 'r') as f:
+                notebook = json.load(f)
+            
+            # Check if kernelspec exists and fix conda-base-py or other problematic kernels
+            if 'metadata' in notebook and 'kernelspec' in notebook['metadata']:
+                kernel_name = notebook['metadata']['kernelspec'].get('name', '')
+                if kernel_name == 'conda-base-py' or 'conda' in kernel_name:
+                    print(f"Fixing kernelspec in {notebook_path}: {kernel_name} -> python3")
+                    notebook['metadata']['kernelspec'] = {
+                        "display_name": "Python 3",
+                        "language": "python",
+                        "name": "python3"
+                    }
+                    with open(notebook_path, 'w') as f:
+                        json.dump(notebook, f, indent=1, ensure_ascii=False)
+                        f.write('\n')
+                else:
+                    print(f"Kernelspec OK: {kernel_name}")
+        except Exception as e:
+            print(f"Note: Could not process notebook (may not be ipynb): {e}")
+        EOF
+
     - name: Run ${{ matrix.notebooks }}
       shell: bash
       timeout-minutes: 1500
