@@ -194,6 +194,14 @@ jobs:
         # Always print notebook execution output
         echo "========== NOTEBOOK OUTPUT ==========="
         echo "PWD: $(pwd)"
+        
+        # List files in notebook directory to debug SYNcro output
+        echo "=== Files in notebook source directory ==="
+        ls -la $(dirname ${{ matrix.notebooks }}) || true
+        echo "=== .nii.gz files anywhere in books ==="
+        find . -name "*.nii.gz" -type f 2>/dev/null || echo "No .nii.gz files found"
+        echo "=========================================="
+        
         echo "Searching for log files in $GITHUB_WORKSPACE/books..."
         find "$GITHUB_WORKSPACE/books" -name "*.log" -type f 2>/dev/null || echo "No logs found"
         echo "---"
