@@ -192,15 +192,19 @@ jobs:
         jupyter-book build ${{ matrix.notebooks }}
         
         # Always print notebook execution output
-        echo "========== NOTEBOOK OUTPUT =========="
-        for LOG in $(find books/_build -name "*.log" -type f 2>/dev/null); do
+        echo "========== NOTEBOOK OUTPUT ==========="
+        echo "PWD: $(pwd)"
+        echo "Searching for log files in $GITHUB_WORKSPACE/books..."
+        find "$GITHUB_WORKSPACE/books" -name "*.log" -type f 2>/dev/null || echo "No logs found"
+        echo "---"
+        for LOG in $(find "$GITHUB_WORKSPACE/books" -name "*.log" -type f 2>/dev/null); do
           echo "--- $LOG ---"
           cat "$LOG"
         done
-        echo "====================================="
+        echo "======================================"
         
         # Check for notebook execution errors and fail if found
-        ERROR_LOG=$(find books/_build -name "*.err.log" -type f 2>/dev/null | head -1)
+        ERROR_LOG=$(find "$GITHUB_WORKSPACE/books" -name "*.err.log" -type f 2>/dev/null | head -1)
         if [ -n "$ERROR_LOG" ]; then
           echo "::error::Notebook execution failed!"
           exit 1
