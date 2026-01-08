@@ -14,7 +14,7 @@ execute:
   allow_errors: false
   timeout: 45000
   stderr_output: show
-  run_in_temp: false
+  run_in_temp: true
   execution_show_tb: True
   kernel_name: python3
 
