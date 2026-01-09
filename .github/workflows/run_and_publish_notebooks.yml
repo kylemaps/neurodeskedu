@@ -327,6 +327,7 @@ jobs:
         with:
           path: ~/docker-image-cache
           key: docker-neurodesk-${{ needs.setup.outputs.neurodesk_image }}
+          save-always: true
 
       - name: Load or pull Neurodesk image
         run: |
