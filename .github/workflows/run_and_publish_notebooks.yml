@@ -376,16 +376,21 @@ jobs:
           echo "DIRNAME=$(dirname ${{ matrix.notebooks }})" >> $GITHUB_ENV
 
           docker run --rm \
+            --shm-size=1gb \
             --privileged \
-            --user root \
-            -v ${{ github.workspace }}:/workspace \
+            --user=root \
+            -v ${{ github.workspace }}:/home/jovyan/workspace \
             -v /cvmfs:/cvmfs:ro \
-            -w /workspace/books \
+            -w /home/jovyan/workspace/books \
+            -e NB_USER=jovyan \
+            -e NB_UID="$(id -u)" \
+            -e NB_GID="$(id -g)" \
             -e GITHUB_PAT="${GITHUB_PAT}" \
             -e BASH_ENV=/usr/share/lmod/lmod/init/bash \
             ${{ needs.setup.outputs.neurodesk_image }} \
             bash -c '
               set -e
+              
               export PATH=/opt/conda/bin:$HOME/.local/bin:$PATH
 
               # Initialize the module system
