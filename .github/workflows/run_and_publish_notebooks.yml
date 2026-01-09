@@ -107,6 +107,52 @@ jobs:
             echo "neurodesk_image=ghcr.io/neurodesk/neurodesktop/neurodesktop:$VERSION" >> $GITHUB_OUTPUT
           fi
 
+      - name: Cache Docker image
+        id: docker-cache
+        uses: actions/cache@v5.0.1
+        with:
+          path: ~/docker-image-cache
+          key: docker-neurodesk-${{ steps.get_image.outputs.neurodesk_image }}
+
+      - name: Prefetch Docker image
+        if: steps.docker-cache.outputs.cache-hit != 'true'
+        run: |
+          IMAGE="${{ steps.get_image.outputs.neurodesk_image }}"
+          CACHE_FILE=~/docker-image-cache/neurodesk.tar
+          mkdir -p ~/docker-image-cache
+          
+          echo "Cache miss. Pulling $IMAGE..."
+          docker pull "$IMAGE"
+          
+          echo "Saving image to cache..."
+          docker save -o "$CACHE_FILE" "$IMAGE"
+
+      # --- CVMFS Cache Warmer ---
+      - name: Cache CVMFS apt packages
+        uses: actions/cache@v5.0.1
+        with:
+          path: ~/cvmfs-apt-cache
+          key: cvmfs-apt-${{ runner.os }}-v1
+
+      - name: Setup CVMFS (Warm Cache)
+        uses: cvmfs-contrib/github-action-cvmfs@v5.3
+        with:
+          cvmfs_repositories: neurodesk.ardc.edu.au
+          cvmfs_http_proxy: DIRECT
+          cvmfs_quota_limit: 5000
+          apt_cache: ~/cvmfs-apt-cache
+
+      # --- Pip Cache Warmer ---
+      - name: Cache Conda/Python dependencies
+        uses: actions/cache@v5.0.1
+        with:
+          path: ~/pip-cache
+          key: pip-book-${{ hashFiles('books/_config.yml') }}
+
+      - name: Install Dependencies (Warm Cache)
+        run: |
+          pip install "jupyter-book<2.0.0" ghp-import
+
   # ---------------------------------------------------------------------------
   # SELECT NOTEBOOKS: Determine which notebooks to run (changed or manually selected)
   # ---------------------------------------------------------------------------
@@ -328,7 +374,7 @@ jobs:
           path: ~/docker-image-cache
           key: docker-neurodesk-${{ needs.setup.outputs.neurodesk_image }}
 
-      - name: Load or pull Neurodesk image
+      - name: Load Neurodesk image
         run: |
           IMAGE="${{ needs.setup.outputs.neurodesk_image }}"
           CACHE_FILE=~/docker-image-cache/neurodesk.tar
@@ -337,12 +383,8 @@ jobs:
             echo "Loading image from cache..."
             docker load -i "$CACHE_FILE"
           else
-            echo "Pulling image from registry..."
+            echo "Cache not found (unexpected). Pulling image..."
             docker pull "$IMAGE"
-            
-            echo "Saving image to cache..."
-            mkdir -p ~/docker-image-cache
-            docker save -o "$CACHE_FILE" "$IMAGE"
           fi
           
           echo "Image ready:"
