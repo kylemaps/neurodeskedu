@@ -408,8 +408,8 @@ jobs:
                 source /usr/share/module.sh
               fi
 
-              # Install dependencies
-              mamba install -c conda-forge -y r-irkernel ipykernel "jupyter-book<2.0.0" ghp-import
+              # Install dependencies (use pip --user to avoid /opt/conda permission issues)
+              pip install --user "jupyter-book<2.0.0" ghp-import
 
               # Verify jupyter-book is available
               echo "Checking for jupyter-book..."
