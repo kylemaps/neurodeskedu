@@ -587,17 +587,13 @@ jobs:
             exit 1
           fi
 
-      - name: Upload notebook build logs
+      - name: Upload executed notebook artifact
         if: always()
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         with:
-          name: notebook-logs-${{ env.NOTEBOOK }}
-          path: |
-            books/_build/**/reports/*.log
-            books/_build/**/reports/*.err.log
-            books/_build/**/.jupyter_cache/
-          retention-days: 7
-          if-no-files-found: ignore
+          name: executed-${{ env.ARTIFACT_NAME }}
+          path: books/_build
+          retention-days: 1
 
   # ---------------------------------------------------------------------------
   # PUBLISH: Build complete book and deploy to GitHub Pages
@@ -664,6 +660,23 @@ jobs:
           key: pip-book-${{ hashFiles('books/_config.yml') }}
           restore-keys: |
             pip-book-
+
+      - name: Download all executed notebook artifacts
+        uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
+        with:
+          path: loaded-artifacts
+
+      - name: Merge artifacts and Prepare Build
+        run: |
+          mkdir -p books/_build
+          echo "Merging artifacts..."
+          for artifact_dir in loaded-artifacts/executed-*; do
+            if [ -d "$artifact_dir" ]; then
+              echo "Merging $artifact_dir..."
+              rsync -a "$artifact_dir/" books/_build/
+            fi
+          done
+          chmod -R 755 books/_build
 
       - name: Build complete Jupyter Book (in Container)
         env:
