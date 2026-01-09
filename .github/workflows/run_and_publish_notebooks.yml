@@ -282,7 +282,7 @@ jobs:
 
       - name: Upload notebook build logs
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         with:
           name: notebook-logs-${{ env.NOTEBOOK }}
           path: |
@@ -311,7 +311,7 @@ jobs:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
 
       - name: Cache conda packages
-        uses: actions/cache@v4
+        uses: actions/cache@9255dc7a253b0ccc959486e2bca901246202afeb
         with:
           path: /opt/conda/pkgs
           key: conda-pkgs-${{ runner.os }}-${{ hashFiles('.github/workflows/run_and_publish_notebooks.yml') }}
