@@ -446,6 +446,7 @@ jobs:
             --user=root \
             -v ${{ github.workspace }}:/home/jovyan/workspace \
             -v /cvmfs:/cvmfs:ro \
+            -v ${{ env.BASE_PATH }}/tmp:/overlay-storage \
             -w /home/jovyan/workspace/books \
             -e NB_USER=jovyan \
             -e NB_UID="$(id -u)" \
@@ -459,10 +460,30 @@ jobs:
               export PATH=/opt/conda/bin:$HOME/.local/bin:$PATH
 
               # Create apptainer overlay for modules that require it
-              if [ ! -f /tmp/apptainer_overlay ]; then
-                echo "Creating /tmp/apptainer_overlay (300MB)..."
-                dd if=/dev/zero of=/tmp/apptainer_overlay bs=1M count=300 status=none
-                mkfs.ext3 -F /tmp/apptainer_overlay >/dev/null
+              if [ ! -L /tmp/apptainer_overlay ]; then
+                echo "Creating /tmp/apptainer_overlay symlink to /overlay-storage..."
+                
+                # Check if overlay exists in mounted storage
+                if [ ! -f /overlay-storage/apptainer_overlay ]; then
+                    echo "Creating 300MB overlay file on secondary disk..."
+                    dd if=/dev/zero of=/overlay-storage/apptainer_overlay bs=1M count=300 status=none
+                    mkfs.ext3 -F /overlay-storage/apptainer_overlay >/dev/null
+                    chmod 777 /overlay-storage/apptainer_overlay
+                fi
+                
+                # Symlink to expected location
+                ln -sf /overlay-storage/apptainer_overlay /tmp/apptainer_overlay
+              fi
+
+              
+              # Move apptainer working dir to secondary storage to save root disk space
+              mkdir -p /overlay-storage/var_lib_apptainer
+              chmod 777 /overlay-storage/var_lib_apptainer
+              
+              # Symlink /var/lib/apptainer if it doesn't exist or isn't a link yet
+              if [ ! -L /var/lib/apptainer ]; then
+                  rm -rf /var/lib/apptainer # Remove if it exists as a dir
+                  ln -sf /overlay-storage/var_lib_apptainer /var/lib/apptainer
               fi
 
               # Initialize the module system
