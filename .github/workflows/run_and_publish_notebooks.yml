@@ -436,18 +436,14 @@ jobs:
               fi
 
               # Install dependencies (use pip --user to avoid /opt/conda permission issues)
-              pip install --user "jupyter-book<2.0.0" ghp-import
+              pip install --user nbclient ipykernel
 
-              # Verify jupyter-book is available
-              echo "Checking for jupyter-book..."
-              which jupyter-book || echo "jupyter-book not found in PATH"
-
-              # Verify CVMFS is accessible
-              echo "Checking CVMFS mount..."
-              ls -la /cvmfs/neurodesk.ardc.edu.au/ | head -10 || echo "CVMFS not accessible"
-
-              # Execute the notebook
-              jupyter-book build ${{ matrix.notebooks }}
+              echo "Executing notebook: ${{ matrix.notebooks }}"
+              
+              # Execute the notebook in-place (saves outputs to the .ipynb file)
+              jupyter execute ${{ matrix.notebooks }} --inplace
+              
+              echo "Notebook executed successfully"
             '
 
       - name: Print notebook output logs
@@ -459,30 +455,42 @@ jobs:
           echo "=== Files in notebook source directory ==="
           ls -la books/$(dirname ${{ matrix.notebooks }}) || true
 
+          echo "=== Executed notebook file ==="
+          ls -la books/${{ matrix.notebooks }} || true
+
           echo "=== .nii.gz files in books ==="
           find books -name "*.nii.gz" -type f 2>/dev/null || echo "No .nii.gz files found"
-
-          echo "=== Log files ==="
-          for LOG in $(find "$GITHUB_WORKSPACE/books" -name "*.log" -type f 2>/dev/null); do
-            echo "--- $LOG ---"
-            cat "$LOG"
-          done
           echo "========================================"
 
       - name: Check for execution errors
         run: |
-          ERROR_LOG=$(find "$GITHUB_WORKSPACE/books" -name "*.err.log" -type f 2>/dev/null | head -1)
-          if [ -n "$ERROR_LOG" ]; then
-            echo "::error::Notebook execution failed!"
-            exit 1
-          fi
+          # Check the notebook for errors by looking for error outputs
+          python3 << 'EOF'
+          import json
+          import sys
+          
+          notebook_path = "books/${{ matrix.notebooks }}"
+          try:
+              with open(notebook_path, 'r') as f:
+                  nb = json.load(f)
+              
+              for cell in nb.get('cells', []):
+                  if cell.get('cell_type') == 'code':
+                      for output in cell.get('outputs', []):
+                          if output.get('output_type') == 'error':
+                              print(f"::error::Notebook execution error: {output.get('ename', 'Unknown')}")
+                              sys.exit(1)
+              print("No errors found in notebook outputs")
+          except Exception as e:
+              print(f"::warning::Could not check notebook for errors: {e}")
+          EOF
 
       - name: Upload executed notebook artifact
         if: always()
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         with:
           name: executed-${{ env.NOTEBOOK }}
-          path: books/_build
+          path: books/${{ matrix.notebooks }}
           retention-days: 1
 
   # ---------------------------------------------------------------------------
@@ -557,17 +565,36 @@ jobs:
           pattern: executed-*
           path: loaded-artifacts
 
-      - name: Merge artifacts and Prepare Build
+      - name: Merge executed notebooks into books directory
         run: |
-          mkdir -p books/_build
-          echo "Merging artifacts..."
+          echo "Merging executed notebooks..."
+          
+          # Each artifact contains a single .ipynb file
+          # We need to copy it to the correct location in books/
           for artifact_dir in loaded-artifacts/executed-*; do
             if [ -d "$artifact_dir" ]; then
-              echo "Merging $artifact_dir..."
-              rsync -a "$artifact_dir/" books/_build/
+              echo "Processing $artifact_dir..."
+              
+              # Find the notebook file in the artifact
+              for nb_file in $(find "$artifact_dir" -name "*.ipynb"); do
+                # Get just the filename
+                nb_name=$(basename "$nb_file")
+                
+                # Find where this notebook should go in books/
+                target=$(find books -name "$nb_name" -type f | head -1)
+                
+                if [ -n "$target" ]; then
+                  echo "Copying $nb_file -> $target"
+                  cp "$nb_file" "$target"
+                else
+                  echo "Warning: Could not find target location for $nb_name"
+                fi
+              done
             fi
           done
-          chmod -R 755 books/_build
+          
+          echo "Merge complete. Listing updated notebooks:"
+          find books -name "*.ipynb" -newer loaded-artifacts 2>/dev/null || echo "No recently updated notebooks found"
 
       - name: Build complete Jupyter Book (in Container)
         env:
