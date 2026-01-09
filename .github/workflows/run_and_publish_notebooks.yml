@@ -290,6 +290,36 @@ jobs:
           
           echo "==================================="
 
+      # -------------------------------------------------------------------------
+      # Docker image caching
+      # -------------------------------------------------------------------------
+      - name: Cache Docker image
+        uses: actions/cache@v5.0.1
+        id: docker-cache
+        with:
+          path: ~/docker-image-cache
+          key: docker-neurodesk-${{ needs.setup.outputs.neurodesk_image }}
+
+      - name: Load or pull Neurodesk image
+        run: |
+          IMAGE="${{ needs.setup.outputs.neurodesk_image }}"
+          CACHE_FILE=~/docker-image-cache/neurodesk.tar
+          
+          if [ -f "$CACHE_FILE" ]; then
+            echo "Loading image from cache..."
+            docker load -i "$CACHE_FILE"
+          else
+            echo "Pulling image from registry..."
+            docker pull "$IMAGE"
+            
+            echo "Saving image to cache..."
+            mkdir -p ~/docker-image-cache
+            docker save -o "$CACHE_FILE" "$IMAGE"
+          fi
+          
+          echo "Image ready:"
+          docker images "$IMAGE"
+
       - name: Debug environment in container
         run: |
           docker run --rm \
@@ -342,32 +372,6 @@ jobs:
       # -------------------------------------------------------------------------
       # Docker execution with CVMFS mounted
       # -------------------------------------------------------------------------
-      - name: Cache Docker image
-        uses: actions/cache@v5.0.1
-        id: docker-cache
-        with:
-          path: ~/docker-image-cache
-          key: docker-neurodesk-${{ needs.setup.outputs.neurodesk_image }}
-
-      - name: Load or pull Neurodesk image
-        run: |
-          IMAGE="${{ needs.setup.outputs.neurodesk_image }}"
-          CACHE_FILE=~/docker-image-cache/neurodesk.tar
-          
-          if [ -f "$CACHE_FILE" ]; then
-            echo "Loading image from cache..."
-            docker load -i "$CACHE_FILE"
-          else
-            echo "Pulling image from registry..."
-            docker pull "$IMAGE"
-            
-            echo "Saving image to cache..."
-            mkdir -p ~/docker-image-cache
-            docker save -o "$CACHE_FILE" "$IMAGE"
-          fi
-          
-          echo "Image ready:"
-          docker images "$IMAGE"
 
       - name: Fix notebook kernelspec if needed
         run: |
