@@ -55,6 +55,11 @@ on:
         description: 'Select a specific notebook to run (e.g. workflows/nipype_short.ipynb)'
         required: false
         type: string
+      use_self_hosted:
+        description: 'Use self-hosted runner (check for self-hosted, default: GitHub-hosted)'
+        required: false
+        type: boolean
+        default: false
 
 # =============================================================================
 # JOBS
@@ -74,10 +79,18 @@ jobs:
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
 
-      - name: Select runner (self-hosted for main repo, ubuntu for forks)
+      - name: Select runner
         id: select_runner
         run: |
-          if [ "${{ github.repository }}" = "neurodesk/neurodeskedu" ]; then
+          # For workflow_dispatch, use the use_self_hosted input
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            if [ "${{ inputs.use_self_hosted }}" = "true" ]; then
+              echo "runner=self-hosted" >> $GITHUB_OUTPUT
+            else
+              echo "runner=ubuntu-22.04" >> $GITHUB_OUTPUT
+            fi
+          # For push/PR, use self-hosted for main repo, ubuntu for forks
+          elif [ "${{ github.repository }}" = "neurodesk/neurodeskedu" ]; then
             echo "runner=self-hosted" >> $GITHUB_OUTPUT
           else
             echo "runner=ubuntu-22.04" >> $GITHUB_OUTPUT
