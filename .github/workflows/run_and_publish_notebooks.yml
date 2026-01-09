@@ -167,12 +167,6 @@ jobs:
     runs-on: ${{ needs.setup.outputs.runner }}
     timeout-minutes: 1500
 
-    container:
-      image: ${{ needs.setup.outputs.neurodesk_image }}
-      volumes:
-        - /home/runner/:/home/
-      options: --user root
-
     strategy:
       fail-fast: false
       matrix:
@@ -184,22 +178,228 @@ jobs:
       - name: Set notebook environment variables
         run: echo "NOTEBOOK=$(basename -s .ipynb ${{ matrix.notebooks }})" >> $GITHUB_ENV
 
-      - name: Configure Git
+      - name: Configure runner (Optimize Disk Space)
+        if: runner.os == 'Linux'
         run: |
-          git config --global user.email "mail.neurodesk@gmail.com"
-          git config --global user.name "vnm-neurodesk"
+          if [ "${{ needs.setup.outputs.runner }}" != "self-hosted" ]; then
+             echo "Optimizing GitHub-hosted runner..."
+             sudo swapoff -a && sudo rm -rf /mnt/*
+             BASE_PATH=/mnt
+          else
+             echo "Configuring self-hosted runner..."
+             # Be careful not to wipe /mnt on self-hosted if it's used
+             BASE_PATH=/storage
+          fi
+          
+          echo "Using BASE_PATH=$BASE_PATH"
+          echo "BASE_PATH=$BASE_PATH" >> $GITHUB_ENV
+          
+          # Setup directories
+          sudo mkdir -p $BASE_PATH/tmp
+          sudo chown $USER $BASE_PATH/tmp
+          sudo mkdir -p $BASE_PATH/docker
+          
+          # Configure Docker to use new data-root
+          echo "{\"data-root\": \"$BASE_PATH/docker\"}" | sudo tee /etc/docker/daemon.json
+          sudo systemctl restart docker
+          
+          # Clean up existing space
+          docker system prune -af || true
 
-      - name: Cache conda packages
-        uses: actions/cache@9255dc7a253b0ccc959486e2bca901246202afeb
+      # -------------------------------------------------------------------------
+      # CVMFS Setup (for GitHub-hosted runners)
+      # -------------------------------------------------------------------------
+      - name: Cache CVMFS apt packages
+        uses: actions/cache@v5.0.1
+        id: cvmfs-cache
         with:
-          path: /opt/conda/pkgs
-          key: conda-pkgs-${{ runner.os }}-${{ hashFiles('.github/workflows/run_and_publish_notebooks.yml') }}
-          restore-keys: |
-            conda-pkgs-${{ runner.os }}-
+          path: ~/cvmfs-apt-cache
+          key: cvmfs-apt-${{ runner.os }}-v1
 
-      - name: Install Jupyter Book dependencies
+      - name: Create Neurodesk CVMFS public key
         run: |
-          mamba install -c conda-forge -y r-irkernel ipykernel "jupyter-book<2.0.0" ghp-import
+          sudo mkdir -p /etc/cvmfs/keys/ardc.edu.au
+          sudo tee /etc/cvmfs/keys/ardc.edu.au/neurodesk.ardc.edu.au.pub << 'EOF'
+          -----BEGIN PUBLIC KEY-----
+          MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwUPEmxDp217SAtZxaBep
+          Bi2TQcLoh5AJ//HSIz68ypjOGFjwExGlHb95Frhu1SpcH5OASbV+jJ60oEBLi3sD
+          qA6rGYt9kVi90lWvEjQnhBkPb0uWcp1gNqQAUocybCzHvoiG3fUzAe259CrK09qR
+          pX8sZhgK3eHlfx4ycyMiIQeg66AHlgVCJ2fKa6fl1vnh6adJEPULmn6vZnevvUke
+          I6U1VcYTKm5dPMrOlY/fGimKlyWvivzVv1laa5TAR2Dt4CfdQncOz+rkXmWjLjkD
+          87WMiTgtKybsmMLb2yCGSgLSArlSWhbMA0MaZSzAwE9PJKCCMvTANo5644zc8jBe
+          NQIDAQAB
+          -----END PUBLIC KEY-----
+          EOF
+
+      - name: Setup CVMFS
+        uses: cvmfs-contrib/github-action-cvmfs@v5.3
+        with:
+          cvmfs_repositories: neurodesk.ardc.edu.au
+          cvmfs_http_proxy: DIRECT
+          cvmfs_quota_limit: 5000
+          cvmfs_keys_dir: /etc/cvmfs/keys/ardc.edu.au
+          cvmfs_server_url: "http://cvmfs-geoproximity.neurodesk.org/cvmfs/@fqrn@;http://cvmfs.neurodesk.org/cvmfs/@fqrn@;http://s1osggoc-cvmfs.openhtc.io:8080/cvmfs/@fqrn@;http://s1fnal-cvmfs.openhtc.io:8080/cvmfs/@fqrn@;http://s1sampa-cvmfs.openhtc.io:8080/cvmfs/@fqrn@;http://s1brisbane-cvmfs.openhtc.io/cvmfs/@fqrn@;http://s1nikhef-cvmfs.openhtc.io/cvmfs/@fqrn@;http://s1bnl-cvmfs.openhtc.io/cvmfs/@fqrn@;http://s1perth-cvmfs.openhtc.io/cvmfs/@fqrn@"
+          apt_cache: ~/cvmfs-apt-cache
+
+      - name: Debug CVMFS Configuration
+        run: |
+          echo "========== CVMFS CONFIG DEBUG =========="
+          
+          echo "=== CVMFS version ==="
+          cvmfs2 --version || echo "cvmfs2 not found"
+          
+          echo ""
+          echo "=== /etc/cvmfs/default.local ==="
+          cat /etc/cvmfs/default.local 2>/dev/null || echo "File not found"
+          
+          echo ""
+          echo "=== /etc/cvmfs/default.d/ contents ==="
+          ls -la /etc/cvmfs/default.d/ 2>/dev/null || echo "Directory not found"
+          cat /etc/cvmfs/default.d/*.conf 2>/dev/null || echo "No conf files"
+          
+          echo ""
+          echo "=== /etc/cvmfs/config.d/ contents ==="
+          ls -la /etc/cvmfs/config.d/ 2>/dev/null || echo "Directory not found"
+          
+          echo ""
+          echo "=== neurodesk.ardc.edu.au.conf ==="
+          cat /etc/cvmfs/config.d/neurodesk.ardc.edu.au.conf 2>/dev/null || echo "File not found"
+          
+          echo ""
+          echo "=== /etc/cvmfs/keys/ contents ==="
+          ls -laR /etc/cvmfs/keys/ 2>/dev/null || echo "Directory not found"
+          
+          echo ""
+          echo "=== Public key file ==="
+          cat /etc/cvmfs/keys/neurodesk.ardc.edu.au.pub 2>/dev/null || \
+          cat /etc/cvmfs/keys/ardc.edu.au/neurodesk.ardc.edu.au.pub 2>/dev/null || \
+          echo "Public key file not found"
+          
+          echo ""
+          echo "=== cvmfs_config chksetup ==="
+          sudo cvmfs_config chksetup || echo "chksetup failed"
+          
+          echo "========================================="
+
+      - name: Probe and Mount CVMFS
+        run: |
+          echo "========== CVMFS MOUNT =========="
+          
+          echo "=== Trying cvmfs_config probe ==="
+          sudo cvmfs_config probe neurodesk.ardc.edu.au || echo "Probe failed"
+          
+          echo ""
+          echo "=== Check autofs status ==="
+          sudo systemctl status autofs || echo "autofs status check failed"
+          
+          echo ""
+          echo "=== Trigger autofs mount by accessing path ==="
+          ls /cvmfs/neurodesk.ardc.edu.au 2>&1 || echo "Direct access failed"
+          
+          echo ""
+          echo "=== Current mounts ==="
+          mount | grep cvmfs || echo "No cvmfs mounts found"
+          
+          echo ""
+          echo "=== Try manual mount if autofs failed ==="
+          if [ ! -d "/cvmfs/neurodesk.ardc.edu.au" ] || [ -z "$(ls -A /cvmfs/neurodesk.ardc.edu.au 2>/dev/null)" ]; then
+            echo "Attempting manual mount..."
+            sudo mkdir -p /cvmfs/neurodesk.ardc.edu.au
+            sudo mount -t cvmfs neurodesk.ardc.edu.au /cvmfs/neurodesk.ardc.edu.au || echo "Manual mount failed"
+          fi
+          
+          echo ""
+          echo "=== Final CVMFS status ==="
+          cvmfs_config stat neurodesk.ardc.edu.au || echo "stat failed"
+          
+          echo ""
+          echo "=== CVMFS contents ==="
+          ls -la /cvmfs/neurodesk.ardc.edu.au/ | head -30 || echo "Still not accessible"
+          
+          echo "==================================="
+
+      # -------------------------------------------------------------------------
+      # Docker image caching
+      # -------------------------------------------------------------------------
+      - name: Cache Docker image
+        uses: actions/cache@v5.0.1
+        id: docker-cache
+        with:
+          path: ~/docker-image-cache
+          key: docker-neurodesk-${{ needs.setup.outputs.neurodesk_image }}
+
+      - name: Load or pull Neurodesk image
+        run: |
+          IMAGE="${{ needs.setup.outputs.neurodesk_image }}"
+          CACHE_FILE=~/docker-image-cache/neurodesk.tar
+          
+          if [ -f "$CACHE_FILE" ]; then
+            echo "Loading image from cache..."
+            docker load -i "$CACHE_FILE"
+          else
+            echo "Pulling image from registry..."
+            docker pull "$IMAGE"
+            
+            echo "Saving image to cache..."
+            mkdir -p ~/docker-image-cache
+            docker save -o "$CACHE_FILE" "$IMAGE"
+          fi
+          
+          echo "Image ready:"
+          docker images "$IMAGE"
+
+      - name: Debug environment in container
+        run: |
+          docker run --rm \
+            -v /cvmfs:/cvmfs:ro \
+            ${{ needs.setup.outputs.neurodesk_image }} \
+            bash -c '
+              echo "========== CONTAINER DEBUG INFO =========="
+              
+              echo "=== PATH ==="
+              echo "$PATH"
+              
+              echo ""
+              echo "=== CVMFS in container ==="
+              ls -la /cvmfs/ 2>/dev/null || echo "ERROR: /cvmfs not accessible in container"
+              ls -la /cvmfs/neurodesk.ardc.edu.au/ 2>/dev/null | head -20 || echo "ERROR: neurodesk.ardc.edu.au not accessible"
+              
+              echo ""
+              echo "=== Module system init ==="
+              if [ -f /usr/share/lmod/lmod/init/bash ]; then
+                source /usr/share/lmod/lmod/init/bash
+                echo "Lmod initialized successfully"
+              else
+                echo "ERROR: Lmod init script not found"
+              fi
+              
+              echo ""
+              echo "=== MODULEPATH ==="
+              echo "$MODULEPATH"
+              
+              echo ""
+              echo "=== Available modules (first 30) ==="
+              module avail 2>&1 | head -30 || echo "ERROR: module avail failed"
+              
+              echo ""
+              echo "=== Test: Load FSL module ==="
+              module load fsl 2>&1 || echo "WARNING: Could not load fsl module"
+              
+              echo ""
+              echo "=== Check FSL commands ==="
+              which bet 2>/dev/null && echo "bet found: $(which bet)" || echo "WARNING: bet not found in PATH"
+              which fsl 2>/dev/null && echo "fsl found: $(which fsl)" || echo "WARNING: fsl not found in PATH"
+              
+              echo ""
+              echo "=== Updated PATH after module load ==="
+              echo "$PATH"
+              
+              echo "==========================================="
+            '
+
+      # -------------------------------------------------------------------------
+      # Docker execution with CVMFS mounted
+      # -------------------------------------------------------------------------
 
       - name: Fix notebook kernelspec if needed
         run: |
@@ -231,47 +431,93 @@ jobs:
               print(f"Note: Could not process notebook (may not be ipynb): {e}")
           EOF
 
-      - name: Execute notebook with Jupyter Book
+      - name: Execute notebook in Neurodesk container
         timeout-minutes: 1500
-        working-directory: ./books
-        shell: bash
         env:
           GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-          # Force bash subprocesses to source lmod init (for Jupyter kernels)
-          BASH_ENV: /usr/share/lmod/lmod/init/bash
         run: |
-          export PATH=/opt/conda/bin:$HOME/.local/bin:$PATH
-
-          # Set environment variables for later steps
           echo "NOTEBOOK=$(basename -s .ipynb ${{ matrix.notebooks }})" >> $GITHUB_ENV
           echo "DIRNAME=$(dirname ${{ matrix.notebooks }})" >> $GITHUB_ENV
 
-          # Initialize the module system for this shell
-          if [ -f /usr/share/lmod/lmod/init/bash ]; then
-            source /usr/share/lmod/lmod/init/bash
-          elif [ -f /usr/share/module.sh ]; then
-            source /usr/share/module.sh
-          fi
+          docker run --rm \
+            --shm-size=1gb \
+            --privileged \
+            --user=root \
+            -v ${{ github.workspace }}:/home/jovyan/workspace \
+            -v /cvmfs:/cvmfs:ro \
+            -v ${{ env.BASE_PATH }}/tmp:/overlay-storage \
+            -w /home/jovyan/workspace/books \
+            -e NB_USER=jovyan \
+            -e NB_UID="$(id -u)" \
+            -e NB_GID="$(id -g)" \
+            -e GITHUB_PAT="${GITHUB_PAT}" \
+            -e BASH_ENV=/usr/share/lmod/lmod/init/bash \
+            ${{ needs.setup.outputs.neurodesk_image }} \
+            bash -c '
+              set -e
+              
+              export PATH=/opt/conda/bin:$HOME/.local/bin:$PATH
 
-          # Verify jupyter-book is available
-          echo "Checking for jupyter-book..."
-          which jupyter-book || echo "jupyter-book not found in PATH"
+              # Create apptainer overlay for modules that require it
+              if [ ! -L /tmp/apptainer_overlay ]; then
+                echo "Creating /tmp/apptainer_overlay symlink to /overlay-storage..."
+                
+                # Check if overlay exists in mounted storage
+                if [ ! -f /overlay-storage/apptainer_overlay ]; then
+                    echo "Creating 300MB overlay file on secondary disk..."
+                    dd if=/dev/zero of=/overlay-storage/apptainer_overlay bs=1M count=300 status=none
+                    mkfs.ext3 -F /overlay-storage/apptainer_overlay >/dev/null
+                    chmod 777 /overlay-storage/apptainer_overlay
+                fi
+                
+                # Symlink to expected location
+                ln -sf /overlay-storage/apptainer_overlay /tmp/apptainer_overlay
+              fi
 
-          # Execute the notebook
-          jupyter-book build ${{ matrix.notebooks }}
+              
+              # Move apptainer working dir to secondary storage to save root disk space
+              mkdir -p /overlay-storage/var_lib_apptainer
+              chmod 777 /overlay-storage/var_lib_apptainer
+              
+              # Symlink /var/lib/apptainer if it doesn't exist or isn't a link yet
+              if [ ! -L /var/lib/apptainer ]; then
+                  rm -rf /var/lib/apptainer # Remove if it exists as a dir
+                  ln -sf /overlay-storage/var_lib_apptainer /var/lib/apptainer
+              fi
+
+              # Initialize the module system
+              if [ -f /usr/share/lmod/lmod/init/bash ]; then
+                source /usr/share/lmod/lmod/init/bash
+              elif [ -f /usr/share/module.sh ]; then
+                source /usr/share/module.sh
+              fi
+
+              # Install dependencies (use pip --user to avoid /opt/conda permission issues)
+              pip install --user "jupyter-book<2.0.0" ghp-import
+
+              # Verify jupyter-book is available
+              echo "Checking for jupyter-book..."
+              which jupyter-book || echo "jupyter-book not found in PATH"
+
+              # Verify CVMFS is accessible
+              echo "Checking CVMFS mount..."
+              ls -la /cvmfs/neurodesk.ardc.edu.au/ | head -10 || echo "CVMFS not accessible"
+
+              # Execute the notebook
+              jupyter-book build ${{ matrix.notebooks }}
+            '
 
       - name: Print notebook output logs
         if: always()
-        working-directory: ./books
         run: |
           echo "========== NOTEBOOK OUTPUT ==========="
           echo "PWD: $(pwd)"
 
           echo "=== Files in notebook source directory ==="
-          ls -la $(dirname ${{ matrix.notebooks }}) || true
+          ls -la books/$(dirname ${{ matrix.notebooks }}) || true
 
           echo "=== .nii.gz files in books ==="
-          find . -name "*.nii.gz" -type f 2>/dev/null || echo "No .nii.gz files found"
+          find books -name "*.nii.gz" -type f 2>/dev/null || echo "No .nii.gz files found"
 
           echo "=== Log files ==="
           for LOG in $(find "$GITHUB_WORKSPACE/books" -name "*.log" -type f 2>/dev/null); do
@@ -281,7 +527,6 @@ jobs:
           echo "========================================"
 
       - name: Check for execution errors
-        working-directory: ./books
         run: |
           ERROR_LOG=$(find "$GITHUB_WORKSPACE/books" -name "*.err.log" -type f 2>/dev/null | head -1)
           if [ -n "$ERROR_LOG" ]; then
@@ -310,43 +555,70 @@ jobs:
     if: ${{ always() && (needs.run-notebooks.result == 'success' || needs.run-notebooks.result == 'skipped') }}
     runs-on: ubuntu-22.04
 
-    container:
-      image: ${{ needs.setup.outputs.neurodesk_image }}
-      volumes:
-        - /home/runner/:/home/
-      options: --user root
-
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
 
-      - name: Cache conda packages
-        uses: actions/cache@9255dc7a253b0ccc959486e2bca901246202afeb
+      - name: Cache Docker image
+        uses: actions/cache@v5.0.1
         with:
-          path: /opt/conda/pkgs
-          key: conda-pkgs-${{ runner.os }}-${{ hashFiles('.github/workflows/run_and_publish_notebooks.yml') }}
-          restore-keys: |
-            conda-pkgs-${{ runner.os }}-
+          path: ~/docker-image-cache
+          key: docker-neurodesk-${{ needs.setup.outputs.neurodesk_image }}
 
-      - name: Install Jupyter Book dependencies
+      - name: Load Neurodesk image
         run: |
-          mamba install -c conda-forge -y r-irkernel ipykernel "jupyter-book<2.0.0" ghp-import
+          IMAGE="${{ needs.setup.outputs.neurodesk_image }}"
+          CACHE_FILE=~/docker-image-cache/neurodesk.tar
+          if [ -f "$CACHE_FILE" ]; then
+            echo "Loading image from cache..."
+            docker load -i "$CACHE_FILE"
+          else
+            echo "::error::Docker image cache not found. This should not happen if run-notebooks succeeded."
+            docker pull "$IMAGE"
+          fi
 
-      - name: Build complete Jupyter Book (without execution)
-        working-directory: ./books
+      - name: Cache Conda/Python dependencies
+        uses: actions/cache@v5.0.1
+        with:
+          path: ~/pip-cache
+          key: pip-book-${{ hashFiles('books/_config.yml') }}
+          restore-keys: |
+            pip-book-
+
+      - name: Build complete Jupyter Book (in Container)
         env:
           GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          export PATH=/opt/conda/bin:$HOME/.local/bin:$PATH
+          # Create cache dir if not exists
+          mkdir -p ~/pip-cache
 
-          # Generate table of contents
-          /bin/bash ../.github/scripts/write-toc-entry.sh
+          docker run --rm \
+            --user=root \
+            -v ${{ github.workspace }}:/home/jovyan/workspace \
+            -v ~/pip-cache:/home/jovyan/.cache/pip \
+            -w /home/jovyan/workspace/books \
+            -e GITHUB_PAT="${GITHUB_PAT}" \
+            ${{ needs.setup.outputs.neurodesk_image }} \
+            bash -c '
+              set -e
+              export PATH=/opt/conda/bin:$HOME/.local/bin:$PATH
 
-          # Disable notebook execution (already executed in run-notebooks job)
-          sed -i 's/execute_notebooks: .*/execute_notebooks: off/' _config.yml
-          cat _config.yml
+              # Install dependencies
+              # We use pip --user to take advantage of the mounted .cache/pip
+              pip install --user r-irkernel ipykernel "jupyter-book<2.0.0" ghp-import
 
-          # Build the book
-          jupyter-book build .
+              # Generate table of contents
+              /bin/bash ../.github/scripts/write-toc-entry.sh
+
+              # Disable notebook execution (already executed in run-notebooks job)
+              sed -i "s/execute_notebooks: .*/execute_notebooks: off/" _config.yml
+              
+              # Build the book
+              jupyter-book build .
+              
+              # Fix permissions of generated files so host user can read them (if needed, though root usually fine on GHA)
+              # But gh-pages action runs as runner user.
+              chown -R 1001:1001 _build
+            '
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e
