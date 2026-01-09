@@ -687,15 +687,15 @@ jobs:
 
           # -----------------------------------------------------------------------
           # NOTE: We use the exact same Docker startup settings as run-notebooks
-          # to ensure the environment (Lmod, Apptainer overlay, CVMFS) initializes
+          # to ensure the environment (Lmod, Apptainer overlay) initializes
           # correctly without permission errors.
+          # CVMFS is disabled here as we only build the book (no execution).
           # -----------------------------------------------------------------------
           docker run --rm \
             --shm-size=1gb \
             --privileged \
             --user=root \
             -v ${{ github.workspace }}:/home/jovyan/workspace \
-            -v /cvmfs:/cvmfs:ro \
             -v ${{ env.BASE_PATH }}/tmp:/overlay-storage \
             -v ${{ github.workspace }}/.cache/pip:/home/jovyan/.cache/pip \
             -w /home/jovyan/workspace/books \
@@ -704,6 +704,7 @@ jobs:
             -e NB_GID="$(id -g)" \
             -e GITHUB_PAT="${GITHUB_PAT}" \
             -e BASH_ENV=/usr/share/lmod/lmod/init/bash \
+            -e CVMFS_DISABLE=true \
             ${{ needs.setup.outputs.neurodesk_image }} \
             bash -c '
               set -e
