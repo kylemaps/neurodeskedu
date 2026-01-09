@@ -265,7 +265,7 @@ jobs:
       # -------------------------------------------------------------------------
       # CVMFS Setup (for GitHub-hosted runners)
       # -------------------------------------------------------------------------
-      - name: Cache CVMFS apt packages
+      - name: Restore CVMFS apt cache
         uses: actions/cache@v5.0.1
         id: cvmfs-cache
         with:
@@ -377,7 +377,7 @@ jobs:
       # -------------------------------------------------------------------------
       # Docker image caching
       # -------------------------------------------------------------------------
-      - name: Cache Docker image
+      - name: Restore Docker image cache
         uses: actions/cache@v5.0.1
         id: docker-cache
         with:
@@ -635,7 +635,7 @@ jobs:
           # Clean up existing space
           docker system prune -af || true
 
-      - name: Cache Docker image
+      - name: Restore Docker image cache
         uses: actions/cache@v5.0.1
         with:
           path: ~/docker-image-cache
@@ -653,7 +653,7 @@ jobs:
             docker pull "$IMAGE"
           fi
 
-      - name: Cache Conda/Python dependencies
+      - name: Restore Conda/Python dependencies cache
         uses: actions/cache@v5.0.1
         with:
           path: ${{ github.workspace }}/.cache/pip
