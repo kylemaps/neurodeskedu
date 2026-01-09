@@ -297,82 +297,21 @@ jobs:
           cvmfs_server_url: "http://cvmfs-geoproximity.neurodesk.org/cvmfs/@fqrn@;http://cvmfs.neurodesk.org/cvmfs/@fqrn@;http://s1osggoc-cvmfs.openhtc.io:8080/cvmfs/@fqrn@;http://s1fnal-cvmfs.openhtc.io:8080/cvmfs/@fqrn@;http://s1sampa-cvmfs.openhtc.io:8080/cvmfs/@fqrn@;http://s1brisbane-cvmfs.openhtc.io/cvmfs/@fqrn@;http://s1nikhef-cvmfs.openhtc.io/cvmfs/@fqrn@;http://s1bnl-cvmfs.openhtc.io/cvmfs/@fqrn@;http://s1perth-cvmfs.openhtc.io/cvmfs/@fqrn@"
           apt_cache: ${{ github.workspace }}/.cache/cvmfs-apt
 
-      - name: Debug CVMFS Configuration
+      - name: Mount CVMFS
         run: |
-          echo "========== CVMFS CONFIG DEBUG =========="
+          # Probe and verify mount
+          sudo cvmfs_config probe neurodesk.ardc.edu.au || true
           
-          echo "=== CVMFS version ==="
-          cvmfs2 --version || echo "cvmfs2 not found"
-          
-          echo ""
-          echo "=== /etc/cvmfs/default.local ==="
-          cat /etc/cvmfs/default.local 2>/dev/null || echo "File not found"
-          
-          echo ""
-          echo "=== /etc/cvmfs/default.d/ contents ==="
-          ls -la /etc/cvmfs/default.d/ 2>/dev/null || echo "Directory not found"
-          cat /etc/cvmfs/default.d/*.conf 2>/dev/null || echo "No conf files"
-          
-          echo ""
-          echo "=== /etc/cvmfs/config.d/ contents ==="
-          ls -la /etc/cvmfs/config.d/ 2>/dev/null || echo "Directory not found"
-          
-          echo ""
-          echo "=== neurodesk.ardc.edu.au.conf ==="
-          cat /etc/cvmfs/config.d/neurodesk.ardc.edu.au.conf 2>/dev/null || echo "File not found"
-          
-          echo ""
-          echo "=== /etc/cvmfs/keys/ contents ==="
-          ls -laR /etc/cvmfs/keys/ 2>/dev/null || echo "Directory not found"
-          
-          echo ""
-          echo "=== Public key file ==="
-          cat /etc/cvmfs/keys/neurodesk.ardc.edu.au.pub 2>/dev/null || \
-          cat /etc/cvmfs/keys/ardc.edu.au/neurodesk.ardc.edu.au.pub 2>/dev/null || \
-          echo "Public key file not found"
-          
-          echo ""
-          echo "=== cvmfs_config chksetup ==="
-          sudo cvmfs_config chksetup || echo "chksetup failed"
-          
-          echo "========================================="
-
-      - name: Probe and Mount CVMFS
-        run: |
-          echo "========== CVMFS MOUNT =========="
-          
-          echo "=== Trying cvmfs_config probe ==="
-          sudo cvmfs_config probe neurodesk.ardc.edu.au || echo "Probe failed"
-          
-          echo ""
-          echo "=== Check autofs status ==="
-          sudo systemctl status autofs || echo "autofs status check failed"
-          
-          echo ""
-          echo "=== Trigger autofs mount by accessing path ==="
-          ls /cvmfs/neurodesk.ardc.edu.au 2>&1 || echo "Direct access failed"
-          
-          echo ""
-          echo "=== Current mounts ==="
-          mount | grep cvmfs || echo "No cvmfs mounts found"
-          
-          echo ""
-          echo "=== Try manual mount if autofs failed ==="
-          if [ ! -d "/cvmfs/neurodesk.ardc.edu.au" ] || [ -z "$(ls -A /cvmfs/neurodesk.ardc.edu.au 2>/dev/null)" ]; then
-            echo "Attempting manual mount..."
+          # Trigger autofs mount
+          ls /cvmfs/neurodesk.ardc.edu.au > /dev/null 2>&1 || {
+            echo "Autofs mount failed, attempting manual mount..."
             sudo mkdir -p /cvmfs/neurodesk.ardc.edu.au
-            sudo mount -t cvmfs neurodesk.ardc.edu.au /cvmfs/neurodesk.ardc.edu.au || echo "Manual mount failed"
-          fi
+            sudo mount -t cvmfs neurodesk.ardc.edu.au /cvmfs/neurodesk.ardc.edu.au
+          }
           
-          echo ""
-          echo "=== Final CVMFS status ==="
-          cvmfs_config stat neurodesk.ardc.edu.au || echo "stat failed"
-          
-          echo ""
-          echo "=== CVMFS contents ==="
-          ls -la /cvmfs/neurodesk.ardc.edu.au/ | head -30 || echo "Still not accessible"
-          
-          echo "==================================="
+          # Verify
+          echo "CVMFS mounted:"
+          ls /cvmfs/neurodesk.ardc.edu.au/ | head -5
 
       # -------------------------------------------------------------------------
       # Docker image caching
@@ -399,55 +338,6 @@ jobs:
           
           echo "Image ready:"
           docker images "$IMAGE"
-
-      - name: Debug environment in container
-        run: |
-          docker run --rm \
-            -v /cvmfs:/cvmfs:ro \
-            ${{ needs.setup.outputs.neurodesk_image }} \
-            bash -c '
-              echo "========== CONTAINER DEBUG INFO =========="
-              
-              echo "=== PATH ==="
-              echo "$PATH"
-              
-              echo ""
-              echo "=== CVMFS in container ==="
-              ls -la /cvmfs/ 2>/dev/null || echo "ERROR: /cvmfs not accessible in container"
-              ls -la /cvmfs/neurodesk.ardc.edu.au/ 2>/dev/null | head -20 || echo "ERROR: neurodesk.ardc.edu.au not accessible"
-              
-              echo ""
-              echo "=== Module system init ==="
-              if [ -f /usr/share/lmod/lmod/init/bash ]; then
-                source /usr/share/lmod/lmod/init/bash
-                echo "Lmod initialized successfully"
-              else
-                echo "ERROR: Lmod init script not found"
-              fi
-              
-              echo ""
-              echo "=== MODULEPATH ==="
-              echo "$MODULEPATH"
-              
-              echo ""
-              echo "=== Available modules (first 30) ==="
-              module avail 2>&1 | head -30 || echo "ERROR: module avail failed"
-              
-              echo ""
-              echo "=== Test: Load FSL module ==="
-              module load fsl 2>&1 || echo "WARNING: Could not load fsl module"
-              
-              echo ""
-              echo "=== Check FSL commands ==="
-              which bet 2>/dev/null && echo "bet found: $(which bet)" || echo "WARNING: bet not found in PATH"
-              which fsl 2>/dev/null && echo "fsl found: $(which fsl)" || echo "WARNING: fsl not found in PATH"
-              
-              echo ""
-              echo "=== Updated PATH after module load ==="
-              echo "$PATH"
-              
-              echo "==========================================="
-            '
 
       # -------------------------------------------------------------------------
       # Docker execution with CVMFS mounted
