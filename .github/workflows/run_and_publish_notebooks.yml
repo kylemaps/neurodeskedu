@@ -138,7 +138,7 @@ jobs:
       - name: Cache CVMFS apt packages
         uses: actions/cache@v5.0.1
         with:
-          path: ~/cvmfs-apt-cache
+          path: ${{ github.workspace }}/.cache/cvmfs-apt
           key: cvmfs-apt-${{ runner.os }}-v1
 
       - name: Setup CVMFS (Warm Cache)
@@ -147,17 +147,20 @@ jobs:
           cvmfs_repositories: neurodesk.ardc.edu.au
           cvmfs_http_proxy: DIRECT
           cvmfs_quota_limit: 5000
-          apt_cache: ~/cvmfs-apt-cache
+          apt_cache: ${{ github.workspace }}/.cache/cvmfs-apt
 
       # --- Pip Cache Warmer ---
       - name: Cache Conda/Python dependencies
         uses: actions/cache@v5.0.1
         with:
-          path: ~/pip-cache
+          path: ${{ github.workspace }}/.cache/pip
           key: pip-book-${{ hashFiles('books/_config.yml') }}
 
       - name: Install Dependencies (Warm Cache)
+        env:
+          PIP_CACHE_DIR: ${{ github.workspace }}/.cache/pip
         run: |
+          mkdir -p ${{ github.workspace }}/.cache/pip
           pip install "jupyter-book<2.0.0" ghp-import
 
   # ---------------------------------------------------------------------------
@@ -266,7 +269,7 @@ jobs:
         uses: actions/cache@v5.0.1
         id: cvmfs-cache
         with:
-          path: ~/cvmfs-apt-cache
+          path: ${{ github.workspace }}/.cache/cvmfs-apt
           key: cvmfs-apt-${{ runner.os }}-v1
 
       - name: Create Neurodesk CVMFS public key
@@ -292,7 +295,7 @@ jobs:
           cvmfs_quota_limit: 5000
           cvmfs_keys_dir: /etc/cvmfs/keys/ardc.edu.au
           cvmfs_server_url: "http://cvmfs-geoproximity.neurodesk.org/cvmfs/@fqrn@;http://cvmfs.neurodesk.org/cvmfs/@fqrn@;http://s1osggoc-cvmfs.openhtc.io:8080/cvmfs/@fqrn@;http://s1fnal-cvmfs.openhtc.io:8080/cvmfs/@fqrn@;http://s1sampa-cvmfs.openhtc.io:8080/cvmfs/@fqrn@;http://s1brisbane-cvmfs.openhtc.io/cvmfs/@fqrn@;http://s1nikhef-cvmfs.openhtc.io/cvmfs/@fqrn@;http://s1bnl-cvmfs.openhtc.io/cvmfs/@fqrn@;http://s1perth-cvmfs.openhtc.io/cvmfs/@fqrn@"
-          apt_cache: ~/cvmfs-apt-cache
+          apt_cache: ${{ github.workspace }}/.cache/cvmfs-apt
 
       - name: Debug CVMFS Configuration
         run: |
@@ -495,6 +498,7 @@ jobs:
             -v ${{ github.workspace }}:/home/jovyan/workspace \
             -v /cvmfs:/cvmfs:ro \
             -v ${{ env.BASE_PATH }}/tmp:/overlay-storage \
+            -v ${{ github.workspace }}/.cache/pip:/home/jovyan/.cache/pip \
             -w /home/jovyan/workspace/books \
             -e NB_USER=jovyan \
             -e NB_UID="$(id -u)" \
@@ -628,7 +632,7 @@ jobs:
       - name: Cache Conda/Python dependencies
         uses: actions/cache@v5.0.1
         with:
-          path: ~/pip-cache
+          path: ${{ github.workspace }}/.cache/pip
           key: pip-book-${{ hashFiles('books/_config.yml') }}
           restore-keys: |
             pip-book-
@@ -643,7 +647,7 @@ jobs:
           docker run --rm \
             --user=root \
             -v ${{ github.workspace }}:/home/jovyan/workspace \
-            -v ~/pip-cache:/home/jovyan/.cache/pip \
+            -v ${{ github.workspace }}/.cache/pip:/home/jovyan/.cache/pip \
             -w /home/jovyan/workspace/books \
             -e GITHUB_PAT="${GITHUB_PAT}" \
             ${{ needs.setup.outputs.neurodesk_image }} \
