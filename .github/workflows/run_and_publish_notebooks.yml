@@ -167,12 +167,6 @@ jobs:
     runs-on: ${{ needs.setup.outputs.runner }}
     timeout-minutes: 1500
 
-    container:
-      image: ${{ needs.setup.outputs.neurodesk_image }}
-      volumes:
-        - /home/runner/:/home/
-      options: --user root
-
     strategy:
       fail-fast: false
       matrix:
@@ -184,22 +178,97 @@ jobs:
       - name: Set notebook environment variables
         run: echo "NOTEBOOK=$(basename -s .ipynb ${{ matrix.notebooks }})" >> $GITHUB_ENV
 
-      - name: Configure Git
-        run: |
-          git config --global user.email "mail.neurodesk@gmail.com"
-          git config --global user.name "vnm-neurodesk"
-
-      - name: Cache conda packages
-        uses: actions/cache@9255dc7a253b0ccc959486e2bca901246202afeb
+      # -------------------------------------------------------------------------
+      # CVMFS Setup (for GitHub-hosted runners)
+      # -------------------------------------------------------------------------
+      - name: Setup CVMFS for Neurodesk
+        uses: cvmfs-contrib/github-action-cvmfs@76db24a95706235b21a6c12eb5186dafd855ed2c
         with:
-          path: /opt/conda/pkgs
-          key: conda-pkgs-${{ runner.os }}-${{ hashFiles('.github/workflows/run_and_publish_notebooks.yml') }}
-          restore-keys: |
-            conda-pkgs-${{ runner.os }}-
+          cvmfs_repositories: neurodesk.ardc.edu.au
+          cvmfs_http_proxy: DIRECT
+          cvmfs_quota_limit: 5000
+          cvmfs_public_key: |
+            -----BEGIN PUBLIC KEY-----
+            MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwUPEmxDp217SAtZxaBep
+            Bi2TQcLoh5AJ//HSIz68ypjOGFjwExGlHb95Frhu1SpcH5OASbV+jJ60oEBLi3sD
+            qA6rGYt9kVi90lWvEjQnhBkPb0uWcp1gNqQAUocybCzHvoiG3fUzAe259CrK09qR
+            pX8sZhgK3eHlfx4ycyMiIQeg66AHlgVCJ2fKa6fl1vnh6adJEPULmn6vZnevvUke
+            I6U1VcYTKm5dPMrOlY/fGimKlyWvivzVv1laa5TAR2Dt4CfdQncOz+rkXmWjLjkD
+            87WMiTgtKybsmMLb2yCGSgLSArlSWhbMA0MaZSzAwE9PJKCCMvTANo5644zc8jBe
+            NQIDAQAB
+            -----END PUBLIC KEY-----
+          cvmfs_server_url: "http://cvmfs-geoproximity.neurodesk.org/cvmfs/@fqrn@;http://cvmfs.neurodesk.org/cvmfs/@fqrn@;http://s1osggoc-cvmfs.openhtc.io:8080/cvmfs/@fqrn@;http://s1fnal-cvmfs.openhtc.io:8080/cvmfs/@fqrn@;http://s1sampa-cvmfs.openhtc.io:8080/cvmfs/@fqrn@;http://s1brisbane-cvmfs.openhtc.io/cvmfs/@fqrn@;http://s1nikhef-cvmfs.openhtc.io/cvmfs/@fqrn@;http://s1bnl-cvmfs.openhtc.io/cvmfs/@fqrn@;http://s1perth-cvmfs.openhtc.io/cvmfs/@fqrn@"
 
-      - name: Install Jupyter Book dependencies
+      - name: Verify CVMFS mount
         run: |
-          mamba install -c conda-forge -y r-irkernel ipykernel "jupyter-book<2.0.0" ghp-import
+          echo "========== CVMFS VERIFICATION =========="
+          echo "=== CVMFS mount point ==="
+          ls -la /cvmfs/ || echo "ERROR: /cvmfs not accessible"
+          
+          echo ""
+          echo "=== Neurodesk CVMFS contents ==="
+          ls -la /cvmfs/neurodesk.ardc.edu.au/ | head -30 || echo "ERROR: neurodesk.ardc.edu.au not mounted"
+          
+          echo ""
+          echo "=== CVMFS status ==="
+          cvmfs_config stat neurodesk.ardc.edu.au || echo "CVMFS stat failed"
+          
+          echo "========================================="
+
+      - name: Debug environment in container
+        run: |
+          docker run --rm \
+            -v /cvmfs:/cvmfs:ro \
+            ${{ needs.setup.outputs.neurodesk_image }} \
+            bash -c '
+              echo "========== CONTAINER DEBUG INFO =========="
+              
+              echo "=== PATH ==="
+              echo "$PATH"
+              
+              echo ""
+              echo "=== CVMFS in container ==="
+              ls -la /cvmfs/ 2>/dev/null || echo "ERROR: /cvmfs not accessible in container"
+              ls -la /cvmfs/neurodesk.ardc.edu.au/ 2>/dev/null | head -20 || echo "ERROR: neurodesk.ardc.edu.au not accessible"
+              
+              echo ""
+              echo "=== Module system init ==="
+              if [ -f /usr/share/lmod/lmod/init/bash ]; then
+                source /usr/share/lmod/lmod/init/bash
+                echo "Lmod initialized successfully"
+              else
+                echo "ERROR: Lmod init script not found"
+              fi
+              
+              echo ""
+              echo "=== MODULEPATH ==="
+              echo "$MODULEPATH"
+              
+              echo ""
+              echo "=== Available modules (first 30) ==="
+              module avail 2>&1 | head -30 || echo "ERROR: module avail failed"
+              
+              echo ""
+              echo "=== Test: Load FSL module ==="
+              module load fsl 2>&1 || echo "WARNING: Could not load fsl module"
+              
+              echo ""
+              echo "=== Check FSL commands ==="
+              which bet 2>/dev/null && echo "bet found: $(which bet)" || echo "WARNING: bet not found in PATH"
+              which fsl 2>/dev/null && echo "fsl found: $(which fsl)" || echo "WARNING: fsl not found in PATH"
+              
+              echo ""
+              echo "=== Updated PATH after module load ==="
+              echo "$PATH"
+              
+              echo "==========================================="
+            '
+
+      # -------------------------------------------------------------------------
+      # Docker execution with CVMFS mounted
+      # -------------------------------------------------------------------------
+      - name: Pull Neurodesk image
+        run: docker pull ${{ needs.setup.outputs.neurodesk_image }}
 
       - name: Fix notebook kernelspec if needed
         run: |
@@ -231,47 +300,59 @@ jobs:
               print(f"Note: Could not process notebook (may not be ipynb): {e}")
           EOF
 
-      - name: Execute notebook with Jupyter Book
+      - name: Execute notebook in Neurodesk container
         timeout-minutes: 1500
-        working-directory: ./books
-        shell: bash
         env:
           GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-          # Force bash subprocesses to source lmod init (for Jupyter kernels)
-          BASH_ENV: /usr/share/lmod/lmod/init/bash
         run: |
-          export PATH=/opt/conda/bin:$HOME/.local/bin:$PATH
-
-          # Set environment variables for later steps
           echo "NOTEBOOK=$(basename -s .ipynb ${{ matrix.notebooks }})" >> $GITHUB_ENV
           echo "DIRNAME=$(dirname ${{ matrix.notebooks }})" >> $GITHUB_ENV
 
-          # Initialize the module system for this shell
-          if [ -f /usr/share/lmod/lmod/init/bash ]; then
-            source /usr/share/lmod/lmod/init/bash
-          elif [ -f /usr/share/module.sh ]; then
-            source /usr/share/module.sh
-          fi
+          docker run --rm \
+            --privileged \
+            -v ${{ github.workspace }}:/workspace \
+            -v /cvmfs:/cvmfs:ro \
+            -w /workspace/books \
+            -e GITHUB_PAT="${GITHUB_PAT}" \
+            -e BASH_ENV=/usr/share/lmod/lmod/init/bash \
+            ${{ needs.setup.outputs.neurodesk_image }} \
+            bash -c '
+              set -e
+              export PATH=/opt/conda/bin:$HOME/.local/bin:$PATH
 
-          # Verify jupyter-book is available
-          echo "Checking for jupyter-book..."
-          which jupyter-book || echo "jupyter-book not found in PATH"
+              # Initialize the module system
+              if [ -f /usr/share/lmod/lmod/init/bash ]; then
+                source /usr/share/lmod/lmod/init/bash
+              elif [ -f /usr/share/module.sh ]; then
+                source /usr/share/module.sh
+              fi
 
-          # Execute the notebook
-          jupyter-book build ${{ matrix.notebooks }}
+              # Install dependencies
+              mamba install -c conda-forge -y r-irkernel ipykernel "jupyter-book<2.0.0" ghp-import
+
+              # Verify jupyter-book is available
+              echo "Checking for jupyter-book..."
+              which jupyter-book || echo "jupyter-book not found in PATH"
+
+              # Verify CVMFS is accessible
+              echo "Checking CVMFS mount..."
+              ls -la /cvmfs/neurodesk.ardc.edu.au/ | head -10 || echo "CVMFS not accessible"
+
+              # Execute the notebook
+              jupyter-book build ${{ matrix.notebooks }}
+            '
 
       - name: Print notebook output logs
         if: always()
-        working-directory: ./books
         run: |
           echo "========== NOTEBOOK OUTPUT ==========="
           echo "PWD: $(pwd)"
 
           echo "=== Files in notebook source directory ==="
-          ls -la $(dirname ${{ matrix.notebooks }}) || true
+          ls -la books/$(dirname ${{ matrix.notebooks }}) || true
 
           echo "=== .nii.gz files in books ==="
-          find . -name "*.nii.gz" -type f 2>/dev/null || echo "No .nii.gz files found"
+          find books -name "*.nii.gz" -type f 2>/dev/null || echo "No .nii.gz files found"
 
           echo "=== Log files ==="
           for LOG in $(find "$GITHUB_WORKSPACE/books" -name "*.log" -type f 2>/dev/null); do
@@ -281,7 +362,6 @@ jobs:
           echo "========================================"
 
       - name: Check for execution errors
-        working-directory: ./books
         run: |
           ERROR_LOG=$(find "$GITHUB_WORKSPACE/books" -name "*.err.log" -type f 2>/dev/null | head -1)
           if [ -n "$ERROR_LOG" ]; then
