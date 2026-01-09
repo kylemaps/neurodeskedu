@@ -457,6 +457,13 @@ jobs:
               
               export PATH=/opt/conda/bin:$HOME/.local/bin:$PATH
 
+              # Create apptainer overlay for modules that require it
+              if [ ! -f /tmp/apptainer_overlay ]; then
+                echo "Creating /tmp/apptainer_overlay (300MB)..."
+                dd if=/dev/zero of=/tmp/apptainer_overlay bs=1M count=300 status=none
+                mkfs.ext3 -F /tmp/apptainer_overlay >/dev/null
+              fi
+
               # Initialize the module system
               if [ -f /usr/share/lmod/lmod/init/bash ]; then
                 source /usr/share/lmod/lmod/init/bash
