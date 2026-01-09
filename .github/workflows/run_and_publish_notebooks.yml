@@ -189,6 +189,14 @@ jobs:
           git config --global user.email "mail.neurodesk@gmail.com"
           git config --global user.name "vnm-neurodesk"
 
+      - name: Cache conda packages
+        uses: actions/cache@9255dc7a253b0ccc959486e2bca901246202afeb
+        with:
+          path: /opt/conda/pkgs
+          key: conda-pkgs-${{ runner.os }}-${{ hashFiles('.github/workflows/run_and_publish_notebooks.yml') }}
+          restore-keys: |
+            conda-pkgs-${{ runner.os }}-
+
       - name: Install Jupyter Book dependencies
         run: |
           mamba install -c conda-forge -y r-irkernel ipykernel "jupyter-book<2.0.0" ghp-import
@@ -301,6 +309,14 @@ jobs:
 
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+
+      - name: Cache conda packages
+        uses: actions/cache@v4
+        with:
+          path: /opt/conda/pkgs
+          key: conda-pkgs-${{ runner.os }}-${{ hashFiles('.github/workflows/run_and_publish_notebooks.yml') }}
+          restore-keys: |
+            conda-pkgs-${{ runner.os }}-
 
       - name: Install Jupyter Book dependencies
         run: |
