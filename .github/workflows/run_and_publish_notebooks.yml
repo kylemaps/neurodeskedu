@@ -243,7 +243,10 @@ jobs:
           # Execute the notebook
           jupyter-book build ${{ matrix.notebooks }}
 
-          # Debug output
+      - name: Print notebook output logs
+        if: always()
+        working-directory: ./books
+        run: |
           echo "========== NOTEBOOK OUTPUT ==========="
           echo "PWD: $(pwd)"
 
@@ -260,7 +263,9 @@ jobs:
           done
           echo "========================================"
 
-          # Check for execution errors
+      - name: Check for execution errors
+        working-directory: ./books
+        run: |
           ERROR_LOG=$(find "$GITHUB_WORKSPACE/books" -name "*.err.log" -type f 2>/dev/null | head -1)
           if [ -n "$ERROR_LOG" ]; then
             echo "::error::Notebook execution failed!"
