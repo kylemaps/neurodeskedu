@@ -603,7 +603,7 @@ jobs:
 
               # Install dependencies
               # We use pip --user to take advantage of the mounted .cache/pip
-              pip install --user r-irkernel ipykernel "jupyter-book<2.0.0" ghp-import
+              pip install --user "jupyter-book<2.0.0" ghp-import
 
               # Generate table of contents
               /bin/bash ../.github/scripts/write-toc-entry.sh
