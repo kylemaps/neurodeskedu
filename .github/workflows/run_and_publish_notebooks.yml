@@ -591,7 +591,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         with:
-          name: executed-${{ env.ARTIFACT_NAME }}
+          name: executed-${{ env.NOTEBOOK }}
           path: books/_build
           retention-days: 1
 
@@ -664,6 +664,7 @@ jobs:
       - name: Download all executed notebook artifacts
         uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
         with:
+          pattern: executed-*
           path: loaded-artifacts
 
       - name: Merge artifacts and Prepare Build
@@ -682,8 +683,8 @@ jobs:
         env:
           GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # Create cache dir if not exists
-          mkdir -p ~/pip-cache
+          # Ensure pip cache directory exists
+          mkdir -p ${{ github.workspace }}/.cache/pip
 
           # -----------------------------------------------------------------------
           # NOTE: We use the exact same Docker startup settings as run-notebooks
