@@ -199,21 +199,82 @@ jobs:
             -----END PUBLIC KEY-----
           cvmfs_server_url: "http://cvmfs-geoproximity.neurodesk.org/cvmfs/@fqrn@;http://cvmfs.neurodesk.org/cvmfs/@fqrn@;http://s1osggoc-cvmfs.openhtc.io:8080/cvmfs/@fqrn@;http://s1fnal-cvmfs.openhtc.io:8080/cvmfs/@fqrn@;http://s1sampa-cvmfs.openhtc.io:8080/cvmfs/@fqrn@;http://s1brisbane-cvmfs.openhtc.io/cvmfs/@fqrn@;http://s1nikhef-cvmfs.openhtc.io/cvmfs/@fqrn@;http://s1bnl-cvmfs.openhtc.io/cvmfs/@fqrn@;http://s1perth-cvmfs.openhtc.io/cvmfs/@fqrn@"
 
-      - name: Verify CVMFS mount
+      - name: Debug CVMFS Configuration
         run: |
-          echo "========== CVMFS VERIFICATION =========="
-          echo "=== CVMFS mount point ==="
-          ls -la /cvmfs/ || echo "ERROR: /cvmfs not accessible"
+          echo "========== CVMFS CONFIG DEBUG =========="
+          
+          echo "=== CVMFS version ==="
+          cvmfs2 --version || echo "cvmfs2 not found"
           
           echo ""
-          echo "=== Neurodesk CVMFS contents ==="
-          ls -la /cvmfs/neurodesk.ardc.edu.au/ | head -30 || echo "ERROR: neurodesk.ardc.edu.au not mounted"
+          echo "=== /etc/cvmfs/default.local ==="
+          cat /etc/cvmfs/default.local 2>/dev/null || echo "File not found"
           
           echo ""
-          echo "=== CVMFS status ==="
-          cvmfs_config stat neurodesk.ardc.edu.au || echo "CVMFS stat failed"
+          echo "=== /etc/cvmfs/default.d/ contents ==="
+          ls -la /etc/cvmfs/default.d/ 2>/dev/null || echo "Directory not found"
+          cat /etc/cvmfs/default.d/*.conf 2>/dev/null || echo "No conf files"
+          
+          echo ""
+          echo "=== /etc/cvmfs/config.d/ contents ==="
+          ls -la /etc/cvmfs/config.d/ 2>/dev/null || echo "Directory not found"
+          
+          echo ""
+          echo "=== neurodesk.ardc.edu.au.conf ==="
+          cat /etc/cvmfs/config.d/neurodesk.ardc.edu.au.conf 2>/dev/null || echo "File not found"
+          
+          echo ""
+          echo "=== /etc/cvmfs/keys/ contents ==="
+          ls -laR /etc/cvmfs/keys/ 2>/dev/null || echo "Directory not found"
+          
+          echo ""
+          echo "=== Public key file ==="
+          cat /etc/cvmfs/keys/neurodesk.ardc.edu.au.pub 2>/dev/null || \
+          cat /etc/cvmfs/keys/ardc.edu.au/neurodesk.ardc.edu.au.pub 2>/dev/null || \
+          echo "Public key file not found"
+          
+          echo ""
+          echo "=== cvmfs_config chksetup ==="
+          sudo cvmfs_config chksetup || echo "chksetup failed"
           
           echo "========================================="
+
+      - name: Probe and Mount CVMFS
+        run: |
+          echo "========== CVMFS MOUNT =========="
+          
+          echo "=== Trying cvmfs_config probe ==="
+          sudo cvmfs_config probe neurodesk.ardc.edu.au || echo "Probe failed"
+          
+          echo ""
+          echo "=== Check autofs status ==="
+          sudo systemctl status autofs || echo "autofs status check failed"
+          
+          echo ""
+          echo "=== Trigger autofs mount by accessing path ==="
+          ls /cvmfs/neurodesk.ardc.edu.au 2>&1 || echo "Direct access failed"
+          
+          echo ""
+          echo "=== Current mounts ==="
+          mount | grep cvmfs || echo "No cvmfs mounts found"
+          
+          echo ""
+          echo "=== Try manual mount if autofs failed ==="
+          if [ ! -d "/cvmfs/neurodesk.ardc.edu.au" ] || [ -z "$(ls -A /cvmfs/neurodesk.ardc.edu.au 2>/dev/null)" ]; then
+            echo "Attempting manual mount..."
+            sudo mkdir -p /cvmfs/neurodesk.ardc.edu.au
+            sudo mount -t cvmfs neurodesk.ardc.edu.au /cvmfs/neurodesk.ardc.edu.au || echo "Manual mount failed"
+          fi
+          
+          echo ""
+          echo "=== Final CVMFS status ==="
+          cvmfs_config stat neurodesk.ardc.edu.au || echo "stat failed"
+          
+          echo ""
+          echo "=== CVMFS contents ==="
+          ls -la /cvmfs/neurodesk.ardc.edu.au/ | head -30 || echo "Still not accessible"
+          
+          echo "==================================="
 
       - name: Debug environment in container
         run: |
@@ -310,6 +371,7 @@ jobs:
 
           docker run --rm \
             --privileged \
+            --user root \
             -v ${{ github.workspace }}:/workspace \
             -v /cvmfs:/cvmfs:ro \
             -w /workspace/books \
