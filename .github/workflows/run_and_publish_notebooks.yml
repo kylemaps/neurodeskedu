@@ -108,10 +108,10 @@ jobs:
           fi
 
   # ---------------------------------------------------------------------------
-  # DETECT CHANGES: Find notebooks that need to be executed
+  # SELECT NOTEBOOKS: Determine which notebooks to run (changed or manually selected)
   # ---------------------------------------------------------------------------
-  detect-changes:
-    name: Detect Changed Notebooks
+  select-notebooks:
+    name: Select Notebooks to Run
     runs-on: ubuntu-22.04
     outputs:
       notebook_list: ${{ steps.list_notebooks.outputs.notebook_list }}
@@ -162,8 +162,8 @@ jobs:
   # ---------------------------------------------------------------------------
   run-notebooks:
     name: Run Notebook
-    needs: [setup, detect-changes]
-    if: ${{ needs.detect-changes.outputs.notebook_list != '[]' }}
+    needs: [setup, select-notebooks]
+    if: ${{ needs.select-notebooks.outputs.notebook_list != '[]' }}
     runs-on: ${{ needs.setup.outputs.runner }}
     timeout-minutes: 1500
 
@@ -176,7 +176,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        notebooks: ${{ fromJson(needs.detect-changes.outputs.notebook_list) }}
+        notebooks: ${{ fromJson(needs.select-notebooks.outputs.notebook_list) }}
 
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
