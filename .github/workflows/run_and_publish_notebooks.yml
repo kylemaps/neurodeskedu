@@ -611,6 +611,34 @@ jobs:
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
 
+      - name: Configure runner (Optimize Disk Space)
+        if: runner.os == 'Linux'
+        run: |
+          if [ "${{ needs.setup.outputs.runner }}" != "self-hosted" ]; then
+             echo "Optimizing GitHub-hosted runner..."
+             sudo swapoff -a && sudo rm -rf /mnt/*
+             BASE_PATH=/mnt
+          else
+             echo "Configuring self-hosted runner..."
+             # Be careful not to wipe /mnt on self-hosted if it's used
+             BASE_PATH=/storage
+          fi
+          
+          echo "Using BASE_PATH=$BASE_PATH"
+          echo "BASE_PATH=$BASE_PATH" >> $GITHUB_ENV
+          
+          # Setup directories
+          sudo mkdir -p $BASE_PATH/tmp
+          sudo chown $USER $BASE_PATH/tmp
+          sudo mkdir -p $BASE_PATH/docker
+          
+          # Configure Docker to use new data-root
+          echo "{\"data-root\": \"$BASE_PATH/docker\"}" | sudo tee /etc/docker/daemon.json
+          sudo systemctl restart docker
+          
+          # Clean up existing space
+          docker system prune -af || true
+
       - name: Cache Docker image
         uses: actions/cache@v5.0.1
         with:
