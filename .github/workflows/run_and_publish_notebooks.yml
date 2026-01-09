@@ -436,14 +436,18 @@ jobs:
               fi
 
               # Install dependencies (use pip --user to avoid /opt/conda permission issues)
-              pip install --user nbclient ipykernel
+              pip install --user nbconvert nbclient ipykernel
 
               echo "Executing notebook: ${{ matrix.notebooks }}"
               
-              # Execute the notebook in-place (saves outputs to the .ipynb file)
-              jupyter execute ${{ matrix.notebooks }} --inplace
+              # Execute the notebook in-place using nbconvert
+              # --allow-errors: continue even if cells error (we detect errors later)
+              # --inplace: overwrite the original notebook with outputs
+              jupyter nbconvert --to notebook --execute --inplace --allow-errors \
+                --ExecutePreprocessor.timeout=3600 \
+                ${{ matrix.notebooks }}
               
-              echo "Notebook executed successfully"
+              echo "Notebook execution complete"
             '
 
       - name: Print notebook output logs
