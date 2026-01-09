@@ -234,6 +234,7 @@ jobs:
       - name: Execute notebook with Jupyter Book
         timeout-minutes: 1500
         working-directory: ./books
+        shell: bash
         env:
           GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -242,6 +243,13 @@ jobs:
           # Set environment variables for later steps
           echo "NOTEBOOK=$(basename -s .ipynb ${{ matrix.notebooks }})" >> $GITHUB_ENV
           echo "DIRNAME=$(dirname ${{ matrix.notebooks }})" >> $GITHUB_ENV
+
+          # Initialize the module system for non-interactive shells
+          if [ -f /usr/share/module.sh ]; then
+            source /usr/share/module.sh
+          elif [ -f /usr/share/lmod/lmod/init/bash ]; then
+            source /usr/share/lmod/lmod/init/bash
+          fi
 
           # Verify jupyter-book is available
           echo "Checking for jupyter-book..."
