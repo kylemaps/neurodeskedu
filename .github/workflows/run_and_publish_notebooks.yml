@@ -181,6 +181,13 @@ jobs:
       # -------------------------------------------------------------------------
       # CVMFS Setup (for GitHub-hosted runners)
       # -------------------------------------------------------------------------
+      - name: Cache CVMFS apt packages
+        uses: actions/cache@v4
+        id: cvmfs-cache
+        with:
+          path: ~/cvmfs-apt-cache
+          key: cvmfs-apt-${{ runner.os }}-v1
+
       - name: Create Neurodesk CVMFS public key
         run: |
           sudo mkdir -p /etc/cvmfs/keys/ardc.edu.au
@@ -204,6 +211,7 @@ jobs:
           cvmfs_quota_limit: 5000
           cvmfs_keys_dir: /etc/cvmfs/keys/ardc.edu.au
           cvmfs_server_url: "http://cvmfs-geoproximity.neurodesk.org/cvmfs/@fqrn@;http://cvmfs.neurodesk.org/cvmfs/@fqrn@;http://s1osggoc-cvmfs.openhtc.io:8080/cvmfs/@fqrn@;http://s1fnal-cvmfs.openhtc.io:8080/cvmfs/@fqrn@;http://s1sampa-cvmfs.openhtc.io:8080/cvmfs/@fqrn@;http://s1brisbane-cvmfs.openhtc.io/cvmfs/@fqrn@;http://s1nikhef-cvmfs.openhtc.io/cvmfs/@fqrn@;http://s1bnl-cvmfs.openhtc.io/cvmfs/@fqrn@;http://s1perth-cvmfs.openhtc.io/cvmfs/@fqrn@"
+          apt_cache: ~/cvmfs-apt-cache
 
       - name: Debug CVMFS Configuration
         run: |
