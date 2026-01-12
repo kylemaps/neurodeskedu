@@ -691,7 +691,7 @@ jobs:
           fi
           echo ""
           echo "Recently modified .ipynb files in books/:"
-          find books -name "*.ipynb" -type f -mmin -5 -exec ls -lh {} \; | head -10
+          find books -name "*.ipynb" -type f -mmin -5 -exec ls -lh {} \; 2>/dev/null | head -10 || true
           
           echo "================================================"
 
@@ -785,7 +785,7 @@ jobs:
             ls -lh books/_build/html/ | head -20
             echo ""
             echo "Recently modified HTML files:"
-            find books/_build/html -name "*.html" -type f -mmin -10 | head -10
+            find books/_build/html -name "*.html" -type f -mmin -10 2>/dev/null | head -10 || true
           else
             echo "::error::books/_build/html directory not found!"
             echo "Listing books/_build:"
