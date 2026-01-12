@@ -445,6 +445,7 @@ jobs:
               # --inplace: overwrite the original notebook with outputs
               jupyter nbconvert --to notebook --execute --inplace --allow-errors \
                 --ExecutePreprocessor.timeout=3600 \
+                --ExecutePreprocessor.kernel_name=python3 \
                 ${{ matrix.notebooks }}
               
               echo "Notebook execution complete"
