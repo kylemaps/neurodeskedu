@@ -652,45 +652,46 @@ jobs:
           fi
           
           echo ""
-          echo "=== Step 2: List artifact contents ==="
-          for dir in loaded-artifacts/executed-*; do
-            if [ -d "$dir" ]; then
-              echo "Contents of $dir:"
-              find "$dir" -type f -ls
-            fi
-          done
+          echo "=== Step 2: Find notebook files ==="
+          echo "Searching for .ipynb files in loaded-artifacts..."
+          find loaded-artifacts -name "*.ipynb" -type f
           
           echo ""
           echo "=== Step 3: Merge notebooks ==="
           merged=0
-          for artifact_dir in loaded-artifacts/executed-*; do
-            if [ -d "$artifact_dir" ]; then
-              echo "Processing: $artifact_dir"
+          
+          # Find all .ipynb files in loaded-artifacts (handles both direct files and subdirectories)
+          while IFS= read -r nb_file; do
+            if [ -f "$nb_file" ]; then
+              nb_name=$(basename "$nb_file")
+              echo "Processing: $nb_file"
+              echo "  Notebook: $nb_name ($(du -h "$nb_file" | cut -f1))"
               
-              for nb_file in $(find "$artifact_dir" -name "*.ipynb"); do
-                nb_name=$(basename "$nb_file")
-                echo "  Found notebook: $nb_name ($(du -h "$nb_file" | cut -f1))"
-                
-                target=$(find books -name "$nb_name" -type f | head -1)
-                
-                if [ -n "$target" ]; then
-                  echo "  Target: $target"
-                  echo "  Before: $(du -h "$target" | cut -f1)"
-                  cp -v "$nb_file" "$target"
-                  echo "  After: $(du -h "$target" | cut -f1)"
-                  merged=$((merged + 1))
-                else
-                  echo "  ::warning::No target found for $nb_name"
-                fi
-              done
+              # Find target in books/
+              target=$(find books -name "$nb_name" -type f | head -1)
+              
+              if [ -n "$target" ]; then
+                echo "  Target: $target"
+                echo "  Before: $(du -h "$target" | cut -f1)"
+                cp -v "$nb_file" "$target"
+                echo "  After: $(du -h "$target" | cut -f1)"
+                merged=$((merged + 1))
+              else
+                echo "  ::warning::No target found for $nb_name in books/"
+              fi
+              echo ""
             fi
-          done
+          done < <(find loaded-artifacts -name "*.ipynb" -type f)
           
           echo ""
           echo "=== Step 4: Verify merge ==="
           echo "Notebooks merged: $merged"
-          echo "Recently modified .ipynb files:"
-          find books -name "*.ipynb" -type f -mmin -5 -exec ls -lh {} \;
+          if [ $merged -eq 0 ]; then
+            echo "::warning::No notebooks were merged!"
+          fi
+          echo ""
+          echo "Recently modified .ipynb files in books/:"
+          find books -name "*.ipynb" -type f -mmin -5 -exec ls -lh {} \; | head -10
           
           echo "================================================"
 
