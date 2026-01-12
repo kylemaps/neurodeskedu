@@ -396,6 +396,7 @@ jobs:
             -e NB_UID="$(id -u)" \
             -e NB_GID="$(id -g)" \
             -e GITHUB_PAT="${GITHUB_PAT}" \
+            -e NOTEBOOK="${NOTEBOOK}" \
             ${{ needs.setup.outputs.neurodesk_image }}
           
           echo "Started container: $CONTAINER_NAME"
