@@ -640,34 +640,59 @@ jobs:
 
       - name: Merge executed notebooks into books directory
         run: |
-          echo "Merging executed notebooks..."
+          echo "========== MERGING EXECUTED NOTEBOOKS =========="
           
-          # Each artifact contains a single .ipynb file
-          # We need to copy it to the correct location in books/
+          echo "=== Step 1: Check artifact directory ==="
+          if [ -d "loaded-artifacts" ]; then
+            echo "loaded-artifacts directory exists"
+            ls -la loaded-artifacts/
+          else
+            echo "::error::loaded-artifacts directory not found!"
+            exit 1
+          fi
+          
+          echo ""
+          echo "=== Step 2: List artifact contents ==="
+          for dir in loaded-artifacts/executed-*; do
+            if [ -d "$dir" ]; then
+              echo "Contents of $dir:"
+              find "$dir" -type f -ls
+            fi
+          done
+          
+          echo ""
+          echo "=== Step 3: Merge notebooks ==="
+          merged=0
           for artifact_dir in loaded-artifacts/executed-*; do
             if [ -d "$artifact_dir" ]; then
-              echo "Processing $artifact_dir..."
+              echo "Processing: $artifact_dir"
               
-              # Find the notebook file in the artifact
               for nb_file in $(find "$artifact_dir" -name "*.ipynb"); do
-                # Get just the filename
                 nb_name=$(basename "$nb_file")
+                echo "  Found notebook: $nb_name ($(du -h "$nb_file" | cut -f1))"
                 
-                # Find where this notebook should go in books/
                 target=$(find books -name "$nb_name" -type f | head -1)
                 
                 if [ -n "$target" ]; then
-                  echo "Copying $nb_file -> $target"
-                  cp "$nb_file" "$target"
+                  echo "  Target: $target"
+                  echo "  Before: $(du -h "$target" | cut -f1)"
+                  cp -v "$nb_file" "$target"
+                  echo "  After: $(du -h "$target" | cut -f1)"
+                  merged=$((merged + 1))
                 else
-                  echo "Warning: Could not find target location for $nb_name"
+                  echo "  ::warning::No target found for $nb_name"
                 fi
               done
             fi
           done
           
-          echo "Merge complete. Listing updated notebooks:"
-          find books -name "*.ipynb" -newer loaded-artifacts 2>/dev/null || echo "No recently updated notebooks found"
+          echo ""
+          echo "=== Step 4: Verify merge ==="
+          echo "Notebooks merged: $merged"
+          echo "Recently modified .ipynb files:"
+          find books -name "*.ipynb" -type f -mmin -5 -exec ls -lh {} \;
+          
+          echo "================================================"
 
       - name: Set container name
         run: echo "CONTAINER_NAME=neurodesktop-publish-${{ github.run_id }}" >> $GITHUB_ENV
@@ -744,6 +769,30 @@ jobs:
           echo "Stopping and removing container: $CONTAINER_NAME"
           docker stop "$CONTAINER_NAME" 2>/dev/null || true
           docker rm "$CONTAINER_NAME" 2>/dev/null || true
+
+      - name: Verify build output
+        run: |
+          echo "========== VERIFYING BUILD OUTPUT =========="
+          
+          if [ -d "books/_build/html" ]; then
+            echo "✓ books/_build/html exists"
+            echo ""
+            echo "Build output size:"
+            du -sh books/_build/html
+            echo ""
+            echo "Top-level files:"
+            ls -lh books/_build/html/ | head -20
+            echo ""
+            echo "Recently modified HTML files:"
+            find books/_build/html -name "*.html" -type f -mmin -10 | head -10
+          else
+            echo "::error::books/_build/html directory not found!"
+            echo "Listing books/_build:"
+            ls -la books/_build/ || echo "books/_build does not exist"
+            exit 1
+          fi
+          
+          echo "============================================"
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e
