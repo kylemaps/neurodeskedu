@@ -373,15 +373,17 @@ jobs:
               print(f"Note: Could not process notebook (may not be ipynb): {e}")
           EOF
 
-      - name: Execute notebook in Neurodesk container
-        timeout-minutes: 1500
-        env:
-          GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      - name: Set notebook environment variables
         run: |
           echo "NOTEBOOK=$(basename -s .ipynb ${{ matrix.notebooks }})" >> $GITHUB_ENV
           echo "DIRNAME=$(dirname ${{ matrix.notebooks }})" >> $GITHUB_ENV
+          echo "CONTAINER_NAME=neurodesktop-${{ github.run_id }}-${{ strategy.job-index }}" >> $GITHUB_ENV
 
-          docker run --rm \
+      - name: Start Neurodesktop container
+        env:
+          GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          docker run -d --name "$CONTAINER_NAME" \
             --shm-size=1gb \
             --privileged \
             --user=root \
@@ -394,65 +396,90 @@ jobs:
             -e NB_UID="$(id -u)" \
             -e NB_GID="$(id -g)" \
             -e GITHUB_PAT="${GITHUB_PAT}" \
-            -e BASH_ENV=/usr/share/lmod/lmod/init/bash \
-            ${{ needs.setup.outputs.neurodesk_image }} \
-            bash -c '
-              set -e
-              
-              export PATH=/opt/conda/bin:$HOME/.local/bin:$PATH
+            ${{ needs.setup.outputs.neurodesk_image }}
+          
+          echo "Started container: $CONTAINER_NAME"
 
-              # Create apptainer overlay for modules that require it
-              if [ ! -L /tmp/apptainer_overlay ]; then
-                echo "Creating /tmp/apptainer_overlay symlink to /overlay-storage..."
-                
-                # Check if overlay exists in mounted storage
-                if [ ! -f /overlay-storage/apptainer_overlay ]; then
-                    echo "Creating 300MB overlay file on secondary disk..."
-                    dd if=/dev/zero of=/overlay-storage/apptainer_overlay bs=1M count=300 status=none
-                    mkfs.ext3 -F /overlay-storage/apptainer_overlay >/dev/null
-                    chmod 777 /overlay-storage/apptainer_overlay
-                fi
-                
-                # Symlink to expected location
-                ln -sf /overlay-storage/apptainer_overlay /tmp/apptainer_overlay
+      - name: Wait for container readiness
+        run: |
+          echo "Waiting for Neurodesktop to become ready..."
+          for i in {1..120}; do
+            if docker logs "$CONTAINER_NAME" 2>&1 | grep -q "To access the server"; then
+              echo "Container ready after ${i} seconds"
+              exit 0
+            fi
+            sleep 1
+          done
+          echo "::error::Container did not become ready within 120 seconds"
+          echo "=== Container logs ==="
+          docker logs "$CONTAINER_NAME"
+          exit 1
+
+      - name: Execute notebook in container
+        timeout-minutes: 1500
+        run: |
+          docker exec "$CONTAINER_NAME" bash -c '
+            set -e
+            export PATH=/opt/conda/bin:$HOME/.local/bin:$PATH
+
+            # Initialize the module system
+            if [ -f /usr/share/lmod/lmod/init/bash ]; then
+              source /usr/share/lmod/lmod/init/bash
+            elif [ -f /usr/share/module.sh ]; then
+              source /usr/share/module.sh
+            fi
+
+            # Create apptainer overlay for modules that require it
+            if [ ! -L /tmp/apptainer_overlay ]; then
+              echo "Creating /tmp/apptainer_overlay symlink to /overlay-storage..."
+              
+              # Check if overlay exists in mounted storage
+              if [ ! -f /overlay-storage/apptainer_overlay ]; then
+                  echo "Creating 300MB overlay file on secondary disk..."
+                  dd if=/dev/zero of=/overlay-storage/apptainer_overlay bs=1M count=300 status=none
+                  mkfs.ext3 -F /overlay-storage/apptainer_overlay >/dev/null
+                  chmod 777 /overlay-storage/apptainer_overlay
               fi
-
               
-              # Move apptainer working dir to secondary storage to save root disk space
-              mkdir -p /overlay-storage/var_lib_apptainer
-              chmod 777 /overlay-storage/var_lib_apptainer
-              
-              # Symlink /var/lib/apptainer if it doesn't exist or isn't a link yet
-              if [ ! -L /var/lib/apptainer ]; then
-                  rm -rf /var/lib/apptainer # Remove if it exists as a dir
-                  ln -sf /overlay-storage/var_lib_apptainer /var/lib/apptainer
-              fi
+              # Symlink to expected location
+              ln -sf /overlay-storage/apptainer_overlay /tmp/apptainer_overlay
+            fi
 
-              # Initialize the module system
-              if [ -f /usr/share/lmod/lmod/init/bash ]; then
-                source /usr/share/lmod/lmod/init/bash
-              elif [ -f /usr/share/module.sh ]; then
-                source /usr/share/module.sh
-              fi
+            # Move apptainer working dir to secondary storage to save root disk space
+            mkdir -p /overlay-storage/var_lib_apptainer
+            chmod 777 /overlay-storage/var_lib_apptainer
+            
+            # Symlink /var/lib/apptainer if it doesnt exist or isnt a link yet
+            if [ ! -L /var/lib/apptainer ]; then
+                rm -rf /var/lib/apptainer # Remove if it exists as a dir
+                ln -sf /overlay-storage/var_lib_apptainer /var/lib/apptainer
+            fi
 
-              # Install dependencies (use pip --user to avoid /opt/conda permission issues)
-              pip install --user nbconvert nbclient ipykernel
+            # Install dependencies (use pip --user to avoid /opt/conda permission issues)
+            pip install --user nbconvert nbclient ipykernel
 
-              echo "Executing notebook: ${{ matrix.notebooks }}"
-              
-              # Execute the notebook in-place using nbconvert
-              # --allow-errors: continue even if cells error (we detect errors later)
-              # --inplace: overwrite the original notebook with outputs
-              jupyter nbconvert --to notebook --execute --inplace --allow-errors \
-                --ExecutePreprocessor.timeout=3600 \
-                --ExecutePreprocessor.kernel_name=python3 \
-                --debug \
-                ${{ matrix.notebooks }} 2>&1 | tee /tmp/nbconvert.log
-              
-              echo "Notebook execution complete"
-              echo "=== nbconvert log ==="
-              cat /tmp/nbconvert.log
-            '
+            echo "Executing notebook: ${{ matrix.notebooks }}"
+            
+            # Execute the notebook in-place using nbconvert
+            # --allow-errors: continue even if cells error (we detect errors later)
+            # --inplace: overwrite the original notebook with outputs
+            jupyter nbconvert --to notebook --execute --inplace --allow-errors \
+              --ExecutePreprocessor.timeout=3600 \
+              --ExecutePreprocessor.kernel_name=python3 \
+              --debug \
+              ${{ matrix.notebooks }} 2>&1 | tee /tmp/nbconvert.log
+            
+            echo "Notebook execution complete"
+            echo "=== nbconvert log ==="
+            cat /tmp/nbconvert.log
+          '
+
+      - name: Cleanup container
+        if: always()
+        run: |
+          echo "Stopping and removing container: $CONTAINER_NAME"
+          docker stop "$CONTAINER_NAME" 2>/dev/null || true
+          docker rm "$CONTAINER_NAME" 2>/dev/null || true
 
       - name: Print notebook output logs
         if: always()
