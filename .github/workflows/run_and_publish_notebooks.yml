@@ -670,7 +670,10 @@ jobs:
           echo "Merge complete. Listing updated notebooks:"
           find books -name "*.ipynb" -newer loaded-artifacts 2>/dev/null || echo "No recently updated notebooks found"
 
-      - name: Build complete Jupyter Book (in Container)
+      - name: Set container name
+        run: echo "CONTAINER_NAME=neurodesktop-publish-${{ github.run_id }}" >> $GITHUB_ENV
+
+      - name: Start Neurodesktop container
         env:
           GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -681,9 +684,8 @@ jobs:
           # NOTE: We use the exact same Docker startup settings as run-notebooks
           # to ensure the environment (Lmod, Apptainer overlay) initializes
           # correctly without permission errors.
-          # CVMFS is disabled here as we only build the book (no execution).
           # -----------------------------------------------------------------------
-          docker run --rm \
+          docker run -d --name "$CONTAINER_NAME" \
             --shm-size=1gb \
             --privileged \
             --user=root \
@@ -695,30 +697,54 @@ jobs:
             -e NB_UID="$(id -u)" \
             -e NB_GID="$(id -g)" \
             -e GITHUB_PAT="${GITHUB_PAT}" \
-            -e BASH_ENV=/usr/share/lmod/lmod/init/bash \
-            -e CVMFS_DISABLE=true \
-            ${{ needs.setup.outputs.neurodesk_image }} \
-            bash -c '
-              set -e
-              export PATH=/opt/conda/bin:$HOME/.local/bin:$PATH
+            ${{ needs.setup.outputs.neurodesk_image }}
+          
+          echo "Started container: $CONTAINER_NAME"
 
-              # Install dependencies
-              # We use pip --user to take advantage of the mounted .cache/pip
-              pip install --user "jupyter-book<2.0.0" ghp-import
+      - name: Wait for container readiness
+        run: |
+          echo "Waiting for Neurodesktop to become ready..."
+          for i in {1..120}; do
+            if docker logs "$CONTAINER_NAME" 2>&1 | grep -q "To access the server"; then
+              echo "Container ready after ${i} seconds"
+              exit 0
+            fi
+            sleep 1
+          done
+          echo "::error::Container did not become ready within 120 seconds"
+          echo "=== Container logs ==="
+          docker logs "$CONTAINER_NAME"
+          exit 1
 
-              # Generate table of contents
-              /bin/bash ../.github/scripts/write-toc-entry.sh
+      - name: Build Jupyter Book in container
+        run: |
+          docker exec "$CONTAINER_NAME" bash -c '
+            set -e
+            export PATH=/opt/conda/bin:$HOME/.local/bin:$PATH
 
-              # Disable notebook execution (already executed in run-notebooks job)
-              sed -i "s/execute_notebooks: .*/execute_notebooks: off/" _config.yml
-              
-              # Build the book
-              jupyter-book build .
-              
-              # Fix permissions of generated files so host user can read them (if needed, though root usually fine on GHA)
-              # But gh-pages action runs as runner user.
-              chown -R 1001:1001 _build
-            '
+            # Install dependencies
+            # We use pip --user to take advantage of the mounted .cache/pip
+            pip install --user "jupyter-book<2.0.0" ghp-import
+
+            # Generate table of contents
+            /bin/bash ../.github/scripts/write-toc-entry.sh
+
+            # Disable notebook execution (already executed in run-notebooks job)
+            sed -i "s/execute_notebooks: .*/execute_notebooks: off/" _config.yml
+            
+            # Build the book
+            jupyter-book build .
+            
+            # Fix permissions of generated files so host user can read them
+            chown -R 1001:1001 _build
+          '
+
+      - name: Cleanup container
+        if: always()
+        run: |
+          echo "Stopping and removing container: $CONTAINER_NAME"
+          docker stop "$CONTAINER_NAME" 2>/dev/null || true
+          docker rm "$CONTAINER_NAME" 2>/dev/null || true
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e
