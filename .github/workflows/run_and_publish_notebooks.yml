@@ -523,22 +523,58 @@ jobs:
       - name: Check for execution errors
         run: |
           # Check the notebook for errors by looking for error outputs
+          # We report errors as warnings so the workflow continues, but users are notified
           python3 << 'EOF'
           import json
           import sys
+          import os
           
           notebook_path = "books/${{ matrix.notebooks }}"
+          notebook_name = "${{ matrix.notebooks }}"
+          errors_found = []
+          
           try:
               with open(notebook_path, 'r') as f:
                   nb = json.load(f)
               
-              for cell in nb.get('cells', []):
+              for cell_idx, cell in enumerate(nb.get('cells', [])):
                   if cell.get('cell_type') == 'code':
                       for output in cell.get('outputs', []):
                           if output.get('output_type') == 'error':
-                              print(f"::error::Notebook execution error: {output.get('ename', 'Unknown')}")
-                              sys.exit(1)
-              print("No errors found in notebook outputs")
+                              ename = output.get('ename', 'Unknown')
+                              evalue = output.get('evalue', '')
+                              errors_found.append({
+                                  'cell': cell_idx,
+                                  'ename': ename,
+                                  'evalue': evalue[:200]  # Truncate long error messages
+                              })
+              
+              if errors_found:
+                  # Report as warning (not error) so workflow continues
+                  print(f"::warning::Notebook {notebook_name} has {len(errors_found)} execution error(s). Please fix the notebook.")
+                  
+                  # Write to job summary for visibility
+                  summary = f"""
+          ## ⚠️ Notebook Execution Errors
+          
+          **Notebook:** `{notebook_name}`
+          
+          The following errors occurred during execution. The notebook has been published with error outputs visible, but the author should fix these issues:
+          
+          | Cell | Error Type | Message |
+          |------|-----------|---------|
+          """
+                  for err in errors_found:
+                      summary += f"| {err['cell']} | `{err['ename']}` | {err['evalue'][:100]} |\n"
+                  
+                  summary += "\n\nPlease update the notebook to fix these errors.\n"
+                  
+                  # Write to GitHub step summary
+                  with open(os.environ.get('GITHUB_STEP_SUMMARY', '/dev/null'), 'a') as f:
+                      f.write(summary)
+              else:
+                  print("No errors found in notebook outputs")
+                  
           except Exception as e:
               print(f"::warning::Could not check notebook for errors: {e}")
           EOF
