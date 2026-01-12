@@ -498,9 +498,8 @@ jobs:
           docker rm "$CONTAINER_NAME" 2>/dev/null || true
 
       - name: Check for execution errors
-        continue-on-error: true
         run: |
-          # Check the notebook for errors - step fails (red) if errors found, but workflow continues
+          # Check the notebook for errors - step/job fails (red) if errors found, but publish still runs
           python3 << 'EOF'
           import json
           import sys
@@ -573,7 +572,7 @@ jobs:
   publish-pages:
     name: Build & Publish to GitHub Pages
     needs: [run-notebooks, setup]
-    if: ${{ always() && (needs.run-notebooks.result == 'success' || needs.run-notebooks.result == 'skipped') }}
+    if: ${{ always() && (needs.run-notebooks.result == 'success' || needs.run-notebooks.result == 'skipped' || needs.run-notebooks.result == 'failure') }}
     runs-on: ubuntu-22.04
 
     steps:
