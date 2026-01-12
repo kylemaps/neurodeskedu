@@ -497,33 +497,10 @@ jobs:
           docker stop "$CONTAINER_NAME" 2>/dev/null || true
           docker rm "$CONTAINER_NAME" 2>/dev/null || true
 
-      - name: Print notebook output logs
-        if: always()
-        run: |
-          echo "========== NOTEBOOK OUTPUT ==========="
-          echo "PWD: $(pwd)"
-
-          echo "=== nbconvert execution log ==="
-          if [ -f "nbconvert-${{ env.NOTEBOOK }}.log" ]; then
-            cat "nbconvert-${{ env.NOTEBOOK }}.log"
-          else
-            echo "Execution log not found: nbconvert-${{ env.NOTEBOOK }}.log"
-          fi
-
-          echo "=== Files in notebook source directory ==="
-          ls -la books/$(dirname ${{ matrix.notebooks }}) || true
-
-          echo "=== Executed notebook file ==="
-          ls -la books/${{ matrix.notebooks }} || true
-
-          echo "=== .nii.gz files in books ==="
-          find books -name "*.nii.gz" -type f 2>/dev/null || echo "No .nii.gz files found"
-          echo "========================================"
-
       - name: Check for execution errors
+        continue-on-error: true
         run: |
-          # Check the notebook for errors by looking for error outputs
-          # We report errors as warnings so the workflow continues, but users are notified
+          # Check the notebook for errors - step fails (red) if errors found, but workflow continues
           python3 << 'EOF'
           import json
           import sys
@@ -550,8 +527,8 @@ jobs:
                               })
               
               if errors_found:
-                  # Report as warning (not error) so workflow continues
-                  print(f"::warning::Notebook {notebook_name} has {len(errors_found)} execution error(s). Please fix the notebook.")
+                  # Report as error so the step shows as failed
+                  print(f"::error::Notebook {notebook_name} has {len(errors_found)} execution error(s). Please fix the notebook.")
                   
                   # Write to job summary for visibility
                   summary = f"""
@@ -572,6 +549,9 @@ jobs:
                   # Write to GitHub step summary
                   with open(os.environ.get('GITHUB_STEP_SUMMARY', '/dev/null'), 'a') as f:
                       f.write(summary)
+                  
+                  # Exit with error so step shows as failed (continue-on-error allows workflow to proceed)
+                  sys.exit(1)
               else:
                   print("No errors found in notebook outputs")
                   
