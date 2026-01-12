@@ -458,20 +458,35 @@ jobs:
             # Install dependencies (use pip --user to avoid /opt/conda permission issues)
             pip install --user nbconvert nbclient ipykernel
 
+            # Pre-execution verification
+            echo "=== Container Environment ==="
+            which jupyter && jupyter --version
+            echo "Current directory: $(pwd)"
+            echo "Notebook to execute: ${{ matrix.notebooks }}"
+
             echo "Executing notebook: ${{ matrix.notebooks }}"
             
             # Execute the notebook in-place using nbconvert
             # --allow-errors: continue even if cells error (we detect errors later)
             # --inplace: overwrite the original notebook with outputs
+            # Log is saved to mounted workspace for persistence
+            LOG_FILE="/home/jovyan/workspace/nbconvert-${NOTEBOOK}.log"
             jupyter nbconvert --to notebook --execute --inplace --allow-errors \
               --ExecutePreprocessor.timeout=3600 \
               --ExecutePreprocessor.kernel_name=python3 \
               --debug \
-              ${{ matrix.notebooks }} 2>&1 | tee /tmp/nbconvert.log
+              ${{ matrix.notebooks }} 2>&1 | tee "$LOG_FILE"
             
             echo "Notebook execution complete"
-            echo "=== nbconvert log ==="
-            cat /tmp/nbconvert.log
+            
+            # Post-execution verification
+            echo "=== Post-execution check ==="
+            if [ -f "${{ matrix.notebooks }}" ]; then
+              ls -la "${{ matrix.notebooks }}"
+            else
+              echo "::error::Notebook file not found after execution: ${{ matrix.notebooks }}"
+              exit 1
+            fi
           '
 
       - name: Cleanup container
@@ -486,6 +501,13 @@ jobs:
         run: |
           echo "========== NOTEBOOK OUTPUT ==========="
           echo "PWD: $(pwd)"
+
+          echo "=== nbconvert execution log ==="
+          if [ -f "nbconvert-${{ env.NOTEBOOK }}.log" ]; then
+            cat "nbconvert-${{ env.NOTEBOOK }}.log"
+          else
+            echo "Execution log not found: nbconvert-${{ env.NOTEBOOK }}.log"
+          fi
 
           echo "=== Files in notebook source directory ==="
           ls -la books/$(dirname ${{ matrix.notebooks }}) || true
