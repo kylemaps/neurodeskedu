@@ -446,9 +446,12 @@ jobs:
               jupyter nbconvert --to notebook --execute --inplace --allow-errors \
                 --ExecutePreprocessor.timeout=3600 \
                 --ExecutePreprocessor.kernel_name=python3 \
-                ${{ matrix.notebooks }}
+                --debug \
+                ${{ matrix.notebooks }} 2>&1 | tee /tmp/nbconvert.log
               
               echo "Notebook execution complete"
+              echo "=== nbconvert log ==="
+              cat /tmp/nbconvert.log
             '
 
       - name: Print notebook output logs
