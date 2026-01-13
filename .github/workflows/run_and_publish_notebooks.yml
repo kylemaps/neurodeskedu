@@ -299,19 +299,53 @@ jobs:
 
       - name: Mount CVMFS
         run: |
+          echo "========== CVMFS MOUNT SETUP =========="
+          echo "Runner: ${{ needs.setup.outputs.runner }}"
+          
+          # Check if CVMFS is already installed
+          if command -v cvmfs_config >/dev/null 2>&1; then
+            echo "✓ cvmfs_config found"
+            cvmfs_config --version || true
+          else
+            echo "✗ cvmfs_config not found"
+          fi
+          
           # Probe and verify mount
-          sudo cvmfs_config probe neurodesk.ardc.edu.au || true
+          echo ""
+          echo "Probing CVMFS repository..."
+          sudo cvmfs_config probe neurodesk.ardc.edu.au || {
+            echo "::warning::CVMFS probe failed"
+          }
           
           # Trigger autofs mount
+          echo ""
+          echo "Attempting to trigger mount..."
           ls /cvmfs/neurodesk.ardc.edu.au > /dev/null 2>&1 || {
             echo "Autofs mount failed, attempting manual mount..."
             sudo mkdir -p /cvmfs/neurodesk.ardc.edu.au
-            sudo mount -t cvmfs neurodesk.ardc.edu.au /cvmfs/neurodesk.ardc.edu.au
+            sudo mount -t cvmfs neurodesk.ardc.edu.au /cvmfs/neurodesk.ardc.edu.au || {
+              echo "::error::Manual mount failed!"
+              exit 1
+            }
           }
           
           # Verify
-          echo "CVMFS mounted:"
-          ls /cvmfs/neurodesk.ardc.edu.au/ | head -5
+          echo ""
+          echo "Verifying CVMFS mount:"
+          if [ -d /cvmfs/neurodesk.ardc.edu.au ]; then
+            echo "✓ /cvmfs/neurodesk.ardc.edu.au directory exists"
+            echo ""
+            echo "Contents (first 5 items):"
+            ls /cvmfs/neurodesk.ardc.edu.au/ | head -5 || echo "::error::Cannot list directory!"
+            echo ""
+            echo "Mount info:"
+            mount | grep cvmfs || echo "::warning::No CVMFS mounts found in mount table"
+          else
+            echo "::error::/cvmfs/neurodesk.ardc.edu.au directory does not exist!"
+            exit 1
+          fi
+          
+          echo "========================================"
 
       # -------------------------------------------------------------------------
       # Docker image caching
@@ -415,6 +449,36 @@ jobs:
           echo "=== Container logs ==="
           docker logs "$CONTAINER_NAME"
           exit 1
+
+      - name: Verify CVMFS inside container
+        run: |
+          echo "========== VERIFYING CVMFS IN CONTAINER =========="
+          docker exec "$CONTAINER_NAME" bash -c '
+            echo "Checking CVMFS mount..."
+            if [ -d /cvmfs/neurodesk.ardc.edu.au ]; then
+              echo "✓ /cvmfs/neurodesk.ardc.edu.au accessible"
+              echo ""
+              echo "Contents:"
+              ls -la /cvmfs/neurodesk.ardc.edu.au/ || echo "Cannot list!"
+              echo ""
+              echo "Module system check:"
+              if [ -f /usr/share/lmod/lmod/init/bash ]; then
+                source /usr/share/lmod/lmod/init/bash
+                echo "✓ LMOD initialized"
+                echo ""
+                echo "Available modules (first 10):"
+                module avail 2>&1 | head -20 || echo "No modules found"
+              else
+                echo "✗ LMOD not found"
+              fi
+            else
+              echo "::error::/cvmfs/neurodesk.ardc.edu.au NOT accessible in container!"
+              echo "Container mounts:"
+              mount | grep cvmfs || echo "No CVMFS mounts visible"
+              exit 1
+            fi
+          '
+          echo "=================================================="
 
       - name: Execute notebook in container
         timeout-minutes: 1500
