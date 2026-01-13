@@ -453,7 +453,7 @@ jobs:
       - name: Verify CVMFS inside container
         run: |
           echo "========== VERIFYING CVMFS IN CONTAINER ==========="
-          docker exec "$CONTAINER_NAME" su - $NB_USER -s /bin/bash -c '
+          docker exec "$CONTAINER_NAME" su --preserve-environment $NB_USER -s /bin/bash -c '
             echo "Checking CVMFS mount..."
             if [ -d /cvmfs/neurodesk.ardc.edu.au ]; then
               echo "✓ /cvmfs/neurodesk.ardc.edu.au accessible"
@@ -519,7 +519,7 @@ jobs:
         run: |
           NOTEBOOK_PATH="${{ matrix.notebooks }}"
           NOTEBOOK=$(basename -s .ipynb "$NOTEBOOK_PATH")
-          docker exec -e NOTEBOOK_PATH="$NOTEBOOK_PATH" -e NOTEBOOK="$NOTEBOOK" "$CONTAINER_NAME" su - $NB_USER -s /bin/bash -c '
+          docker exec -e NOTEBOOK_PATH="$NOTEBOOK_PATH" -e NOTEBOOK="$NOTEBOOK" "$CONTAINER_NAME" su --preserve-environment $NB_USER -s /bin/bash -c '
             set -e
             
             export PATH=/opt/conda/bin:$HOME/.local/bin:$PATH
@@ -836,7 +836,7 @@ jobs:
 
       - name: Build Jupyter Book in container
         run: |
-          docker exec "$CONTAINER_NAME" su - $NB_USER -s /bin/bash -c '
+          docker exec "$CONTAINER_NAME" su --preserve-environment $NB_USER -s /bin/bash -c '
             set -e
             export PATH=/opt/conda/bin:$HOME/.local/bin:$PATH
 
