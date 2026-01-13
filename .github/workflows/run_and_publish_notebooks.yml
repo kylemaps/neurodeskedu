@@ -511,6 +511,11 @@ jobs:
                 ln -sf /overlay-storage/var_lib_apptainer /var/lib/apptainer
             fi
             
+            # Fix pip cache permissions for NB_USER
+            if [ -d /home/jovyan/.cache/pip ]; then
+                chown -R "$(id -u $NB_USER):$(id -g $NB_USER)" /home/jovyan/.cache/pip
+            fi
+            
             echo "Root-level setup complete"
           '
 
@@ -553,16 +558,13 @@ jobs:
             # Log is saved to mounted workspace for persistence
             LOG_FILE="$HOME/workspace/nbconvert-${NOTEBOOK}.log"
             
-            # CRITICAL: Create IPython startup script to set environment variables
-            # Shell exports do not propagate to Jupyter kernels - they spawn as separate processes
-            # IPython startup scripts run inside the kernel process before any user code
-            IPYTHON_STARTUP="$HOME/.ipython/profile_default/startup"
-            mkdir -p "$IPYTHON_STARTUP"
-            echo "import os" > "$IPYTHON_STARTUP/00-neurodesk-env.py"
-            echo "os.environ[\"MODULEPATH\"] = \"/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules\"" >> "$IPYTHON_STARTUP/00-neurodesk-env.py"
-            echo "os.environ[\"LMOD_CMD\"] = \"/usr/share/lmod/lmod/libexec/lmod\"" >> "$IPYTHON_STARTUP/00-neurodesk-env.py"
-            echo "Created IPython startup script at $IPYTHON_STARTUP/00-neurodesk-env.py"
-            cat "$IPYTHON_STARTUP/00-neurodesk-env.py"
+            # CRITICAL: Modify the kernel.json to include MODULEPATH and LMOD_CMD
+            # IPython startup scripts are not reliable - kernel may not load them
+            # Modifying the kernelspec ensures the kernel process starts with correct environment
+            KERNEL_JSON="/opt/conda/share/jupyter/kernels/python3/kernel.json"
+            echo "Modifying kernel spec at $KERNEL_JSON"
+            cp "$KERNEL_JSON" "${KERNEL_JSON}.bak"
+            python3 -c "import json; k=json.load(open('$KERNEL_JSON')); k.setdefault('env',{}).update({'MODULEPATH':'/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules','LMOD_CMD':'/usr/share/lmod/lmod/libexec/lmod'}); json.dump(k,open('$KERNEL_JSON','w'),indent=2); print('Updated kernel.json:', json.dumps(k,indent=2))"
             
             # Run jupyter nbconvert
             jupyter nbconvert --to notebook --execute --inplace --allow-errors \
