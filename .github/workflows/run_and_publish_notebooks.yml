@@ -548,8 +548,14 @@ jobs:
             # Log is saved to mounted workspace for persistence
             LOG_FILE="/home/jovyan/workspace/nbconvert-${NOTEBOOK}.log"
             
-            # Export LMOD_CMD so Jupyter kernel can find lmod
-            export LMOD_CMD=/usr/share/lmod/lmod/libexec/lmod
+            # CRITICAL: Create IPython startup script to set environment variables
+            # Shell exports don't propagate to Jupyter kernels - they spawn as separate processes
+            # IPython startup scripts run inside the kernel process before any user code
+            mkdir -p /home/jovyan/.ipython/profile_default/startup
+            echo "import os" > /home/jovyan/.ipython/profile_default/startup/00-neurodesk-env.py
+            echo "os.environ[\"MODULEPATH\"] = \"/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules\"" >> /home/jovyan/.ipython/profile_default/startup/00-neurodesk-env.py
+            echo "os.environ[\"LMOD_CMD\"] = \"/usr/share/lmod/lmod/libexec/lmod\"" >> /home/jovyan/.ipython/profile_default/startup/00-neurodesk-env.py
+            echo "Created IPython startup script to set MODULEPATH and LMOD_CMD"
             
             # Run jupyter nbconvert - MODULEPATH is already exported above
             jupyter nbconvert --to notebook --execute --inplace --allow-errors \
