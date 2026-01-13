@@ -464,7 +464,9 @@ jobs:
               echo "Module system check:"
               if [ -f /usr/share/lmod/lmod/init/bash ]; then
                 source /usr/share/lmod/lmod/init/bash
+                export MODULEPATH=/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules
                 echo "✓ LMOD initialized"
+                echo "✓ MODULEPATH=$MODULEPATH"
                 echo ""
                 echo "Available modules (first 10):"
                 module avail 2>&1 | head -20 || echo "No modules found"
@@ -493,6 +495,10 @@ jobs:
             elif [ -f /usr/share/module.sh ]; then
               source /usr/share/module.sh
             fi
+
+            # Set MODULEPATH to neurodesk modules
+            export MODULEPATH=/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules
+            echo "MODULEPATH set to: $MODULEPATH"
 
             # Create apptainer overlay for modules that require it
             if [ ! -L /tmp/apptainer_overlay ]; then
