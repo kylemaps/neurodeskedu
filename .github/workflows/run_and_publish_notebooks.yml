@@ -62,11 +62,11 @@ on:
         default: false
 
 # =============================================================================
-# CONCURRENCY
+# CONCURRENCY (disabled to allow multiple runs)
 # =============================================================================
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: false
+# concurrency:
+#   group: ${{ github.workflow }}-${{ github.ref }}
+#   cancel-in-progress: false
 
 # =============================================================================
 # JOBS
