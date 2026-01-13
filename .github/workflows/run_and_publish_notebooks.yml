@@ -468,8 +468,8 @@ jobs:
                 echo "✓ LMOD initialized"
                 echo "✓ MODULEPATH=$MODULEPATH"
                 echo ""
-                echo "Available modules (first 10):"
-                module avail 2>&1 | head -20 || echo "No modules found"
+                echo "Available modules:"
+                module avail 2>&1 || echo "No modules found"
               else
                 echo "✗ LMOD not found"
               fi
