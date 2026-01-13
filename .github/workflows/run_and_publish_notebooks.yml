@@ -453,7 +453,7 @@ jobs:
       - name: Verify CVMFS inside container
         run: |
           echo "========== VERIFYING CVMFS IN CONTAINER =========="
-          docker exec "$CONTAINER_NAME" bash -c '
+          docker exec --user jovyan "$CONTAINER_NAME" bash -c '
             echo "Checking CVMFS mount..."
             if [ -d /cvmfs/neurodesk.ardc.edu.au ]; then
               echo "✓ /cvmfs/neurodesk.ardc.edu.au accessible"
@@ -482,29 +482,9 @@ jobs:
           '
           echo "=================================================="
 
-      - name: Execute notebook in container
-        timeout-minutes: 1500
+      - name: Setup container environment (as root)
         run: |
-          docker exec "$CONTAINER_NAME" bash -c '
-            set -e
-            export PATH=/opt/conda/bin:$HOME/.local/bin:$PATH
-
-            # Initialize the module system
-            if [ -f /usr/share/lmod/lmod/init/bash ]; then
-              source /usr/share/lmod/lmod/init/bash
-            elif [ -f /usr/share/module.sh ]; then
-              source /usr/share/module.sh
-            fi
-
-            # Set MODULEPATH to neurodesk modules
-            export MODULEPATH=/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules
-            echo "MODULEPATH set to: $MODULEPATH"
-            
-            # CRITICAL: Write MODULEPATH to /etc/environment so Jupyter kernels inherit it
-            # The Jupyter kernel is a subprocess that does not inherit shell exports
-            echo "MODULEPATH=/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules" >> /etc/environment
-            echo "LMOD_CMD=/usr/share/lmod/lmod/libexec/lmod" >> /etc/environment
-
+          docker exec --user root "$CONTAINER_NAME" bash -c '
             # Create apptainer overlay for modules that require it
             if [ ! -L /tmp/apptainer_overlay ]; then
               echo "Creating /tmp/apptainer_overlay symlink to /overlay-storage..."
@@ -530,6 +510,27 @@ jobs:
                 rm -rf /var/lib/apptainer # Remove if it exists as a dir
                 ln -sf /overlay-storage/var_lib_apptainer /var/lib/apptainer
             fi
+            
+            echo "Root-level setup complete"
+          '
+
+      - name: Execute notebook in container
+        timeout-minutes: 1500
+        run: |
+          docker exec --user jovyan "$CONTAINER_NAME" bash -c '
+            set -e
+            export PATH=/opt/conda/bin:$HOME/.local/bin:$PATH
+
+            # Initialize the module system
+            if [ -f /usr/share/lmod/lmod/init/bash ]; then
+              source /usr/share/lmod/lmod/init/bash
+            elif [ -f /usr/share/module.sh ]; then
+              source /usr/share/module.sh
+            fi
+
+            # Set MODULEPATH to neurodesk modules
+            export MODULEPATH=/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules
+            echo "MODULEPATH set to: $MODULEPATH"
 
             # Install dependencies (use pip --user to avoid /opt/conda permission issues)
             pip install --user nbconvert nbclient ipykernel
@@ -551,11 +552,14 @@ jobs:
             # CRITICAL: Create IPython startup script to set environment variables
             # Shell exports don't propagate to Jupyter kernels - they spawn as separate processes
             # IPython startup scripts run inside the kernel process before any user code
-            mkdir -p /home/jovyan/.ipython/profile_default/startup
-            echo "import os" > /home/jovyan/.ipython/profile_default/startup/00-neurodesk-env.py
-            echo "os.environ[\"MODULEPATH\"] = \"/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules\"" >> /home/jovyan/.ipython/profile_default/startup/00-neurodesk-env.py
-            echo "os.environ[\"LMOD_CMD\"] = \"/usr/share/lmod/lmod/libexec/lmod\"" >> /home/jovyan/.ipython/profile_default/startup/00-neurodesk-env.py
-            echo "Created IPython startup script to set MODULEPATH and LMOD_CMD"
+            # Note: Using $HOME which is /home/jovyan when running as jovyan user
+            IPYTHON_STARTUP="$HOME/.ipython/profile_default/startup"
+            mkdir -p "$IPYTHON_STARTUP"
+            echo "import os" > "$IPYTHON_STARTUP/00-neurodesk-env.py"
+            echo "os.environ[\"MODULEPATH\"] = \"/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules\"" >> "$IPYTHON_STARTUP/00-neurodesk-env.py"
+            echo "os.environ[\"LMOD_CMD\"] = \"/usr/share/lmod/lmod/libexec/lmod\"" >> "$IPYTHON_STARTUP/00-neurodesk-env.py"
+            echo "Created IPython startup script at $IPYTHON_STARTUP/00-neurodesk-env.py"
+            cat "$IPYTHON_STARTUP/00-neurodesk-env.py"
             
             # Run jupyter nbconvert - MODULEPATH is already exported above
             jupyter nbconvert --to notebook --execute --inplace --allow-errors \
@@ -829,7 +833,7 @@ jobs:
 
       - name: Build Jupyter Book in container
         run: |
-          docker exec "$CONTAINER_NAME" bash -c '
+          docker exec --user jovyan "$CONTAINER_NAME" bash -c '
             set -e
             export PATH=/opt/conda/bin:$HOME/.local/bin:$PATH
 
