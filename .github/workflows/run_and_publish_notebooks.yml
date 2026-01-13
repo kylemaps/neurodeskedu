@@ -548,15 +548,15 @@ jobs:
             # Log is saved to mounted workspace for persistence
             LOG_FILE="/home/jovyan/workspace/nbconvert-${NOTEBOOK}.log"
             
-            # Use env to ensure MODULEPATH and LMOD_CMD are inherited by the Jupyter kernel
-            # Without this, the kernel subprocess won't see the shell exports
-            env MODULEPATH="$MODULEPATH" \
-                LMOD_CMD="/usr/share/lmod/lmod/libexec/lmod" \
-                jupyter nbconvert --to notebook --execute --inplace --allow-errors \
-                  --ExecutePreprocessor.timeout=3600 \
-                  --ExecutePreprocessor.kernel_name=python3 \
-                  --debug \
-                  ${{ matrix.notebooks }} 2>&1 | tee "$LOG_FILE"
+            # Export LMOD_CMD so Jupyter kernel can find lmod
+            export LMOD_CMD=/usr/share/lmod/lmod/libexec/lmod
+            
+            # Run jupyter nbconvert - MODULEPATH is already exported above
+            jupyter nbconvert --to notebook --execute --inplace --allow-errors \
+              --ExecutePreprocessor.timeout=3600 \
+              --ExecutePreprocessor.kernel_name=python3 \
+              --debug \
+              "${{ matrix.notebooks }}" 2>&1 | tee "$LOG_FILE"
             
             echo "Notebook execution complete"
             
