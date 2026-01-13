@@ -517,12 +517,10 @@ jobs:
       - name: Execute notebook in container
         timeout-minutes: 1500
         run: |
-          docker exec "$CONTAINER_NAME" su - $NB_USER -s /bin/bash -c '
+          NOTEBOOK_PATH="${{ matrix.notebooks }}"
+          NOTEBOOK=$(basename -s .ipynb "$NOTEBOOK_PATH")
+          docker exec -e NOTEBOOK_PATH="$NOTEBOOK_PATH" -e NOTEBOOK="$NOTEBOOK" "$CONTAINER_NAME" su - $NB_USER -s /bin/bash -c '
             set -e
-            
-            # Derive NOTEBOOK name from the path (docker exec does not inherit container env vars)
-            NOTEBOOK_PATH="${{ matrix.notebooks }}"
-            NOTEBOOK=$(basename -s .ipynb "$NOTEBOOK_PATH")
             
             export PATH=/opt/conda/bin:$HOME/.local/bin:$PATH
 
