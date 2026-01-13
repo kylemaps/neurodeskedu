@@ -499,6 +499,11 @@ jobs:
             # Set MODULEPATH to neurodesk modules
             export MODULEPATH=/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules
             echo "MODULEPATH set to: $MODULEPATH"
+            
+            # CRITICAL: Write MODULEPATH to /etc/environment so Jupyter kernels inherit it
+            # The Jupyter kernel is a subprocess that does not inherit shell exports
+            echo "MODULEPATH=/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules" >> /etc/environment
+            echo "LMOD_CMD=/usr/share/lmod/lmod/libexec/lmod" >> /etc/environment
 
             # Create apptainer overlay for modules that require it
             if [ ! -L /tmp/apptainer_overlay ]; then
@@ -542,11 +547,16 @@ jobs:
             # --inplace: overwrite the original notebook with outputs
             # Log is saved to mounted workspace for persistence
             LOG_FILE="/home/jovyan/workspace/nbconvert-${NOTEBOOK}.log"
-            jupyter nbconvert --to notebook --execute --inplace --allow-errors \
-              --ExecutePreprocessor.timeout=3600 \
-              --ExecutePreprocessor.kernel_name=python3 \
-              --debug \
-              ${{ matrix.notebooks }} 2>&1 | tee "$LOG_FILE"
+            
+            # Use env to ensure MODULEPATH and LMOD_CMD are inherited by the Jupyter kernel
+            # Without this, the kernel subprocess won't see the shell exports
+            env MODULEPATH="$MODULEPATH" \
+                LMOD_CMD="/usr/share/lmod/lmod/libexec/lmod" \
+                jupyter nbconvert --to notebook --execute --inplace --allow-errors \
+                  --ExecutePreprocessor.timeout=3600 \
+                  --ExecutePreprocessor.kernel_name=python3 \
+                  --debug \
+                  ${{ matrix.notebooks }} 2>&1 | tee "$LOG_FILE"
             
             echo "Notebook execution complete"
             
