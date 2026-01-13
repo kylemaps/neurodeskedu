@@ -417,7 +417,7 @@ jobs:
         env:
           GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          docker run -d --name "$CONTAINER_NAME" \
+          sudo docker run -d --name "$CONTAINER_NAME" \
             --shm-size=1gb \
             --privileged \
             --user=root \
@@ -426,7 +426,6 @@ jobs:
             -v ${{ env.BASE_PATH }}/tmp:/overlay-storage \
             -v ${{ github.workspace }}/.cache/pip:/home/jovyan/.cache/pip \
             -w /home/jovyan/workspace/books \
-            -e NB_USER=jovyan \
             -e NB_UID="$(id -u)" \
             -e NB_GID="$(id -g)" \
             -e GITHUB_PAT="${GITHUB_PAT}" \
@@ -453,7 +452,7 @@ jobs:
       - name: Verify CVMFS inside container
         run: |
           echo "========== VERIFYING CVMFS IN CONTAINER ==========="
-          docker exec "$CONTAINER_NAME" su --preserve-environment $NB_USER -s /bin/bash -c '
+          docker exec "$CONTAINER_NAME" su --preserve-environment jovyan -s /bin/bash -c '
             echo "Checking CVMFS mount..."
             if [ -d /cvmfs/neurodesk.ardc.edu.au ]; then
               echo "✓ /cvmfs/neurodesk.ardc.edu.au accessible"
@@ -464,7 +463,7 @@ jobs:
               echo "Module system check:"
               if [ -f /usr/share/lmod/lmod/init/bash ]; then
                 source /usr/share/lmod/lmod/init/bash
-                export MODULEPATH=/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules
+                export MODULEPATH=/cvmfs/neurodesk.ardc.edu.au/containers/modules
                 echo "✓ LMOD initialized"
                 echo "✓ MODULEPATH=$MODULEPATH"
                 echo ""
@@ -511,9 +510,9 @@ jobs:
                 ln -sf /overlay-storage/var_lib_apptainer /var/lib/apptainer
             fi
             
-            # Fix pip cache permissions for NB_USER
+            # Fix pip cache permissions for jovyan
             if [ -d /home/jovyan/.cache/pip ]; then
-                chown -R "$(id -u $NB_USER):$(id -g $NB_USER)" /home/jovyan/.cache/pip
+                chown -R "$(id -u jovyan):$(id -g jovyan)" /home/jovyan/.cache/pip
             fi
             
             echo "Root-level setup complete"
@@ -524,7 +523,7 @@ jobs:
         run: |
           NOTEBOOK_PATH="${{ matrix.notebooks }}"
           NOTEBOOK=$(basename -s .ipynb "$NOTEBOOK_PATH")
-          docker exec -e NOTEBOOK_PATH="$NOTEBOOK_PATH" -e NOTEBOOK="$NOTEBOOK" "$CONTAINER_NAME" su --preserve-environment $NB_USER -s /bin/bash -c '
+          docker exec -e NOTEBOOK_PATH="$NOTEBOOK_PATH" -e NOTEBOOK="$NOTEBOOK" "$CONTAINER_NAME" su --preserve-environment jovyan -s /bin/bash -c '
             set -e
             
             export PATH=/opt/conda/bin:$HOME/.local/bin:$PATH
@@ -537,7 +536,7 @@ jobs:
             fi
 
             # Set MODULEPATH to neurodesk modules
-            export MODULEPATH=/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules
+            export MODULEPATH=/cvmfs/neurodesk.ardc.edu.au/containers/modules
             echo "MODULEPATH set to: $MODULEPATH"
 
             # Install dependencies (use pip --user to avoid /opt/conda permission issues)
@@ -564,7 +563,7 @@ jobs:
             KERNEL_JSON="/opt/conda/share/jupyter/kernels/python3/kernel.json"
             echo "Modifying kernel spec at $KERNEL_JSON"
             cp "$KERNEL_JSON" "${KERNEL_JSON}.bak"
-            python3 -c "import json; k=json.load(open('$KERNEL_JSON')); k.setdefault('env',{}).update({'MODULEPATH':'/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules','LMOD_CMD':'/usr/share/lmod/lmod/libexec/lmod'}); json.dump(k,open('$KERNEL_JSON','w'),indent=2); print('Updated kernel.json:', json.dumps(k,indent=2))"
+            python3 -c "import json; k=json.load(open('$KERNEL_JSON')); k.setdefault('env',{}).update({'MODULEPATH':'/cvmfs/neurodesk.ardc.edu.au/containers/modules','LMOD_CMD':'/usr/share/lmod/lmod/libexec/lmod'}); json.dump(k,open('$KERNEL_JSON','w'),indent=2); print('Updated kernel.json:', json.dumps(k,indent=2))"
             
             # Run jupyter nbconvert
             jupyter nbconvert --to notebook --execute --inplace --allow-errors \
@@ -805,7 +804,7 @@ jobs:
           # to ensure the environment (Lmod, Apptainer overlay) initializes
           # correctly without permission errors.
           # -----------------------------------------------------------------------
-          docker run -d --name "$CONTAINER_NAME" \
+          sudo docker run -d --name "$CONTAINER_NAME" \
             --shm-size=1gb \
             --privileged \
             --user=root \
@@ -813,7 +812,6 @@ jobs:
             -v ${{ env.BASE_PATH }}/tmp:/overlay-storage \
             -v ${{ github.workspace }}/.cache/pip:/home/jovyan/.cache/pip \
             -w /home/jovyan/workspace/books \
-            -e NB_USER=jovyan \
             -e NB_UID="$(id -u)" \
             -e NB_GID="$(id -g)" \
             -e GITHUB_PAT="${GITHUB_PAT}" \
@@ -838,7 +836,7 @@ jobs:
 
       - name: Build Jupyter Book in container
         run: |
-          docker exec "$CONTAINER_NAME" su --preserve-environment $NB_USER -s /bin/bash -c '
+          docker exec "$CONTAINER_NAME" su --preserve-environment jovyan -s /bin/bash -c '
             set -e
             export PATH=/opt/conda/bin:$HOME/.local/bin:$PATH
 
