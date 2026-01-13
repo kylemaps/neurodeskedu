@@ -452,8 +452,8 @@ jobs:
 
       - name: Verify CVMFS inside container
         run: |
-          echo "========== VERIFYING CVMFS IN CONTAINER =========="
-          docker exec --user jovyan "$CONTAINER_NAME" bash -c '
+          echo "========== VERIFYING CVMFS IN CONTAINER ==========="
+          docker exec "$CONTAINER_NAME" su - $NB_USER -s /bin/bash -c '
             echo "Checking CVMFS mount..."
             if [ -d /cvmfs/neurodesk.ardc.edu.au ]; then
               echo "✓ /cvmfs/neurodesk.ardc.edu.au accessible"
@@ -480,7 +480,7 @@ jobs:
               exit 1
             fi
           '
-          echo "=================================================="
+          echo "==================================================="
 
       - name: Setup container environment (as root)
         run: |
@@ -517,8 +517,13 @@ jobs:
       - name: Execute notebook in container
         timeout-minutes: 1500
         run: |
-          docker exec --user jovyan "$CONTAINER_NAME" bash -c '
+          docker exec "$CONTAINER_NAME" su - $NB_USER -s /bin/bash -c '
             set -e
+            
+            # Derive NOTEBOOK name from the path (docker exec does not inherit container env vars)
+            NOTEBOOK_PATH="${{ matrix.notebooks }}"
+            NOTEBOOK=$(basename -s .ipynb "$NOTEBOOK_PATH")
+            
             export PATH=/opt/conda/bin:$HOME/.local/bin:$PATH
 
             # Initialize the module system
@@ -539,20 +544,20 @@ jobs:
             echo "=== Container Environment ==="
             which jupyter && jupyter --version
             echo "Current directory: $(pwd)"
-            echo "Notebook to execute: ${{ matrix.notebooks }}"
+            echo "Notebook to execute: $NOTEBOOK_PATH"
+            echo "Notebook name: $NOTEBOOK"
 
-            echo "Executing notebook: ${{ matrix.notebooks }}"
+            echo "Executing notebook: $NOTEBOOK_PATH"
             
             # Execute the notebook in-place using nbconvert
             # --allow-errors: continue even if cells error (we detect errors later)
             # --inplace: overwrite the original notebook with outputs
             # Log is saved to mounted workspace for persistence
-            LOG_FILE="/home/jovyan/workspace/nbconvert-${NOTEBOOK}.log"
+            LOG_FILE="$HOME/workspace/nbconvert-${NOTEBOOK}.log"
             
             # CRITICAL: Create IPython startup script to set environment variables
-            # Shell exports don't propagate to Jupyter kernels - they spawn as separate processes
+            # Shell exports do not propagate to Jupyter kernels - they spawn as separate processes
             # IPython startup scripts run inside the kernel process before any user code
-            # Note: Using $HOME which is /home/jovyan when running as jovyan user
             IPYTHON_STARTUP="$HOME/.ipython/profile_default/startup"
             mkdir -p "$IPYTHON_STARTUP"
             echo "import os" > "$IPYTHON_STARTUP/00-neurodesk-env.py"
@@ -561,21 +566,21 @@ jobs:
             echo "Created IPython startup script at $IPYTHON_STARTUP/00-neurodesk-env.py"
             cat "$IPYTHON_STARTUP/00-neurodesk-env.py"
             
-            # Run jupyter nbconvert - MODULEPATH is already exported above
+            # Run jupyter nbconvert
             jupyter nbconvert --to notebook --execute --inplace --allow-errors \
               --ExecutePreprocessor.timeout=3600 \
               --ExecutePreprocessor.kernel_name=python3 \
               --debug \
-              "${{ matrix.notebooks }}" 2>&1 | tee "$LOG_FILE"
+              "$NOTEBOOK_PATH" 2>&1 | tee "$LOG_FILE"
             
             echo "Notebook execution complete"
             
             # Post-execution verification
             echo "=== Post-execution check ==="
-            if [ -f "${{ matrix.notebooks }}" ]; then
-              ls -la "${{ matrix.notebooks }}"
+            if [ -f "$NOTEBOOK_PATH" ]; then
+              ls -la "$NOTEBOOK_PATH"
             else
-              echo "::error::Notebook file not found after execution: ${{ matrix.notebooks }}"
+              echo "::error::Notebook file not found after execution: $NOTEBOOK_PATH"
               exit 1
             fi
           '
@@ -833,7 +838,7 @@ jobs:
 
       - name: Build Jupyter Book in container
         run: |
-          docker exec --user jovyan "$CONTAINER_NAME" bash -c '
+          docker exec "$CONTAINER_NAME" su - $NB_USER -s /bin/bash -c '
             set -e
             export PATH=/opt/conda/bin:$HOME/.local/bin:$PATH
 
@@ -849,10 +854,10 @@ jobs:
             
             # Build the book
             jupyter-book build .
-            
-            # Fix permissions of generated files so host user can read them
-            chown -R 1001:1001 _build
           '
+          
+          # Fix permissions as root
+          docker exec "$CONTAINER_NAME" chown -R "$(id -u):$(id -g)" _build
 
       - name: Cleanup container
         if: always()
