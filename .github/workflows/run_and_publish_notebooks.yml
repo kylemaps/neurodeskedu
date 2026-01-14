@@ -195,6 +195,12 @@ jobs:
         notebooks: ${{ fromJson(needs.select-notebooks.outputs.notebook_list) }}
 
     steps:
+      - name: Fix workspace permissions (for self-hosted runners)
+        if: always()
+        run: |
+          # Fix any root-owned files from previous Docker runs
+          sudo chown -R $USER:$USER ${{ github.workspace }} 2>/dev/null || true
+
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
 
       - name: Set notebook environment variables
@@ -554,6 +560,12 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
+      - name: Fix workspace permissions (for self-hosted runners)
+        if: always()
+        run: |
+          # Fix any root-owned files from previous Docker runs
+          sudo chown -R $USER:$USER ${{ github.workspace }} 2>/dev/null || true
+
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
 
       - name: Configure runner (Optimize Disk Space)
