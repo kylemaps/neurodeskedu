@@ -134,21 +134,6 @@ jobs:
           echo "Saving image to cache..."
           docker save -o "$CACHE_FILE" "$IMAGE"
 
-      # --- CVMFS Cache Warmer ---
-      - name: Cache CVMFS apt packages
-        uses: actions/cache@v5.0.1
-        with:
-          path: ${{ github.workspace }}/.cache/cvmfs-apt
-          key: cvmfs-apt-${{ runner.os }}-v1
-
-      - name: Setup CVMFS (Warm Cache)
-        uses: cvmfs-contrib/github-action-cvmfs@v5.3
-        with:
-          cvmfs_repositories: neurodesk.ardc.edu.au
-          cvmfs_http_proxy: DIRECT
-          cvmfs_quota_limit: 5000
-          apt_cache: ${{ github.workspace }}/.cache/cvmfs-apt
-
       # --- Pip Cache Warmer ---
       - name: Cache Conda/Python dependencies
         uses: actions/cache@v5.0.1
@@ -263,91 +248,6 @@ jobs:
           docker system prune -af || true
 
       # -------------------------------------------------------------------------
-      # CVMFS Setup (for GitHub-hosted runners)
-      # -------------------------------------------------------------------------
-      - name: Restore CVMFS apt cache
-        uses: actions/cache@v5.0.1
-        id: cvmfs-cache
-        with:
-          path: ${{ github.workspace }}/.cache/cvmfs-apt
-          key: cvmfs-apt-${{ runner.os }}-v1
-
-      - name: Create Neurodesk CVMFS public key
-        run: |
-          sudo mkdir -p /etc/cvmfs/keys/ardc.edu.au
-          sudo tee /etc/cvmfs/keys/ardc.edu.au/neurodesk.ardc.edu.au.pub << 'EOF'
-          -----BEGIN PUBLIC KEY-----
-          MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwUPEmxDp217SAtZxaBep
-          Bi2TQcLoh5AJ//HSIz68ypjOGFjwExGlHb95Frhu1SpcH5OASbV+jJ60oEBLi3sD
-          qA6rGYt9kVi90lWvEjQnhBkPb0uWcp1gNqQAUocybCzHvoiG3fUzAe259CrK09qR
-          pX8sZhgK3eHlfx4ycyMiIQeg66AHlgVCJ2fKa6fl1vnh6adJEPULmn6vZnevvUke
-          I6U1VcYTKm5dPMrOlY/fGimKlyWvivzVv1laa5TAR2Dt4CfdQncOz+rkXmWjLjkD
-          87WMiTgtKybsmMLb2yCGSgLSArlSWhbMA0MaZSzAwE9PJKCCMvTANo5644zc8jBe
-          NQIDAQAB
-          -----END PUBLIC KEY-----
-          EOF
-
-      - name: Setup CVMFS
-        uses: cvmfs-contrib/github-action-cvmfs@v5.3
-        with:
-          cvmfs_repositories: neurodesk.ardc.edu.au
-          cvmfs_http_proxy: DIRECT
-          cvmfs_quota_limit: 5000
-          cvmfs_keys_dir: /etc/cvmfs/keys/ardc.edu.au
-          cvmfs_server_url: "http://cvmfs-geoproximity.neurodesk.org/cvmfs/@fqrn@;http://cvmfs.neurodesk.org/cvmfs/@fqrn@;http://s1osggoc-cvmfs.openhtc.io:8080/cvmfs/@fqrn@;http://s1fnal-cvmfs.openhtc.io:8080/cvmfs/@fqrn@;http://s1sampa-cvmfs.openhtc.io:8080/cvmfs/@fqrn@;http://s1brisbane-cvmfs.openhtc.io/cvmfs/@fqrn@;http://s1nikhef-cvmfs.openhtc.io/cvmfs/@fqrn@;http://s1bnl-cvmfs.openhtc.io/cvmfs/@fqrn@;http://s1perth-cvmfs.openhtc.io/cvmfs/@fqrn@"
-          apt_cache: ${{ github.workspace }}/.cache/cvmfs-apt
-
-      - name: Mount CVMFS
-        run: |
-          echo "========== CVMFS MOUNT SETUP =========="
-          echo "Runner: ${{ needs.setup.outputs.runner }}"
-          
-          # Check if CVMFS is already installed
-          if command -v cvmfs_config >/dev/null 2>&1; then
-            echo "✓ cvmfs_config found"
-            cvmfs_config --version || true
-          else
-            echo "✗ cvmfs_config not found"
-          fi
-          
-          # Probe and verify mount
-          echo ""
-          echo "Probing CVMFS repository..."
-          sudo cvmfs_config probe neurodesk.ardc.edu.au || {
-            echo "::warning::CVMFS probe failed"
-          }
-          
-          # Trigger autofs mount
-          echo ""
-          echo "Attempting to trigger mount..."
-          ls /cvmfs/neurodesk.ardc.edu.au > /dev/null 2>&1 || {
-            echo "Autofs mount failed, attempting manual mount..."
-            sudo mkdir -p /cvmfs/neurodesk.ardc.edu.au
-            sudo mount -t cvmfs neurodesk.ardc.edu.au /cvmfs/neurodesk.ardc.edu.au || {
-              echo "::error::Manual mount failed!"
-              exit 1
-            }
-          }
-          
-          # Verify
-          echo ""
-          echo "Verifying CVMFS mount:"
-          if [ -d /cvmfs/neurodesk.ardc.edu.au ]; then
-            echo "✓ /cvmfs/neurodesk.ardc.edu.au directory exists"
-            echo ""
-            echo "Contents (first 5 items):"
-            ls /cvmfs/neurodesk.ardc.edu.au/ | head -5 || echo "::error::Cannot list directory!"
-            echo ""
-            echo "Mount info:"
-            mount | grep cvmfs || echo "::warning::No CVMFS mounts found in mount table"
-          else
-            echo "::error::/cvmfs/neurodesk.ardc.edu.au directory does not exist!"
-            exit 1
-          fi
-          
-          echo "========================================"
-
-      # -------------------------------------------------------------------------
       # Docker image caching
       # -------------------------------------------------------------------------
       - name: Restore Docker image cache
@@ -422,7 +322,6 @@ jobs:
             --privileged \
             --user=root \
             -v ${{ github.workspace }}:/home/jovyan/workspace \
-            -v /cvmfs:/cvmfs:ro \
             -v ${{ env.BASE_PATH }}/tmp:/overlay-storage \
             -v ${{ github.workspace }}/.cache/pip:/home/jovyan/.cache/pip \
             -w /home/jovyan/workspace/books \
