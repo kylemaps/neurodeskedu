@@ -563,7 +563,13 @@ jobs:
             KERNEL_JSON="/opt/conda/share/jupyter/kernels/python3/kernel.json"
             echo "Modifying kernel spec at $KERNEL_JSON"
             cp "$KERNEL_JSON" "${KERNEL_JSON}.bak"
-            python3 -c "import json; k=json.load(open('$KERNEL_JSON')); k.setdefault('env',{}).update({'MODULEPATH':'/cvmfs/neurodesk.ardc.edu.au/containers/modules','LMOD_CMD':'/usr/share/lmod/lmod/libexec/lmod'}); json.dump(k,open('$KERNEL_JSON','w'),indent=2); print('Updated kernel.json:', json.dumps(k,indent=2))"
+            echo "import json" > /tmp/fix_kernel.py
+            echo "k = json.load(open(\"$KERNEL_JSON\"))" >> /tmp/fix_kernel.py
+            echo "k.setdefault(\"env\", {}).update({\"MODULEPATH\": \"/cvmfs/neurodesk.ardc.edu.au/containers/modules\", \"LMOD_CMD\": \"/usr/share/lmod/lmod/libexec/lmod\"})" >> /tmp/fix_kernel.py
+            echo "json.dump(k, open(\"$KERNEL_JSON\", \"w\"), indent=2)" >> /tmp/fix_kernel.py
+            echo "print(\"Updated kernel.json\")" >> /tmp/fix_kernel.py
+            python3 /tmp/fix_kernel.py
+            cat "$KERNEL_JSON"
             
             # Run jupyter nbconvert
             jupyter nbconvert --to notebook --execute --inplace --allow-errors \
