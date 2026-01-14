@@ -304,7 +304,7 @@ jobs:
       - name: Wait for container readiness
         run: |
           echo "Waiting for Neurodesktop to become ready..."
-          for i in {1..120}; do
+          for i in {1..30}; do
             if docker logs "$CONTAINER_NAME" 2>&1 | grep -q "To access the server"; then
               echo "Container ready after ${i} seconds"
               exit 0
@@ -418,8 +418,8 @@ jobs:
             export MODULEPATH=/cvmfs/neurodesk.ardc.edu.au/containers/modules
             echo "MODULEPATH set to: $MODULEPATH"
 
-            # Install dependencies (use pip --user to avoid /opt/conda permission issues)
-            pip install --user nbconvert nbclient ipykernel
+            # Install dependencies only if missing (use pip --user)
+            pip show nbconvert >/dev/null 2>&1 || pip install --user nbconvert nbclient ipykernel
 
             # Pre-execution verification
             echo "=== Container Environment ==="
@@ -454,7 +454,6 @@ jobs:
             jupyter nbconvert --to notebook --execute --inplace --allow-errors \
               --ExecutePreprocessor.timeout=3600 \
               --ExecutePreprocessor.kernel_name=python3 \
-              --debug \
               "/home/jovyan/workspace/books/$NOTEBOOK_PATH" 2>&1 | tee "$LOG_FILE"
             
             echo "Notebook execution complete"
@@ -696,7 +695,7 @@ jobs:
       - name: Wait for container readiness
         run: |
           echo "Waiting for Neurodesktop to become ready..."
-          for i in {1..120}; do
+          for i in {1..30}; do
             if docker logs "$CONTAINER_NAME" 2>&1 | grep -q "To access the server"; then
               echo "Container ready after ${i} seconds"
               exit 0
