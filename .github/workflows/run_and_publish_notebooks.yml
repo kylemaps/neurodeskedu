@@ -400,8 +400,8 @@ jobs:
             fi
 
             # Move apptainer working dir to secondary storage to save root disk space
-            mkdir -p /overlay-storage/var_lib_apptainer
-            chmod 777 /overlay-storage/var_lib_apptainer
+            mkdir -p /overlay-storage/var_lib_apptainer/mnt/session
+            chmod -R 777 /overlay-storage/var_lib_apptainer
             
             # Symlink /var/lib/apptainer if it doesnt exist or isnt a link yet
             if [ ! -L /var/lib/apptainer ]; then
