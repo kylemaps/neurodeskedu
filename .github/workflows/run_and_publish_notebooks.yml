@@ -114,25 +114,6 @@ jobs:
             echo "neurodesk_image=ghcr.io/neurodesk/neurodesktop/neurodesktop:$VERSION" >> $GITHUB_OUTPUT
           fi
 
-      - name: Cache Docker image
-        id: docker-cache
-        uses: actions/cache@v5.0.1
-        with:
-          path: ~/docker-image-cache
-          key: docker-neurodesk-${{ steps.get_image.outputs.neurodesk_image }}
-
-      - name: Prefetch Docker image
-        if: steps.docker-cache.outputs.cache-hit != 'true'
-        run: |
-          IMAGE="${{ steps.get_image.outputs.neurodesk_image }}"
-          CACHE_FILE=~/docker-image-cache/neurodesk.tar
-          mkdir -p ~/docker-image-cache
-          
-          echo "Cache miss. Pulling $IMAGE..."
-          docker pull "$IMAGE"
-          
-          echo "Saving image to cache..."
-          docker save -o "$CACHE_FILE" "$IMAGE"
 
       # --- Pip Cache Warmer ---
       - name: Cache Conda/Python dependencies
@@ -248,30 +229,17 @@ jobs:
           docker system prune -af || true
 
       # -------------------------------------------------------------------------
-      # Docker image caching
+      # Ensure Neurodesk image available
       # -------------------------------------------------------------------------
-      - name: Restore Docker image cache
-        uses: actions/cache@v5.0.1
-        id: docker-cache
-        with:
-          path: ~/docker-image-cache
-          key: docker-neurodesk-${{ needs.setup.outputs.neurodesk_image }}
-
-      - name: Load Neurodesk image
+      - name: Ensure Neurodesk image available
         run: |
           IMAGE="${{ needs.setup.outputs.neurodesk_image }}"
-          CACHE_FILE=~/docker-image-cache/neurodesk.tar
-          
-          if [ -f "$CACHE_FILE" ]; then
-            echo "Loading image from cache..."
-            docker load -i "$CACHE_FILE"
+          if docker image inspect "$IMAGE" >/dev/null 2>&1; then
+            echo "✓ Image already exists locally"
           else
-            echo "Cache not found (unexpected). Pulling image..."
+            echo "Pulling $IMAGE..."
             docker pull "$IMAGE"
           fi
-          
-          echo "Image ready:"
-          docker images "$IMAGE"
 
       # -------------------------------------------------------------------------
       # Docker execution with CVMFS mounted
@@ -602,24 +570,13 @@ jobs:
           echo "{\"data-root\": \"$BASE_PATH/docker\"}" | sudo tee /etc/docker/daemon.json
           sudo systemctl restart docker
           
-          # Clean up existing space
-          docker system prune -af || true
-
-      - name: Restore Docker image cache
-        uses: actions/cache@v5.0.1
-        with:
-          path: ~/docker-image-cache
-          key: docker-neurodesk-${{ needs.setup.outputs.neurodesk_image }}
-
-      - name: Load Neurodesk image
+      - name: Ensure Neurodesk image available
         run: |
           IMAGE="${{ needs.setup.outputs.neurodesk_image }}"
-          CACHE_FILE=~/docker-image-cache/neurodesk.tar
-          if [ -f "$CACHE_FILE" ]; then
-            echo "Loading image from cache..."
-            docker load -i "$CACHE_FILE"
+          if docker image inspect "$IMAGE" >/dev/null 2>&1; then
+            echo "✓ Image already exists locally"
           else
-            echo "::error::Docker image cache not found. This should not happen if run-notebooks succeeded."
+            echo "Pulling $IMAGE..."
             docker pull "$IMAGE"
           fi
 
