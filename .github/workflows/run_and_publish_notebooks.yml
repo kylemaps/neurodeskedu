@@ -351,6 +351,18 @@ jobs:
       - name: Setup container environment (as root)
         run: |
           docker exec --user root "$CONTAINER_NAME" bash -c '
+            # Remap jovyan UID/GID to match runner user
+            if [ -n "$NB_UID" ] && [ "$NB_UID" != "$(id -u jovyan)" ]; then
+                echo "Remapping jovyan UID to $NB_UID..."
+                usermod -u $NB_UID jovyan
+                # Fix ownership of files that were owned by 1000
+                find /home/jovyan -user 1000 -exec chown -h $NB_UID {} \; 2>/dev/null || true
+            fi
+            if [ -n "$NB_GID" ] && [ "$NB_GID" != "$(id -g jovyan)" ]; then
+                echo "Remapping users group GID to $NB_GID..."
+                groupmod -g $NB_GID users
+            fi
+
             # Create apptainer overlay for modules that require it
             if [ ! -L /tmp/apptainer_overlay ]; then
               echo "Creating /tmp/apptainer_overlay symlink to /overlay-storage..."
@@ -696,6 +708,28 @@ jobs:
           docker logs "$CONTAINER_NAME"
           exit 1
 
+      - name: Setup container environment (as root)
+        run: |
+          docker exec --user root "$CONTAINER_NAME" bash -c '
+            # Remap jovyan UID/GID to match runner user
+            if [ -n "$NB_UID" ] && [ "$NB_UID" != "$(id -u jovyan)" ]; then
+                echo "Remapping jovyan UID to $NB_UID..."
+                usermod -u $NB_UID jovyan
+                find /home/jovyan -user 1000 -exec chown -h $NB_UID {} \; 2>/dev/null || true
+            fi
+            if [ -n "$NB_GID" ] && [ "$NB_GID" != "$(id -g jovyan)" ]; then
+                echo "Remapping users group GID to $NB_GID..."
+                groupmod -g $NB_GID users
+            fi
+            
+            # Fix pip cache permissions
+            if [ -d /home/jovyan/.cache/pip ]; then
+                chown -R "$(id -u jovyan):$(id -g jovyan)" /home/jovyan/.cache/pip
+            fi
+            
+            echo "Root-level setup complete"
+          '
+
       - name: Build Jupyter Book in container
         run: |
           docker exec "$CONTAINER_NAME" su --preserve-environment jovyan -s /bin/bash -c '
@@ -715,9 +749,6 @@ jobs:
             # Build the book
             jupyter-book build .
           '
-          
-          # Fix permissions as root
-          docker exec "$CONTAINER_NAME" chown -R "$(id -u):$(id -g)" _build
 
       - name: Cleanup container
         if: always()
