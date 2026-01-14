@@ -201,6 +201,9 @@ jobs:
         run: |
           # Fix any root-owned files from previous Docker runs
           sudo chown -R $USER:$USER ${{ github.workspace }} 2>/dev/null || true
+          # Fix git-annex read-only files (annex sets -r--r--r-- to protect data)
+          sudo chmod -R u+w ${{ github.workspace }}/.git/annex 2>/dev/null || true
+          find ${{ github.workspace }} -name '.git' -type d -exec sudo chmod -R u+w {}/annex \; 2>/dev/null || true
 
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
 
@@ -567,6 +570,9 @@ jobs:
         run: |
           # Fix any root-owned files from previous Docker runs
           sudo chown -R $USER:$USER ${{ github.workspace }} 2>/dev/null || true
+          # Fix git-annex read-only files (annex sets -r--r--r-- to protect data)
+          sudo chmod -R u+w ${{ github.workspace }}/.git/annex 2>/dev/null || true
+          find ${{ github.workspace }} -name '.git' -type d -exec sudo chmod -R u+w {}/annex \; 2>/dev/null || true
 
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
 
