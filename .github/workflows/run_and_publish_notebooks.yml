@@ -313,15 +313,15 @@ jobs:
 
       - name: Wait for container readiness
         run: |
-          echo "Waiting for Neurodesktop to become ready..."
-          for i in {1..30}; do
+          echo "Waiting for Neurodesktop to become ready (up to 5 minutes)..."
+          for i in {1..300}; do
             if docker logs "$CONTAINER_NAME" 2>&1 | grep -q "To access the server"; then
               echo "Container ready after ${i} seconds"
               exit 0
             fi
             sleep 1
           done
-          echo "::error::Container did not become ready within 120 seconds"
+          echo "::error::Container did not become ready within 5 minutes"
           echo "=== Container logs ==="
           docker logs "$CONTAINER_NAME"
           exit 1
@@ -716,15 +716,15 @@ jobs:
 
       - name: Wait for container readiness
         run: |
-          echo "Waiting for Neurodesktop to become ready..."
-          for i in {1..30}; do
+          echo "Waiting for Neurodesktop to become ready (up to 5 minutes)..."
+          for i in {1..300}; do
             if docker logs "$CONTAINER_NAME" 2>&1 | grep -q "To access the server"; then
               echo "Container ready after ${i} seconds"
               exit 0
             fi
             sleep 1
           done
-          echo "::error::Container did not become ready within 120 seconds"
+          echo "::error::Container did not become ready within 5 minutes"
           echo "=== Container logs ==="
           docker logs "$CONTAINER_NAME"
           exit 1
