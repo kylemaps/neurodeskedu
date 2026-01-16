@@ -778,6 +778,13 @@ jobs:
           docker stop "$CONTAINER_NAME" 2>/dev/null || true
           docker rm "$CONTAINER_NAME" 2>/dev/null || true
 
+      - name: Remove _sources to avoid large file issues
+        run: |
+          # _sources contains copies of executed notebooks which can exceed GitHub's 100MB limit
+          echo "Removing _sources folder from build output..."
+          rm -rf books/_build/html/_sources
+          echo "✓ _sources folder removed"
+
       - name: Verify build output
         run: |
           echo "========== VERIFYING BUILD OUTPUT =========="
