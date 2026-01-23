@@ -462,7 +462,7 @@ jobs:
             
             # Run jupyter nbconvert
             jupyter nbconvert --to notebook --execute --inplace --allow-errors \
-              --ExecutePreprocessor.timeout=3600 \
+              --ExecutePreprocessor.timeout=86400 \
               --ExecutePreprocessor.kernel_name=python3 \
               --debug \
               "/home/jovyan/workspace/books/$NOTEBOOK_PATH" 2>&1 | tee "$LOG_FILE"
