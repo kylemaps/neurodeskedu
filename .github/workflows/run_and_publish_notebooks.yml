@@ -414,7 +414,11 @@ jobs:
           NOTEBOOK=$(basename -s .ipynb "$NOTEBOOK_PATH")
           docker exec -e NOTEBOOK_PATH="$NOTEBOOK_PATH" -e NOTEBOOK="$NOTEBOOK" "$CONTAINER_NAME" su --preserve-environment jovyan -s /bin/bash -c '
             set -e
-            
+
+            # Configure git identity (required for datalad/git-annex)
+            git config --global user.email "mail.neurodesk@gmail.com"
+            git config --global user.name "vnm-neurodesk"
+
             export PATH=/opt/conda/bin:$HOME/.local/bin:$PATH
 
             # Initialize the module system
