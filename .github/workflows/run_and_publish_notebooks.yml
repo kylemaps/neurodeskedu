@@ -461,8 +461,11 @@ jobs:
             cat "$KERNEL_JSON"
             
             # Run jupyter nbconvert
+            EXEC_TIMEOUT=86400
+            echo "Using ExecutePreprocessor.timeout=${EXEC_TIMEOUT}s for $NOTEBOOK_PATH"
+            
             jupyter nbconvert --to notebook --execute --inplace --allow-errors \
-              --ExecutePreprocessor.timeout=3600 \
+              --ExecutePreprocessor.timeout="${EXEC_TIMEOUT}" \
               --ExecutePreprocessor.kernel_name=python3 \
               --debug \
               "/home/jovyan/workspace/books/$NOTEBOOK_PATH" 2>&1 | tee "$LOG_FILE"
