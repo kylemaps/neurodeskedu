@@ -413,12 +413,8 @@ jobs:
           NOTEBOOK_PATH="${{ matrix.notebooks }}"
           NOTEBOOK=$(basename -s .ipynb "$NOTEBOOK_PATH")
           docker exec -e NOTEBOOK_PATH="$NOTEBOOK_PATH" -e NOTEBOOK="$NOTEBOOK" "$CONTAINER_NAME" su --preserve-environment jovyan -s /bin/bash -c '
-            set -e
-
-            # Configure git identity (required for datalad/git-annex)
-            git config --global user.email "mail.neurodesk@gmail.com"
-            git config --global user.name "vnm-neurodesk"
-
+            set -eo pipefail
+            
             export PATH=/opt/conda/bin:$HOME/.local/bin:$PATH
 
             # Initialize the module system
@@ -467,14 +463,22 @@ jobs:
             # Run jupyter nbconvert
             EXEC_TIMEOUT=86400
             echo "Using ExecutePreprocessor.timeout=${EXEC_TIMEOUT}s for $NOTEBOOK_PATH"
-            
-            jupyter nbconvert --to notebook --execute --inplace --allow-errors \
+
+            # Keep full nbconvert output in file, and print only a focused excerpt on failure.
+            if jupyter nbconvert --to notebook --execute --inplace --allow-errors \
               --ExecutePreprocessor.timeout="${EXEC_TIMEOUT}" \
               --ExecutePreprocessor.kernel_name=python3 \
-              --debug \
-              "/home/jovyan/workspace/books/$NOTEBOOK_PATH" 2>&1 | tee "$LOG_FILE"
-            
-            echo "Notebook execution complete"
+              "/home/jovyan/workspace/books/$NOTEBOOK_PATH" 2>&1 | tee "$LOG_FILE"; then
+              echo "Notebook execution complete"
+            else
+              NBEXEC_RC=$?
+              echo "::error::nbconvert failed for $NOTEBOOK_PATH (exit code ${NBEXEC_RC})"
+              echo "--- Potential failure lines from nbconvert log ---"
+              grep -nEi "ERROR|Traceback|Exception|CellExecutionError|CalledProcessError|No such file|not found" "$LOG_FILE" | tail -n 80 || true
+              echo "--- Last 80 lines from nbconvert log ---"
+              tail -n 80 "$LOG_FILE" || true
+              exit "${NBEXEC_RC}"
+            fi
             
             # Post-execution verification
             echo "=== Post-execution check ==="
@@ -498,8 +502,14 @@ jobs:
           # Check the notebook for errors - step/job fails (red) if errors found, but publish still runs
           python3 << 'EOF'
           import json
-          import sys
           import os
+          import re
+          import sys
+          
+          ANSI_ESCAPE = re.compile(r"\x1B\[[0-?]*[ -/]*[@-~]")
+          
+          def clean_text(text):
+              return ANSI_ESCAPE.sub("", str(text)).replace("\r", "").strip()
           
           notebook_path = "books/${{ matrix.notebooks }}"
           notebook_name = "${{ matrix.notebooks }}"
@@ -513,17 +523,28 @@ jobs:
                   if cell.get('cell_type') == 'code':
                       for output in cell.get('outputs', []):
                           if output.get('output_type') == 'error':
-                              ename = output.get('ename', 'Unknown')
-                              evalue = output.get('evalue', '')
+                              ename = clean_text(output.get('ename', 'Unknown'))
+                              evalue = clean_text(output.get('evalue', ''))
+                              traceback_lines = [
+                                  clean_text(line)
+                                  for line in output.get('traceback', [])
+                                  if clean_text(line)
+                              ]
+                              traceback_excerpt = "\n".join(traceback_lines[-12:]) if traceback_lines else "No traceback captured."
                               errors_found.append({
                                   'cell': cell_idx,
                                   'ename': ename,
-                                  'evalue': evalue[:200]  # Truncate long error messages
+                                  'evalue': evalue[:300],
+                                  'traceback_excerpt': traceback_excerpt[:2500]
                               })
               
               if errors_found:
                   # Report as error so the step shows as failed
                   print(f"::error::Notebook {notebook_name} has {len(errors_found)} execution error(s). Please fix the notebook.")
+                  for err in errors_found[:5]:
+                      print(f"::error title=Notebook cell {err['cell']} failed::{err['ename']}: {err['evalue'][:180]}")
+                      print(f"--- Cell {err['cell']} traceback (last lines) ---")
+                      print(err['traceback_excerpt'])
                   
                   # Write to job summary for visibility
                   summary = f"""
@@ -539,7 +560,11 @@ jobs:
                   for err in errors_found:
                       summary += f"| {err['cell']} | `{err['ename']}` | {err['evalue'][:100]} |\n"
                   
-                  summary += "\n\nPlease update the notebook to fix these errors.\n"
+                  summary += "\n\n### Traceback Excerpts (last lines)\n"
+                  for err in errors_found[:5]:
+                      summary += f"\n**Cell {err['cell']} - {err['ename']}**\n\n```text\n{err['traceback_excerpt']}\n```\n"
+                  
+                  summary += "\nPlease update the notebook to fix these errors.\n"
                   
                   # Write to GitHub step summary
                   with open(os.environ.get('GITHUB_STEP_SUMMARY', '/dev/null'), 'a') as f:
@@ -553,6 +578,15 @@ jobs:
           except Exception as e:
               print(f"::warning::Could not check notebook for errors: {e}")
           EOF
+
+      - name: Upload nbconvert log artifact
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: nbconvert-log-${{ env.NOTEBOOK }}
+          path: nbconvert-${{ env.NOTEBOOK }}.log
+          if-no-files-found: warn
+          retention-days: 7
 
       - name: Upload executed notebook artifact
         if: success()  # Only upload if notebook executed without errors
