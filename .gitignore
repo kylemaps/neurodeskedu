@@ -16,3 +16,4 @@ books/**/ds004884/
 
 # Agent config
 .agent/
+.DS_Store
