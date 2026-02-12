@@ -412,83 +412,111 @@ jobs:
         run: |
           NOTEBOOK_PATH="${{ matrix.notebooks }}"
           NOTEBOOK=$(basename -s .ipynb "$NOTEBOOK_PATH")
-          docker exec -e NOTEBOOK_PATH="$NOTEBOOK_PATH" -e NOTEBOOK="$NOTEBOOK" "$CONTAINER_NAME" su --preserve-environment jovyan -s /bin/bash -c '
-            set -eo pipefail
-            
-            export PATH=/opt/conda/bin:$HOME/.local/bin:$PATH
+          run_exec_in_container() {
+            docker exec -e NOTEBOOK_PATH="$NOTEBOOK_PATH" -e NOTEBOOK="$NOTEBOOK" "$CONTAINER_NAME" su --preserve-environment jovyan -s /bin/bash -c '
+              set -eo pipefail
+              
+              export PATH=/opt/conda/bin:$HOME/.local/bin:$PATH
 
-            # Initialize the module system
-            if [ -f /usr/share/lmod/lmod/init/bash ]; then
-              source /usr/share/lmod/lmod/init/bash
-            elif [ -f /usr/share/module.sh ]; then
-              source /usr/share/module.sh
+              # Initialize the module system
+              if [ -f /usr/share/lmod/lmod/init/bash ]; then
+                source /usr/share/lmod/lmod/init/bash
+              elif [ -f /usr/share/module.sh ]; then
+                source /usr/share/module.sh
+              fi
+
+              # Set MODULEPATH to neurodesk modules
+              export MODULEPATH=/cvmfs/neurodesk.ardc.edu.au/containers/modules
+              echo "MODULEPATH set to: $MODULEPATH"
+
+              # Install dependencies only if missing (use pip --user)
+              pip show nbconvert >/dev/null 2>&1 || pip install --user nbconvert nbclient ipykernel
+
+              # Pre-execution verification
+              echo "=== Container Environment ==="
+              which jupyter && jupyter --version
+              echo "Current directory: $(pwd)"
+              echo "Notebook to execute: $NOTEBOOK_PATH"
+              echo "Notebook name: $NOTEBOOK"
+
+              echo "Executing notebook: $NOTEBOOK_PATH"
+              
+              # Execute the notebook in-place using nbconvert
+              # --allow-errors: continue even if cells error (we detect errors later)
+              # --inplace: overwrite the original notebook with outputs
+              # Log is saved to mounted workspace for persistence
+              LOG_FILE="$HOME/workspace/nbconvert-${NOTEBOOK}.log"
+              
+              # CRITICAL: Modify the kernel.json to include MODULEPATH and LMOD_CMD
+              # IPython startup scripts are not reliable - kernel may not load them
+              # Modifying the kernelspec ensures the kernel process starts with correct environment
+              KERNEL_JSON="/opt/conda/share/jupyter/kernels/python3/kernel.json"
+              echo "Modifying kernel spec at $KERNEL_JSON"
+              cp "$KERNEL_JSON" "${KERNEL_JSON}.bak"
+              echo "import json" > /tmp/fix_kernel.py
+              echo "k = json.load(open(\"$KERNEL_JSON\"))" >> /tmp/fix_kernel.py
+              echo "k.setdefault(\"env\", {}).update({\"MODULEPATH\": \"/cvmfs/neurodesk.ardc.edu.au/containers/modules\", \"LMOD_CMD\": \"/usr/share/lmod/lmod/libexec/lmod\"})" >> /tmp/fix_kernel.py
+              echo "json.dump(k, open(\"$KERNEL_JSON\", \"w\"), indent=2)" >> /tmp/fix_kernel.py
+              echo "print(\"Updated kernel.json\")" >> /tmp/fix_kernel.py
+              python3 /tmp/fix_kernel.py
+              cat "$KERNEL_JSON"
+              
+              # Run jupyter nbconvert
+              EXEC_TIMEOUT=86400
+              echo "Using ExecutePreprocessor.timeout=${EXEC_TIMEOUT}s for $NOTEBOOK_PATH"
+
+              # Keep full nbconvert output in file, and print only a focused excerpt on failure.
+              if jupyter nbconvert --to notebook --execute --inplace --allow-errors \
+                --ExecutePreprocessor.timeout="${EXEC_TIMEOUT}" \
+                --ExecutePreprocessor.kernel_name=python3 \
+                "/home/jovyan/workspace/books/$NOTEBOOK_PATH" 2>&1 | tee "$LOG_FILE"; then
+                echo "Notebook execution complete"
+              else
+                NBEXEC_RC=$?
+                echo "::error::nbconvert failed for $NOTEBOOK_PATH (exit code ${NBEXEC_RC})"
+                echo "--- Potential failure lines from nbconvert log ---"
+                grep -nEi "ERROR|Traceback|Exception|CellExecutionError|CalledProcessError|No such file|not found" "$LOG_FILE" | tail -n 80 || true
+                echo "--- Last 80 lines from nbconvert log ---"
+                tail -n 80 "$LOG_FILE" || true
+                exit "${NBEXEC_RC}"
+              fi
+              
+              # Post-execution verification
+              echo "=== Post-execution check ==="
+              if [ -f "$NOTEBOOK_PATH" ]; then
+                ls -la "$NOTEBOOK_PATH"
+              else
+                echo "::error::Notebook file not found after execution: $NOTEBOOK_PATH"
+                exit 1
+              fi
+            '
+          }
+
+          EXEC_STDERR=$(mktemp)
+          set +e
+          run_exec_in_container 2> >(tee "$EXEC_STDERR" >&2)
+          EXEC_RC=$?
+          set -e
+
+          if [ "$EXEC_RC" -ne 0 ] && grep -q "No such exec instance" "$EXEC_STDERR"; then
+            echo "::warning::Docker exec instance disappeared while running $NOTEBOOK_PATH. Retrying once."
+            if ! docker ps --format '{{.Names}}' | grep -qx "$CONTAINER_NAME"; then
+              echo "::error::Container is not running after docker exec failure; cannot retry."
+              docker ps -a --filter "name=$CONTAINER_NAME" || true
+              rm -f "$EXEC_STDERR"
+              exit "$EXEC_RC"
             fi
 
-            # Set MODULEPATH to neurodesk modules
-            export MODULEPATH=/cvmfs/neurodesk.ardc.edu.au/containers/modules
-            echo "MODULEPATH set to: $MODULEPATH"
+            set +e
+            run_exec_in_container
+            EXEC_RC=$?
+            set -e
+          fi
 
-            # Install dependencies only if missing (use pip --user)
-            pip show nbconvert >/dev/null 2>&1 || pip install --user nbconvert nbclient ipykernel
-
-            # Pre-execution verification
-            echo "=== Container Environment ==="
-            which jupyter && jupyter --version
-            echo "Current directory: $(pwd)"
-            echo "Notebook to execute: $NOTEBOOK_PATH"
-            echo "Notebook name: $NOTEBOOK"
-
-            echo "Executing notebook: $NOTEBOOK_PATH"
-            
-            # Execute the notebook in-place using nbconvert
-            # --allow-errors: continue even if cells error (we detect errors later)
-            # --inplace: overwrite the original notebook with outputs
-            # Log is saved to mounted workspace for persistence
-            LOG_FILE="$HOME/workspace/nbconvert-${NOTEBOOK}.log"
-            
-            # CRITICAL: Modify the kernel.json to include MODULEPATH and LMOD_CMD
-            # IPython startup scripts are not reliable - kernel may not load them
-            # Modifying the kernelspec ensures the kernel process starts with correct environment
-            KERNEL_JSON="/opt/conda/share/jupyter/kernels/python3/kernel.json"
-            echo "Modifying kernel spec at $KERNEL_JSON"
-            cp "$KERNEL_JSON" "${KERNEL_JSON}.bak"
-            echo "import json" > /tmp/fix_kernel.py
-            echo "k = json.load(open(\"$KERNEL_JSON\"))" >> /tmp/fix_kernel.py
-            echo "k.setdefault(\"env\", {}).update({\"MODULEPATH\": \"/cvmfs/neurodesk.ardc.edu.au/containers/modules\", \"LMOD_CMD\": \"/usr/share/lmod/lmod/libexec/lmod\"})" >> /tmp/fix_kernel.py
-            echo "json.dump(k, open(\"$KERNEL_JSON\", \"w\"), indent=2)" >> /tmp/fix_kernel.py
-            echo "print(\"Updated kernel.json\")" >> /tmp/fix_kernel.py
-            python3 /tmp/fix_kernel.py
-            cat "$KERNEL_JSON"
-            
-            # Run jupyter nbconvert
-            EXEC_TIMEOUT=86400
-            echo "Using ExecutePreprocessor.timeout=${EXEC_TIMEOUT}s for $NOTEBOOK_PATH"
-
-            # Keep full nbconvert output in file, and print only a focused excerpt on failure.
-            if jupyter nbconvert --to notebook --execute --inplace --allow-errors \
-              --ExecutePreprocessor.timeout="${EXEC_TIMEOUT}" \
-              --ExecutePreprocessor.kernel_name=python3 \
-              "/home/jovyan/workspace/books/$NOTEBOOK_PATH" 2>&1 | tee "$LOG_FILE"; then
-              echo "Notebook execution complete"
-            else
-              NBEXEC_RC=$?
-              echo "::error::nbconvert failed for $NOTEBOOK_PATH (exit code ${NBEXEC_RC})"
-              echo "--- Potential failure lines from nbconvert log ---"
-              grep -nEi "ERROR|Traceback|Exception|CellExecutionError|CalledProcessError|No such file|not found" "$LOG_FILE" | tail -n 80 || true
-              echo "--- Last 80 lines from nbconvert log ---"
-              tail -n 80 "$LOG_FILE" || true
-              exit "${NBEXEC_RC}"
-            fi
-            
-            # Post-execution verification
-            echo "=== Post-execution check ==="
-            if [ -f "$NOTEBOOK_PATH" ]; then
-              ls -la "$NOTEBOOK_PATH"
-            else
-              echo "::error::Notebook file not found after execution: $NOTEBOOK_PATH"
-              exit 1
-            fi
-          '
+          rm -f "$EXEC_STDERR"
+          if [ "$EXEC_RC" -ne 0 ]; then
+            exit "$EXEC_RC"
+          fi
 
       - name: Cleanup container
         if: always()
@@ -546,7 +574,7 @@ jobs:
                               # Known ASLPrep false-positive: process returns non-zero
                               # although logs report successful completion.
                               if (
-                                  notebook_name.endswith("examples/functional_imaging/aslprep.ipynb")
+                                  os.path.basename(notebook_name) == "aslprep.ipynb"
                                   and ename == "CalledProcessError"
                                   and "aslprep ds000240" in evalue
                                   and "ASLPrep finished successfully!" in stream_text
