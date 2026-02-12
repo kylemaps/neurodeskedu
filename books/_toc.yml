@@ -20,7 +20,6 @@ chapters:
           - file: examples/functional_imaging/AFNI_preprocessing_only
           - file: examples/functional_imaging/AFNI_preprocessing_plus_glm
           - file: examples/functional_imaging/AFNI_preprocessing_plus_glm_group
-          - file: examples/functional_imaging/aslprep
           - file: examples/functional_imaging/deepretinotopy
           - file: examples/functional_imaging/first_and_second_level_spm
           - file: examples/functional_imaging/fmriprep
@@ -37,12 +36,16 @@ chapters:
           - file: examples/spectroscopy/lcmodel
           - file: examples/spectroscopy/osprey
 
+      - file: examples/quantitative_imaging/intro
+        sections:
+          - file: examples/quantitative_imaging/aslprep
+          - file: examples/quantitative_imaging/qsmxt
+
       - file: examples/structural_imaging/intro
         sections:
           - file: examples/structural_imaging/brain_extraction_different_tools
           - file: examples/structural_imaging/freesurfer
           - file: examples/structural_imaging/FSL_course_bet
-          - file: examples/structural_imaging/qsmxt
           - file: examples/structural_imaging/sct_toolbox
 
       - file: examples/workflows/intro
@@ -111,4 +114,3 @@ chapters:
     sections:
       - file: contribute/examples
       - file: contribute/tutorials
-
