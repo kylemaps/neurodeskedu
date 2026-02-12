@@ -244,11 +244,30 @@ jobs:
       - name: Ensure Neurodesk image available
         run: |
           IMAGE="${{ needs.setup.outputs.neurodesk_image }}"
+          RUNNER_KIND="${{ needs.setup.outputs.runner }}"
           if docker image inspect "$IMAGE" >/dev/null 2>&1; then
             echo "✓ Image already exists locally"
           else
-            echo "Pulling $IMAGE..."
-            docker pull "$IMAGE"
+            for attempt in 1 2 3; do
+              echo "Pulling $IMAGE (attempt ${attempt}/3)..."
+              if docker pull "$IMAGE"; then
+                echo "✓ Pulled $IMAGE"
+                break
+              fi
+
+              if [ "$attempt" -eq 3 ]; then
+                echo "::error::Failed to pull $IMAGE after 3 attempts"
+                exit 1
+              fi
+
+              echo "::warning::Pull attempt ${attempt} failed. Cleaning local state and retrying..."
+              docker image rm -f "$IMAGE" >/dev/null 2>&1 || true
+              docker builder prune -af >/dev/null 2>&1 || true
+              if [ "$RUNNER_KIND" = "self-hosted" ]; then
+                sudo systemctl restart docker || true
+              fi
+              sleep $((attempt * 10))
+            done
           fi
 
       # -------------------------------------------------------------------------
@@ -701,11 +720,30 @@ jobs:
       - name: Ensure Neurodesk image available
         run: |
           IMAGE="${{ needs.setup.outputs.neurodesk_image }}"
+          RUNNER_KIND="${{ needs.setup.outputs.runner }}"
           if docker image inspect "$IMAGE" >/dev/null 2>&1; then
             echo "✓ Image already exists locally"
           else
-            echo "Pulling $IMAGE..."
-            docker pull "$IMAGE"
+            for attempt in 1 2 3; do
+              echo "Pulling $IMAGE (attempt ${attempt}/3)..."
+              if docker pull "$IMAGE"; then
+                echo "✓ Pulled $IMAGE"
+                break
+              fi
+
+              if [ "$attempt" -eq 3 ]; then
+                echo "::error::Failed to pull $IMAGE after 3 attempts"
+                exit 1
+              fi
+
+              echo "::warning::Pull attempt ${attempt} failed. Cleaning local state and retrying..."
+              docker image rm -f "$IMAGE" >/dev/null 2>&1 || true
+              docker builder prune -af >/dev/null 2>&1 || true
+              if [ "$RUNNER_KIND" = "self-hosted" ]; then
+                sudo systemctl restart docker || true
+              fi
+              sleep $((attempt * 10))
+            done
           fi
 
       - name: Restore Conda/Python dependencies cache
