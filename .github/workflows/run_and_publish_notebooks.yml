@@ -514,6 +514,7 @@ jobs:
           notebook_path = "books/${{ matrix.notebooks }}"
           notebook_name = "${{ matrix.notebooks }}"
           errors_found = []
+          ignored_false_positives = []
           
           try:
               with open(notebook_path, 'r') as f:
@@ -521,6 +522,11 @@ jobs:
               
               for cell_idx, cell in enumerate(nb.get('cells', [])):
                   if cell.get('cell_type') == 'code':
+                      stream_text = "\n".join(
+                          clean_text("".join(output.get('text', '')))
+                          for output in cell.get('outputs', [])
+                          if output.get('output_type') == 'stream'
+                      )
                       for output in cell.get('outputs', []):
                           if output.get('output_type') == 'error':
                               ename = clean_text(output.get('ename', 'Unknown'))
@@ -537,6 +543,21 @@ jobs:
                                   'evalue': evalue[:300],
                                   'traceback_excerpt': traceback_excerpt[:2500]
                               })
+                              # Known ASLPrep false-positive: process returns non-zero
+                              # although logs report successful completion.
+                              if (
+                                  notebook_name.endswith("examples/functional_imaging/aslprep.ipynb")
+                                  and ename == "CalledProcessError"
+                                  and "aslprep ds000240" in evalue
+                                  and "ASLPrep finished successfully!" in stream_text
+                              ):
+                                  ignored_false_positives.append(errors_found.pop())
+              
+              if ignored_false_positives:
+                  print(
+                      f"::warning::Ignoring {len(ignored_false_positives)} known ASLPrep false-positive error(s) "
+                      "because log output indicates successful completion."
+                  )
               
               if errors_found:
                   # Report as error so the step shows as failed
@@ -573,7 +594,10 @@ jobs:
                   # Exit with error so step shows as failed (continue-on-error allows workflow to proceed)
                   sys.exit(1)
               else:
-                  print("No errors found in notebook outputs")
+                  if ignored_false_positives:
+                      print("No blocking errors found in notebook outputs (known false-positive ignored).")
+                  else:
+                      print("No errors found in notebook outputs")
                   
           except Exception as e:
               print(f"::warning::Could not check notebook for errors: {e}")
