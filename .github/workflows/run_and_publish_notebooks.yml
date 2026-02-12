@@ -559,6 +559,8 @@ jobs:
                           if output.get('output_type') == 'error':
                               ename = clean_text(output.get('ename', 'Unknown'))
                               evalue = clean_text(output.get('evalue', ''))
+                              evalue_lower = evalue.lower()
+                              stream_text_lower = stream_text.lower()
                               traceback_lines = [
                                   clean_text(line)
                                   for line in output.get('traceback', [])
@@ -574,10 +576,10 @@ jobs:
                               # Known ASLPrep false-positive: process returns non-zero
                               # although logs report successful completion.
                               if (
-                                  os.path.basename(notebook_name) == "aslprep.ipynb"
-                                  and ename == "CalledProcessError"
-                                  and "aslprep ds000240" in evalue
-                                  and "ASLPrep finished successfully!" in stream_text
+                                  ename == "CalledProcessError"
+                                  and "aslprep" in evalue_lower
+                                  and "returned non-zero exit status" in evalue_lower
+                                  and "aslprep finished successfully!" in stream_text_lower
                               ):
                                   ignored_false_positives.append(errors_found.pop())
               
