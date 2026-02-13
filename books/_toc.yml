@@ -55,6 +55,7 @@ chapters:
           - file: examples/workflows/MRIQC
           - file: examples/workflows/nipype_full
           - file: examples/workflows/nipype_short
+          - file: examples/workflows/nextflow_neurodesk
           - file: examples/workflows/papermill-slurm-submission-example
           - file: examples/workflows/PyBIDS
           - file: examples/workflows/pydra_preproc_ants
