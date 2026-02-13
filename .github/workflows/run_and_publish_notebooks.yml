@@ -10,6 +10,7 @@
 #   - Push to main (when notebooks or book markdown files change)
 #   - Pull requests to main (for validation, no deployment)
 #   - Manual dispatch (with options for image override, force execution, etc.)
+#   - Weekly scheduled run (executes all notebooks)
 # =============================================================================
 
 name: Run Notebooks & Publish
@@ -22,6 +23,10 @@ defaults:
 # TRIGGERS
 # =============================================================================
 on:
+  schedule:
+    # Weekly at 00:00 UTC on Sunday
+    - cron: '0 0 * * 0'
+
   push:
     branches: [main]
     paths:
@@ -154,7 +159,11 @@ jobs:
         id: list_notebooks
         run: |
           # Determine which notebooks to run based on trigger type
-          if [ "${{ inputs.force_execution }}" == "true" ]; then
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            echo "Mode: Scheduled run, execute ALL notebooks"
+            changed_notebooks=$(find books -name "*.ipynb" | sed 's|^books/||')
+
+          elif [ "${{ inputs.force_execution }}" == "true" ]; then
             echo "Mode: Force execution of ALL notebooks"
             changed_notebooks=$(find books -name "*.ipynb" | sed 's|^books/||')
 
