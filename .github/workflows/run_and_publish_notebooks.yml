@@ -245,10 +245,53 @@ jobs:
         run: |
           IMAGE="${{ needs.setup.outputs.neurodesk_image }}"
           RUNNER_KIND="${{ needs.setup.outputs.runner }}"
+
+          print_docker_diagnostics() {
+            echo "::group::Docker diagnostics"
+            sudo systemctl --no-pager -l status docker.service || true
+            sudo systemctl --no-pager -l status containerd.service || true
+            sudo journalctl --no-pager -u docker.service -n 120 || true
+            echo "::endgroup::"
+          }
+
+          ensure_docker_ready() {
+            if docker info >/dev/null 2>&1; then
+              return 0
+            fi
+
+            echo "::warning::Docker daemon unavailable. Attempting recovery..."
+            sudo systemctl start containerd >/dev/null 2>&1 || true
+            if [ "$RUNNER_KIND" = "self-hosted" ]; then
+              sudo systemctl start docker >/dev/null 2>&1 || true
+            else
+              sudo systemctl restart docker >/dev/null 2>&1 || true
+            fi
+
+            for _ in $(seq 1 12); do
+              if docker info >/dev/null 2>&1; then
+                return 0
+              fi
+              sleep 5
+            done
+
+            echo "::error::Docker daemon is still unavailable after recovery attempts."
+            print_docker_diagnostics
+            return 1
+          }
+
           if docker image inspect "$IMAGE" >/dev/null 2>&1; then
             echo "✓ Image already exists locally"
           else
             for attempt in 1 2 3; do
+              if ! ensure_docker_ready; then
+                if [ "$attempt" -eq 3 ]; then
+                  echo "::error::Failed to recover Docker daemon after 3 attempts"
+                  exit 1
+                fi
+                sleep $((attempt * 10))
+                continue
+              fi
+
               echo "Pulling $IMAGE (attempt ${attempt}/3)..."
               if docker pull "$IMAGE"; then
                 echo "✓ Pulled $IMAGE"
@@ -257,14 +300,16 @@ jobs:
 
               if [ "$attempt" -eq 3 ]; then
                 echo "::error::Failed to pull $IMAGE after 3 attempts"
+                print_docker_diagnostics
                 exit 1
               fi
 
               echo "::warning::Pull attempt ${attempt} failed. Cleaning local state and retrying..."
-              docker image rm -f "$IMAGE" >/dev/null 2>&1 || true
-              docker builder prune -af >/dev/null 2>&1 || true
-              if [ "$RUNNER_KIND" = "self-hosted" ]; then
-                sudo systemctl restart docker || true
+              if docker info >/dev/null 2>&1; then
+                docker image rm -f "$IMAGE" >/dev/null 2>&1 || true
+                docker builder prune -af >/dev/null 2>&1 || true
+              else
+                echo "::warning::Docker daemon became unavailable after pull failure."
               fi
               sleep $((attempt * 10))
             done
@@ -721,10 +766,53 @@ jobs:
         run: |
           IMAGE="${{ needs.setup.outputs.neurodesk_image }}"
           RUNNER_KIND="${{ needs.setup.outputs.runner }}"
+
+          print_docker_diagnostics() {
+            echo "::group::Docker diagnostics"
+            sudo systemctl --no-pager -l status docker.service || true
+            sudo systemctl --no-pager -l status containerd.service || true
+            sudo journalctl --no-pager -u docker.service -n 120 || true
+            echo "::endgroup::"
+          }
+
+          ensure_docker_ready() {
+            if docker info >/dev/null 2>&1; then
+              return 0
+            fi
+
+            echo "::warning::Docker daemon unavailable. Attempting recovery..."
+            sudo systemctl start containerd >/dev/null 2>&1 || true
+            if [ "$RUNNER_KIND" = "self-hosted" ]; then
+              sudo systemctl start docker >/dev/null 2>&1 || true
+            else
+              sudo systemctl restart docker >/dev/null 2>&1 || true
+            fi
+
+            for _ in $(seq 1 12); do
+              if docker info >/dev/null 2>&1; then
+                return 0
+              fi
+              sleep 5
+            done
+
+            echo "::error::Docker daemon is still unavailable after recovery attempts."
+            print_docker_diagnostics
+            return 1
+          }
+
           if docker image inspect "$IMAGE" >/dev/null 2>&1; then
             echo "✓ Image already exists locally"
           else
             for attempt in 1 2 3; do
+              if ! ensure_docker_ready; then
+                if [ "$attempt" -eq 3 ]; then
+                  echo "::error::Failed to recover Docker daemon after 3 attempts"
+                  exit 1
+                fi
+                sleep $((attempt * 10))
+                continue
+              fi
+
               echo "Pulling $IMAGE (attempt ${attempt}/3)..."
               if docker pull "$IMAGE"; then
                 echo "✓ Pulled $IMAGE"
@@ -733,14 +821,16 @@ jobs:
 
               if [ "$attempt" -eq 3 ]; then
                 echo "::error::Failed to pull $IMAGE after 3 attempts"
+                print_docker_diagnostics
                 exit 1
               fi
 
               echo "::warning::Pull attempt ${attempt} failed. Cleaning local state and retrying..."
-              docker image rm -f "$IMAGE" >/dev/null 2>&1 || true
-              docker builder prune -af >/dev/null 2>&1 || true
-              if [ "$RUNNER_KIND" = "self-hosted" ]; then
-                sudo systemctl restart docker || true
+              if docker info >/dev/null 2>&1; then
+                docker image rm -f "$IMAGE" >/dev/null 2>&1 || true
+                docker builder prune -af >/dev/null 2>&1 || true
+              else
+                echo "::warning::Docker daemon became unavailable after pull failure."
               fi
               sleep $((attempt * 10))
             done
