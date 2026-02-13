@@ -1055,3 +1055,15 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./books/_build/html
           keep_files: false  # Clean publish - removes old/broken notebooks
+
+      - name: Report published website URL for successful PR runs
+        if: ${{ github.event_name == 'pull_request' && success() }}
+        run: |
+          SITE_URL="https://neurodesk.github.io/neurodeskedu/"
+          echo "PR validation succeeded."
+          echo "Please check the published notebook website: ${SITE_URL}"
+          {
+            echo "### PR validation succeeded"
+            echo ""
+            echo "Please check the published notebook website: ${SITE_URL}"
+          } >> "$GITHUB_STEP_SUMMARY"
