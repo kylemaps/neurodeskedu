@@ -1,0 +1,88 @@
+# Lightweight Jupyter Book build + GitHub Pages deploy for sandbox badge testing.
+#
+# SANDBOX VERSION — does NOT execute notebooks (fast build, ~3-5 min).
+# Meant only for previewing review badges during label lifecycle testing.
+#
+# Triggers:
+#   - Push to main (config, static files or review registry changes)
+#   - After generate-reviews updates reviews.json (reviews-updated dispatch)
+#   - Manual dispatch
+
+name: Sandbox Build & Deploy Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      # Only rebuild when badge assets or config change
+      - 'books/_static/reviews.json'
+      - 'books/_static/review-badge.js'
+      - 'books/_static/review-badge.css'
+      - 'books/_config.yml'
+
+  repository_dispatch:
+    types: [reviews-updated]
+
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write   # needed for peaceiris/actions-gh-pages
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install build dependencies
+        run: |
+          pip install \
+            jupyter-book \
+            sphinx-book-theme \
+            myst-nb \
+            myst-parser \
+            sphinx-copybutton \
+            sphinx-design \
+            sphinxcontrib-bibtex
+
+      - name: Pull latest review registry
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python tools/generate_reviews_registry.py \
+            --reviews-repo neurodesk/neurodeskedu-reviews-test \
+            --out books/_static/reviews.json
+          echo "✅ reviews.json updated"
+          cat books/_static/reviews.json | python -c "import sys,json; d=json.load(sys.stdin); print(f'  {len(d[\"reviews\"])} review(s) loaded')"
+
+      - name: Patch config — disable notebook execution
+        # We only want static HTML; notebooks have already been run/committed.
+        run: |
+          python - <<'PYEOF'
+          import re
+          with open('books/_config.yml') as f:
+              content = f.read()
+          content = re.sub(r'execute_notebooks:\s*\S+', 'execute_notebooks: "off"', content)
+          with open('books/_config.yml', 'w') as f:
+              f.write(content)
+          print("execute_notebooks set to off")
+          PYEOF
+
+      - name: Build Jupyter Book
+        run: |
+          jupyter-book build books/ --builder html 2>&1 | tail -20
+          echo "Build exit code: $?"
+
+      - name: Deploy to GitHub Pages (gh-pages branch)
+        uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8e4d45e
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./books/_build/html
+          keep_files: false
+          commit_message: "sandbox: update site with latest review badges [skip ci]"
