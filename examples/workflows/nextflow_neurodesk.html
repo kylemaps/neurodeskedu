@@ -1,0 +1,1303 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Nextflow in Neurodesk: Minimal BIDS T1w QC &#8212; Neurodesk</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/review-badge.css?v=66080ea3" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'examples/workflows/nextflow_neurodesk';</script>
+    <script src="../../_static/review-badge.js?v=bfc6da6f"></script>
+    <link rel="canonical" href="https://neurodesk.org/edu/examples/workflows/nextflow_neurodesk.html" />
+    <link rel="icon" href="../../_static/neurodesk_logo.svg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Nipype on Neurodesk" href="nipype_full.html" />
+    <link rel="prev" title="Ipyniivue and Ipywidgets" href="ipyniivue_ipywidgets.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/neurodesk_logo.svg" class="logo__image only-light" alt="Neurodesk - Home"/>
+    <script>document.write(`<img src="../../_static/neurodesk_logo.svg" class="logo__image only-dark" alt="Neurodesk - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://neurodesk.org" title="Return to neurodesk.org" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-house fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Return to neurodesk.org</span></a>
+        </li>
+</ul></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../intro.html">Examples</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../template.html">Example Notebook Template</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../diffusion_imaging/intro.html">Diffusion Imaging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../diffusion_imaging/DIPY_1.html">Basic Tracking with DIPY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../diffusion_imaging/DIPY_2.html">Advanced Tracking with DIPY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../diffusion_imaging/Diffusion_TBSS_Demo.html">TBSS Tutorial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../diffusion_imaging/MRtrix_1.html">MRtrix: Part 1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../diffusion_imaging/MRtrix_2.html">MRtrix: Part 2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../diffusion_imaging/MRtrix_3.html">MRtrix: Part 3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../diffusion_imaging/mrtrix3tissue.html">MRtrix3Tissue</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../electrophysiology/intro.html">Electrophysiology</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../electrophysiology/eeg_with_mne.html">EEG Analysis with MNE</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../functional_imaging/intro.html">Functional Imaging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/AFNI_preprocessing_only.html">AFNI Preprocessing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/AFNI_preprocessing_plus_glm.html">AFNI Preprocessing and GLM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/AFNI_preprocessing_plus_glm_group.html">AFNI Preprocessing &amp; Group Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/AFNI_processing_task_based.html">Processing task-based FMRI with AFNI and afni_proc.py</a></li>
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/FSL_preproc_glm.html">FSL Preprocessing and GLM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/FSLnets_course_practical.html">Resting state with FSLnets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/NiWrap.html">NiWrap and Connectome Workbench</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/deepretinotopy.html">DeepRetinotopy Toolbox</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/fMRI_tutorial_in_R_magic.html">Resting-State fMRI Analysis in R</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/first_and_second_level_spm.html">Nipype-SPM fMRI Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/fmriprep.html">fMRIprep</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/fsl_all_levels_flanker_nipype.html">Nipype-FSL fMRI Analysis</a></li>
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/intro_to_preprocessing.html">Introduction to Preprocessing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/mri_vol2surf.html">FreeSurfer: mri_vol2surf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/process_five_echo_dataset.html">tedana: TE Dependent ANAlysis</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../quantitative_imaging/intro.html">Quantitative Imaging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../quantitative_imaging/aslprep.html">ASLprep</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../quantitative_imaging/qsmxt.html">QSMxT</a></li>
+
+
+
+
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../spectroscopy/intro.html">Spectroscopy</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../spectroscopy/lcmodel.html">MR Spectroscopy with LCModel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../spectroscopy/osprey.html">MR Spectroscopy with Osprey</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../structural_imaging/intro.html">Structural Imaging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../structural_imaging/FSL_course_bet.html">FSL course - BET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../structural_imaging/SYNcro.html">SYNcro</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../structural_imaging/brain_extraction_different_tools.html">Brain Extraction Tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../structural_imaging/freesurfer-recon-all-clinical.html">FreeSurfer: recon-all-clinical</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../structural_imaging/freesurfer.html">FreeSurfer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../structural_imaging/sct_toolbox.html">SCT Toolbox</a></li>
+
+</ul>
+</details></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="intro.html">Workflows</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="AA_Neurodesk_demo_tour.html">Neurodesk Tools Demo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MRIQC.html">MRIQC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Magic_commands.html">Magic Commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyBIDS.html">PyBIDS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="RISE_slideshow.html">RISE Slideshow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bids_conversion.html">BIDS conversion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ipyniivue_ipywidgets.html">Ipyniivue and Ipywidgets</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Nextflow in Neurodesk: Minimal BIDS T1w QC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nipype_full.html">Nipype on Neurodesk</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nipype_short.html">Basic Nipype</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="papermill-slurm-submission-example.html">Papermill Slurm Job Submission</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pydra_preproc_ants.html">Pydra</a></li>
+<li class="toctree-l3"><a class="reference internal" href="review_system_test.html">Review System Test Notebook</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../tutorials/intro.html">Tutorials</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../tutorials/electrophysiology/intro.html">Electrophysiology</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/electrophysiology/EEG_mne-python.html">Analysing EEG Data with MNE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/electrophysiology/fieldtrip.html">Analysing M/EEG Data with FieldTrip</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../tutorials/functional_imaging/intro.html">Functional Imaging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/functional_imaging/connectomeWorkbench.html">Connectome Workbench</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/functional_imaging/fmriprep.html">Using fmriprep with neurodesk on an HPC</a></li>
+
+
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/functional_imaging/mriqc.html">Using mriqc with neurodesk on HPC</a></li>
+
+
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/functional_imaging/physio.html">PhysIO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/functional_imaging/physio_batch_workflow.html">A batch scripting example for PhysIO toolbox</a></li>
+
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/functional_imaging/spm.html">Statistical Parametric Mapping (SPM)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../tutorials/multimodal_imaging/intro.html">Multimodal Imaging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/multimodal_imaging/MFCSC.html">Using MFCSC</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../tutorials/open_data/intro.html">Open Data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/open_data/datalad.html">datalad</a></li>
+
+
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/open_data/osfclient.html">osfclient</a></li>
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../tutorials/phase_processing/intro.html">Phase Processing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/phase_processing/qsm.html">Quantitative Susceptibility Mapping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/phase_processing/swi.html">SWI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/phase_processing/unwrapping.html">Unwrapping</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../tutorials/programming/intro.html">Programming</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/programming/conda.html">Conda environments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/programming/matlab.html">Matlab</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../tutorials/reproducibility/intro.html">Reproducibility</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/reproducibility/datalad-run.html">Reproducible script execution with DataLad</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../tutorials/spectroscopy/intro.html">Spectroscopy</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/spectroscopy/lcmodel.html">Spectroscopy with lcmodel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/spectroscopy/mrsiproc.html">Spectroscopy pipeline</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../tutorials/structural_imaging/intro.html">Structural Imaging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/structural_imaging/freesurfer.html">FreeSurfer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/structural_imaging/structuralconnectivity.html">Structural connectivity dMRI</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../contribute/intro.html">Contribute</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../contribute/examples.html">Contribute Example Notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../contribute/tutorials.html">Contribute Tutorials</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://play.neurodesk.cloud.edu.au/hub/user-redirect/git-pull?repo=https%3A//github.com/neurodesk/neurodeskedu&urlpath=lab/tree/neurodeskedu/books/examples/workflows/nextflow_neurodesk.ipynb&branch=main" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Run in Australia"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Run in Australia logo" src="../../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">Run in Australia</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://play-europe.neurodesk.org/hub/user-redirect/git-pull?repo=https%3A//github.com/neurodesk/neurodeskedu&urlpath=lab/tree/neurodeskedu/books/examples/workflows/nextflow_neurodesk.ipynb&branch=main" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Run in Europe"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Run in Europe logo" src="../../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">Run in Europe</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://play-america.neurodesk.org/hub/user-redirect/git-pull?repo=https%3A//github.com/neurodesk/neurodeskedu&urlpath=lab/tree/neurodeskedu/books/examples/workflows/nextflow_neurodesk.ipynb&branch=main" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Run in America"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Run in America logo" src="../../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">Run in America</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://play-europe.neurodesk.org/hub/user-redirect/git-pull?repo=https%3A//github.com/neurodesk/neurodeskedu&urlpath=lab/tree/neurodeskedu/books/examples/workflows/nextflow_neurodesk.ipynb&branch=main" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Run in Global Server 1"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Run in Global Server 1 logo" src="../../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">Run in Global Server 1</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://edu.neurodesk.org/hub/user-redirect/git-pull?repo=https%3A//github.com/neurodesk/neurodeskedu&urlpath=lab/tree/neurodeskedu/books/examples/workflows/nextflow_neurodesk.ipynb&branch=main" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Run in Global Server 2"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Run in Global Server 2 logo" src="../../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">Run in Global Server 2</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/examples/workflows/nextflow_neurodesk.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Nextflow in Neurodesk: Minimal BIDS T1w QC</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citation-and-resources">Citation and Resources</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-engine">Workflow engine</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-access-pattern-used-in-this-notebook">Data access pattern used in this notebook</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#platform">Platform</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-of-contents">Table of contents</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-this-notebook-builds">What this notebook builds</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-nextflow-in-neurodesk">Load Nextflow in Neurodesk</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#write-a-dsl2-pipeline">Write a DSL2 pipeline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-tiny-local-bids-dataset">Create a tiny local BIDS dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-nextflow-and-inspect-outputs">Run Nextflow and inspect outputs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-openneuro-datalad-helper-script">Optional: OpenNeuro + DataLad helper script</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-and-extending-this-pipeline">Interpreting and extending this pipeline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dependencies-and-environment-capture">Dependencies and environment capture</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="nextflow-in-neurodesk-minimal-bids-t1w-qc">
+<h1>Nextflow in Neurodesk: Minimal BIDS T1w QC<a class="headerlink" href="#nextflow-in-neurodesk-minimal-bids-t1w-qc" title="Link to this heading">#</a></h1>
+<section id="id1">
+<h2><a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p><strong>Author:</strong> Steffen Bollmann</p>
+<p><strong>Date:</strong> 13 Feb 2026</p>
+</section>
+<section id="citation-and-resources">
+<h2>Citation and Resources<a class="headerlink" href="#citation-and-resources" title="Link to this heading">#</a></h2>
+<section id="workflow-engine">
+<h3>Workflow engine<a class="headerlink" href="#workflow-engine" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Di Tommaso, P., Chatzou, M., Floden, E. W., Barja, P. P., Palumbo, E., &amp; Notredame, C. (2017). Nextflow enables reproducible computational workflows. <em>Nature Biotechnology, 35</em>(4), 316-319. https://doi.org/10.1038/nbt.3820</p></li>
+</ul>
+</section>
+<section id="data-access-pattern-used-in-this-notebook">
+<h3>Data access pattern used in this notebook<a class="headerlink" href="#data-access-pattern-used-in-this-notebook" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>OpenNeuro (example dataset IDs can be cloned via DataLad): https://openneuro.org</p></li>
+<li><p>Halchenko, Y. O., et al. (2021). DataLad: distributed system for joint management of code, data, and their relationship. <em>Journal of Open Source Software, 6</em>(63), 3262. https://doi.org/10.21105/joss.03262</p></li>
+</ul>
+</section>
+<section id="platform">
+<h3>Platform<a class="headerlink" href="#platform" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Neurodesk: https://www.neurodesk.org</p></li>
+</ul>
+</section>
+</section>
+<section id="table-of-contents">
+<h2>Table of contents<a class="headerlink" href="#table-of-contents" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="#What-this-notebook-builds"><span class="xref myst">What this notebook builds</span></a></p></li>
+<li><p><a class="reference internal" href="#Load-Nextflow-in-Neurodesk"><span class="xref myst">Load Nextflow in Neurodesk</span></a></p></li>
+<li><p><a class="reference internal" href="#Write-a-DSL2-pipeline"><span class="xref myst">Write a DSL2 pipeline</span></a></p></li>
+<li><p><a class="reference internal" href="#Create-a-tiny-local-BIDS-dataset"><span class="xref myst">Create a tiny local BIDS dataset</span></a></p></li>
+<li><p><a class="reference internal" href="#Run-Nextflow-and-inspect-outputs"><span class="xref myst">Run Nextflow and inspect outputs</span></a></p></li>
+<li><p><a class="reference internal" href="#Optional:-OpenNeuro-+-DataLad-helper-script"><span class="xref myst">Optional: OpenNeuro + DataLad helper script</span></a></p></li>
+<li><p><a class="reference internal" href="#Dependencies-and-environment-capture"><span class="xref myst">Dependencies and environment capture</span></a></p></li>
+</ol>
+</section>
+<section id="what-this-notebook-builds">
+<h2>What this notebook builds<a class="headerlink" href="#what-this-notebook-builds" title="Link to this heading">#</a></h2>
+<p>This notebook demonstrates a complete, beginner-friendly Nextflow workflow inside Neurodesk.</p>
+<p>The pipeline takes BIDS-style T1w MRI files and performs a simple quality-control pass per subject:</p>
+<ul class="simple">
+<li><p>finds <code class="docutils literal notranslate"><span class="pre">*_T1w.nii</span></code> / <code class="docutils literal notranslate"><span class="pre">*_T1w.nii.gz</span></code> images in BIDS <code class="docutils literal notranslate"><span class="pre">anat/</span></code> folders,</p></li>
+<li><p>runs one process per subject to extract shape and voxel size,</p></li>
+<li><p>merges all per-subject tables into one summary TSV.</p></li>
+</ul>
+<p>To keep the notebook reliable for testing and teaching, the default run path uses a tiny synthetic BIDS dataset generated locally.</p>
+<p>An optional section also writes a DataLad/OpenNeuro helper script based on your requested pattern for real public data.</p>
+</section>
+<section id="load-nextflow-in-neurodesk">
+<h2>Load Nextflow in Neurodesk<a class="headerlink" href="#load-nextflow-in-neurodesk" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">importlib.util</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">shutil</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">subprocess</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">textwrap</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">module</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="n">module</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Python `module` helper is not available in this kernel. Continuing with PATH checks.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">loaded_nextflow_module</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="k">if</span> <span class="n">module</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="c1"># Try a small set of common module names in Neurodesk images.</span>
+    <span class="k">for</span> <span class="n">candidate</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;nextflow&quot;</span><span class="p">,</span> <span class="s2">&quot;nextflow/24.10.4&quot;</span><span class="p">,</span> <span class="s2">&quot;nextflow/24.04.4&quot;</span><span class="p">,</span> <span class="s2">&quot;nextflow/23.10.1&quot;</span><span class="p">]:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">await</span> <span class="n">module</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">candidate</span><span class="p">)</span>
+            <span class="n">loaded_nextflow_module</span> <span class="o">=</span> <span class="n">candidate</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Loaded module: </span><span class="si">{</span><span class="n">candidate</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">break</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Could not load </span><span class="si">{</span><span class="n">candidate</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">exc</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">await</span> <span class="n">module</span><span class="o">.</span><span class="n">list</span><span class="p">()</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Skipping module loading.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">run_and_print</span><span class="p">(</span><span class="n">cmd</span><span class="p">):</span>
+    <span class="c1"># Run a shell command without failing the notebook on non-zero exit.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;$&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">cmd</span><span class="p">))</span>
+    <span class="n">proc</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">proc</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">strip</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">proc</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+    <span class="k">if</span> <span class="n">proc</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">strip</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">proc</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[exit code: </span><span class="si">{</span><span class="n">proc</span><span class="o">.</span><span class="n">returncode</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">proc</span>
+
+<span class="n">nextflow_ok</span> <span class="o">=</span> <span class="n">shutil</span><span class="o">.</span><span class="n">which</span><span class="p">(</span><span class="s2">&quot;nextflow&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="n">datalad_ok</span> <span class="o">=</span> <span class="n">shutil</span><span class="o">.</span><span class="n">which</span><span class="p">(</span><span class="s2">&quot;datalad&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="n">python_ok</span> <span class="o">=</span> <span class="n">shutil</span><span class="o">.</span><span class="n">which</span><span class="p">(</span><span class="s2">&quot;python3&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;nextflow in PATH: </span><span class="si">{</span><span class="n">nextflow_ok</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;datalad in PATH: </span><span class="si">{</span><span class="n">datalad_ok</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;python3 in PATH: </span><span class="si">{</span><span class="n">python_ok</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">nextflow_ok</span><span class="p">:</span>
+    <span class="n">run_and_print</span><span class="p">([</span><span class="s2">&quot;nextflow&quot;</span><span class="p">,</span> <span class="s2">&quot;-version&quot;</span><span class="p">])</span>
+<span class="k">if</span> <span class="n">datalad_ok</span><span class="p">:</span>
+    <span class="n">run_and_print</span><span class="p">([</span><span class="s2">&quot;datalad&quot;</span><span class="p">,</span> <span class="s2">&quot;--version&quot;</span><span class="p">])</span>
+
+<span class="n">nibabel_available</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">find_spec</span><span class="p">(</span><span class="s2">&quot;nibabel&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;nibabel available in notebook kernel: </span><span class="si">{</span><span class="n">nibabel_available</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="write-a-dsl2-pipeline">
+<h2>Write a DSL2 pipeline<a class="headerlink" href="#write-a-dsl2-pipeline" title="Link to this heading">#</a></h2>
+<p>The cell below writes a complete Nextflow script to disk.</p>
+<p>Important points to notice:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Channel.fromPath(...)</span></code> searches for candidate T1w files.</p></li>
+<li><p>A BIDS-aware regex keeps only <code class="docutils literal notranslate"><span class="pre">sub-*/(ses-*/)?anat/*_T1w</span></code> paths.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">T1wQcPerSubject</span></code> runs once per input image.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MergeQc</span></code> concatenates all per-subject QC files into one summary table.</p></li>
+</ul>
+<p>This is the same logic pattern you provided, with defaults that point to a local demo directory.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ROOT_DIR</span> <span class="o">=</span> <span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span> <span class="o">/</span> <span class="s2">&quot;nextflow_neuro_demo&quot;</span>
+<span class="n">PIPELINE</span> <span class="o">=</span> <span class="n">ROOT_DIR</span> <span class="o">/</span> <span class="s2">&quot;example_neuroimaging_qc.nf&quot;</span>
+<span class="n">LOCAL_BIDS</span> <span class="o">=</span> <span class="n">ROOT_DIR</span> <span class="o">/</span> <span class="s2">&quot;example_bids&quot;</span>
+<span class="n">LOCAL_OUT</span> <span class="o">=</span> <span class="n">ROOT_DIR</span> <span class="o">/</span> <span class="s2">&quot;example_qc_results&quot;</span>
+
+<span class="n">ROOT_DIR</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">pipeline_text</span> <span class="o">=</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;&quot;&quot;#!/usr/bin/env nextflow</span>
+
+<span class="s2">nextflow.enable.dsl = 2</span>
+
+<span class="s2">params.bids = params.bids ?: &quot;$</span><span class="si">{projectDir}</span><span class="s2">/example_bids&quot;</span>
+<span class="s2">params.outdir = params.outdir ?: &quot;$</span><span class="si">{projectDir}</span><span class="s2">/example_qc_results&quot;</span>
+
+<span class="s2">/*</span>
+<span class="s2">Example:</span>
+<span class="s2">  nextflow run example_neuroimaging_qc.nf \</span>
+<span class="s2">    --bids /path/to/bids_dataset \</span>
+<span class="s2">    --outdir /path/to/output</span>
+<span class="s2">*/</span>
+
+<span class="s2">def t1wPatterns = [</span>
+<span class="s2">    &quot;$</span><span class="si">{params.bids}</span><span class="s2">/**/*_T1w.nii.gz&quot;,</span>
+<span class="s2">    &quot;$</span><span class="si">{params.bids}</span><span class="s2">/**/*_T1w.nii&quot;</span>
+<span class="s2">]</span>
+
+<span class="s2">Channel</span>
+<span class="s2">    .fromPath(t1wPatterns, type: &quot;any&quot;, followLinks: true)</span>
+<span class="s2">    .filter { t1w -&gt;</span>
+<span class="s2">        def path = t1w.toString()</span>
+<span class="s2">        path ==~ /.*\/sub-[^\/]+\/(ses-[^\/]+\/)?anat\/.*_T1w\.nii(\.gz)?$/ &amp;&amp; t1w.exists()</span>
+<span class="s2">    }</span>
+<span class="s2">    .ifEmpty {</span>
+<span class="s2">        error &quot;No readable T1w files found in BIDS anat folders under $</span><span class="si">{params.bids}</span><span class="s2">. If this is an OpenNeuro/DataLad clone, run datalad get on *_T1w.nii.gz files first.&quot;</span>
+<span class="s2">    }</span>
+<span class="s2">    .map { t1w -&gt;</span>
+<span class="s2">        def matcher = (t1w.baseName =~ /(sub-[^_]+(?:_ses-[^_]+)?)/)</span>
+<span class="s2">        def id = matcher ? matcher[0][1] : t1w.baseName</span>
+<span class="s2">        tuple(id, t1w)</span>
+<span class="s2">    }</span>
+<span class="s2">    .set { t1w_files }</span>
+
+<span class="s2">process T1wQcPerSubject {</span>
+<span class="s2">    tag &quot;$</span><span class="si">{id}</span><span class="s2">&quot;</span>
+<span class="s2">    publishDir &quot;$</span><span class="si">{params.outdir}</span><span class="s2">/per_subject&quot;, mode: &quot;copy&quot;</span>
+
+<span class="s2">    input:</span>
+<span class="s2">    tuple val(id), path(t1w)</span>
+
+<span class="s2">    output:</span>
+<span class="s2">    path &quot;$</span><span class="si">{id}</span><span class="s2">.qc.tsv&quot;</span>
+
+<span class="s2">    script:</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+    <span class="n">python3</span> <span class="o">-</span> <span class="o">&lt;&lt;</span> <span class="s1">&#39;PY&#39;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">nibabel</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nib</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="n">subject</span> <span class="o">=</span> <span class="s2">&quot;$</span><span class="si">{id}</span><span class="s2">&quot;</span>
+<span class="n">t1w</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;$</span><span class="si">{t1w}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">t1w</span><span class="p">))</span>
+<span class="n">shape</span> <span class="o">=</span> <span class="s2">&quot;x&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">zooms</span> <span class="o">=</span> <span class="s2">&quot;x&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">z</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">img</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">get_zooms</span><span class="p">()[:</span><span class="mi">3</span><span class="p">])</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">subject</span><span class="si">}</span><span class="s2">.qc.tsv&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;id</span><span class="se">\t</span><span class="s2">file</span><span class="se">\t</span><span class="s2">shape</span><span class="se">\t</span><span class="s2">voxel_size_mm</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">subject</span><span class="si">}</span><span class="se">\t</span><span class="si">{</span><span class="n">t1w</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="se">\t</span><span class="si">{</span><span class="n">shape</span><span class="si">}</span><span class="se">\t</span><span class="si">{</span><span class="n">zooms</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">PY</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">}</span>
+
+<span class="sd">process MergeQc {</span>
+<span class="sd">    publishDir &quot;${params.outdir}&quot;, mode: &quot;copy&quot;</span>
+
+<span class="sd">    input:</span>
+<span class="sd">    path qc_tables</span>
+
+<span class="sd">    output:</span>
+<span class="sd">    path &quot;t1w_qc_summary.tsv&quot;</span>
+
+<span class="sd">    script:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">set</span> <span class="o">-</span><span class="n">euo</span> <span class="n">pipefail</span>
+    <span class="n">first</span><span class="o">=</span><span class="err">$</span><span class="p">(</span><span class="n">ls</span> <span class="o">*.</span><span class="n">qc</span><span class="o">.</span><span class="n">tsv</span> <span class="o">|</span> <span class="n">head</span> <span class="o">-</span><span class="n">n</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">head</span> <span class="o">-</span><span class="n">n</span> <span class="mi">1</span> <span class="s2">&quot;$first&quot;</span> <span class="o">&gt;</span> <span class="n">t1w_qc_summary</span><span class="o">.</span><span class="n">tsv</span>
+    <span class="n">tail</span> <span class="o">-</span><span class="n">n</span> <span class="o">+</span><span class="mi">2</span> <span class="o">-</span><span class="n">q</span> <span class="o">*.</span><span class="n">qc</span><span class="o">.</span><span class="n">tsv</span> <span class="o">&gt;&gt;</span> <span class="n">t1w_qc_summary</span><span class="o">.</span><span class="n">tsv</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">}</span>
+
+<span class="sd">workflow {</span>
+<span class="sd">    T1wQcPerSubject(t1w_files)</span>
+<span class="sd">    MergeQc(T1wQcPerSubject.out.collect())</span>
+<span class="sd">}</span>
+<span class="sd">&quot;&quot;&quot;</span><span class="p">)</span>
+
+<span class="n">PIPELINE</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">pipeline_text</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Pipeline written to: </span><span class="si">{</span><span class="n">PIPELINE</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Default BIDS dir:    </span><span class="si">{</span><span class="n">LOCAL_BIDS</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Default output dir:  </span><span class="si">{</span><span class="n">LOCAL_OUT</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Quick preview of the generated Nextflow script</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">PIPELINE</span><span class="o">.</span><span class="n">read_text</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()[:</span><span class="mi">60</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="create-a-tiny-local-bids-dataset">
+<h2>Create a tiny local BIDS dataset<a class="headerlink" href="#create-a-tiny-local-bids-dataset" title="Link to this heading">#</a></h2>
+<p>This section avoids external downloads and gives you a deterministic test case.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">nibabel</span></code> is present, we generate two fake T1w images:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">sub-01/anat/sub-01_T1w.nii.gz</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sub-02/anat/sub-02_T1w.nii.gz</span></code></p></li>
+</ul>
+<p>These are sufficient to validate Nextflow channel selection and process fan-out.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="ow">not</span> <span class="n">nibabel_available</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;nibabel is missing in this kernel. Skipping synthetic dataset creation.&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">nibabel</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nib</span>
+
+    <span class="n">LOCAL_BIDS</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">dataset_description</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;Name&quot;</span><span class="p">:</span> <span class="s2">&quot;Synthetic Nextflow Neurodesk Demo&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;BIDSVersion&quot;</span><span class="p">:</span> <span class="s2">&quot;1.8.0&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="p">(</span><span class="n">LOCAL_BIDS</span> <span class="o">/</span> <span class="s2">&quot;dataset_description.json&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span>
+        <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">dataset_description</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">subject</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;sub-01&quot;</span><span class="p">,</span> <span class="s2">&quot;sub-02&quot;</span><span class="p">]:</span>
+        <span class="n">anat_dir</span> <span class="o">=</span> <span class="n">LOCAL_BIDS</span> <span class="o">/</span> <span class="n">subject</span> <span class="o">/</span> <span class="s2">&quot;anat&quot;</span>
+        <span class="n">anat_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="n">data</span> <span class="o">=</span> <span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">24</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1000.0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;float32&quot;</span><span class="p">)</span>
+        <span class="n">affine</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+            <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+            <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+            <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+            <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span>
+        <span class="p">])</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">Nifti1Image</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">affine</span><span class="p">)</span>
+        <span class="n">out_file</span> <span class="o">=</span> <span class="n">anat_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">subject</span><span class="si">}</span><span class="s2">_T1w.nii.gz&quot;</span>
+        <span class="n">nib</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">out_file</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Wrote </span><span class="si">{</span><span class="n">out_file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Synthetic BIDS dataset is ready.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="run-nextflow-and-inspect-outputs">
+<h2>Run Nextflow and inspect outputs<a class="headerlink" href="#run-nextflow-and-inspect-outputs" title="Link to this heading">#</a></h2>
+<p>We run the pipeline against the local synthetic dataset.</p>
+<p>The notebook does not crash on command failures: this keeps documentation readable even when users are missing tools in a custom environment. In a real project, you would usually enforce <code class="docutils literal notranslate"><span class="pre">check=True</span></code> and fail fast.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">run_and_print_tail</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">tail_lines</span><span class="o">=</span><span class="mi">40</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;$&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">cmd</span><span class="p">))</span>
+    <span class="n">proc</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">stdout_lines</span> <span class="o">=</span> <span class="n">proc</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+    <span class="n">stderr_lines</span> <span class="o">=</span> <span class="n">proc</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">stdout_lines</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--- stdout (tail) ---&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">stdout_lines</span><span class="p">[</span><span class="o">-</span><span class="n">tail_lines</span><span class="p">:]))</span>
+    <span class="k">if</span> <span class="n">stderr_lines</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--- stderr (tail) ---&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">stderr_lines</span><span class="p">[</span><span class="o">-</span><span class="n">tail_lines</span><span class="p">:]))</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[exit code: </span><span class="si">{</span><span class="n">proc</span><span class="o">.</span><span class="n">returncode</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">proc</span>
+
+<span class="n">can_run_local_demo</span> <span class="o">=</span> <span class="n">nextflow_ok</span> <span class="ow">and</span> <span class="n">python_ok</span> <span class="ow">and</span> <span class="n">nibabel_available</span> <span class="ow">and</span> <span class="p">(</span><span class="n">LOCAL_BIDS</span> <span class="o">/</span> <span class="s2">&quot;dataset_description.json&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">can_run_local_demo</span><span class="p">:</span>
+    <span class="n">LOCAL_OUT</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">run_and_print_tail</span><span class="p">([</span>
+        <span class="s2">&quot;nextflow&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;run&quot;</span><span class="p">,</span>
+        <span class="nb">str</span><span class="p">(</span><span class="n">PIPELINE</span><span class="p">),</span>
+        <span class="s2">&quot;--bids&quot;</span><span class="p">,</span>
+        <span class="nb">str</span><span class="p">(</span><span class="n">LOCAL_BIDS</span><span class="p">),</span>
+        <span class="s2">&quot;--outdir&quot;</span><span class="p">,</span>
+        <span class="nb">str</span><span class="p">(</span><span class="n">LOCAL_OUT</span><span class="p">),</span>
+    <span class="p">])</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Skipping local Nextflow run. Missing one or more prerequisites:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  nextflow_ok=</span><span class="si">{</span><span class="n">nextflow_ok</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  python_ok=</span><span class="si">{</span><span class="n">python_ok</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  nibabel_available=</span><span class="si">{</span><span class="n">nibabel_available</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  dataset_exists=</span><span class="si">{</span><span class="p">(</span><span class="n">LOCAL_BIDS</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="s1">&#39;dataset_description.json&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">summary_path</span> <span class="o">=</span> <span class="n">LOCAL_OUT</span> <span class="o">/</span> <span class="s2">&quot;t1w_qc_summary.tsv&quot;</span>
+
+<span class="k">if</span> <span class="n">summary_path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;QC summary found at: </span><span class="si">{</span><span class="n">summary_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">summary_path</span><span class="o">.</span><span class="n">read_text</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;QC summary file not found yet. If needed, inspect Nextflow logs above.&quot;</span><span class="p">)</span>
+
+<span class="n">per_subject_dir</span> <span class="o">=</span> <span class="n">LOCAL_OUT</span> <span class="o">/</span> <span class="s2">&quot;per_subject&quot;</span>
+<span class="k">if</span> <span class="n">per_subject_dir</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Per-subject files:&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">per_subject_dir</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;*.qc.tsv&quot;</span><span class="p">)):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; -&quot;</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="optional-openneuro-datalad-helper-script">
+<h2>Optional: OpenNeuro + DataLad helper script<a class="headerlink" href="#optional-openneuro-datalad-helper-script" title="Link to this heading">#</a></h2>
+<p>The next cell writes a helper shell script based on your requested pattern.</p>
+<p>It does the following:</p>
+<ul class="simple">
+<li><p>clones an OpenNeuro dataset with DataLad,</p></li>
+<li><p>downloads a limited number of T1w files,</p></li>
+<li><p>runs the same Nextflow pipeline,</p></li>
+<li><p>prints the merged QC summary.</p></li>
+</ul>
+<p>By default we only <em>write</em> this script (no large network operations during notebook execution).</p>
+<p>To run it, set:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">RUN_OPENNEURO_DEMO=1</span></code></p></li>
+<li><p>optional <code class="docutils literal notranslate"><span class="pre">OPENNEURO_DATASET_ID</span></code> (default <code class="docutils literal notranslate"><span class="pre">ds000030</span></code>)</p></li>
+<li><p>optional <code class="docutils literal notranslate"><span class="pre">OPENNEURO_MAX_T1W</span></code> (default <code class="docutils literal notranslate"><span class="pre">2</span></code>)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">RUN_SCRIPT</span> <span class="o">=</span> <span class="n">ROOT_DIR</span> <span class="o">/</span> <span class="s2">&quot;run_openneuro_nextflow_demo.sh&quot;</span>
+
+<span class="n">run_script_text</span> <span class="o">=</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;&quot;&quot;#!/usr/bin/env bash</span>
+<span class="s2">set -euo pipefail</span>
+
+<span class="s2">ROOT_DIR=&quot;${1:-$PWD/nextflow_neuro_demo}&quot;</span>
+<span class="s2">DATASET_ID=&quot;${2:-${OPENNEURO_DATASET_ID:-ds000030}}&quot;</span>
+<span class="s2">MAX_T1W=&quot;${3:-$</span><span class="si">{OPENNEURO_MAX_T1W:-2}</span><span class="s2">}&quot;</span>
+
+<span class="s2">mkdir -p &quot;$</span><span class="si">{ROOT_DIR}</span><span class="s2">&quot;</span>
+<span class="s2">PIPELINE=&quot;$</span><span class="si">{ROOT_DIR}</span><span class="s2">/example_neuroimaging_qc.nf&quot;</span>
+<span class="s2">BIDS_DIR=&quot;$</span><span class="si">{ROOT_DIR}</span><span class="s2">/$</span><span class="si">{DATASET_ID}</span><span class="s2">&quot;</span>
+<span class="s2">OUT_DIR=&quot;$</span><span class="si">{ROOT_DIR}</span><span class="s2">/example_qc_results&quot;</span>
+
+<span class="s2">require_cmd() {</span>
+<span class="s2">    local cmd=&quot;$1&quot;</span>
+<span class="s2">    if ! command -v &quot;$</span><span class="si">{cmd}</span><span class="s2">&quot; &gt;/dev/null 2&gt;&amp;1; then</span>
+<span class="s2">        echo &quot;Missing required command: $</span><span class="si">{cmd}</span><span class="s2">&quot; &gt;&amp;2</span>
+<span class="s2">        exit 1</span>
+<span class="s2">    fi</span>
+<span class="s2">}</span>
+
+<span class="s2">require_cmd datalad</span>
+<span class="s2">require_cmd nextflow</span>
+
+<span class="s2">if [ ! -f &quot;$</span><span class="si">{PIPELINE}</span><span class="s2">&quot; ]; then</span>
+<span class="s2">    if [ -f /opt/neurodesktop/example_neuroimaging_qc.nf ]; then</span>
+<span class="s2">        cp -f /opt/neurodesktop/example_neuroimaging_qc.nf &quot;$</span><span class="si">{PIPELINE}</span><span class="s2">&quot;</span>
+<span class="s2">    elif [ -f &quot;$(dirname &quot;$0&quot;)/example_neuroimaging_qc.nf&quot; ]; then</span>
+<span class="s2">        cp -f &quot;$(dirname &quot;$0&quot;)/example_neuroimaging_qc.nf&quot; &quot;$</span><span class="si">{PIPELINE}</span><span class="s2">&quot;</span>
+<span class="s2">    else</span>
+<span class="s2">        echo &quot;Could not find example_neuroimaging_qc.nf. Write it first from the notebook cell.&quot; &gt;&amp;2</span>
+<span class="s2">        exit 1</span>
+<span class="s2">    fi</span>
+<span class="s2">fi</span>
+
+<span class="s2">if [ ! -d &quot;$</span><span class="si">{BIDS_DIR}</span><span class="s2">/.datalad&quot; ]; then</span>
+<span class="s2">    echo &quot;Cloning OpenNeuro dataset $</span><span class="si">{DATASET_ID}</span><span class="s2"> with DataLad...&quot;</span>
+<span class="s2">    datalad clone &quot;///openneuro/$</span><span class="si">{DATASET_ID}</span><span class="s2">&quot; &quot;$</span><span class="si">{BIDS_DIR}</span><span class="s2">&quot;</span>
+<span class="s2">else</span>
+<span class="s2">    echo &quot;Using existing dataset clone at $</span><span class="si">{BIDS_DIR}</span><span class="s2">&quot;</span>
+<span class="s2">fi</span>
+
+<span class="s2">cd &quot;$</span><span class="si">{BIDS_DIR}</span><span class="s2">&quot;</span>
+<span class="s2">echo &quot;Installing OpenNeuro subdataset metadata (no file content yet)...&quot;</span>
+<span class="s2">datalad get -n -r .</span>
+
+<span class="s2">mapfile -t t1w_candidates &lt; &lt;(</span>
+<span class="s2">    find . \( -type f -o -type l \)         \( -path &quot;./sub-*/anat/*_T1w.nii.gz&quot; -o -path &quot;./sub-*/ses-*/anat/*_T1w.nii.gz&quot; \)         | sort</span>
+<span class="s2">)</span>
+
+<span class="s2">if [ &quot;${#t1w_candidates[@]}&quot; -eq 0 ]; then</span>
+<span class="s2">    echo &quot;No T1w files found in $</span><span class="si">{DATASET_ID}</span><span class="s2">. Try another OpenNeuro dataset via OPENNEURO_DATASET_ID.&quot; &gt;&amp;2</span>
+<span class="s2">    exit 1</span>
+<span class="s2">fi</span>
+
+<span class="s2">if ! [[ &quot;$</span><span class="si">{MAX_T1W}</span><span class="s2">&quot; =~ ^[0-9]+$ ]] || [ &quot;$</span><span class="si">{MAX_T1W}</span><span class="s2">&quot; -lt 1 ]; then</span>
+<span class="s2">    echo &quot;OPENNEURO_MAX_T1W must be an integer &gt;= 1 (current: $</span><span class="si">{MAX_T1W}</span><span class="s2">)&quot; &gt;&amp;2</span>
+<span class="s2">    exit 1</span>
+<span class="s2">fi</span>
+
+<span class="s2">selected_t1w=(&quot;${t1w_candidates[@]:0:$</span><span class="si">{MAX_T1W}</span><span class="s2">}&quot;)</span>
+<span class="s2">get_targets=(&quot;dataset_description.json&quot;)</span>
+
+<span class="s2">for rel in &quot;$</span><span class="si">{selected_t1w[@]}</span><span class="s2">&quot;; do</span>
+<span class="s2">    rel=&quot;${rel#./}&quot;</span>
+<span class="s2">    get_targets+=(&quot;$</span><span class="si">{rel}</span><span class="s2">&quot;)</span>
+<span class="s2">    json=&quot;${rel%.nii.gz}.json&quot;</span>
+<span class="s2">    if [ -e &quot;$</span><span class="si">{json}</span><span class="s2">&quot; ] || [ -L &quot;$</span><span class="si">{json}</span><span class="s2">&quot; ]; then</span>
+<span class="s2">        get_targets+=(&quot;$</span><span class="si">{json}</span><span class="s2">&quot;)</span>
+<span class="s2">    fi</span>
+<span class="s2">done</span>
+
+<span class="s2">echo &quot;Downloading ${#get_targets[@]} file(s) from OpenNeuro dataset $</span><span class="si">{DATASET_ID}</span><span class="s2">...&quot;</span>
+<span class="s2">datalad get &quot;$</span><span class="si">{get_targets[@]}</span><span class="s2">&quot;</span>
+
+<span class="s2">echo &quot;Running Nextflow QC pipeline...&quot;</span>
+<span class="s2">nextflow run &quot;$</span><span class="si">{PIPELINE}</span><span class="s2">&quot; --bids &quot;$</span><span class="si">{BIDS_DIR}</span><span class="s2">&quot; --outdir &quot;$</span><span class="si">{OUT_DIR}</span><span class="s2">&quot;</span>
+
+<span class="s2">echo</span>
+<span class="s2">echo &quot;Done. QC summary:&quot;</span>
+<span class="s2">cat &quot;$</span><span class="si">{OUT_DIR}</span><span class="s2">/t1w_qc_summary.tsv&quot;</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+
+<span class="n">RUN_SCRIPT</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">run_script_text</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+<span class="n">RUN_SCRIPT</span><span class="o">.</span><span class="n">chmod</span><span class="p">(</span><span class="mo">0o755</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Helper script written: </span><span class="si">{</span><span class="n">RUN_SCRIPT</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Use it manually, for example:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  bash </span><span class="si">{</span><span class="n">RUN_SCRIPT</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">ROOT_DIR</span><span class="o">/</span><span class="s1">&#39;openneuro_demo&#39;</span><span class="si">}</span><span class="s2"> ds000030 2&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">run_openneuro_demo</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;RUN_OPENNEURO_DEMO&quot;</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;1&quot;</span>
+
+<span class="k">if</span> <span class="n">run_openneuro_demo</span><span class="p">:</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">nextflow_ok</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">datalad_ok</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cannot run OpenNeuro demo because nextflow or datalad is missing.&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">openneuro_root</span> <span class="o">=</span> <span class="n">ROOT_DIR</span> <span class="o">/</span> <span class="s2">&quot;openneuro_demo&quot;</span>
+        <span class="n">dataset_id</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;OPENNEURO_DATASET_ID&quot;</span><span class="p">,</span> <span class="s2">&quot;ds000030&quot;</span><span class="p">)</span>
+        <span class="n">max_t1w</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;OPENNEURO_MAX_T1W&quot;</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">)</span>
+
+        <span class="n">run_and_print_tail</span><span class="p">([</span>
+            <span class="s2">&quot;bash&quot;</span><span class="p">,</span>
+            <span class="nb">str</span><span class="p">(</span><span class="n">RUN_SCRIPT</span><span class="p">),</span>
+            <span class="nb">str</span><span class="p">(</span><span class="n">openneuro_root</span><span class="p">),</span>
+            <span class="n">dataset_id</span><span class="p">,</span>
+            <span class="n">max_t1w</span><span class="p">,</span>
+        <span class="p">],</span> <span class="n">tail_lines</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;OpenNeuro/DataLad run skipped (set RUN_OPENNEURO_DEMO=1 to enable).&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="interpreting-and-extending-this-pipeline">
+<h2>Interpreting and extending this pipeline<a class="headerlink" href="#interpreting-and-extending-this-pipeline" title="Link to this heading">#</a></h2>
+<p>Ways to adapt this pattern in your own Neurodesk projects:</p>
+<ul class="simple">
+<li><p>Add more BIDS modalities (e.g., T2w, bold) by extending <code class="docutils literal notranslate"><span class="pre">t1wPatterns</span></code> or making separate channels.</p></li>
+<li><p>Replace the QC code block with your real per-subject analysis (FSL/AFNI/ANTs/SPM commands).</p></li>
+<li><p>Add process-level resources (<code class="docutils literal notranslate"><span class="pre">cpus</span></code>, <code class="docutils literal notranslate"><span class="pre">memory</span></code>, <code class="docutils literal notranslate"><span class="pre">time</span></code>) and executor config for HPC.</p></li>
+<li><p>Track provenance by storing pipeline files and run scripts with your dataset repository.</p></li>
+</ul>
+<p>For bigger projects, split configuration into <code class="docutils literal notranslate"><span class="pre">nextflow.config</span></code> and keep <code class="docutils literal notranslate"><span class="pre">.nf</span></code> scripts focused on workflow logic.</p>
+</section>
+<section id="dependencies-and-environment-capture">
+<h2>Dependencies and environment capture<a class="headerlink" href="#dependencies-and-environment-capture" title="Link to this heading">#</a></h2>
+<p>As in the Neurodesk notebook template, we capture environment details at the end. If <code class="docutils literal notranslate"><span class="pre">watermark</span></code> is unavailable, the notebook continues and prints a message.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="o">%</span><span class="k">load_ext</span> watermark
+    <span class="o">%</span><span class="k">watermark</span>
+    <span class="o">%</span><span class="k">watermark</span> --iversions
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Could not run watermark extension:&quot;</span><span class="p">,</span> <span class="n">exc</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./examples/workflows"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="ipyniivue_ipywidgets.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Ipyniivue and Ipywidgets</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="nipype_full.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Nipype on Neurodesk</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citation-and-resources">Citation and Resources</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-engine">Workflow engine</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-access-pattern-used-in-this-notebook">Data access pattern used in this notebook</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#platform">Platform</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-of-contents">Table of contents</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-this-notebook-builds">What this notebook builds</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-nextflow-in-neurodesk">Load Nextflow in Neurodesk</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#write-a-dsl2-pipeline">Write a DSL2 pipeline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-tiny-local-bids-dataset">Create a tiny local BIDS dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-nextflow-and-inspect-outputs">Run Nextflow and inspect outputs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-openneuro-datalad-helper-script">Optional: OpenNeuro + DataLad helper script</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-and-extending-this-pipeline">Interpreting and extending this pipeline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dependencies-and-environment-capture">Dependencies and environment capture</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Neurodesk Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
