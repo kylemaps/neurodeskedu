@@ -153,6 +153,9 @@
         var entry = reviews[reviewId] || null;
         var state = entry ? entry.state || "unreviewed" : "unreviewed";
 
+        // Normalize: "queued" is displayed as "unreviewed" (grey badge)
+        if (state === "queued") state = "unreviewed";
+
         var badge = createBadge(
           state,
           entry && entry.review_issue_url,
