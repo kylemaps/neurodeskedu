@@ -1,0 +1,93 @@
+{
+  "version": 2,
+  "generated_at": "2026-02-20T06:10:30+00:00",
+  "source": {
+    "type": "github-issues",
+    "repo": "neurodesk/neurodeskedu-reviews-test"
+  },
+  "reviews": {
+    "d013c05e-58ec-4f9a-96ee-e913dae8f2a8": {
+      "state": "queued",
+      "review_issue_url": "https://github.com/neurodesk/neurodeskedu-reviews-test/issues/15",
+      "source_path": "examples/workflows/review_system_test.ipynb"
+    },
+    "209b2271-0aab-4985-b8c0-97a9dd2c2bd6": {
+      "state": "queued",
+      "review_issue_url": "https://github.com/neurodesk/neurodeskedu-reviews-test/issues/9",
+      "source_path": "examples/workflows/MRIQC.ipynb"
+    },
+    "abfdf70e-b5d0-4222-9fc4-f7f9d8e89bf7": {
+      "state": "queued",
+      "review_issue_url": "https://github.com/neurodesk/neurodeskedu-reviews-test/issues/6",
+      "source_path": "examples/workflows/PyBIDS.ipynb"
+    },
+    "4fb2bf34-4985-4481-9bf5-98104dc98160": {
+      "state": "queued",
+      "review_issue_url": "https://github.com/neurodesk/neurodeskedu-reviews-test/issues/14",
+      "source_path": "examples/workflows/ipyniivue_ipywidgets.ipynb"
+    },
+    "7877b293-4a0a-4a56-95e4-cf41f0f960ad": {
+      "state": "queued",
+      "review_issue_url": "https://github.com/neurodesk/neurodeskedu-reviews-test/issues/11",
+      "source_path": "examples/workflows/Magic_commands.ipynb"
+    },
+    "2a189792-fa32-46f1-8416-f06324fb84f6": {
+      "state": "queued",
+      "review_issue_url": "https://github.com/neurodesk/neurodeskedu-reviews-test/issues/10",
+      "source_path": "examples/workflows/nipype_short.ipynb"
+    },
+    "ba6e43a8-8274-4617-8c6f-fc7a3b9050e6": {
+      "state": "queued",
+      "review_issue_url": "https://github.com/neurodesk/neurodeskedu-reviews-test/issues/8",
+      "source_path": "examples/workflows/nipype_full.ipynb"
+    },
+    "b1d863fa-f12e-4681-bdd8-c913a24a599d": {
+      "state": "queued",
+      "review_issue_url": "https://github.com/neurodesk/neurodeskedu-reviews-test/issues/7",
+      "source_path": "examples/workflows/RISE_slideshow.ipynb"
+    },
+    "1be11289-f5ea-44fc-a700-574305f0411f": {
+      "state": "queued",
+      "review_issue_url": "https://github.com/neurodesk/neurodeskedu-reviews-test/issues/5",
+      "source_path": "examples/workflows/bids_conversion.ipynb"
+    },
+    "c3fb5643-2183-4867-95d5-998715f8b247": {
+      "state": "queued",
+      "review_issue_url": "https://github.com/neurodesk/neurodeskedu-reviews-test/issues/3",
+      "source_path": "examples/workflows/nextflow_neurodesk.ipynb"
+    },
+    "84a764f9-1ef2-4f15-86d8-4b2b11121072": {
+      "state": "queued",
+      "review_issue_url": "https://github.com/neurodesk/neurodeskedu-reviews-test/issues/12",
+      "source_path": "examples/workflows/pydra_preproc_ants.ipynb"
+    },
+    "c4f64258-ac46-4c7d-9f43-5f7eace83906": {
+      "state": "queued",
+      "review_issue_url": "https://github.com/neurodesk/neurodeskedu-reviews-test/issues/13",
+      "source_path": "examples/workflows/papermill-slurm-submission-example.ipynb"
+    },
+    "a9bc2542-4c73-4f9e-804b-07f0389818d8": {
+      "state": "queued",
+      "review_issue_url": "https://github.com/neurodesk/neurodeskedu-reviews-test/issues/4",
+      "source_path": "examples/workflows/AA_Neurodesk_demo_tour.ipynb"
+    },
+    "648807ba-8ffc-4a20-bbb5-07ef117a023f": {
+      "state": "unreviewed",
+      "review_issue_url": "https://github.com/neurodesk/neurodeskedu-reviews-test/issues/1",
+      "reviewers": [
+        "kylemaps"
+      ],
+      "source_path": "tutorials/electrophysiology/EEG_mne-python.md"
+    },
+    "87767036-01bf-479f-8b88-62ce5ba6552c": {
+      "state": "unreviewed",
+      "review_issue_url": "https://github.com/neurodesk/neurodeskedu-reviews-test/issues/2",
+      "reviewers": [
+        "kylemaps"
+      ],
+      "reviewed_at": "2026-02-17",
+      "review_commit_sha": "ff8d3fce5d6e05e765aa0c4cce8aae7ef32ac57a",
+      "source_path": "tutorials/electrophysiology/EEG_mne-python.md"
+    }
+  }
+}
