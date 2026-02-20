@@ -53,7 +53,7 @@ jobs:
 
       - name: Pull latest review registry
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.REVIEWS_REPO_TOKEN }}
         run: |
           python tools/generate_reviews_registry.py \
             --reviews-repo neurodesk/neurodeskedu-reviews-test \

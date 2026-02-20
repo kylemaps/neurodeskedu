@@ -184,7 +184,7 @@ def _issue_to_entry(issue: Dict[str, Any]) -> Tuple[Optional[str], Dict[str, Any
 # ---------------------------------------------------------------------------
 
 def load_issues_from_github(reviews_repo: str, token: Optional[str]) -> List[Dict[str, Any]]:
-    q = f"repo:{reviews_repo} is:issue in:body review_id:"
+    q = f'repo:{reviews_repo} is:issue "nd-review"'
     url = f"https://api.github.com/search/issues?q={urllib.parse.quote(q)}&per_page=100"
     data = _http_get_json(url, token=token)
     return list(data.get("items") or [])
