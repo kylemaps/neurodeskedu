@@ -76,8 +76,8 @@ jobs:
 
       - name: Build Jupyter Book
         run: |
-          jupyter-book build books/ --builder html 2>&1 | tail -20
-          echo "Build exit code: $?"
+          jupyter-book build books/
+          ls -la books/_build/html/_static/reviews.json
 
       - name: Deploy to GitHub Pages (gh-pages branch)
         uses: peaceiris/actions-gh-pages@v4
