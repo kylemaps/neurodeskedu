@@ -64,7 +64,7 @@
     <link rel="icon" href="../../_static/neurodesk_logo.svg"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Introduction to Preprocessing" href="intro_to_preprocessing.html" />
+    <link rel="next" title="NiWrap and Connectome Workbench" href="NiWrap.html" />
     <link rel="prev" title="FSL Preprocessing and GLM" href="FSL_preproc_glm.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -192,7 +192,10 @@
     <div class="bd-toc-item navbar-nav active">
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../intro.html">Examples</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../template.html">Example Notebook Template</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../diffusion_imaging/intro.html">Diffusion Imaging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../diffusion_imaging/DIPY_1.html">Basic Tracking with DIPY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../diffusion_imaging/DIPY_2.html">Advanced Tracking with DIPY</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../diffusion_imaging/Diffusion_TBSS_Demo.html">TBSS Tutorial</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../diffusion_imaging/MRtrix_1.html">MRtrix: Part 1</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../diffusion_imaging/MRtrix_2.html">MRtrix: Part 2</a></li>
@@ -208,24 +211,24 @@
 <li class="toctree-l3"><a class="reference internal" href="AFNI_preprocessing_only.html">AFNI Preprocessing</a></li>
 <li class="toctree-l3"><a class="reference internal" href="AFNI_preprocessing_plus_glm.html">AFNI Preprocessing and GLM</a></li>
 <li class="toctree-l3"><a class="reference internal" href="AFNI_preprocessing_plus_glm_group.html">AFNI Preprocessing &amp; Group Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AFNI_processing_task_based.html">Processing task-based FMRI with AFNI and afni_proc.py</a></li>
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="FSL_preproc_glm.html">FSL Preprocessing and GLM</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Resting state with FSLnets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="NiWrap.html">NiWrap and Connectome Workbench</a></li>
 <li class="toctree-l3"><a class="reference internal" href="deepretinotopy.html">DeepRetinotopy Toolbox</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fMRI_tutorial_in_R_magic.html">Resting-State fMRI Analysis in R</a></li>
 <li class="toctree-l3"><a class="reference internal" href="first_and_second_level_spm.html">Nipype-SPM fMRI Analysis</a></li>
 <li class="toctree-l3"><a class="reference internal" href="fmriprep.html">fMRIprep</a></li>
 <li class="toctree-l3"><a class="reference internal" href="fsl_all_levels_flanker_nipype.html">Nipype-FSL fMRI Analysis</a></li>
 
 
 
-<li class="toctree-l3"><a class="reference internal" href="FSL_preproc_glm.html">FSL Preprocessing and GLM</a></li>
-<li class="toctree-l3 current active"><a class="current reference internal" href="#">Resting state with FSLnets</a></li>
 <li class="toctree-l3"><a class="reference internal" href="intro_to_preprocessing.html">Introduction to Preprocessing</a></li>
 <li class="toctree-l3"><a class="reference internal" href="mri_vol2surf.html">FreeSurfer: mri_vol2surf</a></li>
-<li class="toctree-l3"><a class="reference internal" href="NiWrap.html">NiWrap and Connectome Workbench</a></li>
 <li class="toctree-l3"><a class="reference internal" href="process_five_echo_dataset.html">tedana: TE Dependent ANAlysis</a></li>
-</ul>
-</details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../spectroscopy/intro.html">Spectroscopy</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../spectroscopy/lcmodel.html">MR Spectroscopy with LCModel</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../spectroscopy/osprey.html">MR Spectroscopy with Osprey</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../quantitative_imaging/intro.html">Quantitative Imaging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -240,26 +243,36 @@
 
 </ul>
 </details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../spectroscopy/intro.html">Spectroscopy</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../spectroscopy/lcmodel.html">MR Spectroscopy with LCModel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../spectroscopy/osprey.html">MR Spectroscopy with Osprey</a></li>
+</ul>
+</details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../structural_imaging/intro.html">Structural Imaging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../structural_imaging/brain_extraction_different_tools.html">Brain Extraction Tools</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../structural_imaging/freesurfer.html">FreeSurfer</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../structural_imaging/FSL_course_bet.html">FSL course - BET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../structural_imaging/SYNcro.html">SYNcro</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../structural_imaging/brain_extraction_different_tools.html">Brain Extraction Tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../structural_imaging/freesurfer-recon-all-clinical.html">FreeSurfer: recon-all-clinical</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../structural_imaging/freesurfer.html">FreeSurfer</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../structural_imaging/sct_toolbox.html">SCT Toolbox</a></li>
 
 </ul>
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../workflows/intro.html">Workflows</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="../workflows/AA_Neurodesk_demo_tour.html">Neurodesk Tools Demo</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../workflows/bids_conversion.html">BIDS conversion</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../workflows/MRIQC.html">MRIQC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../workflows/Magic_commands.html">Magic Commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../workflows/PyBIDS.html">PyBIDS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../workflows/RISE_slideshow.html">RISE Slideshow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../workflows/bids_conversion.html">BIDS conversion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../workflows/ipyniivue_ipywidgets.html">Ipyniivue and Ipywidgets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../workflows/nextflow_neurodesk.html">Nextflow in Neurodesk: Minimal BIDS T1w QC</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../workflows/nipype_full.html">Nipype on Neurodesk</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../workflows/nipype_short.html">Basic Nipype</a></li>
 
-<li class="toctree-l3"><a class="reference internal" href="../workflows/nextflow_neurodesk.html">Nextflow in Neurodesk: Minimal BIDS T1w QC</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../workflows/papermill-slurm-submission-example.html">Papermill Slurm Job Submission</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../workflows/PyBIDS.html">PyBIDS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../workflows/pydra_preproc_ants.html">Pydra</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../workflows/RISE_slideshow.html">RISE Slideshow</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../workflows/review_system_test.html">Review System Test Notebook</a></li>
 </ul>
 </details></li>
@@ -704,17 +717,2093 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2025-11-03 00:15:23--  https://fsl.fmrib.ox.ac.uk/fslcourse/downloads/rest.tar.gz
-Resolving fsl.fmrib.ox.ac.uk (fsl.fmrib.ox.ac.uk)... 129.67.248.66
-Connecting to fsl.fmrib.ox.ac.uk (fsl.fmrib.ox.ac.uk)|129.67.248.66|:443... connected.
-HTTP request sent, awaiting response... 200 OK
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2026-02-22 01:40:35--  https://fsl.fmrib.ox.ac.uk/fslcourse/downloads/rest.tar.gz
+Resolving fsl.fmrib.ox.ac.uk (fsl.fmrib.ox.ac.uk)...
+129.67.248.66
+Connecting to fsl.fmrib.ox.ac.uk (fsl.fmrib.ox.ac.uk)|129.67.248.66|:443...
+connected.
+HTTP request sent, awaiting response...
+200 OK
 Length: 15935669577 (15G) [application/x-gzip]
 Saving to: ‘rest.tar.gz’
 
-rest.tar.gz         100%[===================&gt;]  14.84G  40.8MB/s    in 4m 35s  
+rest.tar.gz           0%[                    ]       0  --.-KB/s
+rest.tar.gz           0%[                    ]  46.63K   161KB/s
+rest.tar.gz           0%[                    ] 226.31K   391KB/s
+rest.tar.gz           0%[                    ] 929.44K  1.13MB/s
+rest.tar.gz           0%[                    ]   1.87M  1.84MB/s
+rest.tar.gz           0%[                    ]   7.02M  5.38MB/s
+rest.tar.gz           0%[                    ]  13.87M  8.65MB/s
+rest.tar.gz           0%[                    ]  21.34M  11.2MB/s
+rest.tar.gz           0%[                    ]  28.79M  13.1MB/s
+rest.tar.gz           0%[                    ]  36.25M  14.5MB/s
+rest.tar.gz           0%[                    ]  43.53M  15.5MB/s
+rest.tar.gz           0%[                    ]  50.97M  16.4MB/s    eta 15m 24s
+rest.tar.gz           0%[                    ]  58.46M  17.1MB/s    eta 15m 24s
+rest.tar.gz           0%[                    ]  65.85M  20.1MB/s    eta 15m 24s
+rest.tar.gz           0%[                    ]  73.26M  22.6MB/s    eta 15m 24s
+rest.tar.gz           0%[                    ]  80.60M  24.0MB/s    eta 13m 28s
+rest.tar.gz           0%[                    ]  88.04M  24.0MB/s    eta 13m 28s
+rest.tar.gz           0%[                    ]  95.52M  23.9MB/s    eta 13m 28s
+rest.tar.gz           0%[                    ] 102.95M  24.0MB/s    eta 13m 28s
+rest.tar.gz           0%[                    ] 110.43M  24.1MB/s    eta 12m 33s
+rest.tar.gz           0%[                    ] 117.90M  24.3MB/s    eta 12m 33s
+rest.tar.gz           0%[                    ] 125.41M  24.2MB/s    eta 12m 33s
+rest.tar.gz           0%[                    ] 132.87M  24.2MB/s    eta 12m 33s
+rest.tar.gz           0%[                    ] 140.35M  24.3MB/s    eta 12m 1s
+rest.tar.gz           0%[                    ] 147.83M  24.3MB/s    eta 12m 1s
+rest.tar.gz           1%[                    ] 155.33M  24.3MB/s    eta 12m 1s
+rest.tar.gz           1%[                    ] 162.79M  24.2MB/s    eta 12m 1s
+rest.tar.gz           1%[                    ] 170.26M  24.2MB/s    eta 11m 39s
+rest.tar.gz           1%[                    ] 177.32M  24.1MB/s    eta 11m 39s
+rest.tar.gz           1%[                    ] 184.78M  24.3MB/s    eta 11m 39s
+rest.tar.gz           1%[                    ] 192.28M  24.4MB/s    eta 11m 39s
+rest.tar.gz           1%[                    ] 199.78M  24.5MB/s    eta 11m 25s
+rest.tar.gz           1%[                    ] 207.14M  24.6MB/s    eta 11m 25s
+rest.tar.gz           1%[                    ] 214.62M  24.6MB/s    eta 11m 25s
+rest.tar.gz           1%[                    ] 222.08M  24.6MB/s    eta 11m 25s
+rest.tar.gz           1%[                    ] 229.48M  24.7MB/s    eta 11m 13s
+rest.tar.gz           1%[                    ] 236.92M  24.8MB/s    eta 11m 13s
+rest.tar.gz           1%[                    ] 244.27M  24.8MB/s    eta 11m 13s
+rest.tar.gz           1%[                    ] 251.70M  24.7MB/s    eta 11m 13s
+rest.tar.gz           1%[                    ] 259.12M  24.7MB/s    eta 11m 4s
+rest.tar.gz           1%[                    ] 266.59M  24.7MB/s    eta 11m 4s
+rest.tar.gz           1%[                    ] 274.05M  24.8MB/s    eta 11m 4s
+rest.tar.gz           1%[                    ] 281.53M  24.6MB/s    eta 11m 4s
+rest.tar.gz           1%[                    ] 288.99M  24.5MB/s    eta 10m 56s
+rest.tar.gz           1%[                    ] 296.47M  24.4MB/s    eta 10m 56s
+rest.tar.gz           1%[                    ] 303.91M  24.3MB/s    eta 10m 56s
+rest.tar.gz           2%[                    ] 311.35M  24.3MB/s    eta 10m 56s
+rest.tar.gz           2%[                    ] 318.82M  24.2MB/s    eta 10m 50s
+rest.tar.gz           2%[                    ] 326.29M  24.3MB/s    eta 10m 50s
+rest.tar.gz           2%[                    ] 333.79M  24.3MB/s    eta 10m 50s
+rest.tar.gz           2%[                    ] 341.29M  24.4MB/s    eta 10m 50s
+rest.tar.gz           2%[                    ] 348.46M  24.4MB/s    eta 10m 44s
+rest.tar.gz           2%[                    ] 354.85M  24.3MB/s    eta 10m 44s
+rest.tar.gz           2%[                    ] 361.46M  24.0MB/s    eta 10m 44s
+rest.tar.gz           2%[                    ] 368.31M  24.0MB/s    eta 10m 44s
+rest.tar.gz           2%[                    ] 374.34M  23.6MB/s    eta 10m 44s
+rest.tar.gz           2%[                    ] 381.83M  23.4MB/s    eta 10m 44s
+rest.tar.gz           2%[                    ] 388.92M  23.3MB/s    eta 10m 44s
+rest.tar.gz           2%[                    ] 395.96M  23.3MB/s    eta 10m 44s
+rest.tar.gz           2%[                    ] 402.37M  23.1MB/s    eta 10m 43s
+rest.tar.gz           2%[                    ] 409.43M  22.8MB/s    eta 10m 43s
+rest.tar.gz           2%[                    ] 416.75M  22.8MB/s    eta 10m 43s
+rest.tar.gz           2%[                    ] 424.20M  22.7MB/s    eta 10m 43s
+rest.tar.gz           2%[                    ] 431.59M  22.6MB/s    eta 10m 40s
+rest.tar.gz           2%[                    ] 439.03M  23.5MB/s    eta 10m 40s
+rest.tar.gz           2%[                    ] 446.49M  23.6MB/s    eta 10m 40s
+rest.tar.gz           2%[                    ] 453.94M  23.6MB/s    eta 10m 40s
+rest.tar.gz           3%[                    ] 461.41M  23.6MB/s    eta 10m 36s
+rest.tar.gz           3%[                    ] 468.89M  23.7MB/s    eta 10m 36s
+rest.tar.gz           3%[                    ] 476.27M  23.6MB/s    eta 10m 36s
+rest.tar.gz           3%[                    ] 483.60M  23.8MB/s    eta 10m 36s
+rest.tar.gz           3%[                    ] 490.97M  24.6MB/s    eta 10m 32s
+rest.tar.gz           3%[                    ] 498.34M  24.6MB/s    eta 10m 32s
+rest.tar.gz           3%[                    ] 505.75M  24.6MB/s    eta 10m 32s
+rest.tar.gz           3%[                    ] 513.16M  24.6MB/s    eta 10m 32s
+rest.tar.gz           3%[                    ] 520.61M  24.6MB/s    eta 10m 29s
+rest.tar.gz           3%[                    ] 528.03M  24.6MB/s    eta 10m 29s
+rest.tar.gz           3%[                    ] 535.51M  24.6MB/s    eta 10m 29s
+rest.tar.gz           3%[                    ] 542.99M  24.6MB/s    eta 10m 29s
+rest.tar.gz           3%[                    ] 550.41M  24.7MB/s    eta 10m 26s
+rest.tar.gz           3%[                    ] 557.81M  24.6MB/s    eta 10m 26s
+rest.tar.gz           3%[                    ] 565.28M  24.6MB/s    eta 10m 26s
+rest.tar.gz           3%[                    ] 572.74M  24.7MB/s    eta 10m 26s
+rest.tar.gz           3%[                    ] 580.16M  24.7MB/s    eta 10m 23s
+rest.tar.gz           3%[                    ] 587.55M  24.7MB/s    eta 10m 23s
+rest.tar.gz           3%[                    ] 594.91M  24.7MB/s    eta 10m 23s
+rest.tar.gz           3%[                    ] 602.33M  24.7MB/s    eta 10m 23s
+rest.tar.gz           4%[                    ] 609.79M  24.7MB/s    eta 10m 20s
+rest.tar.gz           4%[                    ] 617.29M  24.8MB/s    eta 10m 20s
+rest.tar.gz           4%[                    ] 624.79M  24.8MB/s    eta 10m 20s
+rest.tar.gz           4%[                    ] 632.15M  24.8MB/s    eta 10m 20s
+rest.tar.gz           4%[                    ] 639.66M  24.8MB/s    eta 10m 17s
+rest.tar.gz           4%[                    ] 647.16M  24.8MB/s    eta 10m 17s
+rest.tar.gz           4%[                    ] 654.64M  24.8MB/s    eta 10m 17s
+rest.tar.gz           4%[                    ] 662.03M  24.8MB/s    eta 10m 17s
+rest.tar.gz           4%[                    ] 669.51M  24.8MB/s    eta 10m 15s
+rest.tar.gz           4%[                    ] 676.99M  24.8MB/s    eta 10m 15s
+rest.tar.gz           4%[                    ] 684.47M  24.8MB/s    eta 10m 15s
+rest.tar.gz           4%[                    ] 691.96M  24.8MB/s    eta 10m 15s
+rest.tar.gz           4%[                    ] 699.45M  24.7MB/s    eta 10m 12s
+rest.tar.gz           4%[                    ] 706.92M  24.7MB/s    eta 10m 12s
+rest.tar.gz           4%[                    ] 714.39M  24.6MB/s    eta 10m 12s
+rest.tar.gz           4%[                    ] 721.83M  24.6MB/s    eta 10m 12s
+rest.tar.gz           4%[                    ] 729.29M  24.6MB/s    eta 10m 10s
+rest.tar.gz           4%[                    ] 736.87M  24.7MB/s    eta 10m 10s
+rest.tar.gz           4%[                    ] 743.03M  24.3MB/s    eta 10m 10s
+rest.tar.gz           4%[                    ] 750.41M  24.3MB/s    eta 10m 10s
+rest.tar.gz           4%[                    ] 757.83M  24.2MB/s    eta 10m 8s
+rest.tar.gz           5%[&gt;                   ] 765.28M  24.2MB/s    eta 10m 8s
+rest.tar.gz           5%[&gt;                   ] 772.75M  24.4MB/s    eta 10m 8s
+rest.tar.gz           5%[&gt;                   ] 780.16M  24.4MB/s    eta 10m 8s
+rest.tar.gz           5%[&gt;                   ] 787.57M  24.5MB/s    eta 10m 6s
+rest.tar.gz           5%[&gt;                   ] 795.04M  24.4MB/s    eta 10m 6s
+rest.tar.gz           5%[&gt;                   ] 802.49M  24.4MB/s    eta 10m 6s
+rest.tar.gz           5%[&gt;                   ] 810.00M  24.5MB/s    eta 10m 6s
+rest.tar.gz           5%[&gt;                   ] 817.45M  24.4MB/s    eta 10m 4s
+rest.tar.gz           5%[&gt;                   ] 824.86M  24.1MB/s    eta 10m 4s
+rest.tar.gz           5%[&gt;                   ] 832.27M  24.0MB/s    eta 10m 4s
+rest.tar.gz           5%[&gt;                   ] 839.68M  24.1MB/s    eta 10m 4s
+rest.tar.gz           5%[&gt;                   ] 847.10M  24.0MB/s    eta 10m 2s
+rest.tar.gz           5%[&gt;                   ] 854.53M  24.1MB/s    eta 10m 2s
+rest.tar.gz           5%[&gt;                   ] 861.98M  24.1MB/s    eta 10m 2s
+rest.tar.gz           5%[&gt;                   ] 869.43M  24.2MB/s    eta 10m 2s
+rest.tar.gz           5%[&gt;                   ] 876.83M  24.2MB/s    eta 10m 0s
+rest.tar.gz           5%[&gt;                   ] 884.28M  24.2MB/s    eta 10m 0s
+rest.tar.gz           5%[&gt;                   ] 891.46M  24.1MB/s    eta 10m 0s
+rest.tar.gz           5%[&gt;                   ] 898.92M  24.3MB/s    eta 10m 0s
+rest.tar.gz           5%[&gt;                   ] 906.38M  24.3MB/s    eta 9m 58s
+rest.tar.gz           6%[&gt;                   ] 913.90M  24.4MB/s    eta 9m 58s
+rest.tar.gz           6%[&gt;                   ] 921.33M  24.5MB/s    eta 9m 58s
+rest.tar.gz           6%[&gt;                   ] 928.79M  24.6MB/s    eta 9m 58s
+rest.tar.gz           6%[&gt;                   ] 936.26M  24.6MB/s    eta 9m 56s
+rest.tar.gz           6%[&gt;                   ] 943.70M  24.6MB/s    eta 9m 56s
+rest.tar.gz           6%[&gt;                   ] 951.16M  24.6MB/s    eta 9m 56s
+rest.tar.gz           6%[&gt;                   ] 958.66M  24.6MB/s    eta 9m 56s
+rest.tar.gz           6%[&gt;                   ] 966.15M  24.6MB/s    eta 9m 54s
+rest.tar.gz           6%[&gt;                   ] 973.59M  24.6MB/s    eta 9m 54s
+rest.tar.gz           6%[&gt;                   ] 981.06M  24.7MB/s    eta 9m 54s
+rest.tar.gz           6%[&gt;                   ] 988.48M  24.8MB/s    eta 9m 54s
+rest.tar.gz           6%[&gt;                   ] 995.05M  24.5MB/s    eta 9m 53s
+rest.tar.gz           6%[&gt;                   ]   1002M  24.5MB/s    eta 9m 53s
+rest.tar.gz           6%[&gt;                   ]   1010M  24.5MB/s    eta 9m 53s
+rest.tar.gz           6%[&gt;                   ]   1017M  24.3MB/s    eta 9m 53s
+rest.tar.gz           6%[&gt;                   ]   1.00G  24.3MB/s    eta 9m 51s
+rest.tar.gz           6%[&gt;                   ]   1.01G  24.3MB/s    eta 9m 51s
+rest.tar.gz           6%[&gt;                   ]   1.01G  24.3MB/s    eta 9m 51s
+rest.tar.gz           6%[&gt;                   ]   1.02G  24.3MB/s    eta 9m 51s
+rest.tar.gz           6%[&gt;                   ]   1.03G  24.3MB/s    eta 9m 50s
+rest.tar.gz           6%[&gt;                   ]   1.04G  24.3MB/s    eta 9m 50s
+rest.tar.gz           7%[&gt;                   ]   1.04G  24.3MB/s    eta 9m 50s
+rest.tar.gz           7%[&gt;                   ]   1.05G  24.4MB/s    eta 9m 50s
+rest.tar.gz           7%[&gt;                   ]   1.06G  24.4MB/s    eta 9m 48s
+rest.tar.gz           7%[&gt;                   ]   1.07G  24.7MB/s    eta 9m 48s
+rest.tar.gz           7%[&gt;                   ]   1.07G  24.7MB/s    eta 9m 48s
+rest.tar.gz           7%[&gt;                   ]   1.08G  24.8MB/s    eta 9m 48s
+rest.tar.gz           7%[&gt;                   ]   1.09G  24.7MB/s    eta 9m 46s
+rest.tar.gz           7%[&gt;                   ]   1.09G  24.7MB/s    eta 9m 46s
+rest.tar.gz           7%[&gt;                   ]   1.10G  24.7MB/s    eta 9m 46s
+rest.tar.gz           7%[&gt;                   ]   1.11G  24.8MB/s    eta 9m 46s
+rest.tar.gz           7%[&gt;                   ]   1.12G  24.8MB/s    eta 9m 44s
+rest.tar.gz           7%[&gt;                   ]   1.12G  24.8MB/s    eta 9m 44s
+rest.tar.gz           7%[&gt;                   ]   1.13G  24.9MB/s    eta 9m 44s
+rest.tar.gz           7%[&gt;                   ]   1.14G  24.9MB/s    eta 9m 44s
+rest.tar.gz           7%[&gt;                   ]   1.15G  24.9MB/s    eta 9m 43s
+rest.tar.gz           7%[&gt;                   ]   1.15G  24.8MB/s    eta 9m 43s
+rest.tar.gz           7%[&gt;                   ]   1.16G  24.9MB/s    eta 9m 43s
+rest.tar.gz           7%[&gt;                   ]   1.17G  24.8MB/s    eta 9m 43s
+rest.tar.gz           7%[&gt;                   ]   1.17G  24.7MB/s    eta 9m 41s
+rest.tar.gz           7%[&gt;                   ]   1.18G  24.6MB/s    eta 9m 41s
+rest.tar.gz           8%[&gt;                   ]   1.19G  24.6MB/s    eta 9m 41s
+rest.tar.gz           8%[&gt;                   ]   1.20G  24.6MB/s    eta 9m 41s
+rest.tar.gz           8%[&gt;                   ]   1.20G  24.6MB/s    eta 9m 39s
+rest.tar.gz           8%[&gt;                   ]   1.21G  24.7MB/s    eta 9m 39s
+rest.tar.gz           8%[&gt;                   ]   1.22G  24.6MB/s    eta 9m 39s
+rest.tar.gz           8%[&gt;                   ]   1.22G  24.6MB/s    eta 9m 39s
+rest.tar.gz           8%[&gt;                   ]   1.23G  24.6MB/s    eta 9m 38s
+rest.tar.gz           8%[&gt;                   ]   1.24G  24.6MB/s    eta 9m 38s
+rest.tar.gz           8%[&gt;                   ]   1.25G  24.8MB/s    eta 9m 38s
+rest.tar.gz           8%[&gt;                   ]   1.25G  24.7MB/s    eta 9m 38s
+rest.tar.gz           8%[&gt;                   ]   1.26G  24.8MB/s    eta 9m 36s
+rest.tar.gz           8%[&gt;                   ]   1.27G  24.8MB/s    eta 9m 36s
+rest.tar.gz           8%[&gt;                   ]   1.28G  24.7MB/s    eta 9m 36s
+rest.tar.gz           8%[&gt;                   ]   1.28G  24.7MB/s    eta 9m 36s
+rest.tar.gz           8%[&gt;                   ]   1.29G  24.8MB/s    eta 9m 35s
+rest.tar.gz           8%[&gt;                   ]   1.30G  24.8MB/s    eta 9m 35s
+rest.tar.gz           8%[&gt;                   ]   1.31G  24.7MB/s    eta 9m 35s
+rest.tar.gz           8%[&gt;                   ]   1.31G  24.7MB/s    eta 9m 35s
+rest.tar.gz           8%[&gt;                   ]   1.32G  24.7MB/s    eta 9m 33s
+rest.tar.gz           8%[&gt;                   ]   1.33G  24.5MB/s    eta 9m 33s
+rest.tar.gz           8%[&gt;                   ]   1.33G  24.6MB/s    eta 9m 33s
+rest.tar.gz           9%[&gt;                   ]   1.34G  24.5MB/s    eta 9m 33s
+rest.tar.gz           9%[&gt;                   ]   1.35G  24.5MB/s    eta 9m 32s
+rest.tar.gz           9%[&gt;                   ]   1.36G  24.6MB/s    eta 9m 32s
+rest.tar.gz           9%[&gt;                   ]   1.36G  24.6MB/s    eta 9m 32s
+rest.tar.gz           9%[&gt;                   ]   1.37G  24.5MB/s    eta 9m 32s
+rest.tar.gz           9%[&gt;                   ]   1.38G  24.5MB/s    eta 9m 30s
+rest.tar.gz           9%[&gt;                   ]   1.38G  24.6MB/s    eta 9m 30s
+rest.tar.gz           9%[&gt;                   ]   1.39G  24.5MB/s    eta 9m 30s
+rest.tar.gz           9%[&gt;                   ]   1.40G  24.4MB/s    eta 9m 30s
+rest.tar.gz           9%[&gt;                   ]   1.41G  24.4MB/s    eta 9m 29s
+rest.tar.gz           9%[&gt;                   ]   1.41G  24.4MB/s    eta 9m 29s
+rest.tar.gz           9%[&gt;                   ]   1.42G  24.4MB/s    eta 9m 29s
+rest.tar.gz           9%[&gt;                   ]   1.43G  24.3MB/s    eta 9m 29s
+rest.tar.gz           9%[&gt;                   ]   1.44G  24.2MB/s    eta 9m 27s
+rest.tar.gz           9%[&gt;                   ]   1.44G  24.2MB/s    eta 9m 27s
+rest.tar.gz           9%[&gt;                   ]   1.45G  24.2MB/s    eta 9m 27s
+rest.tar.gz           9%[&gt;                   ]   1.46G  24.1MB/s    eta 9m 27s
+rest.tar.gz           9%[&gt;                   ]   1.46G  24.0MB/s    eta 9m 26s
+rest.tar.gz           9%[&gt;                   ]   1.47G  24.0MB/s    eta 9m 26s
+rest.tar.gz           9%[&gt;                   ]   1.48G  23.9MB/s    eta 9m 26s
+rest.tar.gz          10%[=&gt;                  ]   1.49G  23.9MB/s    eta 9m 26s
+rest.tar.gz          10%[=&gt;                  ]   1.49G  23.8MB/s    eta 9m 25s
+rest.tar.gz          10%[=&gt;                  ]   1.50G  23.9MB/s    eta 9m 25s
+rest.tar.gz          10%[=&gt;                  ]   1.51G  24.0MB/s    eta 9m 25s
+rest.tar.gz          10%[=&gt;                  ]   1.51G  24.0MB/s    eta 9m 25s
+rest.tar.gz          10%[=&gt;                  ]   1.52G  24.0MB/s    eta 9m 23s
+rest.tar.gz          10%[=&gt;                  ]   1.53G  24.8MB/s    eta 9m 23s
+rest.tar.gz          10%[=&gt;                  ]   1.54G  24.8MB/s    eta 9m 23s
+rest.tar.gz          10%[=&gt;                  ]   1.54G  24.7MB/s    eta 9m 23s
+rest.tar.gz          10%[=&gt;                  ]   1.55G  24.8MB/s    eta 9m 22s
+rest.tar.gz          10%[=&gt;                  ]   1.56G  24.8MB/s    eta 9m 22s
+rest.tar.gz          10%[=&gt;                  ]   1.57G  24.8MB/s    eta 9m 22s
+rest.tar.gz          10%[=&gt;                  ]   1.57G  24.8MB/s    eta 9m 22s
+rest.tar.gz          10%[=&gt;                  ]   1.58G  24.8MB/s    eta 9m 20s
+rest.tar.gz          10%[=&gt;                  ]   1.59G  24.8MB/s    eta 9m 20s
+rest.tar.gz          10%[=&gt;                  ]   1.59G  24.8MB/s    eta 9m 20s
+rest.tar.gz          10%[=&gt;                  ]   1.60G  24.7MB/s    eta 9m 20s
+rest.tar.gz          10%[=&gt;                  ]   1.61G  24.7MB/s    eta 9m 19s
+rest.tar.gz          10%[=&gt;                  ]   1.62G  24.7MB/s    eta 9m 19s
+rest.tar.gz          10%[=&gt;                  ]   1.62G  24.5MB/s    eta 9m 19s
+rest.tar.gz          10%[=&gt;                  ]   1.63G  24.4MB/s    eta 9m 19s
+rest.tar.gz          11%[=&gt;                  ]   1.64G  24.4MB/s    eta 9m 18s
+rest.tar.gz          11%[=&gt;                  ]   1.64G  24.4MB/s    eta 9m 18s
+rest.tar.gz          11%[=&gt;                  ]   1.65G  24.5MB/s    eta 9m 18s
+rest.tar.gz          11%[=&gt;                  ]   1.66G  24.4MB/s    eta 9m 18s
+rest.tar.gz          11%[=&gt;                  ]   1.67G  24.4MB/s    eta 9m 16s
+rest.tar.gz          11%[=&gt;                  ]   1.67G  24.4MB/s    eta 9m 16s
+rest.tar.gz          11%[=&gt;                  ]   1.68G  24.4MB/s    eta 9m 16s
+rest.tar.gz          11%[=&gt;                  ]   1.69G  24.5MB/s    eta 9m 16s
+rest.tar.gz          11%[=&gt;                  ]   1.70G  24.5MB/s    eta 9m 15s
+rest.tar.gz          11%[=&gt;                  ]   1.70G  24.5MB/s    eta 9m 15s
+rest.tar.gz          11%[=&gt;                  ]   1.71G  24.4MB/s    eta 9m 15s
+rest.tar.gz          11%[=&gt;                  ]   1.72G  24.4MB/s    eta 9m 15s
+rest.tar.gz          11%[=&gt;                  ]   1.72G  24.4MB/s    eta 9m 13s
+rest.tar.gz          11%[=&gt;                  ]   1.73G  24.4MB/s    eta 9m 13s
+rest.tar.gz          11%[=&gt;                  ]   1.74G  24.5MB/s    eta 9m 13s
+rest.tar.gz          11%[=&gt;                  ]   1.74G  23.2MB/s    eta 9m 13s
+rest.tar.gz          11%[=&gt;                  ]   1.75G  22.9MB/s    eta 9m 14s
+rest.tar.gz          11%[=&gt;                  ]   1.76G  23.0MB/s    eta 9m 14s
+rest.tar.gz          11%[=&gt;                  ]   1.76G  23.0MB/s    eta 9m 14s
+rest.tar.gz          11%[=&gt;                  ]   1.77G  23.0MB/s    eta 9m 14s
+rest.tar.gz          11%[=&gt;                  ]   1.78G  23.1MB/s    eta 9m 12s
+rest.tar.gz          12%[=&gt;                  ]   1.79G  23.2MB/s    eta 9m 12s
+rest.tar.gz          12%[=&gt;                  ]   1.79G  23.1MB/s    eta 9m 12s
+rest.tar.gz          12%[=&gt;                  ]   1.80G  23.2MB/s    eta 9m 12s
+rest.tar.gz          12%[=&gt;                  ]   1.81G  23.1MB/s    eta 9m 11s
+rest.tar.gz          12%[=&gt;                  ]   1.81G  23.1MB/s    eta 9m 11s
+rest.tar.gz          12%[=&gt;                  ]   1.82G  24.3MB/s    eta 9m 11s
+rest.tar.gz          12%[=&gt;                  ]   1.83G  24.2MB/s    eta 9m 11s
+rest.tar.gz          12%[=&gt;                  ]   1.84G  24.1MB/s    eta 9m 9s
+rest.tar.gz          12%[=&gt;                  ]   1.84G  24.2MB/s    eta 9m 9s
+rest.tar.gz          12%[=&gt;                  ]   1.85G  24.1MB/s    eta 9m 9s
+rest.tar.gz          12%[=&gt;                  ]   1.86G  24.1MB/s    eta 9m 9s
+rest.tar.gz          12%[=&gt;                  ]   1.87G  24.1MB/s    eta 9m 8s
+rest.tar.gz          12%[=&gt;                  ]   1.87G  24.1MB/s    eta 9m 8s
+rest.tar.gz          12%[=&gt;                  ]   1.88G  24.2MB/s    eta 9m 8s
+rest.tar.gz          12%[=&gt;                  ]   1.89G  24.2MB/s    eta 9m 8s
+rest.tar.gz          12%[=&gt;                  ]   1.89G  24.6MB/s    eta 9m 6s
+rest.tar.gz          12%[=&gt;                  ]   1.90G  24.7MB/s    eta 9m 6s
+rest.tar.gz          12%[=&gt;                  ]   1.91G  24.7MB/s    eta 9m 6s
+rest.tar.gz          12%[=&gt;                  ]   1.92G  24.6MB/s    eta 9m 6s
+rest.tar.gz          12%[=&gt;                  ]   1.92G  24.5MB/s    eta 9m 5s
+rest.tar.gz          13%[=&gt;                  ]   1.93G  24.4MB/s    eta 9m 5s
+rest.tar.gz          13%[=&gt;                  ]   1.94G  24.3MB/s    eta 9m 5s
+rest.tar.gz          13%[=&gt;                  ]   1.95G  24.3MB/s    eta 9m 5s
+rest.tar.gz          13%[=&gt;                  ]   1.95G  24.0MB/s    eta 9m 4s
+rest.tar.gz          13%[=&gt;                  ]   1.96G  24.0MB/s    eta 9m 4s
+rest.tar.gz          13%[=&gt;                  ]   1.97G  24.0MB/s    eta 9m 4s
+rest.tar.gz          13%[=&gt;                  ]   1.97G  24.0MB/s    eta 9m 4s
+rest.tar.gz          13%[=&gt;                  ]   1.98G  23.9MB/s    eta 9m 2s
+rest.tar.gz          13%[=&gt;                  ]   1.99G  23.9MB/s    eta 9m 2s
+rest.tar.gz          13%[=&gt;                  ]   2.00G  24.2MB/s    eta 9m 2s
+rest.tar.gz          13%[=&gt;                  ]   2.00G  24.5MB/s    eta 9m 2s
+rest.tar.gz          13%[=&gt;                  ]   2.01G  24.4MB/s    eta 9m 1s
+rest.tar.gz          13%[=&gt;                  ]   2.02G  24.4MB/s    eta 9m 1s
+rest.tar.gz          13%[=&gt;                  ]   2.02G  24.4MB/s    eta 9m 1s
+rest.tar.gz          13%[=&gt;                  ]   2.03G  24.2MB/s    eta 9m 1s
+rest.tar.gz          13%[=&gt;                  ]   2.04G  24.1MB/s    eta 9m 0s
+rest.tar.gz          13%[=&gt;                  ]   2.05G  24.1MB/s    eta 9m 0s
+rest.tar.gz          13%[=&gt;                  ]   2.05G  24.1MB/s    eta 9m 0s
+rest.tar.gz          13%[=&gt;                  ]   2.06G  24.1MB/s    eta 9m 0s
+rest.tar.gz          13%[=&gt;                  ]   2.07G  24.0MB/s    eta 8m 58s
+rest.tar.gz          13%[=&gt;                  ]   2.08G  24.1MB/s    eta 8m 58s
+rest.tar.gz          14%[=&gt;                  ]   2.08G  24.4MB/s    eta 8m 58s
+rest.tar.gz          14%[=&gt;                  ]   2.09G  24.3MB/s    eta 8m 58s
+rest.tar.gz          14%[=&gt;                  ]   2.10G  24.2MB/s    eta 8m 57s
+rest.tar.gz          14%[=&gt;                  ]   2.10G  24.2MB/s    eta 8m 57s
+rest.tar.gz          14%[=&gt;                  ]   2.11G  24.6MB/s    eta 8m 57s
+rest.tar.gz          14%[=&gt;                  ]   2.12G  24.5MB/s    eta 8m 57s
+rest.tar.gz          14%[=&gt;                  ]   2.13G  24.5MB/s    eta 8m 55s
+rest.tar.gz          14%[=&gt;                  ]   2.13G  24.5MB/s    eta 8m 55s
+rest.tar.gz          14%[=&gt;                  ]   2.14G  24.4MB/s    eta 8m 55s
+rest.tar.gz          14%[=&gt;                  ]   2.15G  24.3MB/s    eta 8m 55s
+rest.tar.gz          14%[=&gt;                  ]   2.16G  24.3MB/s    eta 8m 54s
+rest.tar.gz          14%[=&gt;                  ]   2.16G  24.2MB/s    eta 8m 54s
+rest.tar.gz          14%[=&gt;                  ]   2.17G  24.1MB/s    eta 8m 54s
+rest.tar.gz          14%[=&gt;                  ]   2.18G  24.2MB/s    eta 8m 54s
+rest.tar.gz          14%[=&gt;                  ]   2.18G  24.2MB/s    eta 8m 53s
+rest.tar.gz          14%[=&gt;                  ]   2.19G  24.2MB/s    eta 8m 53s
+rest.tar.gz          14%[=&gt;                  ]   2.20G  24.0MB/s    eta 8m 53s
+rest.tar.gz          14%[=&gt;                  ]   2.21G  24.0MB/s    eta 8m 53s
+rest.tar.gz          14%[=&gt;                  ]   2.21G  24.0MB/s    eta 8m 51s
+rest.tar.gz          14%[=&gt;                  ]   2.22G  24.1MB/s    eta 8m 51s
+rest.tar.gz          15%[==&gt;                 ]   2.23G  24.0MB/s    eta 8m 51s
+rest.tar.gz          15%[==&gt;                 ]   2.24G  24.2MB/s    eta 8m 51s
+rest.tar.gz          15%[==&gt;                 ]   2.24G  24.2MB/s    eta 8m 50s
+rest.tar.gz          15%[==&gt;                 ]   2.25G  24.3MB/s    eta 8m 50s
+rest.tar.gz          15%[==&gt;                 ]   2.26G  24.1MB/s    eta 8m 50s
+rest.tar.gz          15%[==&gt;                 ]   2.26G  23.9MB/s    eta 8m 50s
+rest.tar.gz          15%[==&gt;                 ]   2.27G  23.9MB/s    eta 8m 48s
+rest.tar.gz          15%[==&gt;                 ]   2.28G  23.6MB/s    eta 8m 48s
+rest.tar.gz          15%[==&gt;                 ]   2.29G  24.6MB/s    eta 8m 48s
+rest.tar.gz          15%[==&gt;                 ]   2.29G  24.5MB/s    eta 8m 48s
+rest.tar.gz          15%[==&gt;                 ]   2.30G  24.6MB/s    eta 8m 47s
+rest.tar.gz          15%[==&gt;                 ]   2.31G  24.6MB/s    eta 8m 47s
+rest.tar.gz          15%[==&gt;                 ]   2.31G  24.5MB/s    eta 8m 47s
+rest.tar.gz          15%[==&gt;                 ]   2.32G  24.6MB/s    eta 8m 47s
+rest.tar.gz          15%[==&gt;                 ]   2.33G  24.5MB/s    eta 8m 46s
+rest.tar.gz          15%[==&gt;                 ]   2.34G  24.5MB/s    eta 8m 46s
+rest.tar.gz          15%[==&gt;                 ]   2.34G  24.4MB/s    eta 8m 46s
+rest.tar.gz          15%[==&gt;                 ]   2.35G  24.3MB/s    eta 8m 46s
+rest.tar.gz          15%[==&gt;                 ]   2.36G  24.0MB/s    eta 8m 45s
+rest.tar.gz          15%[==&gt;                 ]   2.37G  24.2MB/s    eta 8m 45s
+rest.tar.gz          15%[==&gt;                 ]   2.37G  24.2MB/s    eta 8m 45s
+rest.tar.gz          16%[==&gt;                 ]   2.38G  24.2MB/s    eta 8m 45s
+rest.tar.gz          16%[==&gt;                 ]   2.39G  24.1MB/s    eta 8m 44s
+rest.tar.gz          16%[==&gt;                 ]   2.39G  24.2MB/s    eta 8m 44s
+rest.tar.gz          16%[==&gt;                 ]   2.40G  24.3MB/s    eta 8m 44s
+rest.tar.gz          16%[==&gt;                 ]   2.41G  24.3MB/s    eta 8m 44s
+rest.tar.gz          16%[==&gt;                 ]   2.42G  24.3MB/s    eta 8m 42s
+rest.tar.gz          16%[==&gt;                 ]   2.42G  24.3MB/s    eta 8m 42s
+rest.tar.gz          16%[==&gt;                 ]   2.43G  24.2MB/s    eta 8m 42s
+rest.tar.gz          16%[==&gt;                 ]   2.44G  24.1MB/s    eta 8m 42s
+rest.tar.gz          16%[==&gt;                 ]   2.44G  24.2MB/s    eta 8m 41s
+rest.tar.gz          16%[==&gt;                 ]   2.45G  24.1MB/s    eta 8m 41s
+rest.tar.gz          16%[==&gt;                 ]   2.46G  24.4MB/s    eta 8m 41s
+rest.tar.gz          16%[==&gt;                 ]   2.46G  23.8MB/s    eta 8m 41s
+rest.tar.gz          16%[==&gt;                 ]   2.47G  23.7MB/s    eta 8m 40s
+rest.tar.gz          16%[==&gt;                 ]   2.48G  23.6MB/s    eta 8m 40s
+rest.tar.gz          16%[==&gt;                 ]   2.49G  23.8MB/s    eta 8m 40s
+rest.tar.gz          16%[==&gt;                 ]   2.49G  23.6MB/s    eta 8m 40s
+rest.tar.gz          16%[==&gt;                 ]   2.50G  23.6MB/s    eta 8m 39s
+rest.tar.gz          16%[==&gt;                 ]   2.51G  23.5MB/s    eta 8m 39s
+rest.tar.gz          16%[==&gt;                 ]   2.52G  24.2MB/s    eta 8m 39s
+rest.tar.gz          16%[==&gt;                 ]   2.52G  24.0MB/s    eta 8m 39s
+rest.tar.gz          17%[==&gt;                 ]   2.53G  24.0MB/s    eta 8m 37s
+rest.tar.gz          17%[==&gt;                 ]   2.54G  24.0MB/s    eta 8m 37s
+rest.tar.gz          17%[==&gt;                 ]   2.54G  24.0MB/s    eta 8m 37s
+rest.tar.gz          17%[==&gt;                 ]   2.55G  23.9MB/s    eta 8m 37s
+rest.tar.gz          17%[==&gt;                 ]   2.56G  24.0MB/s    eta 8m 36s
+rest.tar.gz          17%[==&gt;                 ]   2.57G  24.0MB/s    eta 8m 36s
+rest.tar.gz          17%[==&gt;                 ]   2.57G  23.9MB/s    eta 8m 36s
+rest.tar.gz          17%[==&gt;                 ]   2.58G  23.8MB/s    eta 8m 36s
+rest.tar.gz          17%[==&gt;                 ]   2.59G  23.5MB/s    eta 8m 35s
+rest.tar.gz          17%[==&gt;                 ]   2.59G  23.4MB/s    eta 8m 35s
+rest.tar.gz          17%[==&gt;                 ]   2.60G  24.3MB/s    eta 8m 35s
+rest.tar.gz          17%[==&gt;                 ]   2.61G  24.3MB/s    eta 8m 35s
+rest.tar.gz          17%[==&gt;                 ]   2.61G  24.1MB/s    eta 8m 34s
+rest.tar.gz          17%[==&gt;                 ]   2.62G  24.0MB/s    eta 8m 34s
+rest.tar.gz          17%[==&gt;                 ]   2.63G  24.1MB/s    eta 8m 34s
+rest.tar.gz          17%[==&gt;                 ]   2.64G  24.1MB/s    eta 8m 34s
+rest.tar.gz          17%[==&gt;                 ]   2.64G  24.0MB/s    eta 8m 33s
+rest.tar.gz          17%[==&gt;                 ]   2.65G  24.0MB/s    eta 8m 33s
+rest.tar.gz          17%[==&gt;                 ]   2.66G  24.0MB/s    eta 8m 33s
+rest.tar.gz          17%[==&gt;                 ]   2.67G  23.9MB/s    eta 8m 33s
+rest.tar.gz          18%[==&gt;                 ]   2.67G  23.9MB/s    eta 8m 31s
+rest.tar.gz          18%[==&gt;                 ]   2.68G  23.8MB/s    eta 8m 31s
+rest.tar.gz          18%[==&gt;                 ]   2.69G  23.9MB/s    eta 8m 31s
+rest.tar.gz          18%[==&gt;                 ]   2.69G  24.8MB/s    eta 8m 31s
+rest.tar.gz          18%[==&gt;                 ]   2.70G  24.7MB/s    eta 8m 30s
+rest.tar.gz          18%[==&gt;                 ]   2.71G  24.7MB/s    eta 8m 30s
+rest.tar.gz          18%[==&gt;                 ]   2.72G  24.8MB/s    eta 8m 30s
+rest.tar.gz          18%[==&gt;                 ]   2.72G  24.8MB/s    eta 8m 30s
+rest.tar.gz          18%[==&gt;                 ]   2.73G  24.8MB/s    eta 8m 29s
+rest.tar.gz          18%[==&gt;                 ]   2.74G  24.8MB/s    eta 8m 29s
+rest.tar.gz          18%[==&gt;                 ]   2.75G  24.8MB/s    eta 8m 29s
+rest.tar.gz          18%[==&gt;                 ]   2.75G  24.8MB/s    eta 8m 29s
+rest.tar.gz          18%[==&gt;                 ]   2.76G  24.7MB/s    eta 8m 27s
+rest.tar.gz          18%[==&gt;                 ]   2.77G  24.7MB/s    eta 8m 27s
+rest.tar.gz          18%[==&gt;                 ]   2.77G  24.7MB/s    eta 8m 27s
+rest.tar.gz          18%[==&gt;                 ]   2.78G  24.7MB/s    eta 8m 27s
+rest.tar.gz          18%[==&gt;                 ]   2.79G  24.8MB/s    eta 8m 26s
+rest.tar.gz          18%[==&gt;                 ]   2.80G  24.7MB/s    eta 8m 26s
+rest.tar.gz          18%[==&gt;                 ]   2.80G  24.7MB/s    eta 8m 26s
+rest.tar.gz          18%[==&gt;                 ]   2.81G  24.8MB/s    eta 8m 26s
+rest.tar.gz          18%[==&gt;                 ]   2.82G  24.7MB/s    eta 8m 25s
+rest.tar.gz          19%[==&gt;                 ]   2.83G  24.8MB/s    eta 8m 25s
+rest.tar.gz          19%[==&gt;                 ]   2.83G  24.7MB/s    eta 8m 25s
+rest.tar.gz          19%[==&gt;                 ]   2.84G  24.6MB/s    eta 8m 25s
+rest.tar.gz          19%[==&gt;                 ]   2.85G  24.5MB/s    eta 8m 23s
+rest.tar.gz          19%[==&gt;                 ]   2.85G  24.4MB/s    eta 8m 23s
+rest.tar.gz          19%[==&gt;                 ]   2.86G  24.4MB/s    eta 8m 23s
+rest.tar.gz          19%[==&gt;                 ]   2.87G  24.4MB/s    eta 8m 23s
+rest.tar.gz          19%[==&gt;                 ]   2.88G  24.5MB/s    eta 8m 22s
+rest.tar.gz          19%[==&gt;                 ]   2.88G  24.5MB/s    eta 8m 22s
+rest.tar.gz          19%[==&gt;                 ]   2.89G  24.5MB/s    eta 8m 22s
+rest.tar.gz          19%[==&gt;                 ]   2.90G  24.5MB/s    eta 8m 22s
+rest.tar.gz          19%[==&gt;                 ]   2.91G  24.5MB/s    eta 8m 21s
+rest.tar.gz          19%[==&gt;                 ]   2.91G  24.6MB/s    eta 8m 21s
+rest.tar.gz          19%[==&gt;                 ]   2.92G  24.5MB/s    eta 8m 21s
+rest.tar.gz          19%[==&gt;                 ]   2.93G  24.4MB/s    eta 8m 21s
+rest.tar.gz          19%[==&gt;                 ]   2.93G  24.4MB/s    eta 8m 20s
+rest.tar.gz          19%[==&gt;                 ]   2.94G  24.4MB/s    eta 8m 20s
+rest.tar.gz          19%[==&gt;                 ]   2.95G  24.3MB/s    eta 8m 20s
+rest.tar.gz          19%[==&gt;                 ]   2.95G  23.8MB/s    eta 8m 20s
+rest.tar.gz          19%[==&gt;                 ]   2.96G  24.0MB/s    eta 8m 19s
+rest.tar.gz          19%[==&gt;                 ]   2.97G  23.9MB/s    eta 8m 19s
+rest.tar.gz          20%[===&gt;                ]   2.97G  23.9MB/s    eta 8m 19s
+rest.tar.gz          20%[===&gt;                ]   2.98G  23.8MB/s    eta 8m 19s
+rest.tar.gz          20%[===&gt;                ]   2.99G  23.9MB/s    eta 8m 18s
+rest.tar.gz          20%[===&gt;                ]   3.00G  23.8MB/s    eta 8m 18s
+rest.tar.gz          20%[===&gt;                ]   3.00G  23.9MB/s    eta 8m 18s
+rest.tar.gz          20%[===&gt;                ]   3.01G  23.8MB/s    eta 8m 18s
+rest.tar.gz          20%[===&gt;                ]   3.02G  23.8MB/s    eta 8m 16s
+rest.tar.gz          20%[===&gt;                ]   3.03G  24.2MB/s    eta 8m 16s
+rest.tar.gz          20%[===&gt;                ]   3.03G  24.6MB/s    eta 8m 16s
+rest.tar.gz          20%[===&gt;                ]   3.04G  24.6MB/s    eta 8m 16s
+rest.tar.gz          20%[===&gt;                ]   3.05G  24.6MB/s    eta 8m 15s
+rest.tar.gz          20%[===&gt;                ]   3.05G  24.6MB/s    eta 8m 15s
+rest.tar.gz          20%[===&gt;                ]   3.06G  24.7MB/s    eta 8m 15s
+rest.tar.gz          20%[===&gt;                ]   3.07G  24.6MB/s    eta 8m 15s
+rest.tar.gz          20%[===&gt;                ]   3.08G  24.6MB/s    eta 8m 14s
+rest.tar.gz          20%[===&gt;                ]   3.08G  24.7MB/s    eta 8m 14s
+rest.tar.gz          20%[===&gt;                ]   3.09G  24.7MB/s    eta 8m 14s
+rest.tar.gz          20%[===&gt;                ]   3.10G  24.7MB/s    eta 8m 14s
+rest.tar.gz          20%[===&gt;                ]   3.10G  24.5MB/s    eta 8m 12s
+rest.tar.gz          20%[===&gt;                ]   3.11G  24.5MB/s    eta 8m 12s
+rest.tar.gz          21%[===&gt;                ]   3.12G  24.5MB/s    eta 8m 12s
+rest.tar.gz          21%[===&gt;                ]   3.13G  24.4MB/s    eta 8m 12s
+rest.tar.gz          21%[===&gt;                ]   3.13G  24.4MB/s    eta 8m 11s
+rest.tar.gz          21%[===&gt;                ]   3.14G  24.4MB/s    eta 8m 11s
+rest.tar.gz          21%[===&gt;                ]   3.15G  24.3MB/s    eta 8m 11s
+rest.tar.gz          21%[===&gt;                ]   3.16G  23.9MB/s    eta 8m 11s
+rest.tar.gz          21%[===&gt;                ]   3.16G  24.0MB/s    eta 8m 10s
+rest.tar.gz          21%[===&gt;                ]   3.17G  24.1MB/s    eta 8m 10s
+rest.tar.gz          21%[===&gt;                ]   3.18G  24.2MB/s    eta 8m 10s
+rest.tar.gz          21%[===&gt;                ]   3.18G  24.1MB/s    eta 8m 10s
+rest.tar.gz          21%[===&gt;                ]   3.19G  24.2MB/s    eta 8m 9s
+rest.tar.gz          21%[===&gt;                ]   3.20G  24.0MB/s    eta 8m 9s
+rest.tar.gz          21%[===&gt;                ]   3.21G  23.9MB/s    eta 8m 9s
+rest.tar.gz          21%[===&gt;                ]   3.21G  23.9MB/s    eta 8m 9s
+rest.tar.gz          21%[===&gt;                ]   3.22G  24.0MB/s    eta 8m 7s
+rest.tar.gz          21%[===&gt;                ]   3.23G  24.0MB/s    eta 8m 7s
+rest.tar.gz          21%[===&gt;                ]   3.24G  23.8MB/s    eta 8m 7s
+rest.tar.gz          21%[===&gt;                ]   3.24G  23.8MB/s    eta 8m 7s
+rest.tar.gz          21%[===&gt;                ]   3.25G  23.8MB/s    eta 8m 6s
+rest.tar.gz          21%[===&gt;                ]   3.26G  23.8MB/s    eta 8m 6s
+rest.tar.gz          21%[===&gt;                ]   3.26G  23.9MB/s    eta 8m 6s
+rest.tar.gz          22%[===&gt;                ]   3.27G  24.1MB/s    eta 8m 6s
+rest.tar.gz          22%[===&gt;                ]   3.28G  23.9MB/s    eta 8m 5s
+rest.tar.gz          22%[===&gt;                ]   3.29G  23.9MB/s    eta 8m 5s
+rest.tar.gz          22%[===&gt;                ]   3.29G  23.8MB/s    eta 8m 5s
+rest.tar.gz          22%[===&gt;                ]   3.30G  23.6MB/s    eta 8m 5s
+rest.tar.gz          22%[===&gt;                ]   3.31G  23.7MB/s    eta 8m 4s
+rest.tar.gz          22%[===&gt;                ]   3.31G  23.5MB/s    eta 8m 4s
+rest.tar.gz          22%[===&gt;                ]   3.32G  23.7MB/s    eta 8m 4s
+rest.tar.gz          22%[===&gt;                ]   3.33G  23.6MB/s    eta 8m 4s
+rest.tar.gz          22%[===&gt;                ]   3.34G  23.8MB/s    eta 8m 2s
+rest.tar.gz          22%[===&gt;                ]   3.34G  23.7MB/s    eta 8m 2s
+rest.tar.gz          22%[===&gt;                ]   3.35G  23.8MB/s    eta 8m 2s
+rest.tar.gz          22%[===&gt;                ]   3.36G  23.8MB/s    eta 8m 2s
+rest.tar.gz          22%[===&gt;                ]   3.37G  23.8MB/s    eta 8m 1s
+rest.tar.gz          22%[===&gt;                ]   3.37G  23.8MB/s    eta 8m 1s
+rest.tar.gz          22%[===&gt;                ]   3.38G  23.9MB/s    eta 8m 1s
+rest.tar.gz          22%[===&gt;                ]   3.39G  24.0MB/s    eta 8m 1s
+rest.tar.gz          22%[===&gt;                ]   3.39G  24.0MB/s    eta 8m 0s
+rest.tar.gz          22%[===&gt;                ]   3.40G  24.1MB/s    eta 8m 0s
+rest.tar.gz          22%[===&gt;                ]   3.41G  24.0MB/s    eta 8m 0s
+rest.tar.gz          23%[===&gt;                ]   3.42G  24.4MB/s    eta 8m 0s
+rest.tar.gz          23%[===&gt;                ]   3.42G  24.4MB/s    eta 7m 59s
+rest.tar.gz          23%[===&gt;                ]   3.43G  24.4MB/s    eta 7m 59s
+rest.tar.gz          23%[===&gt;                ]   3.44G  24.3MB/s    eta 7m 59s
+rest.tar.gz          23%[===&gt;                ]   3.45G  24.3MB/s    eta 7m 59s
+rest.tar.gz          23%[===&gt;                ]   3.45G  24.3MB/s    eta 7m 57s
+rest.tar.gz          23%[===&gt;                ]   3.46G  24.4MB/s    eta 7m 57s
+rest.tar.gz          23%[===&gt;                ]   3.47G  24.4MB/s    eta 7m 57s
+rest.tar.gz          23%[===&gt;                ]   3.47G  24.2MB/s    eta 7m 57s
+rest.tar.gz          23%[===&gt;                ]   3.48G  24.1MB/s    eta 7m 56s
+rest.tar.gz          23%[===&gt;                ]   3.49G  24.3MB/s    eta 7m 56s
+rest.tar.gz          23%[===&gt;                ]   3.50G  24.2MB/s    eta 7m 56s
+rest.tar.gz          23%[===&gt;                ]   3.50G  24.3MB/s    eta 7m 56s
+rest.tar.gz          23%[===&gt;                ]   3.51G  24.1MB/s    eta 7m 55s
+rest.tar.gz          23%[===&gt;                ]   3.52G  24.2MB/s    eta 7m 55s
+rest.tar.gz          23%[===&gt;                ]   3.53G  24.2MB/s    eta 7m 55s
+rest.tar.gz          23%[===&gt;                ]   3.53G  24.2MB/s    eta 7m 55s
+rest.tar.gz          23%[===&gt;                ]   3.54G  24.0MB/s    eta 7m 53s
+rest.tar.gz          23%[===&gt;                ]   3.55G  24.2MB/s    eta 7m 53s
+rest.tar.gz          23%[===&gt;                ]   3.55G  24.3MB/s    eta 7m 53s
+rest.tar.gz          24%[===&gt;                ]   3.56G  24.4MB/s    eta 7m 53s
+rest.tar.gz          24%[===&gt;                ]   3.57G  24.6MB/s    eta 7m 52s
+rest.tar.gz          24%[===&gt;                ]   3.58G  24.5MB/s    eta 7m 52s
+rest.tar.gz          24%[===&gt;                ]   3.58G  24.7MB/s    eta 7m 52s
+rest.tar.gz          24%[===&gt;                ]   3.59G  24.8MB/s    eta 7m 52s
+rest.tar.gz          24%[===&gt;                ]   3.60G  24.8MB/s    eta 7m 51s
+rest.tar.gz          24%[===&gt;                ]   3.61G  24.9MB/s    eta 7m 51s
+rest.tar.gz          24%[===&gt;                ]   3.61G  24.8MB/s    eta 7m 51s
+rest.tar.gz          24%[===&gt;                ]   3.62G  24.9MB/s    eta 7m 51s
+rest.tar.gz          24%[===&gt;                ]   3.63G  24.8MB/s    eta 7m 50s
+rest.tar.gz          24%[===&gt;                ]   3.63G  24.8MB/s    eta 7m 50s
+rest.tar.gz          24%[===&gt;                ]   3.64G  24.8MB/s    eta 7m 50s
+rest.tar.gz          24%[===&gt;                ]   3.65G  24.8MB/s    eta 7m 50s
+rest.tar.gz          24%[===&gt;                ]   3.66G  24.8MB/s    eta 7m 48s
+rest.tar.gz          24%[===&gt;                ]   3.66G  24.9MB/s    eta 7m 48s
+rest.tar.gz          24%[===&gt;                ]   3.67G  24.8MB/s    eta 7m 48s
+rest.tar.gz          24%[===&gt;                ]   3.68G  24.8MB/s    eta 7m 48s
+rest.tar.gz          24%[===&gt;                ]   3.69G  24.6MB/s    eta 7m 47s
+rest.tar.gz          24%[===&gt;                ]   3.69G  24.6MB/s    eta 7m 47s
+rest.tar.gz          24%[===&gt;                ]   3.70G  24.6MB/s    eta 7m 47s
+rest.tar.gz          24%[===&gt;                ]   3.71G  24.6MB/s    eta 7m 47s
+rest.tar.gz          25%[====&gt;               ]   3.71G  24.6MB/s    eta 7m 46s
+rest.tar.gz          25%[====&gt;               ]   3.72G  24.6MB/s    eta 7m 46s
+rest.tar.gz          25%[====&gt;               ]   3.73G  24.5MB/s    eta 7m 46s
+rest.tar.gz          25%[====&gt;               ]   3.74G  24.5MB/s    eta 7m 46s
+rest.tar.gz          25%[====&gt;               ]   3.74G  24.5MB/s    eta 7m 45s
+rest.tar.gz          25%[====&gt;               ]   3.75G  24.6MB/s    eta 7m 45s
+rest.tar.gz          25%[====&gt;               ]   3.76G  24.7MB/s    eta 7m 45s
+rest.tar.gz          25%[====&gt;               ]   3.76G  24.7MB/s    eta 7m 45s
+rest.tar.gz          25%[====&gt;               ]   3.77G  24.5MB/s    eta 7m 43s
+rest.tar.gz          25%[====&gt;               ]   3.78G  24.5MB/s    eta 7m 43s
+rest.tar.gz          25%[====&gt;               ]   3.79G  24.4MB/s    eta 7m 43s
+rest.tar.gz          25%[====&gt;               ]   3.79G  24.5MB/s    eta 7m 43s
+rest.tar.gz          25%[====&gt;               ]   3.80G  24.5MB/s    eta 7m 42s
+rest.tar.gz          25%[====&gt;               ]   3.81G  24.6MB/s    eta 7m 42s
+rest.tar.gz          25%[====&gt;               ]   3.82G  24.5MB/s    eta 7m 42s
+rest.tar.gz          25%[====&gt;               ]   3.82G  24.5MB/s    eta 7m 42s
+rest.tar.gz          25%[====&gt;               ]   3.83G  24.4MB/s    eta 7m 41s
+rest.tar.gz          25%[====&gt;               ]   3.84G  24.4MB/s    eta 7m 41s
+rest.tar.gz          25%[====&gt;               ]   3.84G  24.4MB/s    eta 7m 41s
+rest.tar.gz          25%[====&gt;               ]   3.85G  24.4MB/s    eta 7m 41s
+rest.tar.gz          26%[====&gt;               ]   3.86G  24.3MB/s    eta 7m 40s
+rest.tar.gz          26%[====&gt;               ]   3.87G  24.2MB/s    eta 7m 40s
+rest.tar.gz          26%[====&gt;               ]   3.87G  24.3MB/s    eta 7m 40s
+rest.tar.gz          26%[====&gt;               ]   3.88G  24.3MB/s    eta 7m 40s
+rest.tar.gz          26%[====&gt;               ]   3.89G  24.3MB/s    eta 7m 38s
+rest.tar.gz          26%[====&gt;               ]   3.89G  24.3MB/s    eta 7m 38s
+rest.tar.gz          26%[====&gt;               ]   3.90G  24.4MB/s    eta 7m 38s
+rest.tar.gz          26%[====&gt;               ]   3.91G  24.5MB/s    eta 7m 38s
+rest.tar.gz          26%[====&gt;               ]   3.92G  24.5MB/s    eta 7m 37s
+rest.tar.gz          26%[====&gt;               ]   3.92G  24.4MB/s    eta 7m 37s
+rest.tar.gz          26%[====&gt;               ]   3.93G  24.5MB/s    eta 7m 37s
+rest.tar.gz          26%[====&gt;               ]   3.94G  24.5MB/s    eta 7m 37s
+rest.tar.gz          26%[====&gt;               ]   3.95G  24.5MB/s    eta 7m 36s
+rest.tar.gz          26%[====&gt;               ]   3.95G  24.6MB/s    eta 7m 36s
+rest.tar.gz          26%[====&gt;               ]   3.96G  24.5MB/s    eta 7m 36s
+rest.tar.gz          26%[====&gt;               ]   3.97G  24.5MB/s    eta 7m 36s
+rest.tar.gz          26%[====&gt;               ]   3.97G  24.6MB/s    eta 7m 35s
+rest.tar.gz          26%[====&gt;               ]   3.98G  24.6MB/s    eta 7m 35s
+rest.tar.gz          26%[====&gt;               ]   3.99G  24.6MB/s    eta 7m 35s
+rest.tar.gz          26%[====&gt;               ]   4.00G  24.6MB/s    eta 7m 35s
+rest.tar.gz          26%[====&gt;               ]   4.00G  24.6MB/s    eta 7m 34s
+rest.tar.gz          27%[====&gt;               ]   4.01G  24.5MB/s    eta 7m 34s
+rest.tar.gz          27%[====&gt;               ]   4.02G  24.4MB/s    eta 7m 34s
+rest.tar.gz          27%[====&gt;               ]   4.03G  24.3MB/s    eta 7m 34s
+rest.tar.gz          27%[====&gt;               ]   4.03G  24.4MB/s    eta 7m 32s
+rest.tar.gz          27%[====&gt;               ]   4.04G  24.5MB/s    eta 7m 32s
+rest.tar.gz          27%[====&gt;               ]   4.05G  24.4MB/s    eta 7m 32s
+rest.tar.gz          27%[====&gt;               ]   4.05G  24.3MB/s    eta 7m 32s
+rest.tar.gz          27%[====&gt;               ]   4.06G  24.3MB/s    eta 7m 31s
+rest.tar.gz          27%[====&gt;               ]   4.07G  24.3MB/s    eta 7m 31s
+rest.tar.gz          27%[====&gt;               ]   4.08G  24.3MB/s    eta 7m 31s
+rest.tar.gz          27%[====&gt;               ]   4.08G  24.3MB/s    eta 7m 31s
+rest.tar.gz          27%[====&gt;               ]   4.09G  24.4MB/s    eta 7m 30s
+rest.tar.gz          27%[====&gt;               ]   4.10G  24.5MB/s    eta 7m 30s
+rest.tar.gz          27%[====&gt;               ]   4.10G  24.5MB/s    eta 7m 30s
+rest.tar.gz          27%[====&gt;               ]   4.11G  24.5MB/s    eta 7m 30s
+rest.tar.gz          27%[====&gt;               ]   4.12G  24.5MB/s    eta 7m 28s
+rest.tar.gz          27%[====&gt;               ]   4.13G  24.5MB/s    eta 7m 28s
+rest.tar.gz          27%[====&gt;               ]   4.13G  24.5MB/s    eta 7m 28s
+rest.tar.gz          27%[====&gt;               ]   4.14G  24.3MB/s    eta 7m 28s
+rest.tar.gz          27%[====&gt;               ]   4.15G  24.3MB/s    eta 7m 27s
+rest.tar.gz          27%[====&gt;               ]   4.15G  24.3MB/s    eta 7m 27s
+rest.tar.gz          28%[====&gt;               ]   4.16G  24.1MB/s    eta 7m 27s
+rest.tar.gz          28%[====&gt;               ]   4.17G  23.7MB/s    eta 7m 27s
+rest.tar.gz          28%[====&gt;               ]   4.17G  23.5MB/s    eta 7m 27s
+rest.tar.gz          28%[====&gt;               ]   4.18G  23.3MB/s    eta 7m 27s
+rest.tar.gz          28%[====&gt;               ]   4.19G  23.3MB/s    eta 7m 27s
+rest.tar.gz          28%[====&gt;               ]   4.19G  23.2MB/s    eta 7m 27s
+rest.tar.gz          28%[====&gt;               ]   4.20G  23.2MB/s    eta 7m 25s
+rest.tar.gz          28%[====&gt;               ]   4.21G  23.2MB/s    eta 7m 25s
+rest.tar.gz          28%[====&gt;               ]   4.22G  23.2MB/s    eta 7m 25s
+rest.tar.gz          28%[====&gt;               ]   4.22G  22.9MB/s    eta 7m 25s
+rest.tar.gz          28%[====&gt;               ]   4.23G  23.2MB/s    eta 7m 24s
+rest.tar.gz          28%[====&gt;               ]   4.24G  24.2MB/s    eta 7m 24s
+rest.tar.gz          28%[====&gt;               ]   4.25G  24.3MB/s    eta 7m 24s
+rest.tar.gz          28%[====&gt;               ]   4.25G  24.3MB/s    eta 7m 24s
+rest.tar.gz          28%[====&gt;               ]   4.26G  24.1MB/s    eta 7m 23s
+rest.tar.gz          28%[====&gt;               ]   4.27G  24.0MB/s    eta 7m 23s
+rest.tar.gz          28%[====&gt;               ]   4.28G  24.0MB/s    eta 7m 23s
+rest.tar.gz          28%[====&gt;               ]   4.28G  24.0MB/s    eta 7m 23s
+rest.tar.gz          28%[====&gt;               ]   4.29G  24.0MB/s    eta 7m 22s
+rest.tar.gz          28%[====&gt;               ]   4.30G  24.5MB/s    eta 7m 22s
+rest.tar.gz          29%[====&gt;               ]   4.30G  24.2MB/s    eta 7m 22s
+rest.tar.gz          29%[====&gt;               ]   4.31G  24.1MB/s    eta 7m 22s
+rest.tar.gz          29%[====&gt;               ]   4.32G  24.3MB/s    eta 7m 20s
+rest.tar.gz          29%[====&gt;               ]   4.33G  24.2MB/s    eta 7m 20s
+rest.tar.gz          29%[====&gt;               ]   4.33G  24.4MB/s    eta 7m 20s
+rest.tar.gz          29%[====&gt;               ]   4.34G  24.2MB/s    eta 7m 20s
+rest.tar.gz          29%[====&gt;               ]   4.35G  24.1MB/s    eta 7m 19s
+rest.tar.gz          29%[====&gt;               ]   4.36G  24.2MB/s    eta 7m 19s
+rest.tar.gz          29%[====&gt;               ]   4.36G  24.2MB/s    eta 7m 19s
+rest.tar.gz          29%[====&gt;               ]   4.37G  23.8MB/s    eta 7m 19s
+rest.tar.gz          29%[====&gt;               ]   4.38G  24.0MB/s    eta 7m 18s
+rest.tar.gz          29%[====&gt;               ]   4.38G  24.0MB/s    eta 7m 18s
+rest.tar.gz          29%[====&gt;               ]   4.39G  24.1MB/s    eta 7m 18s
+rest.tar.gz          29%[====&gt;               ]   4.40G  24.0MB/s    eta 7m 18s
+rest.tar.gz          29%[====&gt;               ]   4.41G  24.0MB/s    eta 7m 17s
+rest.tar.gz          29%[====&gt;               ]   4.41G  24.0MB/s    eta 7m 17s
+rest.tar.gz          29%[====&gt;               ]   4.42G  24.2MB/s    eta 7m 17s
+rest.tar.gz          29%[====&gt;               ]   4.43G  24.1MB/s    eta 7m 17s
+rest.tar.gz          29%[====&gt;               ]   4.43G  24.1MB/s    eta 7m 15s
+rest.tar.gz          29%[====&gt;               ]   4.44G  24.1MB/s    eta 7m 15s
+rest.tar.gz          29%[====&gt;               ]   4.45G  24.1MB/s    eta 7m 15s
+rest.tar.gz          30%[=====&gt;              ]   4.46G  24.2MB/s    eta 7m 15s
+rest.tar.gz          30%[=====&gt;              ]   4.46G  23.9MB/s    eta 7m 14s
+rest.tar.gz          30%[=====&gt;              ]   4.47G  23.9MB/s    eta 7m 14s
+rest.tar.gz          30%[=====&gt;              ]   4.48G  24.1MB/s    eta 7m 14s
+rest.tar.gz          30%[=====&gt;              ]   4.48G  23.9MB/s    eta 7m 14s
+rest.tar.gz          30%[=====&gt;              ]   4.49G  23.8MB/s    eta 7m 13s
+rest.tar.gz          30%[=====&gt;              ]   4.50G  23.5MB/s    eta 7m 13s
+rest.tar.gz          30%[=====&gt;              ]   4.50G  23.4MB/s    eta 7m 13s
+rest.tar.gz          30%[=====&gt;              ]   4.51G  23.4MB/s    eta 7m 13s
+rest.tar.gz          30%[=====&gt;              ]   4.52G  23.4MB/s    eta 7m 12s
+rest.tar.gz          30%[=====&gt;              ]   4.53G  23.4MB/s    eta 7m 12s
+rest.tar.gz          30%[=====&gt;              ]   4.53G  23.4MB/s    eta 7m 12s
+rest.tar.gz          30%[=====&gt;              ]   4.54G  23.6MB/s    eta 7m 12s
+rest.tar.gz          30%[=====&gt;              ]   4.55G  23.6MB/s    eta 7m 11s
+rest.tar.gz          30%[=====&gt;              ]   4.56G  23.9MB/s    eta 7m 11s
+rest.tar.gz          30%[=====&gt;              ]   4.56G  24.0MB/s    eta 7m 11s
+rest.tar.gz          30%[=====&gt;              ]   4.57G  23.9MB/s    eta 7m 11s
+rest.tar.gz          30%[=====&gt;              ]   4.58G  23.9MB/s    eta 7m 9s
+rest.tar.gz          30%[=====&gt;              ]   4.58G  23.8MB/s    eta 7m 9s
+rest.tar.gz          30%[=====&gt;              ]   4.59G  23.8MB/s    eta 7m 9s
+rest.tar.gz          30%[=====&gt;              ]   4.60G  23.8MB/s    eta 7m 9s
+rest.tar.gz          31%[=====&gt;              ]   4.61G  23.8MB/s    eta 7m 8s
+rest.tar.gz          31%[=====&gt;              ]   4.61G  23.5MB/s    eta 7m 8s
+rest.tar.gz          31%[=====&gt;              ]   4.62G  23.3MB/s    eta 7m 8s
+rest.tar.gz          31%[=====&gt;              ]   4.63G  23.4MB/s    eta 7m 8s
+rest.tar.gz          31%[=====&gt;              ]   4.63G  23.2MB/s    eta 7m 7s
+rest.tar.gz          31%[=====&gt;              ]   4.64G  23.1MB/s    eta 7m 7s
+rest.tar.gz          31%[=====&gt;              ]   4.65G  24.0MB/s    eta 7m 7s
+rest.tar.gz          31%[=====&gt;              ]   4.65G  24.0MB/s    eta 7m 7s
+rest.tar.gz          31%[=====&gt;              ]   4.66G  24.0MB/s    eta 7m 6s
+rest.tar.gz          31%[=====&gt;              ]   4.67G  24.0MB/s    eta 7m 6s
+rest.tar.gz          31%[=====&gt;              ]   4.68G  24.0MB/s    eta 7m 6s
+rest.tar.gz          31%[=====&gt;              ]   4.68G  24.0MB/s    eta 7m 6s
+rest.tar.gz          31%[=====&gt;              ]   4.69G  24.2MB/s    eta 7m 5s
+rest.tar.gz          31%[=====&gt;              ]   4.70G  24.3MB/s    eta 7m 5s
+rest.tar.gz          31%[=====&gt;              ]   4.71G  24.3MB/s    eta 7m 5s
+rest.tar.gz          31%[=====&gt;              ]   4.71G  24.4MB/s    eta 7m 5s
+rest.tar.gz          31%[=====&gt;              ]   4.72G  24.3MB/s    eta 7m 4s
+rest.tar.gz          31%[=====&gt;              ]   4.73G  24.3MB/s    eta 7m 4s
+rest.tar.gz          31%[=====&gt;              ]   4.73G  24.3MB/s    eta 7m 4s
+rest.tar.gz          31%[=====&gt;              ]   4.74G  24.2MB/s    eta 7m 4s
+rest.tar.gz          31%[=====&gt;              ]   4.75G  24.3MB/s    eta 7m 2s
+rest.tar.gz          32%[=====&gt;              ]   4.76G  24.3MB/s    eta 7m 2s
+rest.tar.gz          32%[=====&gt;              ]   4.76G  24.1MB/s    eta 7m 2s
+rest.tar.gz          32%[=====&gt;              ]   4.77G  23.8MB/s    eta 7m 2s
+rest.tar.gz          32%[=====&gt;              ]   4.78G  23.9MB/s    eta 7m 1s
+rest.tar.gz          32%[=====&gt;              ]   4.79G  24.0MB/s    eta 7m 1s
+rest.tar.gz          32%[=====&gt;              ]   4.79G  23.9MB/s    eta 7m 1s
+rest.tar.gz          32%[=====&gt;              ]   4.80G  23.8MB/s    eta 7m 1s
+rest.tar.gz          32%[=====&gt;              ]   4.81G  23.7MB/s    eta 7m 0s
+rest.tar.gz          32%[=====&gt;              ]   4.81G  24.8MB/s    eta 7m 0s
+rest.tar.gz          32%[=====&gt;              ]   4.82G  24.8MB/s    eta 7m 0s
+rest.tar.gz          32%[=====&gt;              ]   4.83G  24.8MB/s    eta 7m 0s
+rest.tar.gz          32%[=====&gt;              ]   4.84G  24.8MB/s    eta 6m 59s
+rest.tar.gz          32%[=====&gt;              ]   4.84G  24.8MB/s    eta 6m 59s
+rest.tar.gz          32%[=====&gt;              ]   4.85G  24.9MB/s    eta 6m 59s
+rest.tar.gz          32%[=====&gt;              ]   4.86G  24.9MB/s    eta 6m 59s
+rest.tar.gz          32%[=====&gt;              ]   4.87G  24.8MB/s    eta 6m 57s
+rest.tar.gz          32%[=====&gt;              ]   4.87G  24.8MB/s    eta 6m 57s
+rest.tar.gz          32%[=====&gt;              ]   4.88G  24.8MB/s    eta 6m 57s
+rest.tar.gz          32%[=====&gt;              ]   4.89G  24.8MB/s    eta 6m 57s
+rest.tar.gz          32%[=====&gt;              ]   4.89G  24.8MB/s    eta 6m 56s
+rest.tar.gz          33%[=====&gt;              ]   4.90G  24.8MB/s    eta 6m 56s
+rest.tar.gz          33%[=====&gt;              ]   4.91G  24.6MB/s    eta 6m 56s
+rest.tar.gz          33%[=====&gt;              ]   4.92G  24.5MB/s    eta 6m 56s
+rest.tar.gz          33%[=====&gt;              ]   4.92G  24.5MB/s    eta 6m 55s
+rest.tar.gz          33%[=====&gt;              ]   4.93G  24.4MB/s    eta 6m 55s
+rest.tar.gz          33%[=====&gt;              ]   4.94G  24.4MB/s    eta 6m 55s
+rest.tar.gz          33%[=====&gt;              ]   4.94G  24.5MB/s    eta 6m 55s
+rest.tar.gz          33%[=====&gt;              ]   4.95G  24.5MB/s    eta 6m 54s
+rest.tar.gz          33%[=====&gt;              ]   4.96G  24.5MB/s    eta 6m 54s
+rest.tar.gz          33%[=====&gt;              ]   4.97G  24.5MB/s    eta 6m 54s
+rest.tar.gz          33%[=====&gt;              ]   4.97G  24.6MB/s    eta 6m 54s
+rest.tar.gz          33%[=====&gt;              ]   4.98G  24.5MB/s    eta 6m 52s
+rest.tar.gz          33%[=====&gt;              ]   4.99G  24.6MB/s    eta 6m 52s
+rest.tar.gz          33%[=====&gt;              ]   5.00G  24.6MB/s    eta 6m 52s
+rest.tar.gz          33%[=====&gt;              ]   5.00G  24.6MB/s    eta 6m 52s
+rest.tar.gz          33%[=====&gt;              ]   5.01G  24.7MB/s    eta 6m 51s
+rest.tar.gz          33%[=====&gt;              ]   5.02G  24.7MB/s    eta 6m 51s
+rest.tar.gz          33%[=====&gt;              ]   5.02G  24.7MB/s    eta 6m 51s
+rest.tar.gz          33%[=====&gt;              ]   5.03G  24.7MB/s    eta 6m 51s
+rest.tar.gz          33%[=====&gt;              ]   5.04G  24.7MB/s    eta 6m 50s
+rest.tar.gz          34%[=====&gt;              ]   5.05G  24.6MB/s    eta 6m 50s
+rest.tar.gz          34%[=====&gt;              ]   5.05G  24.7MB/s    eta 6m 50s
+rest.tar.gz          34%[=====&gt;              ]   5.06G  24.6MB/s    eta 6m 50s
+rest.tar.gz          34%[=====&gt;              ]   5.07G  24.5MB/s    eta 6m 49s
+rest.tar.gz          34%[=====&gt;              ]   5.08G  24.6MB/s    eta 6m 49s
+rest.tar.gz          34%[=====&gt;              ]   5.08G  24.6MB/s    eta 6m 49s
+rest.tar.gz          34%[=====&gt;              ]   5.09G  24.6MB/s    eta 6m 49s
+rest.tar.gz          34%[=====&gt;              ]   5.10G  24.7MB/s    eta 6m 47s
+rest.tar.gz          34%[=====&gt;              ]   5.10G  24.8MB/s    eta 6m 47s
+rest.tar.gz          34%[=====&gt;              ]   5.11G  24.8MB/s    eta 6m 47s
+rest.tar.gz          34%[=====&gt;              ]   5.12G  24.8MB/s    eta 6m 47s
+rest.tar.gz          34%[=====&gt;              ]   5.13G  24.7MB/s    eta 6m 46s
+rest.tar.gz          34%[=====&gt;              ]   5.13G  24.7MB/s    eta 6m 46s
+rest.tar.gz          34%[=====&gt;              ]   5.14G  24.7MB/s    eta 6m 46s
+rest.tar.gz          34%[=====&gt;              ]   5.15G  24.7MB/s    eta 6m 46s
+rest.tar.gz          34%[=====&gt;              ]   5.16G  24.6MB/s    eta 6m 45s
+rest.tar.gz          34%[=====&gt;              ]   5.16G  24.7MB/s    eta 6m 45s
+rest.tar.gz          34%[=====&gt;              ]   5.17G  24.7MB/s    eta 6m 45s
+rest.tar.gz          34%[=====&gt;              ]   5.18G  24.6MB/s    eta 6m 45s
+rest.tar.gz          34%[=====&gt;              ]   5.18G  24.5MB/s    eta 6m 44s
+rest.tar.gz          34%[=====&gt;              ]   5.19G  24.4MB/s    eta 6m 44s
+rest.tar.gz          35%[======&gt;             ]   5.20G  24.5MB/s    eta 6m 44s
+rest.tar.gz          35%[======&gt;             ]   5.21G  24.4MB/s    eta 6m 44s
+rest.tar.gz          35%[======&gt;             ]   5.21G  24.3MB/s    eta 6m 43s
+rest.tar.gz          35%[======&gt;             ]   5.22G  24.3MB/s    eta 6m 43s
+rest.tar.gz          35%[======&gt;             ]   5.23G  24.3MB/s    eta 6m 43s
+rest.tar.gz          35%[======&gt;             ]   5.23G  24.3MB/s    eta 6m 43s
+rest.tar.gz          35%[======&gt;             ]   5.24G  24.2MB/s    eta 6m 41s
+rest.tar.gz          35%[======&gt;             ]   5.25G  24.2MB/s    eta 6m 41s
+rest.tar.gz          35%[======&gt;             ]   5.26G  24.2MB/s    eta 6m 41s
+rest.tar.gz          35%[======&gt;             ]   5.26G  24.3MB/s    eta 6m 41s
+rest.tar.gz          35%[======&gt;             ]   5.27G  24.4MB/s    eta 6m 40s
+rest.tar.gz          35%[======&gt;             ]   5.28G  24.5MB/s    eta 6m 40s
+rest.tar.gz          35%[======&gt;             ]   5.28G  24.5MB/s    eta 6m 40s
+rest.tar.gz          35%[======&gt;             ]   5.29G  24.4MB/s    eta 6m 40s
+rest.tar.gz          35%[======&gt;             ]   5.30G  24.4MB/s    eta 6m 39s
+rest.tar.gz          35%[======&gt;             ]   5.31G  24.4MB/s    eta 6m 39s
+rest.tar.gz          35%[======&gt;             ]   5.31G  24.4MB/s    eta 6m 39s
+rest.tar.gz          35%[======&gt;             ]   5.32G  24.4MB/s    eta 6m 39s
+rest.tar.gz          35%[======&gt;             ]   5.33G  24.6MB/s    eta 6m 38s
+rest.tar.gz          35%[======&gt;             ]   5.34G  24.6MB/s    eta 6m 38s
+rest.tar.gz          36%[======&gt;             ]   5.34G  24.7MB/s    eta 6m 38s
+rest.tar.gz          36%[======&gt;             ]   5.35G  24.7MB/s    eta 6m 38s
+rest.tar.gz          36%[======&gt;             ]   5.36G  24.7MB/s    eta 6m 36s
+rest.tar.gz          36%[======&gt;             ]   5.36G  24.7MB/s    eta 6m 36s
+rest.tar.gz          36%[======&gt;             ]   5.37G  24.7MB/s    eta 6m 36s
+rest.tar.gz          36%[======&gt;             ]   5.38G  24.7MB/s    eta 6m 36s
+rest.tar.gz          36%[======&gt;             ]   5.39G  24.8MB/s    eta 6m 35s
+rest.tar.gz          36%[======&gt;             ]   5.39G  24.7MB/s    eta 6m 35s
+rest.tar.gz          36%[======&gt;             ]   5.40G  24.7MB/s    eta 6m 35s
+rest.tar.gz          36%[======&gt;             ]   5.41G  24.6MB/s    eta 6m 35s
+rest.tar.gz          36%[======&gt;             ]   5.42G  24.8MB/s    eta 6m 34s
+rest.tar.gz          36%[======&gt;             ]   5.42G  24.7MB/s    eta 6m 34s
+rest.tar.gz          36%[======&gt;             ]   5.43G  24.8MB/s    eta 6m 34s
+rest.tar.gz          36%[======&gt;             ]   5.44G  24.8MB/s    eta 6m 34s
+rest.tar.gz          36%[======&gt;             ]   5.44G  24.7MB/s    eta 6m 33s
+rest.tar.gz          36%[======&gt;             ]   5.45G  24.7MB/s    eta 6m 33s
+rest.tar.gz          36%[======&gt;             ]   5.46G  24.7MB/s    eta 6m 33s
+rest.tar.gz          36%[======&gt;             ]   5.47G  24.7MB/s    eta 6m 33s
+rest.tar.gz          36%[======&gt;             ]   5.47G  24.8MB/s    eta 6m 31s
+rest.tar.gz          36%[======&gt;             ]   5.48G  24.7MB/s    eta 6m 31s
+rest.tar.gz          36%[======&gt;             ]   5.49G  24.7MB/s    eta 6m 31s
+rest.tar.gz          37%[======&gt;             ]   5.50G  24.7MB/s    eta 6m 31s
+rest.tar.gz          37%[======&gt;             ]   5.50G  24.6MB/s    eta 6m 30s
+rest.tar.gz          37%[======&gt;             ]   5.51G  24.6MB/s    eta 6m 30s
+rest.tar.gz          37%[======&gt;             ]   5.52G  24.6MB/s    eta 6m 30s
+rest.tar.gz          37%[======&gt;             ]   5.52G  24.5MB/s    eta 6m 30s
+rest.tar.gz          37%[======&gt;             ]   5.53G  24.6MB/s    eta 6m 29s
+rest.tar.gz          37%[======&gt;             ]   5.54G  24.5MB/s    eta 6m 29s
+rest.tar.gz          37%[======&gt;             ]   5.55G  24.4MB/s    eta 6m 29s
+rest.tar.gz          37%[======&gt;             ]   5.55G  24.4MB/s    eta 6m 29s
+rest.tar.gz          37%[======&gt;             ]   5.56G  24.4MB/s    eta 6m 28s
+rest.tar.gz          37%[======&gt;             ]   5.57G  24.5MB/s    eta 6m 28s
+rest.tar.gz          37%[======&gt;             ]   5.57G  24.6MB/s    eta 6m 28s
+rest.tar.gz          37%[======&gt;             ]   5.58G  24.4MB/s    eta 6m 28s
+rest.tar.gz          37%[======&gt;             ]   5.59G  24.4MB/s    eta 6m 27s
+rest.tar.gz          37%[======&gt;             ]   5.60G  24.4MB/s    eta 6m 27s
+rest.tar.gz          37%[======&gt;             ]   5.60G  24.3MB/s    eta 6m 27s
+rest.tar.gz          37%[======&gt;             ]   5.61G  24.4MB/s    eta 6m 27s
+rest.tar.gz          37%[======&gt;             ]   5.62G  24.5MB/s    eta 6m 25s
+rest.tar.gz          37%[======&gt;             ]   5.62G  24.5MB/s    eta 6m 25s
+rest.tar.gz          37%[======&gt;             ]   5.63G  24.4MB/s    eta 6m 25s
+rest.tar.gz          37%[======&gt;             ]   5.64G  24.5MB/s    eta 6m 25s
+rest.tar.gz          38%[======&gt;             ]   5.65G  24.5MB/s    eta 6m 24s
+rest.tar.gz          38%[======&gt;             ]   5.65G  24.4MB/s    eta 6m 24s
+rest.tar.gz          38%[======&gt;             ]   5.66G  24.2MB/s    eta 6m 24s
+rest.tar.gz          38%[======&gt;             ]   5.67G  24.2MB/s    eta 6m 24s
+rest.tar.gz          38%[======&gt;             ]   5.67G  24.2MB/s    eta 6m 23s
+rest.tar.gz          38%[======&gt;             ]   5.68G  24.2MB/s    eta 6m 23s
+rest.tar.gz          38%[======&gt;             ]   5.69G  24.0MB/s    eta 6m 23s
+rest.tar.gz          38%[======&gt;             ]   5.70G  24.0MB/s    eta 6m 23s
+rest.tar.gz          38%[======&gt;             ]   5.70G  23.9MB/s    eta 6m 22s
+rest.tar.gz          38%[======&gt;             ]   5.71G  24.0MB/s    eta 6m 22s
+rest.tar.gz          38%[======&gt;             ]   5.72G  23.9MB/s    eta 6m 22s
+rest.tar.gz          38%[======&gt;             ]   5.73G  23.9MB/s    eta 6m 22s
+rest.tar.gz          38%[======&gt;             ]   5.73G  24.0MB/s    eta 6m 21s
+rest.tar.gz          38%[======&gt;             ]   5.74G  24.0MB/s    eta 6m 21s
+rest.tar.gz          38%[======&gt;             ]   5.75G  24.0MB/s    eta 6m 21s
+rest.tar.gz          38%[======&gt;             ]   5.75G  24.0MB/s    eta 6m 21s
+rest.tar.gz          38%[======&gt;             ]   5.76G  23.8MB/s    eta 6m 19s
+rest.tar.gz          38%[======&gt;             ]   5.77G  23.9MB/s    eta 6m 19s
+rest.tar.gz          38%[======&gt;             ]   5.78G  24.0MB/s    eta 6m 19s
+rest.tar.gz          38%[======&gt;             ]   5.78G  23.9MB/s    eta 6m 19s
+rest.tar.gz          39%[======&gt;             ]   5.79G  23.9MB/s    eta 6m 18s
+rest.tar.gz          39%[======&gt;             ]   5.80G  23.9MB/s    eta 6m 18s
+rest.tar.gz          39%[======&gt;             ]   5.80G  23.8MB/s    eta 6m 18s
+rest.tar.gz          39%[======&gt;             ]   5.81G  23.8MB/s    eta 6m 18s
+rest.tar.gz          39%[======&gt;             ]   5.82G  24.8MB/s    eta 6m 17s
+rest.tar.gz          39%[======&gt;             ]   5.83G  24.8MB/s    eta 6m 17s
+rest.tar.gz          39%[======&gt;             ]   5.83G  24.8MB/s    eta 6m 17s
+rest.tar.gz          39%[======&gt;             ]   5.84G  24.8MB/s    eta 6m 17s
+rest.tar.gz          39%[======&gt;             ]   5.85G  24.7MB/s    eta 6m 16s
+rest.tar.gz          39%[======&gt;             ]   5.86G  24.7MB/s    eta 6m 16s
+rest.tar.gz          39%[======&gt;             ]   5.86G  24.4MB/s    eta 6m 16s
+rest.tar.gz          39%[======&gt;             ]   5.87G  24.4MB/s    eta 6m 16s
+rest.tar.gz          39%[======&gt;             ]   5.88G  24.3MB/s    eta 6m 15s
+rest.tar.gz          39%[======&gt;             ]   5.88G  24.3MB/s    eta 6m 15s
+rest.tar.gz          39%[======&gt;             ]   5.89G  24.3MB/s    eta 6m 15s
+rest.tar.gz          39%[======&gt;             ]   5.90G  24.3MB/s    eta 6m 15s
+rest.tar.gz          39%[======&gt;             ]   5.91G  24.3MB/s    eta 6m 13s
+rest.tar.gz          39%[======&gt;             ]   5.91G  24.3MB/s    eta 6m 13s
+rest.tar.gz          39%[======&gt;             ]   5.92G  24.2MB/s    eta 6m 13s
+rest.tar.gz          39%[======&gt;             ]   5.93G  24.2MB/s    eta 6m 13s
+rest.tar.gz          39%[======&gt;             ]   5.93G  24.1MB/s    eta 6m 12s
+rest.tar.gz          40%[=======&gt;            ]   5.94G  23.7MB/s    eta 6m 12s
+rest.tar.gz          40%[=======&gt;            ]   5.95G  23.6MB/s    eta 6m 12s
+rest.tar.gz          40%[=======&gt;            ]   5.96G  23.6MB/s    eta 6m 12s
+rest.tar.gz          40%[=======&gt;            ]   5.96G  23.5MB/s    eta 6m 11s
+rest.tar.gz          40%[=======&gt;            ]   5.97G  23.5MB/s    eta 6m 11s
+rest.tar.gz          40%[=======&gt;            ]   5.98G  23.7MB/s    eta 6m 11s
+rest.tar.gz          40%[=======&gt;            ]   5.98G  23.7MB/s    eta 6m 11s
+rest.tar.gz          40%[=======&gt;            ]   5.99G  23.9MB/s    eta 6m 10s
+rest.tar.gz          40%[=======&gt;            ]   6.00G  23.9MB/s    eta 6m 10s
+rest.tar.gz          40%[=======&gt;            ]   6.01G  23.9MB/s    eta 6m 10s
+rest.tar.gz          40%[=======&gt;            ]   6.01G  24.0MB/s    eta 6m 10s
+rest.tar.gz          40%[=======&gt;            ]   6.02G  24.3MB/s    eta 6m 8s
+rest.tar.gz          40%[=======&gt;            ]   6.03G  24.3MB/s    eta 6m 8s
+rest.tar.gz          40%[=======&gt;            ]   6.04G  24.4MB/s    eta 6m 8s
+rest.tar.gz          40%[=======&gt;            ]   6.04G  24.3MB/s    eta 6m 8s
+rest.tar.gz          40%[=======&gt;            ]   6.05G  24.3MB/s    eta 6m 7s
+rest.tar.gz          40%[=======&gt;            ]   6.06G  24.2MB/s    eta 6m 7s
+rest.tar.gz          40%[=======&gt;            ]   6.06G  24.3MB/s    eta 6m 7s
+rest.tar.gz          40%[=======&gt;            ]   6.07G  24.3MB/s    eta 6m 7s
+rest.tar.gz          40%[=======&gt;            ]   6.08G  24.5MB/s    eta 6m 6s
+rest.tar.gz          41%[=======&gt;            ]   6.09G  24.5MB/s    eta 6m 6s
+rest.tar.gz          41%[=======&gt;            ]   6.09G  24.5MB/s    eta 6m 6s
+rest.tar.gz          41%[=======&gt;            ]   6.10G  24.5MB/s    eta 6m 6s
+rest.tar.gz          41%[=======&gt;            ]   6.11G  24.2MB/s    eta 6m 5s
+rest.tar.gz          41%[=======&gt;            ]   6.11G  23.9MB/s    eta 6m 5s
+rest.tar.gz          41%[=======&gt;            ]   6.12G  23.7MB/s    eta 6m 5s
+rest.tar.gz          41%[=======&gt;            ]   6.13G  23.6MB/s    eta 6m 5s
+rest.tar.gz          41%[=======&gt;            ]   6.13G  23.5MB/s    eta 6m 4s
+rest.tar.gz          41%[=======&gt;            ]   6.14G  23.6MB/s    eta 6m 4s
+rest.tar.gz          41%[=======&gt;            ]   6.15G  23.5MB/s    eta 6m 4s
+rest.tar.gz          41%[=======&gt;            ]   6.16G  23.4MB/s    eta 6m 4s
+rest.tar.gz          41%[=======&gt;            ]   6.16G  23.3MB/s    eta 6m 2s
+rest.tar.gz          41%[=======&gt;            ]   6.17G  23.3MB/s    eta 6m 2s
+rest.tar.gz          41%[=======&gt;            ]   6.18G  24.4MB/s    eta 6m 2s
+rest.tar.gz          41%[=======&gt;            ]   6.19G  24.6MB/s    eta 6m 2s
+rest.tar.gz          41%[=======&gt;            ]   6.19G  24.4MB/s    eta 6m 1s
+rest.tar.gz          41%[=======&gt;            ]   6.20G  24.1MB/s    eta 6m 1s
+rest.tar.gz          41%[=======&gt;            ]   6.21G  24.0MB/s    eta 6m 1s
+rest.tar.gz          41%[=======&gt;            ]   6.21G  24.0MB/s    eta 6m 1s
+rest.tar.gz          41%[=======&gt;            ]   6.22G  24.0MB/s    eta 6m 0s
+rest.tar.gz          41%[=======&gt;            ]   6.23G  24.0MB/s    eta 6m 0s
+rest.tar.gz          42%[=======&gt;            ]   6.23G  24.0MB/s    eta 6m 0s
+rest.tar.gz          42%[=======&gt;            ]   6.24G  24.0MB/s    eta 6m 0s
+rest.tar.gz          42%[=======&gt;            ]   6.25G  23.8MB/s    eta 5m 59s
+rest.tar.gz          42%[=======&gt;            ]   6.26G  23.7MB/s    eta 5m 59s
+rest.tar.gz          42%[=======&gt;            ]   6.26G  23.6MB/s    eta 5m 59s
+rest.tar.gz          42%[=======&gt;            ]   6.27G  23.4MB/s    eta 5m 59s
+rest.tar.gz          42%[=======&gt;            ]   6.28G  23.2MB/s    eta 5m 58s
+rest.tar.gz          42%[=======&gt;            ]   6.28G  23.0MB/s    eta 5m 58s
+rest.tar.gz          42%[=======&gt;            ]   6.29G  23.2MB/s    eta 5m 58s
+rest.tar.gz          42%[=======&gt;            ]   6.30G  23.2MB/s    eta 5m 58s
+rest.tar.gz          42%[=======&gt;            ]   6.30G  23.2MB/s    eta 5m 57s
+rest.tar.gz          42%[=======&gt;            ]   6.31G  23.7MB/s    eta 5m 57s
+rest.tar.gz          42%[=======&gt;            ]   6.32G  23.6MB/s    eta 5m 57s
+rest.tar.gz          42%[=======&gt;            ]   6.33G  23.7MB/s    eta 5m 57s
+rest.tar.gz          42%[=======&gt;            ]   6.33G  23.8MB/s    eta 5m 56s
+rest.tar.gz          42%[=======&gt;            ]   6.34G  23.5MB/s    eta 5m 56s
+rest.tar.gz          42%[=======&gt;            ]   6.35G  23.5MB/s    eta 5m 56s
+rest.tar.gz          42%[=======&gt;            ]   6.35G  23.6MB/s    eta 5m 56s
+rest.tar.gz          42%[=======&gt;            ]   6.36G  23.4MB/s    eta 5m 54s
+rest.tar.gz          42%[=======&gt;            ]   6.37G  24.4MB/s    eta 5m 54s
+rest.tar.gz          42%[=======&gt;            ]   6.38G  24.4MB/s    eta 5m 54s
+rest.tar.gz          43%[=======&gt;            ]   6.38G  24.4MB/s    eta 5m 54s
+rest.tar.gz          43%[=======&gt;            ]   6.39G  24.3MB/s    eta 5m 53s
+rest.tar.gz          43%[=======&gt;            ]   6.40G  24.3MB/s    eta 5m 53s
+rest.tar.gz          43%[=======&gt;            ]   6.40G  24.3MB/s    eta 5m 53s
+rest.tar.gz          43%[=======&gt;            ]   6.41G  24.4MB/s    eta 5m 53s
+rest.tar.gz          43%[=======&gt;            ]   6.42G  24.3MB/s    eta 5m 52s
+rest.tar.gz          43%[=======&gt;            ]   6.43G  24.3MB/s    eta 5m 52s
+rest.tar.gz          43%[=======&gt;            ]   6.43G  24.3MB/s    eta 5m 52s
+rest.tar.gz          43%[=======&gt;            ]   6.44G  24.3MB/s    eta 5m 52s
+rest.tar.gz          43%[=======&gt;            ]   6.45G  24.2MB/s    eta 5m 51s
+rest.tar.gz          43%[=======&gt;            ]   6.46G  24.1MB/s    eta 5m 51s
+rest.tar.gz          43%[=======&gt;            ]   6.46G  24.4MB/s    eta 5m 51s
+rest.tar.gz          43%[=======&gt;            ]   6.47G  24.6MB/s    eta 5m 51s
+rest.tar.gz          43%[=======&gt;            ]   6.48G  24.6MB/s    eta 5m 50s
+rest.tar.gz          43%[=======&gt;            ]   6.48G  24.6MB/s    eta 5m 50s
+rest.tar.gz          43%[=======&gt;            ]   6.49G  24.6MB/s    eta 5m 50s
+rest.tar.gz          43%[=======&gt;            ]   6.50G  24.6MB/s    eta 5m 50s
+rest.tar.gz          43%[=======&gt;            ]   6.51G  24.7MB/s    eta 5m 48s
+rest.tar.gz          43%[=======&gt;            ]   6.51G  24.7MB/s    eta 5m 48s
+rest.tar.gz          43%[=======&gt;            ]   6.52G  24.6MB/s    eta 5m 48s
+rest.tar.gz          43%[=======&gt;            ]   6.53G  24.5MB/s    eta 5m 48s
+rest.tar.gz          44%[=======&gt;            ]   6.53G  24.5MB/s    eta 5m 47s
+rest.tar.gz          44%[=======&gt;            ]   6.54G  24.5MB/s    eta 5m 47s
+rest.tar.gz          44%[=======&gt;            ]   6.55G  24.7MB/s    eta 5m 47s
+rest.tar.gz          44%[=======&gt;            ]   6.56G  24.7MB/s    eta 5m 47s
+rest.tar.gz          44%[=======&gt;            ]   6.56G  24.7MB/s    eta 5m 46s
+rest.tar.gz          44%[=======&gt;            ]   6.57G  24.8MB/s    eta 5m 46s
+rest.tar.gz          44%[=======&gt;            ]   6.58G  24.8MB/s    eta 5m 46s
+rest.tar.gz          44%[=======&gt;            ]   6.59G  24.8MB/s    eta 5m 46s
+rest.tar.gz          44%[=======&gt;            ]   6.59G  24.8MB/s    eta 5m 45s
+rest.tar.gz          44%[=======&gt;            ]   6.60G  24.8MB/s    eta 5m 45s
+rest.tar.gz          44%[=======&gt;            ]   6.61G  24.6MB/s    eta 5m 45s
+rest.tar.gz          44%[=======&gt;            ]   6.61G  24.5MB/s    eta 5m 45s
+rest.tar.gz          44%[=======&gt;            ]   6.62G  24.6MB/s    eta 5m 43s
+rest.tar.gz          44%[=======&gt;            ]   6.63G  24.5MB/s    eta 5m 43s
+rest.tar.gz          44%[=======&gt;            ]   6.64G  24.5MB/s    eta 5m 43s
+rest.tar.gz          44%[=======&gt;            ]   6.64G  24.5MB/s    eta 5m 43s
+rest.tar.gz          44%[=======&gt;            ]   6.65G  24.4MB/s    eta 5m 42s
+rest.tar.gz          44%[=======&gt;            ]   6.66G  24.4MB/s    eta 5m 42s
+rest.tar.gz          44%[=======&gt;            ]   6.67G  24.3MB/s    eta 5m 42s
+rest.tar.gz          44%[=======&gt;            ]   6.67G  24.3MB/s    eta 5m 42s
+rest.tar.gz          45%[========&gt;           ]   6.68G  24.2MB/s    eta 5m 41s
+rest.tar.gz          45%[========&gt;           ]   6.69G  24.2MB/s    eta 5m 41s
+rest.tar.gz          45%[========&gt;           ]   6.69G  24.4MB/s    eta 5m 41s
+rest.tar.gz          45%[========&gt;           ]   6.70G  24.3MB/s    eta 5m 41s
+rest.tar.gz          45%[========&gt;           ]   6.71G  24.2MB/s    eta 5m 40s
+rest.tar.gz          45%[========&gt;           ]   6.72G  24.0MB/s    eta 5m 40s
+rest.tar.gz          45%[========&gt;           ]   6.72G  23.9MB/s    eta 5m 40s
+rest.tar.gz          45%[========&gt;           ]   6.73G  23.8MB/s    eta 5m 40s
+rest.tar.gz          45%[========&gt;           ]   6.74G  23.8MB/s    eta 5m 39s
+rest.tar.gz          45%[========&gt;           ]   6.75G  23.9MB/s    eta 5m 39s
+rest.tar.gz          45%[========&gt;           ]   6.75G  23.8MB/s    eta 5m 39s
+rest.tar.gz          45%[========&gt;           ]   6.76G  24.0MB/s    eta 5m 39s
+rest.tar.gz          45%[========&gt;           ]   6.77G  23.9MB/s    eta 5m 37s
+rest.tar.gz          45%[========&gt;           ]   6.77G  24.0MB/s    eta 5m 37s
+rest.tar.gz          45%[========&gt;           ]   6.78G  24.0MB/s    eta 5m 37s
+rest.tar.gz          45%[========&gt;           ]   6.79G  24.1MB/s    eta 5m 37s
+rest.tar.gz          45%[========&gt;           ]   6.80G  24.2MB/s    eta 5m 36s
+rest.tar.gz          45%[========&gt;           ]   6.80G  24.0MB/s    eta 5m 36s
+rest.tar.gz          45%[========&gt;           ]   6.81G  24.8MB/s    eta 5m 36s
+rest.tar.gz          45%[========&gt;           ]   6.82G  24.6MB/s    eta 5m 36s
+rest.tar.gz          45%[========&gt;           ]   6.82G  24.6MB/s    eta 5m 35s
+rest.tar.gz          46%[========&gt;           ]   6.83G  24.6MB/s    eta 5m 35s
+rest.tar.gz          46%[========&gt;           ]   6.84G  24.6MB/s    eta 5m 35s
+rest.tar.gz          46%[========&gt;           ]   6.85G  24.5MB/s    eta 5m 35s
+rest.tar.gz          46%[========&gt;           ]   6.85G  24.6MB/s    eta 5m 34s
+rest.tar.gz          46%[========&gt;           ]   6.86G  24.6MB/s    eta 5m 34s
+rest.tar.gz          46%[========&gt;           ]   6.87G  24.6MB/s    eta 5m 34s
+rest.tar.gz          46%[========&gt;           ]   6.88G  24.6MB/s    eta 5m 34s
+rest.tar.gz          46%[========&gt;           ]   6.88G  24.6MB/s    eta 5m 32s
+rest.tar.gz          46%[========&gt;           ]   6.89G  24.7MB/s    eta 5m 32s
+rest.tar.gz          46%[========&gt;           ]   6.90G  24.8MB/s    eta 5m 32s
+rest.tar.gz          46%[========&gt;           ]   6.90G  24.8MB/s    eta 5m 32s
+rest.tar.gz          46%[========&gt;           ]   6.91G  24.8MB/s    eta 5m 31s
+rest.tar.gz          46%[========&gt;           ]   6.92G  24.8MB/s    eta 5m 31s
+rest.tar.gz          46%[========&gt;           ]   6.93G  24.8MB/s    eta 5m 31s
+rest.tar.gz          46%[========&gt;           ]   6.93G  24.8MB/s    eta 5m 31s
+rest.tar.gz          46%[========&gt;           ]   6.94G  24.6MB/s    eta 5m 30s
+rest.tar.gz          46%[========&gt;           ]   6.95G  24.5MB/s    eta 5m 30s
+rest.tar.gz          46%[========&gt;           ]   6.96G  24.5MB/s    eta 5m 30s
+rest.tar.gz          46%[========&gt;           ]   6.96G  24.5MB/s    eta 5m 30s
+rest.tar.gz          46%[========&gt;           ]   6.97G  24.5MB/s    eta 5m 29s
+rest.tar.gz          47%[========&gt;           ]   6.98G  24.5MB/s    eta 5m 29s
+rest.tar.gz          47%[========&gt;           ]   6.98G  24.5MB/s    eta 5m 29s
+rest.tar.gz          47%[========&gt;           ]   6.99G  24.5MB/s    eta 5m 29s
+rest.tar.gz          47%[========&gt;           ]   7.00G  24.5MB/s    eta 5m 28s
+rest.tar.gz          47%[========&gt;           ]   7.01G  24.5MB/s    eta 5m 28s
+rest.tar.gz          47%[========&gt;           ]   7.01G  24.5MB/s    eta 5m 28s
+rest.tar.gz          47%[========&gt;           ]   7.02G  24.6MB/s    eta 5m 28s
+rest.tar.gz          47%[========&gt;           ]   7.03G  24.3MB/s    eta 5m 26s
+rest.tar.gz          47%[========&gt;           ]   7.03G  24.4MB/s    eta 5m 26s
+rest.tar.gz          47%[========&gt;           ]   7.04G  24.3MB/s    eta 5m 26s
+rest.tar.gz          47%[========&gt;           ]   7.05G  24.3MB/s    eta 5m 26s
+rest.tar.gz          47%[========&gt;           ]   7.06G  24.3MB/s    eta 5m 25s
+rest.tar.gz          47%[========&gt;           ]   7.06G  24.3MB/s    eta 5m 25s
+rest.tar.gz          47%[========&gt;           ]   7.07G  24.4MB/s    eta 5m 25s
+rest.tar.gz          47%[========&gt;           ]   7.08G  24.4MB/s    eta 5m 25s
+rest.tar.gz          47%[========&gt;           ]   7.08G  24.4MB/s    eta 5m 24s
+rest.tar.gz          47%[========&gt;           ]   7.09G  24.4MB/s    eta 5m 24s
+rest.tar.gz          47%[========&gt;           ]   7.10G  24.3MB/s    eta 5m 24s
+rest.tar.gz          47%[========&gt;           ]   7.11G  24.5MB/s    eta 5m 24s
+rest.tar.gz          47%[========&gt;           ]   7.11G  24.5MB/s    eta 5m 23s
+rest.tar.gz          47%[========&gt;           ]   7.12G  24.4MB/s    eta 5m 23s
+rest.tar.gz          48%[========&gt;           ]   7.13G  24.4MB/s    eta 5m 23s
+rest.tar.gz          48%[========&gt;           ]   7.14G  24.4MB/s    eta 5m 23s
+rest.tar.gz          48%[========&gt;           ]   7.14G  24.6MB/s    eta 5m 22s
+rest.tar.gz          48%[========&gt;           ]   7.15G  24.6MB/s    eta 5m 22s
+rest.tar.gz          48%[========&gt;           ]   7.16G  24.6MB/s    eta 5m 22s
+rest.tar.gz          48%[========&gt;           ]   7.16G  24.7MB/s    eta 5m 22s
+rest.tar.gz          48%[========&gt;           ]   7.17G  24.8MB/s    eta 5m 20s
+rest.tar.gz          48%[========&gt;           ]   7.18G  24.8MB/s    eta 5m 20s
+rest.tar.gz          48%[========&gt;           ]   7.19G  24.8MB/s    eta 5m 20s
+rest.tar.gz          48%[========&gt;           ]   7.19G  24.8MB/s    eta 5m 20s
+rest.tar.gz          48%[========&gt;           ]   7.20G  24.7MB/s    eta 5m 19s
+rest.tar.gz          48%[========&gt;           ]   7.21G  24.7MB/s    eta 5m 19s
+rest.tar.gz          48%[========&gt;           ]   7.21G  24.7MB/s    eta 5m 19s
+rest.tar.gz          48%[========&gt;           ]   7.22G  24.7MB/s    eta 5m 19s
+rest.tar.gz          48%[========&gt;           ]   7.23G  24.8MB/s    eta 5m 18s
+rest.tar.gz          48%[========&gt;           ]   7.24G  24.7MB/s    eta 5m 18s
+rest.tar.gz          48%[========&gt;           ]   7.24G  24.7MB/s    eta 5m 18s
+rest.tar.gz          48%[========&gt;           ]   7.25G  24.7MB/s    eta 5m 18s
+rest.tar.gz          48%[========&gt;           ]   7.26G  24.7MB/s    eta 5m 17s
+rest.tar.gz          48%[========&gt;           ]   7.27G  24.7MB/s    eta 5m 17s
+rest.tar.gz          49%[========&gt;           ]   7.27G  24.8MB/s    eta 5m 17s
+rest.tar.gz          49%[========&gt;           ]   7.28G  24.8MB/s    eta 5m 17s
+rest.tar.gz          49%[========&gt;           ]   7.29G  24.8MB/s    eta 5m 15s
+rest.tar.gz          49%[========&gt;           ]   7.30G  24.9MB/s    eta 5m 15s
+rest.tar.gz          49%[========&gt;           ]   7.30G  24.9MB/s    eta 5m 15s
+rest.tar.gz          49%[========&gt;           ]   7.31G  24.9MB/s    eta 5m 15s
+rest.tar.gz          49%[========&gt;           ]   7.32G  24.9MB/s    eta 5m 14s
+rest.tar.gz          49%[========&gt;           ]   7.33G  24.9MB/s    eta 5m 14s
+rest.tar.gz          49%[========&gt;           ]   7.33G  24.9MB/s    eta 5m 14s
+rest.tar.gz          49%[========&gt;           ]   7.34G  24.9MB/s    eta 5m 14s
+rest.tar.gz          49%[========&gt;           ]   7.35G  24.8MB/s    eta 5m 13s
+rest.tar.gz          49%[========&gt;           ]   7.35G  24.8MB/s    eta 5m 13s
+rest.tar.gz          49%[========&gt;           ]   7.36G  24.8MB/s    eta 5m 13s
+rest.tar.gz          49%[========&gt;           ]   7.37G  24.7MB/s    eta 5m 13s
+rest.tar.gz          49%[========&gt;           ]   7.38G  24.7MB/s    eta 5m 12s
+rest.tar.gz          49%[========&gt;           ]   7.38G  24.8MB/s    eta 5m 12s
+rest.tar.gz          49%[========&gt;           ]   7.39G  24.8MB/s    eta 5m 12s
+rest.tar.gz          49%[========&gt;           ]   7.40G  24.8MB/s    eta 5m 12s
+rest.tar.gz          49%[========&gt;           ]   7.40G  24.8MB/s    eta 5m 11s
+rest.tar.gz          49%[========&gt;           ]   7.41G  24.8MB/s    eta 5m 11s
+rest.tar.gz          49%[========&gt;           ]   7.42G  24.8MB/s    eta 5m 11s
+rest.tar.gz          50%[=========&gt;          ]   7.43G  24.9MB/s    eta 5m 11s
+rest.tar.gz          50%[=========&gt;          ]   7.43G  24.7MB/s    eta 5m 9s
+rest.tar.gz          50%[=========&gt;          ]   7.44G  24.5MB/s    eta 5m 9s
+rest.tar.gz          50%[=========&gt;          ]   7.45G  24.5MB/s    eta 5m 9s
+rest.tar.gz          50%[=========&gt;          ]   7.45G  24.3MB/s    eta 5m 9s
+rest.tar.gz          50%[=========&gt;          ]   7.46G  24.2MB/s    eta 5m 8s
+rest.tar.gz          50%[=========&gt;          ]   7.47G  24.1MB/s    eta 5m 8s
+rest.tar.gz          50%[=========&gt;          ]   7.48G  24.1MB/s    eta 5m 8s
+rest.tar.gz          50%[=========&gt;          ]   7.48G  24.0MB/s    eta 5m 8s
+rest.tar.gz          50%[=========&gt;          ]   7.49G  23.9MB/s    eta 5m 7s
+rest.tar.gz          50%[=========&gt;          ]   7.50G  23.9MB/s    eta 5m 7s
+rest.tar.gz          50%[=========&gt;          ]   7.50G  24.0MB/s    eta 5m 7s
+rest.tar.gz          50%[=========&gt;          ]   7.51G  23.8MB/s    eta 5m 7s
+rest.tar.gz          50%[=========&gt;          ]   7.52G  23.9MB/s    eta 5m 6s
+rest.tar.gz          50%[=========&gt;          ]   7.53G  23.8MB/s    eta 5m 6s
+rest.tar.gz          50%[=========&gt;          ]   7.53G  23.6MB/s    eta 5m 6s
+rest.tar.gz          50%[=========&gt;          ]   7.54G  23.5MB/s    eta 5m 6s
+rest.tar.gz          50%[=========&gt;          ]   7.55G  24.5MB/s    eta 5m 5s
+rest.tar.gz          50%[=========&gt;          ]   7.55G  24.5MB/s    eta 5m 5s
+rest.tar.gz          50%[=========&gt;          ]   7.56G  24.4MB/s    eta 5m 5s
+rest.tar.gz          51%[=========&gt;          ]   7.57G  24.4MB/s    eta 5m 5s
+rest.tar.gz          51%[=========&gt;          ]   7.58G  24.5MB/s    eta 5m 3s
+rest.tar.gz          51%[=========&gt;          ]   7.58G  24.4MB/s    eta 5m 3s
+rest.tar.gz          51%[=========&gt;          ]   7.59G  24.5MB/s    eta 5m 3s
+rest.tar.gz          51%[=========&gt;          ]   7.60G  24.5MB/s    eta 5m 3s
+rest.tar.gz          51%[=========&gt;          ]   7.61G  24.4MB/s    eta 5m 2s
+rest.tar.gz          51%[=========&gt;          ]   7.61G  24.5MB/s    eta 5m 2s
+rest.tar.gz          51%[=========&gt;          ]   7.62G  24.5MB/s    eta 5m 2s
+rest.tar.gz          51%[=========&gt;          ]   7.63G  24.5MB/s    eta 5m 2s
+rest.tar.gz          51%[=========&gt;          ]   7.63G  24.4MB/s    eta 5m 1s
+rest.tar.gz          51%[=========&gt;          ]   7.64G  24.4MB/s    eta 5m 1s
+rest.tar.gz          51%[=========&gt;          ]   7.65G  24.3MB/s    eta 5m 1s
+rest.tar.gz          51%[=========&gt;          ]   7.66G  24.3MB/s    eta 5m 1s
+rest.tar.gz          51%[=========&gt;          ]   7.66G  24.2MB/s    eta 5m 0s
+rest.tar.gz          51%[=========&gt;          ]   7.67G  24.1MB/s    eta 5m 0s
+rest.tar.gz          51%[=========&gt;          ]   7.68G  24.1MB/s    eta 5m 0s
+rest.tar.gz          51%[=========&gt;          ]   7.68G  24.1MB/s    eta 5m 0s
+rest.tar.gz          51%[=========&gt;          ]   7.69G  23.9MB/s    eta 4m 58s
+rest.tar.gz          51%[=========&gt;          ]   7.70G  23.8MB/s    eta 4m 58s
+rest.tar.gz          51%[=========&gt;          ]   7.71G  24.2MB/s    eta 4m 58s
+rest.tar.gz          51%[=========&gt;          ]   7.71G  24.2MB/s    eta 4m 58s
+rest.tar.gz          52%[=========&gt;          ]   7.72G  23.9MB/s    eta 4m 57s
+rest.tar.gz          52%[=========&gt;          ]   7.73G  23.8MB/s    eta 4m 57s
+rest.tar.gz          52%[=========&gt;          ]   7.74G  23.9MB/s    eta 4m 57s
+rest.tar.gz          52%[=========&gt;          ]   7.74G  24.0MB/s    eta 4m 57s
+rest.tar.gz          52%[=========&gt;          ]   7.75G  23.9MB/s    eta 4m 56s
+rest.tar.gz          52%[=========&gt;          ]   7.76G  23.9MB/s    eta 4m 56s
+rest.tar.gz          52%[=========&gt;          ]   7.76G  23.9MB/s    eta 4m 56s
+rest.tar.gz          52%[=========&gt;          ]   7.77G  24.0MB/s    eta 4m 56s
+rest.tar.gz          52%[=========&gt;          ]   7.78G  24.9MB/s    eta 4m 55s
+rest.tar.gz          52%[=========&gt;          ]   7.79G  24.9MB/s    eta 4m 55s
+rest.tar.gz          52%[=========&gt;          ]   7.79G  24.9MB/s    eta 4m 55s
+rest.tar.gz          52%[=========&gt;          ]   7.80G  24.8MB/s    eta 4m 55s
+rest.tar.gz          52%[=========&gt;          ]   7.81G  24.3MB/s    eta 4m 54s
+rest.tar.gz          52%[=========&gt;          ]   7.81G  24.1MB/s    eta 4m 54s
+rest.tar.gz          52%[=========&gt;          ]   7.82G  24.0MB/s    eta 4m 54s
+rest.tar.gz          52%[=========&gt;          ]   7.82G  24.1MB/s    eta 4m 54s
+rest.tar.gz          52%[=========&gt;          ]   7.83G  24.0MB/s    eta 4m 54s
+rest.tar.gz          52%[=========&gt;          ]   7.83G  23.5MB/s    eta 4m 53s
+rest.tar.gz          52%[=========&gt;          ]   7.84G  23.5MB/s    eta 4m 53s
+rest.tar.gz          52%[=========&gt;          ]   7.84G  23.5MB/s    eta 4m 53s
+rest.tar.gz          52%[=========&gt;          ]   7.85G  23.5MB/s    eta 4m 53s
+rest.tar.gz          52%[=========&gt;          ]   7.86G  23.6MB/s    eta 4m 52s
+rest.tar.gz          53%[=========&gt;          ]   7.87G  23.5MB/s    eta 4m 52s
+rest.tar.gz          53%[=========&gt;          ]   7.87G  24.2MB/s    eta 4m 52s
+rest.tar.gz          53%[=========&gt;          ]   7.88G  23.7MB/s    eta 4m 52s
+rest.tar.gz          53%[=========&gt;          ]   7.89G  23.5MB/s    eta 4m 50s
+rest.tar.gz          53%[=========&gt;          ]   7.90G  24.1MB/s    eta 4m 50s
+rest.tar.gz          53%[=========&gt;          ]   7.90G  24.5MB/s    eta 4m 50s
+rest.tar.gz          53%[=========&gt;          ]   7.91G  24.3MB/s    eta 4m 50s
+rest.tar.gz          53%[=========&gt;          ]   7.92G  24.5MB/s    eta 4m 49s
+rest.tar.gz          53%[=========&gt;          ]   7.92G  24.4MB/s    eta 4m 49s
+rest.tar.gz          53%[=========&gt;          ]   7.93G  24.5MB/s    eta 4m 49s
+rest.tar.gz          53%[=========&gt;          ]   7.94G  24.6MB/s    eta 4m 49s
+rest.tar.gz          53%[=========&gt;          ]   7.95G  24.6MB/s    eta 4m 48s
+rest.tar.gz          53%[=========&gt;          ]   7.95G  24.6MB/s    eta 4m 48s
+rest.tar.gz          53%[=========&gt;          ]   7.96G  24.7MB/s    eta 4m 48s
+rest.tar.gz          53%[=========&gt;          ]   7.97G  24.7MB/s    eta 4m 48s
+rest.tar.gz          53%[=========&gt;          ]   7.98G  24.7MB/s    eta 4m 47s
+rest.tar.gz          53%[=========&gt;          ]   7.98G  24.7MB/s    eta 4m 47s
+rest.tar.gz          53%[=========&gt;          ]   7.99G  24.5MB/s    eta 4m 47s
+rest.tar.gz          53%[=========&gt;          ]   8.00G  24.5MB/s    eta 4m 47s
+rest.tar.gz          53%[=========&gt;          ]   8.00G  24.1MB/s    eta 4m 46s
+rest.tar.gz          53%[=========&gt;          ]   8.01G  24.0MB/s    eta 4m 46s
+rest.tar.gz          54%[=========&gt;          ]   8.02G  24.0MB/s    eta 4m 46s
+rest.tar.gz          54%[=========&gt;          ]   8.02G  24.1MB/s    eta 4m 46s
+rest.tar.gz          54%[=========&gt;          ]   8.03G  24.0MB/s    eta 4m 44s
+rest.tar.gz          54%[=========&gt;          ]   8.04G  24.0MB/s    eta 4m 44s
+rest.tar.gz          54%[=========&gt;          ]   8.05G  24.1MB/s    eta 4m 44s
+rest.tar.gz          54%[=========&gt;          ]   8.05G  24.1MB/s    eta 4m 44s
+rest.tar.gz          54%[=========&gt;          ]   8.06G  24.2MB/s    eta 4m 43s
+rest.tar.gz          54%[=========&gt;          ]   8.07G  24.3MB/s    eta 4m 43s
+rest.tar.gz          54%[=========&gt;          ]   8.08G  24.2MB/s    eta 4m 43s
+rest.tar.gz          54%[=========&gt;          ]   8.08G  24.0MB/s    eta 4m 43s
+rest.tar.gz          54%[=========&gt;          ]   8.09G  24.0MB/s    eta 4m 42s
+rest.tar.gz          54%[=========&gt;          ]   8.10G  24.0MB/s    eta 4m 42s
+rest.tar.gz          54%[=========&gt;          ]   8.10G  23.9MB/s    eta 4m 42s
+rest.tar.gz          54%[=========&gt;          ]   8.11G  23.6MB/s    eta 4m 42s
+rest.tar.gz          54%[=========&gt;          ]   8.12G  23.6MB/s    eta 4m 41s
+rest.tar.gz          54%[=========&gt;          ]   8.12G  23.6MB/s    eta 4m 41s
+rest.tar.gz          54%[=========&gt;          ]   8.13G  23.8MB/s    eta 4m 41s
+rest.tar.gz          54%[=========&gt;          ]   8.14G  23.9MB/s    eta 4m 41s
+rest.tar.gz          54%[=========&gt;          ]   8.15G  24.1MB/s    eta 4m 40s
+rest.tar.gz          54%[=========&gt;          ]   8.15G  24.1MB/s    eta 4m 40s
+rest.tar.gz          54%[=========&gt;          ]   8.16G  24.1MB/s    eta 4m 40s
+rest.tar.gz          55%[==========&gt;         ]   8.17G  24.2MB/s    eta 4m 40s
+rest.tar.gz          55%[==========&gt;         ]   8.18G  24.2MB/s    eta 4m 38s
+rest.tar.gz          55%[==========&gt;         ]   8.18G  24.3MB/s    eta 4m 38s
+rest.tar.gz          55%[==========&gt;         ]   8.19G  24.1MB/s    eta 4m 38s
+rest.tar.gz          55%[==========&gt;         ]   8.20G  24.0MB/s    eta 4m 38s
+rest.tar.gz          55%[==========&gt;         ]   8.20G  24.1MB/s    eta 4m 37s
+rest.tar.gz          55%[==========&gt;         ]   8.21G  23.9MB/s    eta 4m 37s
+rest.tar.gz          55%[==========&gt;         ]   8.22G  23.7MB/s    eta 4m 37s
+rest.tar.gz          55%[==========&gt;         ]   8.23G  24.6MB/s    eta 4m 37s
+rest.tar.gz          55%[==========&gt;         ]   8.23G  24.6MB/s    eta 4m 36s
+rest.tar.gz          55%[==========&gt;         ]   8.24G  24.6MB/s    eta 4m 36s
+rest.tar.gz          55%[==========&gt;         ]   8.25G  24.6MB/s    eta 4m 36s
+rest.tar.gz          55%[==========&gt;         ]   8.25G  24.6MB/s    eta 4m 36s
+rest.tar.gz          55%[==========&gt;         ]   8.26G  24.6MB/s    eta 4m 35s
+rest.tar.gz          55%[==========&gt;         ]   8.27G  24.6MB/s    eta 4m 35s
+rest.tar.gz          55%[==========&gt;         ]   8.28G  24.6MB/s    eta 4m 35s
+rest.tar.gz          55%[==========&gt;         ]   8.28G  24.5MB/s    eta 4m 35s
+rest.tar.gz          55%[==========&gt;         ]   8.29G  24.3MB/s    eta 4m 34s
+rest.tar.gz          55%[==========&gt;         ]   8.30G  24.3MB/s    eta 4m 34s
+rest.tar.gz          55%[==========&gt;         ]   8.30G  24.4MB/s    eta 4m 34s
+rest.tar.gz          56%[==========&gt;         ]   8.31G  24.4MB/s    eta 4m 34s
+rest.tar.gz          56%[==========&gt;         ]   8.32G  24.4MB/s    eta 4m 32s
+rest.tar.gz          56%[==========&gt;         ]   8.33G  24.4MB/s    eta 4m 32s
+rest.tar.gz          56%[==========&gt;         ]   8.33G  24.4MB/s    eta 4m 32s
+rest.tar.gz          56%[==========&gt;         ]   8.34G  24.4MB/s    eta 4m 32s
+rest.tar.gz          56%[==========&gt;         ]   8.35G  24.4MB/s    eta 4m 31s
+rest.tar.gz          56%[==========&gt;         ]   8.36G  24.4MB/s    eta 4m 31s
+rest.tar.gz          56%[==========&gt;         ]   8.36G  24.5MB/s    eta 4m 31s
+rest.tar.gz          56%[==========&gt;         ]   8.37G  24.6MB/s    eta 4m 31s
+rest.tar.gz          56%[==========&gt;         ]   8.38G  24.5MB/s    eta 4m 30s
+rest.tar.gz          56%[==========&gt;         ]   8.38G  24.6MB/s    eta 4m 30s
+rest.tar.gz          56%[==========&gt;         ]   8.39G  24.6MB/s    eta 4m 30s
+rest.tar.gz          56%[==========&gt;         ]   8.40G  24.7MB/s    eta 4m 30s
+rest.tar.gz          56%[==========&gt;         ]   8.41G  24.7MB/s    eta 4m 29s
+rest.tar.gz          56%[==========&gt;         ]   8.41G  24.6MB/s    eta 4m 29s
+rest.tar.gz          56%[==========&gt;         ]   8.42G  24.5MB/s    eta 4m 29s
+rest.tar.gz          56%[==========&gt;         ]   8.43G  24.4MB/s    eta 4m 29s
+rest.tar.gz          56%[==========&gt;         ]   8.44G  24.3MB/s    eta 4m 27s
+rest.tar.gz          56%[==========&gt;         ]   8.44G  24.2MB/s    eta 4m 27s
+rest.tar.gz          56%[==========&gt;         ]   8.45G  24.1MB/s    eta 4m 27s
+rest.tar.gz          56%[==========&gt;         ]   8.46G  24.7MB/s    eta 4m 27s
+rest.tar.gz          57%[==========&gt;         ]   8.46G  24.5MB/s    eta 4m 26s
+rest.tar.gz          57%[==========&gt;         ]   8.47G  24.0MB/s    eta 4m 26s
+rest.tar.gz          57%[==========&gt;         ]   8.48G  23.8MB/s    eta 4m 26s
+rest.tar.gz          57%[==========&gt;         ]   8.48G  23.8MB/s    eta 4m 26s
+rest.tar.gz          57%[==========&gt;         ]   8.49G  23.8MB/s    eta 4m 25s
+rest.tar.gz          57%[==========&gt;         ]   8.50G  23.8MB/s    eta 4m 25s
+rest.tar.gz          57%[==========&gt;         ]   8.50G  23.8MB/s    eta 4m 25s
+rest.tar.gz          57%[==========&gt;         ]   8.51G  23.7MB/s    eta 4m 25s
+rest.tar.gz          57%[==========&gt;         ]   8.52G  23.8MB/s    eta 4m 24s
+rest.tar.gz          57%[==========&gt;         ]   8.53G  23.8MB/s    eta 4m 24s
+rest.tar.gz          57%[==========&gt;         ]   8.53G  23.8MB/s    eta 4m 24s
+rest.tar.gz          57%[==========&gt;         ]   8.54G  23.9MB/s    eta 4m 24s
+rest.tar.gz          57%[==========&gt;         ]   8.55G  23.7MB/s    eta 4m 23s
+rest.tar.gz          57%[==========&gt;         ]   8.56G  24.0MB/s    eta 4m 23s
+rest.tar.gz          57%[==========&gt;         ]   8.56G  24.6MB/s    eta 4m 23s
+rest.tar.gz          57%[==========&gt;         ]   8.57G  24.6MB/s    eta 4m 23s
+rest.tar.gz          57%[==========&gt;         ]   8.58G  24.6MB/s    eta 4m 22s
+rest.tar.gz          57%[==========&gt;         ]   8.58G  23.5MB/s    eta 4m 22s
+rest.tar.gz          57%[==========&gt;         ]   8.59G  23.3MB/s    eta 4m 22s
+rest.tar.gz          57%[==========&gt;         ]   8.60G  23.3MB/s    eta 4m 22s
+rest.tar.gz          57%[==========&gt;         ]   8.60G  23.3MB/s    eta 4m 21s
+rest.tar.gz          58%[==========&gt;         ]   8.61G  23.2MB/s    eta 4m 21s
+rest.tar.gz          58%[==========&gt;         ]   8.62G  23.2MB/s    eta 4m 21s
+rest.tar.gz          58%[==========&gt;         ]   8.62G  23.2MB/s    eta 4m 21s
+rest.tar.gz          58%[==========&gt;         ]   8.63G  23.6MB/s    eta 4m 19s
+rest.tar.gz          58%[==========&gt;         ]   8.64G  23.5MB/s    eta 4m 19s
+rest.tar.gz          58%[==========&gt;         ]   8.65G  23.5MB/s    eta 4m 19s
+rest.tar.gz          58%[==========&gt;         ]   8.65G  24.8MB/s    eta 4m 19s
+rest.tar.gz          58%[==========&gt;         ]   8.66G  24.3MB/s    eta 4m 18s
+rest.tar.gz          58%[==========&gt;         ]   8.67G  24.4MB/s    eta 4m 18s
+rest.tar.gz          58%[==========&gt;         ]   8.68G  24.4MB/s    eta 4m 18s
+rest.tar.gz          58%[==========&gt;         ]   8.68G  24.3MB/s    eta 4m 18s
+rest.tar.gz          58%[==========&gt;         ]   8.69G  24.2MB/s    eta 4m 17s
+rest.tar.gz          58%[==========&gt;         ]   8.70G  24.2MB/s    eta 4m 17s
+rest.tar.gz          58%[==========&gt;         ]   8.71G  24.4MB/s    eta 4m 17s
+rest.tar.gz          58%[==========&gt;         ]   8.71G  24.3MB/s    eta 4m 17s
+rest.tar.gz          58%[==========&gt;         ]   8.72G  24.3MB/s    eta 4m 16s
+rest.tar.gz          58%[==========&gt;         ]   8.73G  24.3MB/s    eta 4m 16s
+rest.tar.gz          58%[==========&gt;         ]   8.73G  24.3MB/s    eta 4m 16s
+rest.tar.gz          58%[==========&gt;         ]   8.74G  24.1MB/s    eta 4m 16s
+rest.tar.gz          58%[==========&gt;         ]   8.75G  24.1MB/s    eta 4m 15s
+rest.tar.gz          58%[==========&gt;         ]   8.76G  24.2MB/s    eta 4m 15s
+rest.tar.gz          59%[==========&gt;         ]   8.76G  24.2MB/s    eta 4m 15s
+rest.tar.gz          59%[==========&gt;         ]   8.77G  24.2MB/s    eta 4m 15s
+rest.tar.gz          59%[==========&gt;         ]   8.78G  24.4MB/s    eta 4m 13s
+rest.tar.gz          59%[==========&gt;         ]   8.79G  24.4MB/s    eta 4m 13s
+rest.tar.gz          59%[==========&gt;         ]   8.79G  24.3MB/s    eta 4m 13s
+rest.tar.gz          59%[==========&gt;         ]   8.80G  24.4MB/s    eta 4m 13s
+rest.tar.gz          59%[==========&gt;         ]   8.81G  24.4MB/s    eta 4m 12s
+rest.tar.gz          59%[==========&gt;         ]   8.81G  24.7MB/s    eta 4m 12s
+rest.tar.gz          59%[==========&gt;         ]   8.82G  24.7MB/s    eta 4m 12s
+rest.tar.gz          59%[==========&gt;         ]   8.83G  24.8MB/s    eta 4m 12s
+rest.tar.gz          59%[==========&gt;         ]   8.84G  24.8MB/s    eta 4m 11s
+rest.tar.gz          59%[==========&gt;         ]   8.84G  24.8MB/s    eta 4m 11s
+rest.tar.gz          59%[==========&gt;         ]   8.85G  24.7MB/s    eta 4m 11s
+rest.tar.gz          59%[==========&gt;         ]   8.86G  24.8MB/s    eta 4m 11s
+rest.tar.gz          59%[==========&gt;         ]   8.87G  24.8MB/s    eta 4m 10s
+rest.tar.gz          59%[==========&gt;         ]   8.87G  24.8MB/s    eta 4m 10s
+rest.tar.gz          59%[==========&gt;         ]   8.88G  24.8MB/s    eta 4m 10s
+rest.tar.gz          59%[==========&gt;         ]   8.89G  24.8MB/s    eta 4m 10s
+rest.tar.gz          59%[==========&gt;         ]   8.89G  24.8MB/s    eta 4m 8s
+rest.tar.gz          59%[==========&gt;         ]   8.90G  24.9MB/s    eta 4m 8s
+rest.tar.gz          60%[===========&gt;        ]   8.91G  24.8MB/s    eta 4m 8s
+rest.tar.gz          60%[===========&gt;        ]   8.92G  24.7MB/s    eta 4m 8s
+rest.tar.gz          60%[===========&gt;        ]   8.92G  24.6MB/s    eta 4m 7s
+rest.tar.gz          60%[===========&gt;        ]   8.93G  24.6MB/s    eta 4m 7s
+rest.tar.gz          60%[===========&gt;        ]   8.94G  24.7MB/s    eta 4m 7s
+rest.tar.gz          60%[===========&gt;        ]   8.94G  24.7MB/s    eta 4m 7s
+rest.tar.gz          60%[===========&gt;        ]   8.95G  24.5MB/s    eta 4m 6s
+rest.tar.gz          60%[===========&gt;        ]   8.96G  24.4MB/s    eta 4m 6s
+rest.tar.gz          60%[===========&gt;        ]   8.97G  24.5MB/s    eta 4m 6s
+rest.tar.gz          60%[===========&gt;        ]   8.97G  24.4MB/s    eta 4m 6s
+rest.tar.gz          60%[===========&gt;        ]   8.98G  24.5MB/s    eta 4m 5s
+rest.tar.gz          60%[===========&gt;        ]   8.99G  24.6MB/s    eta 4m 5s
+rest.tar.gz          60%[===========&gt;        ]   9.00G  24.6MB/s    eta 4m 5s
+rest.tar.gz          60%[===========&gt;        ]   9.00G  24.6MB/s    eta 4m 5s
+rest.tar.gz          60%[===========&gt;        ]   9.01G  24.6MB/s    eta 4m 4s
+rest.tar.gz          60%[===========&gt;        ]   9.02G  24.6MB/s    eta 4m 4s
+rest.tar.gz          60%[===========&gt;        ]   9.02G  24.6MB/s    eta 4m 4s
+rest.tar.gz          60%[===========&gt;        ]   9.03G  24.6MB/s    eta 4m 4s
+rest.tar.gz          60%[===========&gt;        ]   9.04G  24.5MB/s    eta 4m 2s
+rest.tar.gz          60%[===========&gt;        ]   9.05G  24.5MB/s    eta 4m 2s
+rest.tar.gz          61%[===========&gt;        ]   9.05G  24.6MB/s    eta 4m 2s
+rest.tar.gz          61%[===========&gt;        ]   9.06G  24.5MB/s    eta 4m 2s
+rest.tar.gz          61%[===========&gt;        ]   9.07G  24.5MB/s    eta 4m 1s
+rest.tar.gz          61%[===========&gt;        ]   9.07G  24.2MB/s    eta 4m 1s
+rest.tar.gz          61%[===========&gt;        ]   9.08G  24.3MB/s    eta 4m 1s
+rest.tar.gz          61%[===========&gt;        ]   9.09G  24.4MB/s    eta 4m 1s
+rest.tar.gz          61%[===========&gt;        ]   9.10G  24.4MB/s    eta 4m 0s
+rest.tar.gz          61%[===========&gt;        ]   9.10G  24.4MB/s    eta 4m 0s
+rest.tar.gz          61%[===========&gt;        ]   9.11G  24.4MB/s    eta 4m 0s
+rest.tar.gz          61%[===========&gt;        ]   9.12G  24.5MB/s    eta 4m 0s
+rest.tar.gz          61%[===========&gt;        ]   9.12G  24.4MB/s    eta 3m 59s
+rest.tar.gz          61%[===========&gt;        ]   9.13G  24.3MB/s    eta 3m 59s
+rest.tar.gz          61%[===========&gt;        ]   9.14G  24.2MB/s    eta 3m 59s
+rest.tar.gz          61%[===========&gt;        ]   9.15G  24.1MB/s    eta 3m 59s
+rest.tar.gz          61%[===========&gt;        ]   9.15G  24.2MB/s    eta 3m 57s
+rest.tar.gz          61%[===========&gt;        ]   9.16G  24.2MB/s    eta 3m 57s
+rest.tar.gz          61%[===========&gt;        ]   9.17G  24.1MB/s    eta 3m 57s
+rest.tar.gz          61%[===========&gt;        ]   9.18G  24.1MB/s    eta 3m 57s
+rest.tar.gz          61%[===========&gt;        ]   9.18G  24.2MB/s    eta 3m 56s
+rest.tar.gz          61%[===========&gt;        ]   9.19G  24.3MB/s    eta 3m 56s
+rest.tar.gz          61%[===========&gt;        ]   9.20G  24.2MB/s    eta 3m 56s
+rest.tar.gz          62%[===========&gt;        ]   9.21G  24.3MB/s    eta 3m 56s
+rest.tar.gz          62%[===========&gt;        ]   9.21G  24.2MB/s    eta 3m 55s
+rest.tar.gz          62%[===========&gt;        ]   9.22G  24.3MB/s    eta 3m 55s
+rest.tar.gz          62%[===========&gt;        ]   9.23G  24.9MB/s    eta 3m 55s
+rest.tar.gz          62%[===========&gt;        ]   9.23G  24.8MB/s    eta 3m 55s
+rest.tar.gz          62%[===========&gt;        ]   9.24G  24.7MB/s    eta 3m 54s
+rest.tar.gz          62%[===========&gt;        ]   9.25G  24.7MB/s    eta 3m 54s
+rest.tar.gz          62%[===========&gt;        ]   9.26G  24.7MB/s    eta 3m 54s
+rest.tar.gz          62%[===========&gt;        ]   9.26G  24.7MB/s    eta 3m 54s
+rest.tar.gz          62%[===========&gt;        ]   9.27G  24.6MB/s    eta 3m 53s
+rest.tar.gz          62%[===========&gt;        ]   9.28G  24.6MB/s    eta 3m 53s
+rest.tar.gz          62%[===========&gt;        ]   9.29G  24.6MB/s    eta 3m 53s
+rest.tar.gz          62%[===========&gt;        ]   9.29G  24.6MB/s    eta 3m 53s
+rest.tar.gz          62%[===========&gt;        ]   9.30G  24.5MB/s    eta 3m 51s
+rest.tar.gz          62%[===========&gt;        ]   9.31G  24.5MB/s    eta 3m 51s
+rest.tar.gz          62%[===========&gt;        ]   9.32G  24.4MB/s    eta 3m 51s
+rest.tar.gz          62%[===========&gt;        ]   9.32G  24.4MB/s    eta 3m 51s
+rest.tar.gz          62%[===========&gt;        ]   9.33G  24.2MB/s    eta 3m 50s
+rest.tar.gz          62%[===========&gt;        ]   9.34G  24.4MB/s    eta 3m 50s
+rest.tar.gz          62%[===========&gt;        ]   9.34G  24.5MB/s    eta 3m 50s
+rest.tar.gz          63%[===========&gt;        ]   9.35G  24.6MB/s    eta 3m 50s
+rest.tar.gz          63%[===========&gt;        ]   9.36G  24.6MB/s    eta 3m 49s
+rest.tar.gz          63%[===========&gt;        ]   9.37G  24.5MB/s    eta 3m 49s
+rest.tar.gz          63%[===========&gt;        ]   9.37G  24.6MB/s    eta 3m 49s
+rest.tar.gz          63%[===========&gt;        ]   9.38G  24.6MB/s    eta 3m 49s
+rest.tar.gz          63%[===========&gt;        ]   9.39G  24.5MB/s    eta 3m 48s
+rest.tar.gz          63%[===========&gt;        ]   9.39G  24.4MB/s    eta 3m 48s
+rest.tar.gz          63%[===========&gt;        ]   9.40G  24.4MB/s    eta 3m 48s
+rest.tar.gz          63%[===========&gt;        ]   9.41G  24.6MB/s    eta 3m 48s
+rest.tar.gz          63%[===========&gt;        ]   9.42G  24.5MB/s    eta 3m 46s
+rest.tar.gz          63%[===========&gt;        ]   9.42G  24.4MB/s    eta 3m 46s
+rest.tar.gz          63%[===========&gt;        ]   9.43G  24.6MB/s    eta 3m 46s
+rest.tar.gz          63%[===========&gt;        ]   9.44G  24.6MB/s    eta 3m 46s
+rest.tar.gz          63%[===========&gt;        ]   9.45G  24.7MB/s    eta 3m 45s
+rest.tar.gz          63%[===========&gt;        ]   9.45G  24.7MB/s    eta 3m 45s
+rest.tar.gz          63%[===========&gt;        ]   9.46G  24.7MB/s    eta 3m 45s
+rest.tar.gz          63%[===========&gt;        ]   9.47G  24.8MB/s    eta 3m 45s
+rest.tar.gz          63%[===========&gt;        ]   9.47G  24.8MB/s    eta 3m 44s
+rest.tar.gz          63%[===========&gt;        ]   9.48G  24.8MB/s    eta 3m 44s
+rest.tar.gz          63%[===========&gt;        ]   9.49G  24.8MB/s    eta 3m 44s
+rest.tar.gz          63%[===========&gt;        ]   9.50G  24.8MB/s    eta 3m 44s
+rest.tar.gz          64%[===========&gt;        ]   9.50G  24.8MB/s    eta 3m 43s
+rest.tar.gz          64%[===========&gt;        ]   9.51G  24.8MB/s    eta 3m 43s
+rest.tar.gz          64%[===========&gt;        ]   9.52G  24.8MB/s    eta 3m 43s
+rest.tar.gz          64%[===========&gt;        ]   9.53G  24.8MB/s    eta 3m 43s
+rest.tar.gz          64%[===========&gt;        ]   9.53G  24.8MB/s    eta 3m 42s
+rest.tar.gz          64%[===========&gt;        ]   9.54G  24.8MB/s    eta 3m 42s
+rest.tar.gz          64%[===========&gt;        ]   9.55G  24.8MB/s    eta 3m 42s
+rest.tar.gz          64%[===========&gt;        ]   9.55G  24.7MB/s    eta 3m 42s
+rest.tar.gz          64%[===========&gt;        ]   9.56G  24.7MB/s    eta 3m 40s
+rest.tar.gz          64%[===========&gt;        ]   9.57G  24.7MB/s    eta 3m 40s
+rest.tar.gz          64%[===========&gt;        ]   9.58G  24.7MB/s    eta 3m 40s
+rest.tar.gz          64%[===========&gt;        ]   9.58G  24.8MB/s    eta 3m 40s
+rest.tar.gz          64%[===========&gt;        ]   9.59G  24.9MB/s    eta 3m 39s
+rest.tar.gz          64%[===========&gt;        ]   9.60G  24.9MB/s    eta 3m 39s
+rest.tar.gz          64%[===========&gt;        ]   9.61G  24.9MB/s    eta 3m 39s
+rest.tar.gz          64%[===========&gt;        ]   9.61G  24.8MB/s    eta 3m 39s
+rest.tar.gz          64%[===========&gt;        ]   9.62G  24.9MB/s    eta 3m 38s
+rest.tar.gz          64%[===========&gt;        ]   9.63G  24.8MB/s    eta 3m 38s
+rest.tar.gz          64%[===========&gt;        ]   9.64G  24.8MB/s    eta 3m 38s
+rest.tar.gz          64%[===========&gt;        ]   9.64G  24.8MB/s    eta 3m 38s
+rest.tar.gz          65%[============&gt;       ]   9.65G  24.7MB/s    eta 3m 37s
+rest.tar.gz          65%[============&gt;       ]   9.66G  24.7MB/s    eta 3m 37s
+rest.tar.gz          65%[============&gt;       ]   9.66G  24.5MB/s    eta 3m 37s
+rest.tar.gz          65%[============&gt;       ]   9.67G  24.3MB/s    eta 3m 37s
+rest.tar.gz          65%[============&gt;       ]   9.68G  24.2MB/s    eta 3m 35s
+rest.tar.gz          65%[============&gt;       ]   9.69G  24.2MB/s    eta 3m 35s
+rest.tar.gz          65%[============&gt;       ]   9.69G  24.1MB/s    eta 3m 35s
+rest.tar.gz          65%[============&gt;       ]   9.70G  24.0MB/s    eta 3m 35s
+rest.tar.gz          65%[============&gt;       ]   9.71G  24.1MB/s    eta 3m 34s
+rest.tar.gz          65%[============&gt;       ]   9.71G  24.0MB/s    eta 3m 34s
+rest.tar.gz          65%[============&gt;       ]   9.72G  24.1MB/s    eta 3m 34s
+rest.tar.gz          65%[============&gt;       ]   9.73G  24.0MB/s    eta 3m 34s
+rest.tar.gz          65%[============&gt;       ]   9.74G  24.1MB/s    eta 3m 33s
+rest.tar.gz          65%[============&gt;       ]   9.74G  24.2MB/s    eta 3m 33s
+rest.tar.gz          65%[============&gt;       ]   9.75G  24.2MB/s    eta 3m 33s
+rest.tar.gz          65%[============&gt;       ]   9.76G  24.3MB/s    eta 3m 33s
+rest.tar.gz          65%[============&gt;       ]   9.77G  24.2MB/s    eta 3m 32s
+rest.tar.gz          65%[============&gt;       ]   9.77G  24.2MB/s    eta 3m 32s
+rest.tar.gz          65%[============&gt;       ]   9.78G  24.1MB/s    eta 3m 32s
+rest.tar.gz          65%[============&gt;       ]   9.79G  24.1MB/s    eta 3m 32s
+rest.tar.gz          65%[============&gt;       ]   9.79G  23.9MB/s    eta 3m 31s
+rest.tar.gz          66%[============&gt;       ]   9.80G  24.2MB/s    eta 3m 31s
+rest.tar.gz          66%[============&gt;       ]   9.81G  24.2MB/s    eta 3m 31s
+rest.tar.gz          66%[============&gt;       ]   9.82G  24.1MB/s    eta 3m 31s
+rest.tar.gz          66%[============&gt;       ]   9.82G  24.1MB/s    eta 3m 29s
+rest.tar.gz          66%[============&gt;       ]   9.83G  24.2MB/s    eta 3m 29s
+rest.tar.gz          66%[============&gt;       ]   9.84G  24.2MB/s    eta 3m 29s
+rest.tar.gz          66%[============&gt;       ]   9.84G  24.3MB/s    eta 3m 29s
+rest.tar.gz          66%[============&gt;       ]   9.85G  24.5MB/s    eta 3m 28s
+rest.tar.gz          66%[============&gt;       ]   9.86G  24.5MB/s    eta 3m 28s
+rest.tar.gz          66%[============&gt;       ]   9.87G  24.4MB/s    eta 3m 28s
+rest.tar.gz          66%[============&gt;       ]   9.87G  24.5MB/s    eta 3m 28s
+rest.tar.gz          66%[============&gt;       ]   9.88G  24.4MB/s    eta 3m 27s
+rest.tar.gz          66%[============&gt;       ]   9.89G  24.3MB/s    eta 3m 27s
+rest.tar.gz          66%[============&gt;       ]   9.90G  24.3MB/s    eta 3m 27s
+rest.tar.gz          66%[============&gt;       ]   9.90G  24.5MB/s    eta 3m 27s
+rest.tar.gz          66%[============&gt;       ]   9.91G  24.5MB/s    eta 3m 26s
+rest.tar.gz          66%[============&gt;       ]   9.92G  24.6MB/s    eta 3m 26s
+rest.tar.gz          66%[============&gt;       ]   9.92G  24.6MB/s    eta 3m 26s
+rest.tar.gz          66%[============&gt;       ]   9.93G  24.7MB/s    eta 3m 26s
+rest.tar.gz          66%[============&gt;       ]   9.94G  24.7MB/s    eta 3m 25s
+rest.tar.gz          67%[============&gt;       ]   9.95G  24.7MB/s    eta 3m 25s
+rest.tar.gz          67%[============&gt;       ]   9.95G  24.6MB/s    eta 3m 25s
+rest.tar.gz          67%[============&gt;       ]   9.96G  24.7MB/s    eta 3m 25s
+rest.tar.gz          67%[============&gt;       ]   9.97G  24.7MB/s    eta 3m 23s
+rest.tar.gz          67%[============&gt;       ]   9.98G  24.7MB/s    eta 3m 23s
+rest.tar.gz          67%[============&gt;       ]   9.98G  24.6MB/s    eta 3m 23s
+rest.tar.gz          67%[============&gt;       ]   9.99G  24.6MB/s    eta 3m 23s
+rest.tar.gz          67%[============&gt;       ]  10.00G  24.6MB/s    eta 3m 22s
+rest.tar.gz          67%[============&gt;       ]  10.00G  24.5MB/s    eta 3m 22s
+rest.tar.gz          67%[============&gt;       ]  10.01G  24.6MB/s    eta 3m 22s
+rest.tar.gz          67%[============&gt;       ]  10.02G  24.6MB/s    eta 3m 22s
+rest.tar.gz          67%[============&gt;       ]  10.03G  24.6MB/s    eta 3m 21s
+rest.tar.gz          67%[============&gt;       ]  10.03G  24.6MB/s    eta 3m 21s
+rest.tar.gz          67%[============&gt;       ]  10.04G  24.7MB/s    eta 3m 21s
+rest.tar.gz          67%[============&gt;       ]  10.05G  24.8MB/s    eta 3m 21s
+rest.tar.gz          67%[============&gt;       ]  10.06G  24.8MB/s    eta 3m 20s
+rest.tar.gz          67%[============&gt;       ]  10.06G  24.8MB/s    eta 3m 20s
+rest.tar.gz          67%[============&gt;       ]  10.07G  24.8MB/s    eta 3m 20s
+rest.tar.gz          67%[============&gt;       ]  10.08G  24.8MB/s    eta 3m 20s
+rest.tar.gz          67%[============&gt;       ]  10.08G  24.8MB/s    eta 3m 18s
+rest.tar.gz          68%[============&gt;       ]  10.09G  24.8MB/s    eta 3m 18s
+rest.tar.gz          68%[============&gt;       ]  10.10G  24.8MB/s    eta 3m 18s
+rest.tar.gz          68%[============&gt;       ]  10.11G  24.7MB/s    eta 3m 18s
+rest.tar.gz          68%[============&gt;       ]  10.11G  24.6MB/s    eta 3m 17s
+rest.tar.gz          68%[============&gt;       ]  10.12G  24.6MB/s    eta 3m 17s
+rest.tar.gz          68%[============&gt;       ]  10.13G  24.6MB/s    eta 3m 17s
+rest.tar.gz          68%[============&gt;       ]  10.13G  24.4MB/s    eta 3m 17s
+rest.tar.gz          68%[============&gt;       ]  10.14G  24.3MB/s    eta 3m 16s
+rest.tar.gz          68%[============&gt;       ]  10.15G  24.3MB/s    eta 3m 16s
+rest.tar.gz          68%[============&gt;       ]  10.16G  24.4MB/s    eta 3m 16s
+rest.tar.gz          68%[============&gt;       ]  10.16G  24.4MB/s    eta 3m 16s
+rest.tar.gz          68%[============&gt;       ]  10.17G  24.4MB/s    eta 3m 15s
+rest.tar.gz          68%[============&gt;       ]  10.18G  24.4MB/s    eta 3m 15s
+rest.tar.gz          68%[============&gt;       ]  10.19G  24.5MB/s    eta 3m 15s
+rest.tar.gz          68%[============&gt;       ]  10.19G  24.6MB/s    eta 3m 15s
+rest.tar.gz          68%[============&gt;       ]  10.20G  24.6MB/s    eta 3m 14s
+rest.tar.gz          68%[============&gt;       ]  10.21G  24.6MB/s    eta 3m 14s
+rest.tar.gz          68%[============&gt;       ]  10.21G  24.6MB/s    eta 3m 14s
+rest.tar.gz          68%[============&gt;       ]  10.22G  24.7MB/s    eta 3m 14s
+rest.tar.gz          68%[============&gt;       ]  10.23G  24.7MB/s    eta 3m 12s
+rest.tar.gz          68%[============&gt;       ]  10.24G  24.7MB/s    eta 3m 12s
+rest.tar.gz          69%[============&gt;       ]  10.24G  24.7MB/s    eta 3m 12s
+rest.tar.gz          69%[============&gt;       ]  10.25G  24.7MB/s    eta 3m 12s
+rest.tar.gz          69%[============&gt;       ]  10.26G  24.7MB/s    eta 3m 11s
+rest.tar.gz          69%[============&gt;       ]  10.27G  24.7MB/s    eta 3m 11s
+rest.tar.gz          69%[============&gt;       ]  10.27G  24.5MB/s    eta 3m 11s
+rest.tar.gz          69%[============&gt;       ]  10.28G  24.5MB/s    eta 3m 11s
+rest.tar.gz          69%[============&gt;       ]  10.29G  24.6MB/s    eta 3m 10s
+rest.tar.gz          69%[============&gt;       ]  10.29G  24.5MB/s    eta 3m 10s
+rest.tar.gz          69%[============&gt;       ]  10.30G  24.7MB/s    eta 3m 10s
+rest.tar.gz          69%[============&gt;       ]  10.31G  24.6MB/s    eta 3m 10s
+rest.tar.gz          69%[============&gt;       ]  10.32G  24.7MB/s    eta 3m 9s
+rest.tar.gz          69%[============&gt;       ]  10.32G  24.4MB/s    eta 3m 9s
+rest.tar.gz          69%[============&gt;       ]  10.33G  24.4MB/s    eta 3m 9s
+rest.tar.gz          69%[============&gt;       ]  10.34G  24.4MB/s    eta 3m 9s
+rest.tar.gz          69%[============&gt;       ]  10.34G  24.4MB/s    eta 3m 8s
+rest.tar.gz          69%[============&gt;       ]  10.35G  24.4MB/s    eta 3m 8s
+rest.tar.gz          69%[============&gt;       ]  10.36G  24.4MB/s    eta 3m 8s
+rest.tar.gz          69%[============&gt;       ]  10.37G  24.4MB/s    eta 3m 8s
+rest.tar.gz          69%[============&gt;       ]  10.37G  24.3MB/s    eta 3m 6s
+rest.tar.gz          69%[============&gt;       ]  10.38G  24.3MB/s    eta 3m 6s
+rest.tar.gz          69%[============&gt;       ]  10.39G  24.3MB/s    eta 3m 6s
+rest.tar.gz          70%[=============&gt;      ]  10.39G  24.3MB/s    eta 3m 6s
+rest.tar.gz          70%[=============&gt;      ]  10.40G  24.2MB/s    eta 3m 5s
+rest.tar.gz          70%[=============&gt;      ]  10.41G  24.1MB/s    eta 3m 5s
+rest.tar.gz          70%[=============&gt;      ]  10.42G  24.1MB/s    eta 3m 5s
+rest.tar.gz          70%[=============&gt;      ]  10.42G  24.0MB/s    eta 3m 5s
+rest.tar.gz          70%[=============&gt;      ]  10.43G  23.9MB/s    eta 3m 4s
+rest.tar.gz          70%[=============&gt;      ]  10.44G  23.8MB/s    eta 3m 4s
+rest.tar.gz          70%[=============&gt;      ]  10.44G  23.7MB/s    eta 3m 4s
+rest.tar.gz          70%[=============&gt;      ]  10.45G  23.8MB/s    eta 3m 4s
+rest.tar.gz          70%[=============&gt;      ]  10.46G  23.9MB/s    eta 3m 3s
+rest.tar.gz          70%[=============&gt;      ]  10.47G  23.7MB/s    eta 3m 3s
+rest.tar.gz          70%[=============&gt;      ]  10.47G  23.7MB/s    eta 3m 3s
+rest.tar.gz          70%[=============&gt;      ]  10.48G  24.7MB/s    eta 3m 3s
+rest.tar.gz          70%[=============&gt;      ]  10.49G  24.7MB/s    eta 3m 2s
+rest.tar.gz          70%[=============&gt;      ]  10.50G  24.7MB/s    eta 3m 2s
+rest.tar.gz          70%[=============&gt;      ]  10.50G  24.7MB/s    eta 3m 2s
+rest.tar.gz          70%[=============&gt;      ]  10.51G  24.6MB/s    eta 3m 2s
+rest.tar.gz          70%[=============&gt;      ]  10.52G  24.6MB/s    eta 3m 0s
+rest.tar.gz          70%[=============&gt;      ]  10.52G  24.5MB/s    eta 3m 0s
+rest.tar.gz          70%[=============&gt;      ]  10.53G  24.6MB/s    eta 3m 0s
+rest.tar.gz          71%[=============&gt;      ]  10.54G  24.7MB/s    eta 3m 0s
+rest.tar.gz          71%[=============&gt;      ]  10.55G  24.7MB/s    eta 2m 59s
+rest.tar.gz          71%[=============&gt;      ]  10.55G  24.7MB/s    eta 2m 59s
+rest.tar.gz          71%[=============&gt;      ]  10.56G  24.7MB/s    eta 2m 59s
+rest.tar.gz          71%[=============&gt;      ]  10.57G  24.6MB/s    eta 2m 59s
+rest.tar.gz          71%[=============&gt;      ]  10.58G  24.5MB/s    eta 2m 58s
+rest.tar.gz          71%[=============&gt;      ]  10.58G  24.6MB/s    eta 2m 58s
+rest.tar.gz          71%[=============&gt;      ]  10.59G  24.5MB/s    eta 2m 58s
+rest.tar.gz          71%[=============&gt;      ]  10.60G  24.5MB/s    eta 2m 58s
+rest.tar.gz          71%[=============&gt;      ]  10.60G  24.5MB/s    eta 2m 57s
+rest.tar.gz          71%[=============&gt;      ]  10.61G  24.5MB/s    eta 2m 57s
+rest.tar.gz          71%[=============&gt;      ]  10.62G  24.5MB/s    eta 2m 57s
+rest.tar.gz          71%[=============&gt;      ]  10.63G  24.4MB/s    eta 2m 57s
+rest.tar.gz          71%[=============&gt;      ]  10.63G  24.4MB/s    eta 2m 56s
+rest.tar.gz          71%[=============&gt;      ]  10.64G  24.5MB/s    eta 2m 56s
+rest.tar.gz          71%[=============&gt;      ]  10.65G  24.6MB/s    eta 2m 56s
+rest.tar.gz          71%[=============&gt;      ]  10.66G  24.6MB/s    eta 2m 56s
+rest.tar.gz          71%[=============&gt;      ]  10.66G  24.8MB/s    eta 2m 54s
+rest.tar.gz          71%[=============&gt;      ]  10.67G  24.8MB/s    eta 2m 54s
+rest.tar.gz          71%[=============&gt;      ]  10.68G  24.8MB/s    eta 2m 54s
+rest.tar.gz          71%[=============&gt;      ]  10.68G  24.7MB/s    eta 2m 54s
+rest.tar.gz          72%[=============&gt;      ]  10.69G  24.7MB/s    eta 2m 53s
+rest.tar.gz          72%[=============&gt;      ]  10.70G  24.7MB/s    eta 2m 53s
+rest.tar.gz          72%[=============&gt;      ]  10.71G  24.8MB/s    eta 2m 53s
+rest.tar.gz          72%[=============&gt;      ]  10.71G  24.8MB/s    eta 2m 53s
+rest.tar.gz          72%[=============&gt;      ]  10.72G  24.8MB/s    eta 2m 52s
+rest.tar.gz          72%[=============&gt;      ]  10.73G  24.8MB/s    eta 2m 52s
+rest.tar.gz          72%[=============&gt;      ]  10.74G  24.8MB/s    eta 2m 52s
+rest.tar.gz          72%[=============&gt;      ]  10.74G  24.8MB/s    eta 2m 52s
+rest.tar.gz          72%[=============&gt;      ]  10.75G  24.8MB/s    eta 2m 51s
+rest.tar.gz          72%[=============&gt;      ]  10.76G  24.8MB/s    eta 2m 51s
+rest.tar.gz          72%[=============&gt;      ]  10.76G  24.7MB/s    eta 2m 51s
+rest.tar.gz          72%[=============&gt;      ]  10.77G  24.6MB/s    eta 2m 51s
+rest.tar.gz          72%[=============&gt;      ]  10.78G  24.6MB/s    eta 2m 49s
+rest.tar.gz          72%[=============&gt;      ]  10.79G  24.4MB/s    eta 2m 49s
+rest.tar.gz          72%[=============&gt;      ]  10.79G  24.3MB/s    eta 2m 49s
+rest.tar.gz          72%[=============&gt;      ]  10.80G  24.4MB/s    eta 2m 49s
+rest.tar.gz          72%[=============&gt;      ]  10.81G  24.4MB/s    eta 2m 48s
+rest.tar.gz          72%[=============&gt;      ]  10.82G  24.3MB/s    eta 2m 48s
+rest.tar.gz          72%[=============&gt;      ]  10.82G  24.5MB/s    eta 2m 48s
+rest.tar.gz          72%[=============&gt;      ]  10.83G  24.5MB/s    eta 2m 48s
+rest.tar.gz          73%[=============&gt;      ]  10.84G  24.6MB/s    eta 2m 47s
+rest.tar.gz          73%[=============&gt;      ]  10.84G  24.6MB/s    eta 2m 47s
+rest.tar.gz          73%[=============&gt;      ]  10.85G  24.6MB/s    eta 2m 47s
+rest.tar.gz          73%[=============&gt;      ]  10.86G  24.7MB/s    eta 2m 47s
+rest.tar.gz          73%[=============&gt;      ]  10.87G  24.7MB/s    eta 2m 46s
+rest.tar.gz          73%[=============&gt;      ]  10.87G  24.7MB/s    eta 2m 46s
+rest.tar.gz          73%[=============&gt;      ]  10.88G  24.8MB/s    eta 2m 46s
+rest.tar.gz          73%[=============&gt;      ]  10.89G  24.8MB/s    eta 2m 46s
+rest.tar.gz          73%[=============&gt;      ]  10.89G  24.5MB/s    eta 2m 45s
+rest.tar.gz          73%[=============&gt;      ]  10.90G  24.5MB/s    eta 2m 45s
+rest.tar.gz          73%[=============&gt;      ]  10.91G  24.5MB/s    eta 2m 45s
+rest.tar.gz          73%[=============&gt;      ]  10.92G  24.5MB/s    eta 2m 45s
+rest.tar.gz          73%[=============&gt;      ]  10.92G  24.6MB/s    eta 2m 43s
+rest.tar.gz          73%[=============&gt;      ]  10.93G  24.6MB/s    eta 2m 43s
+rest.tar.gz          73%[=============&gt;      ]  10.94G  24.6MB/s    eta 2m 43s
+rest.tar.gz          73%[=============&gt;      ]  10.95G  24.6MB/s    eta 2m 43s
+rest.tar.gz          73%[=============&gt;      ]  10.95G  24.6MB/s    eta 2m 42s
+rest.tar.gz          73%[=============&gt;      ]  10.96G  24.6MB/s    eta 2m 42s
+rest.tar.gz          73%[=============&gt;      ]  10.97G  24.7MB/s    eta 2m 42s
+rest.tar.gz          73%[=============&gt;      ]  10.97G  24.8MB/s    eta 2m 42s
+rest.tar.gz          74%[=============&gt;      ]  10.98G  24.8MB/s    eta 2m 41s
+rest.tar.gz          74%[=============&gt;      ]  10.99G  24.8MB/s    eta 2m 41s
+rest.tar.gz          74%[=============&gt;      ]  11.00G  24.8MB/s    eta 2m 41s
+rest.tar.gz          74%[=============&gt;      ]  11.00G  24.8MB/s    eta 2m 41s
+rest.tar.gz          74%[=============&gt;      ]  11.01G  24.7MB/s    eta 2m 40s
+rest.tar.gz          74%[=============&gt;      ]  11.02G  24.7MB/s    eta 2m 40s
+rest.tar.gz          74%[=============&gt;      ]  11.03G  24.7MB/s    eta 2m 40s
+rest.tar.gz          74%[=============&gt;      ]  11.03G  24.6MB/s    eta 2m 40s
+rest.tar.gz          74%[=============&gt;      ]  11.04G  24.7MB/s    eta 2m 39s
+rest.tar.gz          74%[=============&gt;      ]  11.05G  24.7MB/s    eta 2m 39s
+rest.tar.gz          74%[=============&gt;      ]  11.05G  24.6MB/s    eta 2m 39s
+rest.tar.gz          74%[=============&gt;      ]  11.06G  24.6MB/s    eta 2m 39s
+rest.tar.gz          74%[=============&gt;      ]  11.07G  24.6MB/s    eta 2m 37s
+rest.tar.gz          74%[=============&gt;      ]  11.08G  24.7MB/s    eta 2m 37s
+rest.tar.gz          74%[=============&gt;      ]  11.08G  24.8MB/s    eta 2m 37s
+rest.tar.gz          74%[=============&gt;      ]  11.09G  24.7MB/s    eta 2m 37s
+rest.tar.gz          74%[=============&gt;      ]  11.10G  24.7MB/s    eta 2m 36s
+rest.tar.gz          74%[=============&gt;      ]  11.11G  24.7MB/s    eta 2m 36s
+rest.tar.gz          74%[=============&gt;      ]  11.11G  24.7MB/s    eta 2m 36s
+rest.tar.gz          74%[=============&gt;      ]  11.12G  24.7MB/s    eta 2m 36s
+rest.tar.gz          74%[=============&gt;      ]  11.13G  24.6MB/s    eta 2m 35s
+rest.tar.gz          75%[==============&gt;     ]  11.13G  24.5MB/s    eta 2m 35s
+rest.tar.gz          75%[==============&gt;     ]  11.14G  24.4MB/s    eta 2m 35s
+rest.tar.gz          75%[==============&gt;     ]  11.15G  24.5MB/s    eta 2m 35s
+rest.tar.gz          75%[==============&gt;     ]  11.16G  24.4MB/s    eta 2m 34s
+rest.tar.gz          75%[==============&gt;     ]  11.16G  24.3MB/s    eta 2m 34s
+rest.tar.gz          75%[==============&gt;     ]  11.17G  24.3MB/s    eta 2m 34s
+rest.tar.gz          75%[==============&gt;     ]  11.18G  24.4MB/s    eta 2m 34s
+rest.tar.gz          75%[==============&gt;     ]  11.19G  24.6MB/s    eta 2m 32s
+rest.tar.gz          75%[==============&gt;     ]  11.19G  24.6MB/s    eta 2m 32s
+rest.tar.gz          75%[==============&gt;     ]  11.20G  24.7MB/s    eta 2m 32s
+rest.tar.gz          75%[==============&gt;     ]  11.21G  24.7MB/s    eta 2m 32s
+rest.tar.gz          75%[==============&gt;     ]  11.21G  24.9MB/s    eta 2m 31s
+rest.tar.gz          75%[==============&gt;     ]  11.22G  24.9MB/s    eta 2m 31s
+rest.tar.gz          75%[==============&gt;     ]  11.23G  24.9MB/s    eta 2m 31s
+rest.tar.gz          75%[==============&gt;     ]  11.24G  24.9MB/s    eta 2m 31s
+rest.tar.gz          75%[==============&gt;     ]  11.24G  24.9MB/s    eta 2m 30s
+rest.tar.gz          75%[==============&gt;     ]  11.25G  24.9MB/s    eta 2m 30s
+rest.tar.gz          75%[==============&gt;     ]  11.26G  24.8MB/s    eta 2m 30s
+rest.tar.gz          75%[==============&gt;     ]  11.27G  24.8MB/s    eta 2m 30s
+rest.tar.gz          75%[==============&gt;     ]  11.27G  24.8MB/s    eta 2m 29s
+rest.tar.gz          76%[==============&gt;     ]  11.28G  24.8MB/s    eta 2m 29s
+rest.tar.gz          76%[==============&gt;     ]  11.29G  24.8MB/s    eta 2m 29s
+rest.tar.gz          76%[==============&gt;     ]  11.29G  24.8MB/s    eta 2m 29s
+rest.tar.gz          76%[==============&gt;     ]  11.30G  24.8MB/s    eta 2m 28s
+rest.tar.gz          76%[==============&gt;     ]  11.31G  24.6MB/s    eta 2m 28s
+rest.tar.gz          76%[==============&gt;     ]  11.32G  24.7MB/s    eta 2m 28s
+rest.tar.gz          76%[==============&gt;     ]  11.32G  24.6MB/s    eta 2m 28s
+rest.tar.gz          76%[==============&gt;     ]  11.33G  24.6MB/s    eta 2m 26s
+rest.tar.gz          76%[==============&gt;     ]  11.34G  24.6MB/s    eta 2m 26s
+rest.tar.gz          76%[==============&gt;     ]  11.35G  24.6MB/s    eta 2m 26s
+rest.tar.gz          76%[==============&gt;     ]  11.35G  24.6MB/s    eta 2m 26s
+rest.tar.gz          76%[==============&gt;     ]  11.36G  24.7MB/s    eta 2m 25s
+rest.tar.gz          76%[==============&gt;     ]  11.37G  24.8MB/s    eta 2m 25s
+rest.tar.gz          76%[==============&gt;     ]  11.38G  24.8MB/s    eta 2m 25s
+rest.tar.gz          76%[==============&gt;     ]  11.38G  24.8MB/s    eta 2m 25s
+rest.tar.gz          76%[==============&gt;     ]  11.39G  24.7MB/s    eta 2m 24s
+rest.tar.gz          76%[==============&gt;     ]  11.40G  24.8MB/s    eta 2m 24s
+rest.tar.gz          76%[==============&gt;     ]  11.40G  24.8MB/s    eta 2m 24s
+rest.tar.gz          76%[==============&gt;     ]  11.41G  24.8MB/s    eta 2m 24s
+rest.tar.gz          76%[==============&gt;     ]  11.42G  24.8MB/s    eta 2m 23s
+rest.tar.gz          76%[==============&gt;     ]  11.43G  24.8MB/s    eta 2m 23s
+rest.tar.gz          77%[==============&gt;     ]  11.43G  24.8MB/s    eta 2m 23s
+rest.tar.gz          77%[==============&gt;     ]  11.44G  24.8MB/s    eta 2m 23s
+rest.tar.gz          77%[==============&gt;     ]  11.45G  24.8MB/s    eta 2m 21s
+rest.tar.gz          77%[==============&gt;     ]  11.45G  24.5MB/s    eta 2m 21s
+rest.tar.gz          77%[==============&gt;     ]  11.46G  24.5MB/s    eta 2m 21s
+rest.tar.gz          77%[==============&gt;     ]  11.47G  24.5MB/s    eta 2m 21s
+rest.tar.gz          77%[==============&gt;     ]  11.48G  24.5MB/s    eta 2m 20s
+rest.tar.gz          77%[==============&gt;     ]  11.48G  24.5MB/s    eta 2m 20s
+rest.tar.gz          77%[==============&gt;     ]  11.49G  24.6MB/s    eta 2m 20s
+rest.tar.gz          77%[==============&gt;     ]  11.50G  24.6MB/s    eta 2m 20s
+rest.tar.gz          77%[==============&gt;     ]  11.50G  24.5MB/s    eta 2m 19s
+rest.tar.gz          77%[==============&gt;     ]  11.51G  24.4MB/s    eta 2m 19s
+rest.tar.gz          77%[==============&gt;     ]  11.52G  24.3MB/s    eta 2m 19s
+rest.tar.gz          77%[==============&gt;     ]  11.53G  24.3MB/s    eta 2m 19s
+rest.tar.gz          77%[==============&gt;     ]  11.53G  24.4MB/s    eta 2m 18s
+rest.tar.gz          77%[==============&gt;     ]  11.54G  24.5MB/s    eta 2m 18s
+rest.tar.gz          77%[==============&gt;     ]  11.55G  24.4MB/s    eta 2m 18s
+rest.tar.gz          77%[==============&gt;     ]  11.56G  24.5MB/s    eta 2m 18s
+rest.tar.gz          77%[==============&gt;     ]  11.56G  24.4MB/s    eta 2m 17s
+rest.tar.gz          77%[==============&gt;     ]  11.57G  24.5MB/s    eta 2m 17s
+rest.tar.gz          78%[==============&gt;     ]  11.58G  24.5MB/s    eta 2m 17s
+rest.tar.gz          78%[==============&gt;     ]  11.58G  24.6MB/s    eta 2m 17s
+rest.tar.gz          78%[==============&gt;     ]  11.59G  24.5MB/s    eta 2m 15s
+rest.tar.gz          78%[==============&gt;     ]  11.60G  24.6MB/s    eta 2m 15s
+rest.tar.gz          78%[==============&gt;     ]  11.61G  24.6MB/s    eta 2m 15s
+rest.tar.gz          78%[==============&gt;     ]  11.61G  24.6MB/s    eta 2m 15s
+rest.tar.gz          78%[==============&gt;     ]  11.62G  24.6MB/s    eta 2m 14s
+rest.tar.gz          78%[==============&gt;     ]  11.63G  24.7MB/s    eta 2m 14s
+rest.tar.gz          78%[==============&gt;     ]  11.63G  24.7MB/s    eta 2m 14s
+rest.tar.gz          78%[==============&gt;     ]  11.64G  24.7MB/s    eta 2m 14s
+rest.tar.gz          78%[==============&gt;     ]  11.65G  24.8MB/s    eta 2m 13s
+rest.tar.gz          78%[==============&gt;     ]  11.66G  24.8MB/s    eta 2m 13s
+rest.tar.gz          78%[==============&gt;     ]  11.66G  24.8MB/s    eta 2m 13s
+rest.tar.gz          78%[==============&gt;     ]  11.67G  24.8MB/s    eta 2m 13s
+rest.tar.gz          78%[==============&gt;     ]  11.68G  24.8MB/s    eta 2m 12s
+rest.tar.gz          78%[==============&gt;     ]  11.69G  24.9MB/s    eta 2m 12s
+rest.tar.gz          78%[==============&gt;     ]  11.69G  24.9MB/s    eta 2m 12s
+rest.tar.gz          78%[==============&gt;     ]  11.70G  24.9MB/s    eta 2m 12s
+rest.tar.gz          78%[==============&gt;     ]  11.71G  24.8MB/s    eta 2m 11s
+rest.tar.gz          78%[==============&gt;     ]  11.71G  24.8MB/s    eta 2m 11s
+rest.tar.gz          78%[==============&gt;     ]  11.72G  24.8MB/s    eta 2m 11s
+rest.tar.gz          79%[==============&gt;     ]  11.73G  24.7MB/s    eta 2m 11s
+rest.tar.gz          79%[==============&gt;     ]  11.74G  24.7MB/s    eta 2m 9s
+rest.tar.gz          79%[==============&gt;     ]  11.74G  24.7MB/s    eta 2m 9s
+rest.tar.gz          79%[==============&gt;     ]  11.75G  24.7MB/s    eta 2m 9s
+rest.tar.gz          79%[==============&gt;     ]  11.76G  24.6MB/s    eta 2m 9s
+rest.tar.gz          79%[==============&gt;     ]  11.77G  24.6MB/s    eta 2m 8s
+rest.tar.gz          79%[==============&gt;     ]  11.77G  24.5MB/s    eta 2m 8s
+rest.tar.gz          79%[==============&gt;     ]  11.78G  24.5MB/s    eta 2m 8s
+rest.tar.gz          79%[==============&gt;     ]  11.79G  24.5MB/s    eta 2m 8s
+rest.tar.gz          79%[==============&gt;     ]  11.79G  24.6MB/s    eta 2m 7s
+rest.tar.gz          79%[==============&gt;     ]  11.80G  24.5MB/s    eta 2m 7s
+rest.tar.gz          79%[==============&gt;     ]  11.81G  24.6MB/s    eta 2m 7s
+rest.tar.gz          79%[==============&gt;     ]  11.82G  24.5MB/s    eta 2m 7s
+rest.tar.gz          79%[==============&gt;     ]  11.82G  24.5MB/s    eta 2m 6s
+rest.tar.gz          79%[==============&gt;     ]  11.83G  24.7MB/s    eta 2m 6s
+rest.tar.gz          79%[==============&gt;     ]  11.84G  24.7MB/s    eta 2m 6s
+rest.tar.gz          79%[==============&gt;     ]  11.85G  24.7MB/s    eta 2m 6s
+rest.tar.gz          79%[==============&gt;     ]  11.85G  24.7MB/s    eta 2m 5s
+rest.tar.gz          79%[==============&gt;     ]  11.86G  24.7MB/s    eta 2m 5s
+rest.tar.gz          79%[==============&gt;     ]  11.87G  24.7MB/s    eta 2m 5s
+rest.tar.gz          80%[===============&gt;    ]  11.88G  24.8MB/s    eta 2m 5s
+rest.tar.gz          80%[===============&gt;    ]  11.88G  24.8MB/s    eta 2m 3s
+rest.tar.gz          80%[===============&gt;    ]  11.89G  24.8MB/s    eta 2m 3s
+rest.tar.gz          80%[===============&gt;    ]  11.90G  24.8MB/s    eta 2m 3s
+rest.tar.gz          80%[===============&gt;    ]  11.90G  24.8MB/s    eta 2m 3s
+rest.tar.gz          80%[===============&gt;    ]  11.91G  24.8MB/s    eta 2m 2s
+rest.tar.gz          80%[===============&gt;    ]  11.92G  24.8MB/s    eta 2m 2s
+rest.tar.gz          80%[===============&gt;    ]  11.93G  24.9MB/s    eta 2m 2s
+rest.tar.gz          80%[===============&gt;    ]  11.93G  24.9MB/s    eta 2m 2s
+rest.tar.gz          80%[===============&gt;    ]  11.94G  24.8MB/s    eta 2m 1s
+rest.tar.gz          80%[===============&gt;    ]  11.95G  24.7MB/s    eta 2m 1s
+rest.tar.gz          80%[===============&gt;    ]  11.96G  24.7MB/s    eta 2m 1s
+rest.tar.gz          80%[===============&gt;    ]  11.96G  24.7MB/s    eta 2m 1s
+rest.tar.gz          80%[===============&gt;    ]  11.97G  24.7MB/s    eta 2m 0s
+rest.tar.gz          80%[===============&gt;    ]  11.98G  24.6MB/s    eta 2m 0s
+rest.tar.gz          80%[===============&gt;    ]  11.98G  24.6MB/s    eta 2m 0s
+rest.tar.gz          80%[===============&gt;    ]  11.99G  24.6MB/s    eta 2m 0s
+rest.tar.gz          80%[===============&gt;    ]  12.00G  24.6MB/s    eta 1m 58s
+rest.tar.gz          80%[===============&gt;    ]  12.01G  24.7MB/s    eta 1m 58s
+rest.tar.gz          80%[===============&gt;    ]  12.01G  24.7MB/s    eta 1m 58s
+rest.tar.gz          80%[===============&gt;    ]  12.02G  24.8MB/s    eta 1m 58s
+rest.tar.gz          81%[===============&gt;    ]  12.03G  24.8MB/s    eta 1m 57s
+rest.tar.gz          81%[===============&gt;    ]  12.04G  24.7MB/s    eta 1m 57s
+rest.tar.gz          81%[===============&gt;    ]  12.04G  24.7MB/s    eta 1m 57s
+rest.tar.gz          81%[===============&gt;    ]  12.05G  24.7MB/s    eta 1m 57s
+rest.tar.gz          81%[===============&gt;    ]  12.06G  24.7MB/s    eta 1m 56s
+rest.tar.gz          81%[===============&gt;    ]  12.06G  24.7MB/s    eta 1m 56s
+rest.tar.gz          81%[===============&gt;    ]  12.07G  24.7MB/s    eta 1m 56s
+rest.tar.gz          81%[===============&gt;    ]  12.08G  24.7MB/s    eta 1m 56s
+rest.tar.gz          81%[===============&gt;    ]  12.09G  24.8MB/s    eta 1m 55s
+rest.tar.gz          81%[===============&gt;    ]  12.09G  24.8MB/s    eta 1m 55s
+rest.tar.gz          81%[===============&gt;    ]  12.10G  24.8MB/s    eta 1m 55s
+rest.tar.gz          81%[===============&gt;    ]  12.11G  24.8MB/s    eta 1m 55s
+rest.tar.gz          81%[===============&gt;    ]  12.12G  24.8MB/s    eta 1m 54s
+rest.tar.gz          81%[===============&gt;    ]  12.12G  24.8MB/s    eta 1m 54s
+rest.tar.gz          81%[===============&gt;    ]  12.13G  24.8MB/s    eta 1m 54s
+rest.tar.gz          81%[===============&gt;    ]  12.14G  24.8MB/s    eta 1m 54s
+rest.tar.gz          81%[===============&gt;    ]  12.14G  24.6MB/s    eta 1m 52s
+rest.tar.gz          81%[===============&gt;    ]  12.15G  24.6MB/s    eta 1m 52s
+rest.tar.gz          81%[===============&gt;    ]  12.16G  24.6MB/s    eta 1m 52s
+rest.tar.gz          81%[===============&gt;    ]  12.17G  24.5MB/s    eta 1m 52s
+rest.tar.gz          82%[===============&gt;    ]  12.17G  24.4MB/s    eta 1m 51s
+rest.tar.gz          82%[===============&gt;    ]  12.18G  24.2MB/s    eta 1m 51s
+rest.tar.gz          82%[===============&gt;    ]  12.19G  24.1MB/s    eta 1m 51s
+rest.tar.gz          82%[===============&gt;    ]  12.19G  23.8MB/s    eta 1m 51s
+rest.tar.gz          82%[===============&gt;    ]  12.20G  23.8MB/s    eta 1m 50s
+rest.tar.gz          82%[===============&gt;    ]  12.21G  23.7MB/s    eta 1m 50s
+rest.tar.gz          82%[===============&gt;    ]  12.21G  24.0MB/s    eta 1m 50s
+rest.tar.gz          82%[===============&gt;    ]  12.22G  24.1MB/s    eta 1m 50s
+rest.tar.gz          82%[===============&gt;    ]  12.23G  24.0MB/s    eta 1m 49s
+rest.tar.gz          82%[===============&gt;    ]  12.24G  23.9MB/s    eta 1m 49s
+rest.tar.gz          82%[===============&gt;    ]  12.24G  23.9MB/s    eta 1m 49s
+rest.tar.gz          82%[===============&gt;    ]  12.25G  23.8MB/s    eta 1m 49s
+rest.tar.gz          82%[===============&gt;    ]  12.26G  23.6MB/s    eta 1m 48s
+rest.tar.gz          82%[===============&gt;    ]  12.26G  23.5MB/s    eta 1m 48s
+rest.tar.gz          82%[===============&gt;    ]  12.27G  23.5MB/s    eta 1m 48s
+rest.tar.gz          82%[===============&gt;    ]  12.28G  23.4MB/s    eta 1m 48s
+rest.tar.gz          82%[===============&gt;    ]  12.29G  23.7MB/s    eta 1m 47s
+rest.tar.gz          82%[===============&gt;    ]  12.29G  23.2MB/s    eta 1m 47s
+rest.tar.gz          82%[===============&gt;    ]  12.30G  23.5MB/s    eta 1m 47s
+rest.tar.gz          82%[===============&gt;    ]  12.30G  23.4MB/s    eta 1m 47s
+rest.tar.gz          82%[===============&gt;    ]  12.31G  24.0MB/s    eta 1m 45s
+rest.tar.gz          83%[===============&gt;    ]  12.32G  23.8MB/s    eta 1m 45s
+rest.tar.gz          83%[===============&gt;    ]  12.33G  23.7MB/s    eta 1m 45s
+rest.tar.gz          83%[===============&gt;    ]  12.33G  23.5MB/s    eta 1m 45s
+rest.tar.gz          83%[===============&gt;    ]  12.34G  23.5MB/s    eta 1m 44s
+rest.tar.gz          83%[===============&gt;    ]  12.35G  23.2MB/s    eta 1m 44s
+rest.tar.gz          83%[===============&gt;    ]  12.35G  23.1MB/s    eta 1m 44s
+rest.tar.gz          83%[===============&gt;    ]  12.36G  22.6MB/s    eta 1m 44s
+rest.tar.gz          83%[===============&gt;    ]  12.37G  22.6MB/s    eta 1m 43s
+rest.tar.gz          83%[===============&gt;    ]  12.37G  23.4MB/s    eta 1m 43s
+rest.tar.gz          83%[===============&gt;    ]  12.38G  22.7MB/s    eta 1m 43s
+rest.tar.gz          83%[===============&gt;    ]  12.38G  22.7MB/s    eta 1m 43s
+rest.tar.gz          83%[===============&gt;    ]  12.39G  22.9MB/s    eta 1m 42s
+rest.tar.gz          83%[===============&gt;    ]  12.40G  22.8MB/s    eta 1m 42s
+rest.tar.gz          83%[===============&gt;    ]  12.40G  22.5MB/s    eta 1m 42s
+rest.tar.gz          83%[===============&gt;    ]  12.41G  21.6MB/s    eta 1m 42s
+rest.tar.gz          83%[===============&gt;    ]  12.41G  21.4MB/s    eta 1m 41s
+rest.tar.gz          83%[===============&gt;    ]  12.42G  21.7MB/s    eta 1m 41s
+rest.tar.gz          83%[===============&gt;    ]  12.43G  21.7MB/s    eta 1m 41s
+rest.tar.gz          83%[===============&gt;    ]  12.43G  21.4MB/s    eta 1m 41s
+rest.tar.gz          83%[===============&gt;    ]  12.44G  21.0MB/s    eta 1m 40s
+rest.tar.gz          83%[===============&gt;    ]  12.44G  20.8MB/s    eta 1m 40s
+rest.tar.gz          83%[===============&gt;    ]  12.45G  20.7MB/s    eta 1m 40s
+rest.tar.gz          83%[===============&gt;    ]  12.46G  21.1MB/s    eta 1m 40s
+rest.tar.gz          83%[===============&gt;    ]  12.46G  20.8MB/s    eta 99s
+rest.tar.gz          84%[===============&gt;    ]  12.47G  20.6MB/s    eta 99s
+rest.tar.gz          84%[===============&gt;    ]  12.47G  20.6MB/s    eta 99s
+rest.tar.gz          84%[===============&gt;    ]  12.48G  21.3MB/s    eta 99s
+rest.tar.gz          84%[===============&gt;    ]  12.49G  21.2MB/s    eta 98s
+rest.tar.gz          84%[===============&gt;    ]  12.49G  21.9MB/s    eta 98s
+rest.tar.gz          84%[===============&gt;    ]  12.50G  22.0MB/s    eta 98s
+rest.tar.gz          84%[===============&gt;    ]  12.50G  22.1MB/s    eta 98s
+rest.tar.gz          84%[===============&gt;    ]  12.51G  22.2MB/s    eta 97s
+rest.tar.gz          84%[===============&gt;    ]  12.52G  22.2MB/s    eta 97s
+rest.tar.gz          84%[===============&gt;    ]  12.52G  22.1MB/s    eta 97s
+rest.tar.gz          84%[===============&gt;    ]  12.53G  21.8MB/s    eta 97s
+rest.tar.gz          84%[===============&gt;    ]  12.54G  22.3MB/s    eta 96s
+rest.tar.gz          84%[===============&gt;    ]  12.54G  21.9MB/s    eta 96s
+rest.tar.gz          84%[===============&gt;    ]  12.55G  21.6MB/s    eta 96s
+rest.tar.gz          84%[===============&gt;    ]  12.55G  22.0MB/s    eta 96s
+rest.tar.gz          84%[===============&gt;    ]  12.56G  21.8MB/s    eta 95s
+rest.tar.gz          84%[===============&gt;    ]  12.57G  21.3MB/s    eta 95s
+rest.tar.gz          84%[===============&gt;    ]  12.57G  21.9MB/s    eta 95s
+rest.tar.gz          84%[===============&gt;    ]  12.58G  21.5MB/s    eta 95s
+rest.tar.gz          84%[===============&gt;    ]  12.59G  21.8MB/s    eta 94s
+rest.tar.gz          84%[===============&gt;    ]  12.59G  21.8MB/s    eta 94s
+rest.tar.gz          84%[===============&gt;    ]  12.60G  21.4MB/s    eta 94s
+rest.tar.gz          84%[===============&gt;    ]  12.61G  22.3MB/s    eta 94s
+rest.tar.gz          84%[===============&gt;    ]  12.61G  22.3MB/s    eta 93s
+rest.tar.gz          85%[================&gt;   ]  12.62G  22.4MB/s    eta 93s
+rest.tar.gz          85%[================&gt;   ]  12.63G  23.0MB/s    eta 93s
+rest.tar.gz          85%[================&gt;   ]  12.63G  22.4MB/s    eta 93s
+rest.tar.gz          85%[================&gt;   ]  12.64G  23.1MB/s    eta 92s
+rest.tar.gz          85%[================&gt;   ]  12.65G  22.4MB/s    eta 92s
+rest.tar.gz          85%[================&gt;   ]  12.65G  23.1MB/s    eta 92s
+rest.tar.gz          85%[================&gt;   ]  12.66G  22.9MB/s    eta 92s
+rest.tar.gz          85%[================&gt;   ]  12.67G  23.2MB/s    eta 91s
+rest.tar.gz          85%[================&gt;   ]  12.67G  22.9MB/s    eta 91s
+rest.tar.gz          85%[================&gt;   ]  12.68G  22.5MB/s    eta 91s
+rest.tar.gz          85%[================&gt;   ]  12.68G  22.5MB/s    eta 91s
+rest.tar.gz          85%[================&gt;   ]  12.69G  22.4MB/s    eta 90s
+rest.tar.gz          85%[================&gt;   ]  12.70G  23.0MB/s    eta 90s
+rest.tar.gz          85%[================&gt;   ]  12.71G  23.0MB/s    eta 90s
+rest.tar.gz          85%[================&gt;   ]  12.71G  22.7MB/s    eta 90s
+rest.tar.gz          85%[================&gt;   ]  12.72G  22.8MB/s    eta 89s
+rest.tar.gz          85%[================&gt;   ]  12.72G  22.8MB/s    eta 89s
+rest.tar.gz          85%[================&gt;   ]  12.73G  23.2MB/s    eta 89s
+rest.tar.gz          85%[================&gt;   ]  12.74G  22.9MB/s    eta 89s
+rest.tar.gz          85%[================&gt;   ]  12.74G  23.1MB/s    eta 88s
+rest.tar.gz          85%[================&gt;   ]  12.75G  23.2MB/s    eta 88s
+rest.tar.gz          85%[================&gt;   ]  12.76G  22.8MB/s    eta 88s
+rest.tar.gz          86%[================&gt;   ]  12.76G  23.1MB/s    eta 88s
+rest.tar.gz          86%[================&gt;   ]  12.77G  22.8MB/s    eta 87s
+rest.tar.gz          86%[================&gt;   ]  12.78G  22.7MB/s    eta 87s
+rest.tar.gz          86%[================&gt;   ]  12.78G  22.3MB/s    eta 87s
+rest.tar.gz          86%[================&gt;   ]  12.79G  22.7MB/s    eta 87s
+rest.tar.gz          86%[================&gt;   ]  12.80G  22.7MB/s    eta 86s
+rest.tar.gz          86%[================&gt;   ]  12.80G  22.4MB/s    eta 86s
+rest.tar.gz          86%[================&gt;   ]  12.81G  22.7MB/s    eta 86s
+rest.tar.gz          86%[================&gt;   ]  12.82G  22.4MB/s    eta 86s
+rest.tar.gz          86%[================&gt;   ]  12.82G  22.0MB/s    eta 85s
+rest.tar.gz          86%[================&gt;   ]  12.83G  22.4MB/s    eta 85s
+rest.tar.gz          86%[================&gt;   ]  12.83G  21.9MB/s    eta 85s
+rest.tar.gz          86%[================&gt;   ]  12.84G  21.6MB/s    eta 85s
+rest.tar.gz          86%[================&gt;   ]  12.85G  22.1MB/s    eta 84s
+rest.tar.gz          86%[================&gt;   ]  12.85G  21.5MB/s    eta 84s
+rest.tar.gz          86%[================&gt;   ]  12.86G  21.3MB/s    eta 84s
+rest.tar.gz          86%[================&gt;   ]  12.86G  21.3MB/s    eta 84s
+rest.tar.gz          86%[================&gt;   ]  12.87G  21.7MB/s    eta 83s
+rest.tar.gz          86%[================&gt;   ]  12.87G  21.6MB/s    eta 83s
+rest.tar.gz          86%[================&gt;   ]  12.88G  21.1MB/s    eta 83s
+rest.tar.gz          86%[================&gt;   ]  12.89G  21.2MB/s    eta 83s
+rest.tar.gz          86%[================&gt;   ]  12.89G  21.6MB/s    eta 82s
+rest.tar.gz          86%[================&gt;   ]  12.90G  21.5MB/s    eta 82s
+rest.tar.gz          86%[================&gt;   ]  12.91G  22.1MB/s    eta 82s
+rest.tar.gz          87%[================&gt;   ]  12.91G  22.2MB/s    eta 82s
+rest.tar.gz          87%[================&gt;   ]  12.92G  22.3MB/s    eta 80s
+rest.tar.gz          87%[================&gt;   ]  12.93G  22.9MB/s    eta 80s
+rest.tar.gz          87%[================&gt;   ]  12.94G  23.0MB/s    eta 80s
+rest.tar.gz          87%[================&gt;   ]  12.94G  23.7MB/s    eta 80s
+rest.tar.gz          87%[================&gt;   ]  12.95G  23.3MB/s    eta 79s
+rest.tar.gz          87%[================&gt;   ]  12.96G  24.1MB/s    eta 79s
+rest.tar.gz          87%[================&gt;   ]  12.96G  23.9MB/s    eta 79s
+rest.tar.gz          87%[================&gt;   ]  12.97G  24.2MB/s    eta 79s
+rest.tar.gz          87%[================&gt;   ]  12.98G  24.1MB/s    eta 78s
+rest.tar.gz          87%[================&gt;   ]  12.99G  23.8MB/s    eta 78s
+rest.tar.gz          87%[================&gt;   ]  12.99G  24.3MB/s    eta 78s
+rest.tar.gz          87%[================&gt;   ]  13.00G  24.3MB/s    eta 78s
+rest.tar.gz          87%[================&gt;   ]  13.01G  24.2MB/s    eta 77s
+rest.tar.gz          87%[================&gt;   ]  13.01G  24.1MB/s    eta 77s
+rest.tar.gz          87%[================&gt;   ]  13.02G  24.1MB/s    eta 77s
+rest.tar.gz          87%[================&gt;   ]  13.03G  23.6MB/s    eta 77s
+rest.tar.gz          87%[================&gt;   ]  13.04G  23.7MB/s    eta 76s
+rest.tar.gz          87%[================&gt;   ]  13.04G  23.7MB/s    eta 76s
+rest.tar.gz          87%[================&gt;   ]  13.05G  23.6MB/s    eta 76s
+rest.tar.gz          87%[================&gt;   ]  13.06G  23.7MB/s    eta 76s
+rest.tar.gz          88%[================&gt;   ]  13.07G  23.8MB/s    eta 74s
+rest.tar.gz          88%[================&gt;   ]  13.07G  23.8MB/s    eta 74s
+rest.tar.gz          88%[================&gt;   ]  13.08G  23.9MB/s    eta 74s
+rest.tar.gz          88%[================&gt;   ]  13.09G  23.7MB/s    eta 74s
+rest.tar.gz          88%[================&gt;   ]  13.09G  23.7MB/s    eta 73s
+rest.tar.gz          88%[================&gt;   ]  13.10G  23.6MB/s    eta 73s
+rest.tar.gz          88%[================&gt;   ]  13.11G  23.6MB/s    eta 73s
+rest.tar.gz          88%[================&gt;   ]  13.12G  23.7MB/s    eta 73s
+rest.tar.gz          88%[================&gt;   ]  13.12G  23.8MB/s    eta 72s
+rest.tar.gz          88%[================&gt;   ]  13.13G  24.0MB/s    eta 72s
+rest.tar.gz          88%[================&gt;   ]  13.14G  24.1MB/s    eta 72s
+rest.tar.gz          88%[================&gt;   ]  13.15G  24.0MB/s    eta 72s
+rest.tar.gz          88%[================&gt;   ]  13.15G  24.2MB/s    eta 71s
+rest.tar.gz          88%[================&gt;   ]  13.16G  24.1MB/s    eta 71s
+rest.tar.gz          88%[================&gt;   ]  13.17G  24.3MB/s    eta 71s
+rest.tar.gz          88%[================&gt;   ]  13.17G  24.4MB/s    eta 71s
+rest.tar.gz          88%[================&gt;   ]  13.18G  24.5MB/s    eta 70s
+rest.tar.gz          88%[================&gt;   ]  13.19G  24.3MB/s    eta 70s
+rest.tar.gz          88%[================&gt;   ]  13.20G  24.2MB/s    eta 70s
+rest.tar.gz          88%[================&gt;   ]  13.20G  24.3MB/s    eta 70s
+rest.tar.gz          89%[================&gt;   ]  13.21G  24.3MB/s    eta 68s
+rest.tar.gz          89%[================&gt;   ]  13.22G  24.3MB/s    eta 68s
+rest.tar.gz          89%[================&gt;   ]  13.22G  24.5MB/s    eta 68s
+rest.tar.gz          89%[================&gt;   ]  13.23G  24.5MB/s    eta 68s
+rest.tar.gz          89%[================&gt;   ]  13.24G  24.5MB/s    eta 67s
+rest.tar.gz          89%[================&gt;   ]  13.25G  24.5MB/s    eta 67s
+rest.tar.gz          89%[================&gt;   ]  13.25G  24.4MB/s    eta 67s
+rest.tar.gz          89%[================&gt;   ]  13.26G  24.4MB/s    eta 67s
+rest.tar.gz          89%[================&gt;   ]  13.27G  24.4MB/s    eta 66s
+rest.tar.gz          89%[================&gt;   ]  13.27G  24.4MB/s    eta 66s
+rest.tar.gz          89%[================&gt;   ]  13.28G  24.3MB/s    eta 66s
+rest.tar.gz          89%[================&gt;   ]  13.29G  24.3MB/s    eta 66s
+rest.tar.gz          89%[================&gt;   ]  13.30G  24.3MB/s    eta 65s
+rest.tar.gz          89%[================&gt;   ]  13.30G  24.4MB/s    eta 65s
+rest.tar.gz          89%[================&gt;   ]  13.31G  24.5MB/s    eta 65s
+rest.tar.gz          89%[================&gt;   ]  13.32G  24.5MB/s    eta 65s
+rest.tar.gz          89%[================&gt;   ]  13.33G  24.5MB/s    eta 63s
+rest.tar.gz          89%[================&gt;   ]  13.33G  24.5MB/s    eta 63s
+rest.tar.gz          89%[================&gt;   ]  13.34G  24.7MB/s    eta 63s
+rest.tar.gz          89%[================&gt;   ]  13.35G  24.4MB/s    eta 63s
+rest.tar.gz          89%[================&gt;   ]  13.35G  24.4MB/s    eta 62s
+rest.tar.gz          90%[=================&gt;  ]  13.36G  24.5MB/s    eta 62s
+rest.tar.gz          90%[=================&gt;  ]  13.37G  24.5MB/s    eta 62s
+rest.tar.gz          90%[=================&gt;  ]  13.38G  24.5MB/s    eta 62s
+rest.tar.gz          90%[=================&gt;  ]  13.38G  24.5MB/s    eta 61s
+rest.tar.gz          90%[=================&gt;  ]  13.39G  24.5MB/s    eta 61s
+rest.tar.gz          90%[=================&gt;  ]  13.40G  24.5MB/s    eta 61s
+rest.tar.gz          90%[=================&gt;  ]  13.41G  24.5MB/s    eta 61s
+rest.tar.gz          90%[=================&gt;  ]  13.41G  24.5MB/s    eta 60s
+rest.tar.gz          90%[=================&gt;  ]  13.42G  24.5MB/s    eta 60s
+rest.tar.gz          90%[=================&gt;  ]  13.43G  24.6MB/s    eta 60s
+rest.tar.gz          90%[=================&gt;  ]  13.43G  24.6MB/s    eta 60s
+rest.tar.gz          90%[=================&gt;  ]  13.44G  24.7MB/s    eta 59s
+rest.tar.gz          90%[=================&gt;  ]  13.45G  24.7MB/s    eta 59s
+rest.tar.gz          90%[=================&gt;  ]  13.46G  24.7MB/s    eta 59s
+rest.tar.gz          90%[=================&gt;  ]  13.46G  24.7MB/s    eta 59s
+rest.tar.gz          90%[=================&gt;  ]  13.47G  24.8MB/s    eta 57s
+rest.tar.gz          90%[=================&gt;  ]  13.48G  24.8MB/s    eta 57s
+rest.tar.gz          90%[=================&gt;  ]  13.49G  24.8MB/s    eta 57s
+rest.tar.gz          90%[=================&gt;  ]  13.49G  24.9MB/s    eta 57s
+rest.tar.gz          90%[=================&gt;  ]  13.50G  24.8MB/s    eta 56s
+rest.tar.gz          91%[=================&gt;  ]  13.51G  24.8MB/s    eta 56s
+rest.tar.gz          91%[=================&gt;  ]  13.51G  24.8MB/s    eta 56s
+rest.tar.gz          91%[=================&gt;  ]  13.52G  24.6MB/s    eta 56s
+rest.tar.gz          91%[=================&gt;  ]  13.53G  24.5MB/s    eta 55s
+rest.tar.gz          91%[=================&gt;  ]  13.54G  24.4MB/s    eta 55s
+rest.tar.gz          91%[=================&gt;  ]  13.54G  24.2MB/s    eta 55s
+rest.tar.gz          91%[=================&gt;  ]  13.55G  24.3MB/s    eta 55s
+rest.tar.gz          91%[=================&gt;  ]  13.56G  24.3MB/s    eta 54s
+rest.tar.gz          91%[=================&gt;  ]  13.56G  24.3MB/s    eta 54s
+rest.tar.gz          91%[=================&gt;  ]  13.57G  24.3MB/s    eta 54s
+rest.tar.gz          91%[=================&gt;  ]  13.58G  24.3MB/s    eta 54s
+rest.tar.gz          91%[=================&gt;  ]  13.59G  24.4MB/s    eta 53s
+rest.tar.gz          91%[=================&gt;  ]  13.59G  24.4MB/s    eta 53s
+rest.tar.gz          91%[=================&gt;  ]  13.60G  24.5MB/s    eta 53s
+rest.tar.gz          91%[=================&gt;  ]  13.61G  24.6MB/s    eta 53s
+rest.tar.gz          91%[=================&gt;  ]  13.62G  24.5MB/s    eta 51s
+rest.tar.gz          91%[=================&gt;  ]  13.62G  24.6MB/s    eta 51s
+rest.tar.gz          91%[=================&gt;  ]  13.63G  24.7MB/s    eta 51s
+rest.tar.gz          91%[=================&gt;  ]  13.64G  24.7MB/s    eta 51s
+rest.tar.gz          91%[=================&gt;  ]  13.64G  24.8MB/s    eta 50s
+rest.tar.gz          91%[=================&gt;  ]  13.65G  24.8MB/s    eta 50s
+rest.tar.gz          92%[=================&gt;  ]  13.66G  24.8MB/s    eta 50s
+rest.tar.gz          92%[=================&gt;  ]  13.67G  24.8MB/s    eta 50s
+rest.tar.gz          92%[=================&gt;  ]  13.67G  24.8MB/s    eta 49s
+rest.tar.gz          92%[=================&gt;  ]  13.68G  24.7MB/s    eta 49s
+rest.tar.gz          92%[=================&gt;  ]  13.69G  24.8MB/s    eta 49s
+rest.tar.gz          92%[=================&gt;  ]  13.70G  24.8MB/s    eta 49s
+rest.tar.gz          92%[=================&gt;  ]  13.70G  24.8MB/s    eta 48s
+rest.tar.gz          92%[=================&gt;  ]  13.71G  24.8MB/s    eta 48s
+rest.tar.gz          92%[=================&gt;  ]  13.72G  24.8MB/s    eta 48s
+rest.tar.gz          92%[=================&gt;  ]  13.72G  24.6MB/s    eta 48s
+rest.tar.gz          92%[=================&gt;  ]  13.73G  24.6MB/s    eta 46s
+rest.tar.gz          92%[=================&gt;  ]  13.74G  24.6MB/s    eta 46s
+rest.tar.gz          92%[=================&gt;  ]  13.75G  24.5MB/s    eta 46s
+rest.tar.gz          92%[=================&gt;  ]  13.75G  24.6MB/s    eta 46s
+rest.tar.gz          92%[=================&gt;  ]  13.76G  24.7MB/s    eta 45s
+rest.tar.gz          92%[=================&gt;  ]  13.77G  24.7MB/s    eta 45s
+rest.tar.gz          92%[=================&gt;  ]  13.77G  24.5MB/s    eta 45s
+rest.tar.gz          92%[=================&gt;  ]  13.78G  24.5MB/s    eta 45s
+rest.tar.gz          92%[=================&gt;  ]  13.79G  24.5MB/s    eta 44s
+rest.tar.gz          92%[=================&gt;  ]  13.80G  24.5MB/s    eta 44s
+rest.tar.gz          93%[=================&gt;  ]  13.80G  24.5MB/s    eta 44s
+rest.tar.gz          93%[=================&gt;  ]  13.81G  24.4MB/s    eta 44s
+rest.tar.gz          93%[=================&gt;  ]  13.82G  24.4MB/s    eta 43s
+rest.tar.gz          93%[=================&gt;  ]  13.82G  24.3MB/s    eta 43s
+rest.tar.gz          93%[=================&gt;  ]  13.83G  24.2MB/s    eta 43s
+rest.tar.gz          93%[=================&gt;  ]  13.84G  24.3MB/s    eta 43s
+rest.tar.gz          93%[=================&gt;  ]  13.85G  24.3MB/s    eta 42s
+rest.tar.gz          93%[=================&gt;  ]  13.85G  24.4MB/s    eta 42s
+rest.tar.gz          93%[=================&gt;  ]  13.86G  24.4MB/s    eta 42s
+rest.tar.gz          93%[=================&gt;  ]  13.87G  24.3MB/s    eta 42s
+rest.tar.gz          93%[=================&gt;  ]  13.88G  24.4MB/s    eta 40s
+rest.tar.gz          93%[=================&gt;  ]  13.88G  24.6MB/s    eta 40s
+rest.tar.gz          93%[=================&gt;  ]  13.89G  24.5MB/s    eta 40s
+rest.tar.gz          93%[=================&gt;  ]  13.90G  24.5MB/s    eta 40s
+rest.tar.gz          93%[=================&gt;  ]  13.90G  24.5MB/s    eta 39s
+rest.tar.gz          93%[=================&gt;  ]  13.91G  24.7MB/s    eta 39s
+rest.tar.gz          93%[=================&gt;  ]  13.92G  24.6MB/s    eta 39s
+rest.tar.gz          93%[=================&gt;  ]  13.93G  24.6MB/s    eta 39s
+rest.tar.gz          93%[=================&gt;  ]  13.93G  24.6MB/s    eta 38s
+rest.tar.gz          93%[=================&gt;  ]  13.94G  24.6MB/s    eta 38s
+rest.tar.gz          93%[=================&gt;  ]  13.95G  24.6MB/s    eta 38s
+rest.tar.gz          94%[=================&gt;  ]  13.95G  24.6MB/s    eta 38s
+rest.tar.gz          94%[=================&gt;  ]  13.96G  24.5MB/s    eta 37s
+rest.tar.gz          94%[=================&gt;  ]  13.97G  24.6MB/s    eta 37s
+rest.tar.gz          94%[=================&gt;  ]  13.97G  23.7MB/s    eta 37s
+rest.tar.gz          94%[=================&gt;  ]  13.98G  23.5MB/s    eta 37s
+rest.tar.gz          94%[=================&gt;  ]  13.99G  23.2MB/s    eta 36s
+rest.tar.gz          94%[=================&gt;  ]  13.99G  23.1MB/s    eta 36s
+rest.tar.gz          94%[=================&gt;  ]  14.00G  23.2MB/s    eta 36s
+rest.tar.gz          94%[=================&gt;  ]  14.01G  23.2MB/s    eta 36s
+rest.tar.gz          94%[=================&gt;  ]  14.01G  23.2MB/s    eta 35s
+rest.tar.gz          94%[=================&gt;  ]  14.02G  23.2MB/s    eta 35s
+rest.tar.gz          94%[=================&gt;  ]  14.03G  23.2MB/s    eta 35s
+rest.tar.gz          94%[=================&gt;  ]  14.04G  23.2MB/s    eta 35s
+rest.tar.gz          94%[=================&gt;  ]  14.04G  23.8MB/s    eta 33s
+rest.tar.gz          94%[=================&gt;  ]  14.05G  23.8MB/s    eta 33s
+rest.tar.gz          94%[=================&gt;  ]  14.06G  23.7MB/s    eta 33s
+rest.tar.gz          94%[=================&gt;  ]  14.07G  23.9MB/s    eta 33s
+rest.tar.gz          94%[=================&gt;  ]  14.07G  24.0MB/s    eta 32s
+rest.tar.gz          94%[=================&gt;  ]  14.08G  24.0MB/s    eta 32s
+rest.tar.gz          94%[=================&gt;  ]  14.09G  24.2MB/s    eta 32s
+rest.tar.gz          94%[=================&gt;  ]  14.09G  24.5MB/s    eta 32s
+rest.tar.gz          95%[==================&gt; ]  14.10G  24.6MB/s    eta 31s
+rest.tar.gz          95%[==================&gt; ]  14.11G  24.7MB/s    eta 31s
+rest.tar.gz          95%[==================&gt; ]  14.12G  24.8MB/s    eta 31s
+rest.tar.gz          95%[==================&gt; ]  14.12G  24.7MB/s    eta 31s
+rest.tar.gz          95%[==================&gt; ]  14.13G  24.7MB/s    eta 30s
+rest.tar.gz          95%[==================&gt; ]  14.14G  24.7MB/s    eta 30s
+rest.tar.gz          95%[==================&gt; ]  14.15G  24.7MB/s    eta 30s
+rest.tar.gz          95%[==================&gt; ]  14.15G  24.7MB/s    eta 30s
+rest.tar.gz          95%[==================&gt; ]  14.16G  24.6MB/s    eta 29s
+rest.tar.gz          95%[==================&gt; ]  14.17G  24.7MB/s    eta 29s
+rest.tar.gz          95%[==================&gt; ]  14.17G  24.7MB/s    eta 29s
+rest.tar.gz          95%[==================&gt; ]  14.18G  24.7MB/s    eta 29s
+rest.tar.gz          95%[==================&gt; ]  14.19G  24.6MB/s    eta 27s
+rest.tar.gz          95%[==================&gt; ]  14.20G  24.6MB/s    eta 27s
+rest.tar.gz          95%[==================&gt; ]  14.20G  24.7MB/s    eta 27s
+rest.tar.gz          95%[==================&gt; ]  14.21G  24.7MB/s    eta 27s
+rest.tar.gz          95%[==================&gt; ]  14.22G  24.7MB/s    eta 26s
+rest.tar.gz          95%[==================&gt; ]  14.23G  24.7MB/s    eta 26s
+rest.tar.gz          95%[==================&gt; ]  14.23G  24.7MB/s    eta 26s
+rest.tar.gz          95%[==================&gt; ]  14.24G  24.6MB/s    eta 26s
+rest.tar.gz          95%[==================&gt; ]  14.25G  24.5MB/s    eta 25s
+rest.tar.gz          96%[==================&gt; ]  14.25G  23.9MB/s    eta 25s
+rest.tar.gz          96%[==================&gt; ]  14.26G  23.6MB/s    eta 25s
+rest.tar.gz          96%[==================&gt; ]  14.27G  23.7MB/s    eta 25s
+rest.tar.gz          96%[==================&gt; ]  14.27G  23.7MB/s    eta 24s
+rest.tar.gz          96%[==================&gt; ]  14.28G  23.7MB/s    eta 24s
+rest.tar.gz          96%[==================&gt; ]  14.29G  23.7MB/s    eta 24s
+rest.tar.gz          96%[==================&gt; ]  14.29G  23.7MB/s    eta 24s
+rest.tar.gz          96%[==================&gt; ]  14.30G  23.7MB/s    eta 23s
+rest.tar.gz          96%[==================&gt; ]  14.31G  23.9MB/s    eta 23s
+rest.tar.gz          96%[==================&gt; ]  14.32G  23.9MB/s    eta 23s
+rest.tar.gz          96%[==================&gt; ]  14.32G  23.9MB/s    eta 23s
+rest.tar.gz          96%[==================&gt; ]  14.33G  24.3MB/s    eta 21s
+rest.tar.gz          96%[==================&gt; ]  14.34G  24.3MB/s    eta 21s
+rest.tar.gz          96%[==================&gt; ]  14.35G  24.0MB/s    eta 21s
+rest.tar.gz          96%[==================&gt; ]  14.35G  24.1MB/s    eta 21s
+rest.tar.gz          96%[==================&gt; ]  14.36G  24.1MB/s    eta 20s
+rest.tar.gz          96%[==================&gt; ]  14.37G  24.2MB/s    eta 20s
+rest.tar.gz          96%[==================&gt; ]  14.38G  24.2MB/s    eta 20s
+rest.tar.gz          96%[==================&gt; ]  14.38G  24.2MB/s    eta 20s
+rest.tar.gz          96%[==================&gt; ]  14.39G  24.1MB/s    eta 19s
+rest.tar.gz          97%[==================&gt; ]  14.40G  24.2MB/s    eta 19s
+rest.tar.gz          97%[==================&gt; ]  14.40G  24.3MB/s    eta 19s
+rest.tar.gz          97%[==================&gt; ]  14.41G  24.3MB/s    eta 19s
+rest.tar.gz          97%[==================&gt; ]  14.42G  24.2MB/s    eta 18s
+rest.tar.gz          97%[==================&gt; ]  14.42G  24.2MB/s    eta 18s
+rest.tar.gz          97%[==================&gt; ]  14.43G  24.3MB/s    eta 18s
+rest.tar.gz          97%[==================&gt; ]  14.44G  24.4MB/s    eta 18s
+rest.tar.gz          97%[==================&gt; ]  14.45G  24.4MB/s    eta 16s
+rest.tar.gz          97%[==================&gt; ]  14.45G  24.4MB/s    eta 16s
+rest.tar.gz          97%[==================&gt; ]  14.46G  24.4MB/s    eta 16s
+rest.tar.gz          97%[==================&gt; ]  14.47G  24.5MB/s    eta 16s
+rest.tar.gz          97%[==================&gt; ]  14.48G  24.6MB/s    eta 15s
+rest.tar.gz          97%[==================&gt; ]  14.48G  24.6MB/s    eta 15s
+rest.tar.gz          97%[==================&gt; ]  14.49G  24.6MB/s    eta 15s
+rest.tar.gz          97%[==================&gt; ]  14.50G  24.6MB/s    eta 15s
+rest.tar.gz          97%[==================&gt; ]  14.51G  24.7MB/s    eta 14s
+rest.tar.gz          97%[==================&gt; ]  14.51G  24.7MB/s    eta 14s
+rest.tar.gz          97%[==================&gt; ]  14.52G  24.7MB/s    eta 14s
+rest.tar.gz          97%[==================&gt; ]  14.53G  24.8MB/s    eta 14s
+rest.tar.gz          97%[==================&gt; ]  14.54G  24.9MB/s    eta 13s
+rest.tar.gz          97%[==================&gt; ]  14.54G  24.8MB/s    eta 13s
+rest.tar.gz          98%[==================&gt; ]  14.55G  24.8MB/s    eta 13s
+rest.tar.gz          98%[==================&gt; ]  14.56G  24.7MB/s    eta 13s
+rest.tar.gz          98%[==================&gt; ]  14.56G  24.7MB/s    eta 12s
+rest.tar.gz          98%[==================&gt; ]  14.57G  24.8MB/s    eta 12s
+rest.tar.gz          98%[==================&gt; ]  14.58G  24.8MB/s    eta 12s
+rest.tar.gz          98%[==================&gt; ]  14.58G  24.7MB/s    eta 12s
+rest.tar.gz          98%[==================&gt; ]  14.59G  24.7MB/s    eta 10s
+rest.tar.gz          98%[==================&gt; ]  14.60G  24.7MB/s    eta 10s
+rest.tar.gz          98%[==================&gt; ]  14.61G  24.7MB/s    eta 10s
+rest.tar.gz          98%[==================&gt; ]  14.61G  24.7MB/s    eta 10s
+rest.tar.gz          98%[==================&gt; ]  14.62G  24.7MB/s    eta 9s
+rest.tar.gz          98%[==================&gt; ]  14.63G  24.8MB/s    eta 9s
+rest.tar.gz          98%[==================&gt; ]  14.64G  24.8MB/s    eta 9s
+rest.tar.gz          98%[==================&gt; ]  14.64G  24.8MB/s    eta 9s
+rest.tar.gz          98%[==================&gt; ]  14.65G  24.7MB/s    eta 8s
+rest.tar.gz          98%[==================&gt; ]  14.66G  24.8MB/s    eta 8s
+rest.tar.gz          98%[==================&gt; ]  14.67G  24.8MB/s    eta 8s
+rest.tar.gz          98%[==================&gt; ]  14.67G  24.8MB/s    eta 8s
+rest.tar.gz          98%[==================&gt; ]  14.68G  24.8MB/s    eta 7s
+rest.tar.gz          98%[==================&gt; ]  14.69G  24.6MB/s    eta 7s
+rest.tar.gz          99%[==================&gt; ]  14.69G  24.6MB/s    eta 7s
+rest.tar.gz          99%[==================&gt; ]  14.70G  24.7MB/s    eta 7s
+rest.tar.gz          99%[==================&gt; ]  14.71G  24.7MB/s    eta 6s
+rest.tar.gz          99%[==================&gt; ]  14.72G  24.6MB/s    eta 6s
+rest.tar.gz          99%[==================&gt; ]  14.72G  24.6MB/s    eta 6s
+rest.tar.gz          99%[==================&gt; ]  14.73G  24.5MB/s    eta 6s
+rest.tar.gz          99%[==================&gt; ]  14.74G  24.2MB/s    eta 4s
+rest.tar.gz          99%[==================&gt; ]  14.74G  24.2MB/s    eta 4s
+rest.tar.gz          99%[==================&gt; ]  14.75G  24.3MB/s    eta 4s
+rest.tar.gz          99%[==================&gt; ]  14.76G  24.2MB/s    eta 4s
+rest.tar.gz          99%[==================&gt; ]  14.77G  24.2MB/s    eta 3s
+rest.tar.gz          99%[==================&gt; ]  14.77G  24.2MB/s    eta 3s
+rest.tar.gz          99%[==================&gt; ]  14.78G  24.3MB/s    eta 3s
+rest.tar.gz          99%[==================&gt; ]  14.79G  24.2MB/s    eta 3s
+rest.tar.gz          99%[==================&gt; ]  14.79G  24.2MB/s    eta 2s
+rest.tar.gz          99%[==================&gt; ]  14.80G  24.1MB/s    eta 2s
+rest.tar.gz          99%[==================&gt; ]  14.81G  24.1MB/s    eta 2s
+rest.tar.gz          99%[==================&gt; ]  14.82G  24.8MB/s    eta 2s
+rest.tar.gz          99%[==================&gt; ]  14.82G  24.8MB/s    eta 1s
+rest.tar.gz          99%[==================&gt; ]  14.83G  24.9MB/s    eta 1s
+rest.tar.gz         100%[===================&gt;]  14.84G  25.4MB/s    in 10m 21s 
 
-2025-11-03 00:19:59 (55.2 MB/s) - ‘rest.tar.gz’ saved [15935669577/15935669577]
-
+2026-02-22 01:50:57 (24.5 MB/s) - ‘rest.tar.gz’ saved [15935669577/15935669577]
 fsl_course_data/rest/Nets/groupICA100/
 fsl_course_data/rest/Nets/groupICA100/Noise__inv.nii.gz
 fsl_course_data/rest/Nets/groupICA100/mask.nii.gz
@@ -2157,7 +4246,7 @@ Two types of connectivity matrices are computed for each subject:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting ./FSLnets/estimate_network.py
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing ./FSLnets/estimate_network.py
 </pre></div>
 </div>
 </div>
@@ -2316,6 +4405,9 @@ class list(object)
 Fnetmats shape: (12, 3969)
 Pnetmats shape: (12, 3969)
 ✅ Finished computing and saving results.
+
+⚠️ STDERR:
+ Matplotlib is building the font cache; this may take a moment.
 </pre></div>
 </div>
 </div>
@@ -2399,7 +4491,7 @@ Pnetmats shape: (12, 3969)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting ./FSLnets/nets_group_analysis.py
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing ./FSLnets/nets_group_analysis.py
 </pre></div>
 </div>
 </div>
@@ -2414,7 +4506,7 @@ Pnetmats shape: (12, 3969)
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>✅ STDOUT:
  📊 Summary figure plot saved as &#39;groupmean_partial_corr.png&#39;
 ✅ Group means calculated.
-Mnet_P[2, 26] = 6.654220574631274
+Mnet_P[2, 26] = 6.65422057463127
 Original node indices for row 3 and column 27:
 ts.nodes[2] = 2
 ts.nodes[26] = 32
@@ -2498,7 +4590,7 @@ ts.nodes[26] = 32
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting ./FSLnets/cross_subject_comparison.py
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing ./FSLnets/cross_subject_comparison.py
 </pre></div>
 </div>
 </div>
@@ -2511,7 +4603,7 @@ ts.nodes[26] = 32
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>✅ STDOUT:
- 1799233
+ 4385
 
 -----------------
 Contrast 1 [1 -1]
@@ -2560,22 +4652,22 @@ Node i | Node j | T statistic | P value
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: 2025-11-03T00:27:39.337183+00:00
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: 2026-02-22T01:59:40.389625+00:00
 
 Python implementation: CPython
-Python version       : 3.11.6
-IPython version      : 8.16.1
+Python version       : 3.13.11
+IPython version      : 9.9.0
 
-Compiler    : GCC 12.3.0
+Compiler    : GCC 14.3.0
 OS          : Linux
-Release     : 5.4.0-204-generic
+Release     : 6.8.0-1044-azure
 Machine     : x86_64
 Processor   : x86_64
-CPU cores   : 32
+CPU cores   : 4
 Architecture: 64bit
 
-IPython: 8.16.1
-numpy  : 2.2.6
+IPython: 9.9.0
+numpy  : 2.4.2
 </pre></div>
 </div>
 </div>
@@ -2624,11 +4716,11 @@ numpy  : 2.2.6
       </div>
     </a>
     <a class="right-next"
-       href="intro_to_preprocessing.html"
+       href="NiWrap.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Introduction to Preprocessing</p>
+        <p class="prev-next-title">NiWrap and Connectome Workbench</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

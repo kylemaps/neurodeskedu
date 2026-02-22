@@ -64,8 +64,8 @@
     <link rel="icon" href="../../_static/neurodesk_logo.svg"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="PyBIDS" href="PyBIDS.html" />
-    <link rel="prev" title="Nextflow in Neurodesk: Minimal BIDS T1w QC" href="nextflow_neurodesk.html" />
+    <link rel="next" title="Pydra" href="pydra_preproc_ants.html" />
+    <link rel="prev" title="Basic Nipype" href="nipype_short.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -192,7 +192,10 @@
     <div class="bd-toc-item navbar-nav active">
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../intro.html">Examples</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../template.html">Example Notebook Template</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../diffusion_imaging/intro.html">Diffusion Imaging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../diffusion_imaging/DIPY_1.html">Basic Tracking with DIPY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../diffusion_imaging/DIPY_2.html">Advanced Tracking with DIPY</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../diffusion_imaging/Diffusion_TBSS_Demo.html">TBSS Tutorial</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../diffusion_imaging/MRtrix_1.html">MRtrix: Part 1</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../diffusion_imaging/MRtrix_2.html">MRtrix: Part 2</a></li>
@@ -208,24 +211,24 @@
 <li class="toctree-l3"><a class="reference internal" href="../functional_imaging/AFNI_preprocessing_only.html">AFNI Preprocessing</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../functional_imaging/AFNI_preprocessing_plus_glm.html">AFNI Preprocessing and GLM</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../functional_imaging/AFNI_preprocessing_plus_glm_group.html">AFNI Preprocessing &amp; Group Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/AFNI_processing_task_based.html">Processing task-based FMRI with AFNI and afni_proc.py</a></li>
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/FSL_preproc_glm.html">FSL Preprocessing and GLM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/FSLnets_course_practical.html">Resting state with FSLnets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/NiWrap.html">NiWrap and Connectome Workbench</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../functional_imaging/deepretinotopy.html">DeepRetinotopy Toolbox</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/fMRI_tutorial_in_R_magic.html">Resting-State fMRI Analysis in R</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../functional_imaging/first_and_second_level_spm.html">Nipype-SPM fMRI Analysis</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../functional_imaging/fmriprep.html">fMRIprep</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../functional_imaging/fsl_all_levels_flanker_nipype.html">Nipype-FSL fMRI Analysis</a></li>
 
 
 
-<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/FSL_preproc_glm.html">FSL Preprocessing and GLM</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/FSLnets_course_practical.html">Resting state with FSLnets</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../functional_imaging/intro_to_preprocessing.html">Introduction to Preprocessing</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../functional_imaging/mri_vol2surf.html">FreeSurfer: mri_vol2surf</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/NiWrap.html">NiWrap and Connectome Workbench</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../functional_imaging/process_five_echo_dataset.html">tedana: TE Dependent ANAlysis</a></li>
-</ul>
-</details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../spectroscopy/intro.html">Spectroscopy</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../spectroscopy/lcmodel.html">MR Spectroscopy with LCModel</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../spectroscopy/osprey.html">MR Spectroscopy with Osprey</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../quantitative_imaging/intro.html">Quantitative Imaging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -240,26 +243,36 @@
 
 </ul>
 </details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../spectroscopy/intro.html">Spectroscopy</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../spectroscopy/lcmodel.html">MR Spectroscopy with LCModel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../spectroscopy/osprey.html">MR Spectroscopy with Osprey</a></li>
+</ul>
+</details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../structural_imaging/intro.html">Structural Imaging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../structural_imaging/brain_extraction_different_tools.html">Brain Extraction Tools</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../structural_imaging/freesurfer.html">FreeSurfer</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../structural_imaging/FSL_course_bet.html">FSL course - BET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../structural_imaging/SYNcro.html">SYNcro</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../structural_imaging/brain_extraction_different_tools.html">Brain Extraction Tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../structural_imaging/freesurfer-recon-all-clinical.html">FreeSurfer: recon-all-clinical</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../structural_imaging/freesurfer.html">FreeSurfer</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../structural_imaging/sct_toolbox.html">SCT Toolbox</a></li>
 
 </ul>
 </details></li>
 <li class="toctree-l2 current active has-children"><a class="reference internal" href="intro.html">Workflows</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="AA_Neurodesk_demo_tour.html">Neurodesk Tools Demo</a></li>
-<li class="toctree-l3"><a class="reference internal" href="bids_conversion.html">BIDS conversion</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MRIQC.html">MRIQC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Magic_commands.html">Magic Commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyBIDS.html">PyBIDS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="RISE_slideshow.html">RISE Slideshow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bids_conversion.html">BIDS conversion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ipyniivue_ipywidgets.html">Ipyniivue and Ipywidgets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nextflow_neurodesk.html">Nextflow in Neurodesk: Minimal BIDS T1w QC</a></li>
 <li class="toctree-l3"><a class="reference internal" href="nipype_full.html">Nipype on Neurodesk</a></li>
 <li class="toctree-l3"><a class="reference internal" href="nipype_short.html">Basic Nipype</a></li>
 
-<li class="toctree-l3"><a class="reference internal" href="nextflow_neurodesk.html">Nextflow in Neurodesk: Minimal BIDS T1w QC</a></li>
 <li class="toctree-l3 current active"><a class="current reference internal" href="#">Papermill Slurm Job Submission</a></li>
-<li class="toctree-l3"><a class="reference internal" href="PyBIDS.html">PyBIDS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pydra_preproc_ants.html">Pydra</a></li>
-<li class="toctree-l3"><a class="reference internal" href="RISE_slideshow.html">RISE Slideshow</a></li>
 <li class="toctree-l3"><a class="reference internal" href="review_system_test.html">Review System Test Notebook</a></li>
 </ul>
 </details></li>
@@ -641,32 +654,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;julia/1.10.4&#39;,
- &#39;&lt;H&gt;&#39;,
- &#39;&lt;H&gt;&#39;,
- &#39;&lt;H&gt;&#39;,
- &#39;&lt;H&gt;&#39;,
- &#39;&lt;H&gt;&#39;,
- &#39;&lt;H&gt;&#39;,
- &#39;&lt;H&gt;&#39;,
- &#39;&lt;H&gt;&#39;,
- &#39;&lt;H&gt;&#39;,
- &#39;&lt;H&gt;&#39;,
- &#39;&lt;H&gt;&#39;,
- &#39;openssl/1.1&#39;,
- &#39;python/3.10.4-gcccore-11.3.0&#39;,
- &#39;&lt;H&gt;&#39;,
- &#39;&lt;H&gt;&#39;,
- &#39;&lt;H&gt;&#39;,
- &#39;&lt;H&gt;&#39;,
- &#39;&lt;H&gt;&#39;,
- &#39;libxslt/1.1.34-gcccore-11.3.0&#39;,
- &#39;lxml/4.9.1-gcccore-11.3.0&#39;,
- &#39;beautifulsoup/4.10.0-gcccore-11.3.0&#39;,
- &#39;&lt;H&gt;&#39;,
- &#39;jupyter-server/1.21.0-gcccore-11.3.0&#39;,
- &#39;jupyterlab/3.5.0-gcccore-11.3.0&#39;,
- &#39;fsl/6.0.4&#39;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;fsl/6.0.4&#39;]
 </pre></div>
 </div>
 </div>
@@ -682,8 +670,514 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> exist.
- exist.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2026-02-22 02:02:12--  https://imaging.org.au/uploads/Human7T/mp2rageModel_L13_work03-plus-hippocampus-7T-sym-norm-mincanon_v0.8.nii
+Resolving imaging.org.au (imaging.org.au)...
+203.101.229.7
+Connecting to imaging.org.au (imaging.org.au)|203.101.229.7|:443...
+connected.
+HTTP request sent, awaiting response...
+200 OK
+Length: 1536000352 (1.4G) [application/octet-stream]
+Saving to: ‘./mp2rage-01.nii’
+
+./mp2rage-01.nii      0%[                    ]       0  --.-KB/s
+./mp2rage-01.nii      0%[                    ]  47.73K   237KB/s
+./mp2rage-01.nii      0%[                    ] 111.73K   277KB/s
+./mp2rage-01.nii      0%[                    ] 239.73K   397KB/s
+./mp2rage-01.nii      0%[                    ] 495.73K   615KB/s
+./mp2rage-01.nii      0%[                    ] 991.73K   985KB/s
+./mp2rage-01.nii      0%[                    ]   1.95M  1.62MB/s
+./mp2rage-01.nii      0%[                    ]   3.91M  2.77MB/s
+./mp2rage-01.nii      0%[                    ]   7.20M  4.39MB/s
+./mp2rage-01.nii      0%[                    ]  10.36M  5.59MB/s
+./mp2rage-01.nii      0%[                    ]  13.47M  6.54MB/s
+./mp2rage-01.nii      1%[                    ]  16.16M  7.14MB/s
+./mp2rage-01.nii      1%[                    ]  18.84M  7.64MB/s
+./mp2rage-01.nii      1%[                    ]  21.53M  8.06MB/s
+./mp2rage-01.nii      1%[                    ]  25.20M  8.74MB/s
+./mp2rage-01.nii      1%[                    ]  27.89M  9.03MB/s    eta 2m 39s
+./mp2rage-01.nii      2%[                    ]  30.58M  9.29MB/s    eta 2m 39s
+./mp2rage-01.nii      2%[                    ]  33.26M  9.51MB/s    eta 2m 39s
+./mp2rage-01.nii      2%[                    ]  35.95M  9.72MB/s    eta 2m 39s
+./mp2rage-01.nii      2%[                    ]  38.89M  9.95MB/s    eta 2m 39s
+./mp2rage-01.nii      2%[                    ]  41.58M  10.1MB/s    eta 2m 21s
+./mp2rage-01.nii      3%[                    ]  44.39M  10.8MB/s    eta 2m 21s
+./mp2rage-01.nii      3%[                    ]  47.20M  11.4MB/s    eta 2m 21s
+./mp2rage-01.nii      3%[                    ]  51.12M  12.2MB/s    eta 2m 21s
+./mp2rage-01.nii      3%[                    ]  54.37M  12.9MB/s    eta 2m 21s
+./mp2rage-01.nii      3%[                    ]  57.19M  13.5MB/s    eta 2m 8s
+./mp2rage-01.nii      4%[                    ]  60.62M  14.0MB/s    eta 2m 8s
+./mp2rage-01.nii      4%[                    ]  63.31M  14.2MB/s    eta 2m 8s
+./mp2rage-01.nii      4%[                    ]  66.00M  14.1MB/s    eta 2m 8s
+./mp2rage-01.nii      4%[                    ]  68.81M  14.1MB/s    eta 2m 8s
+./mp2rage-01.nii      4%[                    ]  72.44M  14.2MB/s    eta 2m 0s
+./mp2rage-01.nii      5%[&gt;                   ]  75.55M  14.2MB/s    eta 2m 0s
+./mp2rage-01.nii      5%[&gt;                   ]  78.23M  14.2MB/s    eta 2m 0s
+./mp2rage-01.nii      5%[&gt;                   ]  81.17M  14.3MB/s    eta 2m 0s
+./mp2rage-01.nii      5%[&gt;                   ]  83.86M  14.1MB/s    eta 2m 0s
+./mp2rage-01.nii      5%[&gt;                   ]  86.80M  14.1MB/s    eta 1m 55s
+./mp2rage-01.nii      6%[&gt;                   ]  89.86M  14.2MB/s    eta 1m 55s
+./mp2rage-01.nii      6%[&gt;                   ]  92.86M  14.2MB/s    eta 1m 55s
+./mp2rage-01.nii      6%[&gt;                   ]  96.53M  14.3MB/s    eta 1m 55s
+./mp2rage-01.nii      6%[&gt;                   ]  99.22M  14.3MB/s    eta 1m 55s
+./mp2rage-01.nii      6%[&gt;                   ] 101.97M  14.3MB/s    eta 1m 51s
+./mp2rage-01.nii      7%[&gt;                   ] 104.66M  14.3MB/s    eta 1m 51s
+./mp2rage-01.nii      7%[&gt;                   ] 107.66M  14.4MB/s    eta 1m 51s
+./mp2rage-01.nii      7%[&gt;                   ] 110.59M  14.2MB/s    eta 1m 51s
+./mp2rage-01.nii      7%[&gt;                   ] 113.41M  14.1MB/s    eta 1m 51s
+./mp2rage-01.nii      7%[&gt;                   ] 116.09M  14.1MB/s    eta 1m 49s
+./mp2rage-01.nii      8%[&gt;                   ] 118.91M  13.9MB/s    eta 1m 49s
+./mp2rage-01.nii      8%[&gt;                   ] 121.78M  13.9MB/s    eta 1m 49s
+./mp2rage-01.nii      8%[&gt;                   ] 124.72M  14.0MB/s    eta 1m 49s
+./mp2rage-01.nii      8%[&gt;                   ] 127.84M  14.0MB/s    eta 1m 49s
+./mp2rage-01.nii      8%[&gt;                   ] 130.66M  13.9MB/s    eta 1m 46s
+./mp2rage-01.nii      9%[&gt;                   ] 133.41M  13.8MB/s    eta 1m 46s
+./mp2rage-01.nii      9%[&gt;                   ] 136.03M  13.8MB/s    eta 1m 46s
+./mp2rage-01.nii      9%[&gt;                   ] 139.16M  13.8MB/s    eta 1m 46s
+./mp2rage-01.nii      9%[&gt;                   ] 141.97M  13.8MB/s    eta 1m 46s
+./mp2rage-01.nii      9%[&gt;                   ] 144.84M  13.8MB/s    eta 1m 45s
+./mp2rage-01.nii     10%[=&gt;                  ] 147.59M  13.7MB/s    eta 1m 45s
+./mp2rage-01.nii     10%[=&gt;                  ] 150.28M  13.7MB/s    eta 1m 45s
+./mp2rage-01.nii     10%[=&gt;                  ] 153.22M  13.6MB/s    eta 1m 45s
+./mp2rage-01.nii     10%[=&gt;                  ] 155.97M  13.6MB/s    eta 1m 45s
+./mp2rage-01.nii     10%[=&gt;                  ] 158.78M  13.6MB/s    eta 1m 43s
+./mp2rage-01.nii     11%[=&gt;                  ] 161.47M  13.6MB/s    eta 1m 43s
+./mp2rage-01.nii     11%[=&gt;                  ] 164.41M  13.6MB/s    eta 1m 43s
+./mp2rage-01.nii     11%[=&gt;                  ] 167.09M  13.6MB/s    eta 1m 43s
+./mp2rage-01.nii     11%[=&gt;                  ] 169.84M  13.6MB/s    eta 1m 43s
+./mp2rage-01.nii     11%[=&gt;                  ] 172.66M  13.6MB/s    eta 1m 41s
+./mp2rage-01.nii     11%[=&gt;                  ] 175.47M  13.6MB/s    eta 1m 41s
+./mp2rage-01.nii     12%[=&gt;                  ] 178.16M  13.6MB/s    eta 1m 41s
+./mp2rage-01.nii     12%[=&gt;                  ] 180.97M  13.5MB/s    eta 1m 41s
+./mp2rage-01.nii     12%[=&gt;                  ] 183.91M  13.5MB/s    eta 1m 41s
+./mp2rage-01.nii     12%[=&gt;                  ] 186.53M  13.5MB/s    eta 1m 40s
+./mp2rage-01.nii     12%[=&gt;                  ] 189.28M  13.5MB/s    eta 1m 40s
+./mp2rage-01.nii     13%[=&gt;                  ] 192.47M  13.5MB/s    eta 1m 40s
+./mp2rage-01.nii     13%[=&gt;                  ] 195.41M  13.5MB/s    eta 1m 40s
+./mp2rage-01.nii     13%[=&gt;                  ] 198.22M  13.5MB/s    eta 1m 40s
+./mp2rage-01.nii     13%[=&gt;                  ] 201.16M  13.6MB/s    eta 98s
+./mp2rage-01.nii     13%[=&gt;                  ] 204.34M  13.6MB/s    eta 98s
+./mp2rage-01.nii     14%[=&gt;                  ] 207.09M  13.6MB/s    eta 98s
+./mp2rage-01.nii     14%[=&gt;                  ] 209.84M  13.6MB/s    eta 98s
+./mp2rage-01.nii     14%[=&gt;                  ] 212.53M  13.6MB/s    eta 98s
+./mp2rage-01.nii     14%[=&gt;                  ] 215.28M  13.6MB/s    eta 97s
+./mp2rage-01.nii     14%[=&gt;                  ] 218.22M  13.6MB/s    eta 97s
+./mp2rage-01.nii     15%[==&gt;                 ] 220.91M  13.6MB/s    eta 97s
+./mp2rage-01.nii     15%[==&gt;                 ] 223.72M  13.6MB/s    eta 97s
+./mp2rage-01.nii     15%[==&gt;                 ] 226.53M  13.6MB/s    eta 97s
+./mp2rage-01.nii     15%[==&gt;                 ] 229.28M  13.6MB/s    eta 95s
+./mp2rage-01.nii     15%[==&gt;                 ] 231.97M  13.5MB/s    eta 95s
+./mp2rage-01.nii     16%[==&gt;                 ] 234.66M  13.5MB/s    eta 95s
+./mp2rage-01.nii     16%[==&gt;                 ] 237.41M  13.5MB/s    eta 95s
+./mp2rage-01.nii     16%[==&gt;                 ] 240.28M  13.5MB/s    eta 95s
+./mp2rage-01.nii     16%[==&gt;                 ] 243.09M  13.6MB/s    eta 94s
+./mp2rage-01.nii     16%[==&gt;                 ] 246.16M  13.6MB/s    eta 94s
+./mp2rage-01.nii     16%[==&gt;                 ] 248.78M  13.5MB/s    eta 94s
+./mp2rage-01.nii     17%[==&gt;                 ] 251.84M  13.5MB/s    eta 94s
+./mp2rage-01.nii     17%[==&gt;                 ] 254.91M  13.5MB/s    eta 94s
+./mp2rage-01.nii     17%[==&gt;                 ] 257.59M  13.5MB/s    eta 93s
+./mp2rage-01.nii     17%[==&gt;                 ] 260.34M  13.5MB/s    eta 93s
+./mp2rage-01.nii     17%[==&gt;                 ] 263.03M  13.4MB/s    eta 93s
+./mp2rage-01.nii     18%[==&gt;                 ] 265.72M  13.4MB/s    eta 93s
+./mp2rage-01.nii     18%[==&gt;                 ] 268.47M  13.4MB/s    eta 93s
+./mp2rage-01.nii     18%[==&gt;                 ] 271.53M  13.5MB/s    eta 92s
+./mp2rage-01.nii     18%[==&gt;                 ] 274.59M  13.5MB/s    eta 92s
+./mp2rage-01.nii     18%[==&gt;                 ] 277.41M  13.5MB/s    eta 92s
+./mp2rage-01.nii     19%[==&gt;                 ] 280.03M  13.5MB/s    eta 92s
+./mp2rage-01.nii     19%[==&gt;                 ] 282.66M  13.5MB/s    eta 92s
+./mp2rage-01.nii     19%[==&gt;                 ] 285.41M  13.5MB/s    eta 90s
+./mp2rage-01.nii     19%[==&gt;                 ] 288.09M  13.5MB/s    eta 90s
+./mp2rage-01.nii     19%[==&gt;                 ] 291.09M  13.5MB/s    eta 90s
+./mp2rage-01.nii     20%[===&gt;                ] 294.78M  13.7MB/s    eta 90s
+./mp2rage-01.nii     20%[===&gt;                ] 297.66M  13.7MB/s    eta 90s
+./mp2rage-01.nii     20%[===&gt;                ] 300.34M  13.7MB/s    eta 89s
+./mp2rage-01.nii     20%[===&gt;                ] 303.42M  13.7MB/s    eta 89s
+./mp2rage-01.nii     20%[===&gt;                ] 306.48M  13.8MB/s    eta 89s
+./mp2rage-01.nii     21%[===&gt;                ] 309.30M  13.8MB/s    eta 89s
+./mp2rage-01.nii     21%[===&gt;                ] 311.98M  13.7MB/s    eta 89s
+./mp2rage-01.nii     21%[===&gt;                ] 314.67M  13.7MB/s    eta 88s
+./mp2rage-01.nii     21%[===&gt;                ] 317.67M  13.7MB/s    eta 88s
+./mp2rage-01.nii     21%[===&gt;                ] 320.30M  13.7MB/s    eta 88s
+./mp2rage-01.nii     22%[===&gt;                ] 323.48M  13.8MB/s    eta 88s
+./mp2rage-01.nii     22%[===&gt;                ] 326.56M  13.8MB/s    eta 88s
+./mp2rage-01.nii     22%[===&gt;                ] 329.94M  13.9MB/s    eta 86s
+./mp2rage-01.nii     22%[===&gt;                ] 332.94M  13.9MB/s    eta 86s
+./mp2rage-01.nii     22%[===&gt;                ] 336.06M  13.9MB/s    eta 86s
+./mp2rage-01.nii     23%[===&gt;                ] 339.12M  14.0MB/s    eta 86s
+./mp2rage-01.nii     23%[===&gt;                ] 342.69M  14.2MB/s    eta 86s
+./mp2rage-01.nii     23%[===&gt;                ] 346.19M  14.3MB/s    eta 84s
+./mp2rage-01.nii     23%[===&gt;                ] 349.81M  14.5MB/s    eta 84s
+./mp2rage-01.nii     24%[===&gt;                ] 353.06M  14.5MB/s    eta 84s
+./mp2rage-01.nii     24%[===&gt;                ] 356.19M  14.4MB/s    eta 84s
+./mp2rage-01.nii     24%[===&gt;                ] 359.25M  14.4MB/s    eta 84s
+./mp2rage-01.nii     24%[===&gt;                ] 362.12M  14.5MB/s    eta 83s
+./mp2rage-01.nii     24%[===&gt;                ] 364.75M  14.4MB/s    eta 83s
+./mp2rage-01.nii     25%[====&gt;               ] 367.75M  14.4MB/s    eta 83s
+./mp2rage-01.nii     25%[====&gt;               ] 370.69M  14.4MB/s    eta 83s
+./mp2rage-01.nii     25%[====&gt;               ] 373.31M  14.4MB/s    eta 83s
+./mp2rage-01.nii     25%[====&gt;               ] 376.06M  14.4MB/s    eta 82s
+./mp2rage-01.nii     25%[====&gt;               ] 378.87M  14.4MB/s    eta 82s
+./mp2rage-01.nii     26%[====&gt;               ] 381.62M  14.4MB/s    eta 82s
+./mp2rage-01.nii     26%[====&gt;               ] 385.19M  14.5MB/s    eta 82s
+./mp2rage-01.nii     26%[====&gt;               ] 388.31M  14.5MB/s    eta 82s
+./mp2rage-01.nii     26%[====&gt;               ] 390.94M  14.4MB/s    eta 80s
+./mp2rage-01.nii     26%[====&gt;               ] 393.75M  14.4MB/s    eta 80s
+./mp2rage-01.nii     27%[====&gt;               ] 396.56M  14.3MB/s    eta 80s
+./mp2rage-01.nii     27%[====&gt;               ] 399.44M  14.3MB/s    eta 80s
+./mp2rage-01.nii     27%[====&gt;               ] 402.19M  14.1MB/s    eta 80s
+./mp2rage-01.nii     27%[====&gt;               ] 405.73M  14.1MB/s    eta 79s
+./mp2rage-01.nii     27%[====&gt;               ] 408.73M  14.0MB/s    eta 79s
+./mp2rage-01.nii     28%[====&gt;               ] 411.73M  13.9MB/s    eta 79s
+./mp2rage-01.nii     28%[====&gt;               ] 414.67M  13.9MB/s    eta 79s
+./mp2rage-01.nii     28%[====&gt;               ] 417.98M  13.9MB/s    eta 79s
+./mp2rage-01.nii     28%[====&gt;               ] 420.86M  13.9MB/s    eta 78s
+./mp2rage-01.nii     28%[====&gt;               ] 423.67M  13.9MB/s    eta 78s
+./mp2rage-01.nii     29%[====&gt;               ] 426.98M  14.0MB/s    eta 78s
+./mp2rage-01.nii     29%[====&gt;               ] 430.23M  14.0MB/s    eta 78s
+./mp2rage-01.nii     29%[====&gt;               ] 433.17M  14.1MB/s    eta 78s
+./mp2rage-01.nii     29%[====&gt;               ] 435.80M  14.1MB/s    eta 77s
+./mp2rage-01.nii     29%[====&gt;               ] 438.98M  14.1MB/s    eta 77s
+./mp2rage-01.nii     30%[=====&gt;              ] 442.05M  14.2MB/s    eta 77s
+./mp2rage-01.nii     30%[=====&gt;              ] 445.67M  14.2MB/s    eta 77s
+./mp2rage-01.nii     30%[=====&gt;              ] 448.80M  14.2MB/s    eta 77s
+./mp2rage-01.nii     30%[=====&gt;              ] 451.55M  14.2MB/s    eta 75s
+./mp2rage-01.nii     31%[=====&gt;              ] 454.36M  14.2MB/s    eta 75s
+./mp2rage-01.nii     31%[=====&gt;              ] 457.55M  14.3MB/s    eta 75s
+./mp2rage-01.nii     31%[=====&gt;              ] 460.36M  14.3MB/s    eta 75s
+./mp2rage-01.nii     31%[=====&gt;              ] 463.23M  14.3MB/s    eta 75s
+./mp2rage-01.nii     31%[=====&gt;              ] 466.30M  14.3MB/s    eta 74s
+./mp2rage-01.nii     32%[=====&gt;              ] 469.48M  14.3MB/s    eta 74s
+./mp2rage-01.nii     32%[=====&gt;              ] 472.42M  14.3MB/s    eta 74s
+./mp2rage-01.nii     32%[=====&gt;              ] 475.36M  14.3MB/s    eta 74s
+./mp2rage-01.nii     32%[=====&gt;              ] 478.48M  14.3MB/s    eta 74s
+./mp2rage-01.nii     32%[=====&gt;              ] 481.98M  14.5MB/s    eta 73s
+./mp2rage-01.nii     33%[=====&gt;              ] 485.67M  14.6MB/s    eta 73s
+./mp2rage-01.nii     33%[=====&gt;              ] 488.61M  14.6MB/s    eta 73s
+./mp2rage-01.nii     33%[=====&gt;              ] 491.83M  14.5MB/s    eta 73s
+./mp2rage-01.nii     33%[=====&gt;              ] 494.56M  14.5MB/s    eta 73s
+./mp2rage-01.nii     33%[=====&gt;              ] 497.45M  14.6MB/s    eta 71s
+./mp2rage-01.nii     34%[=====&gt;              ] 500.26M  14.5MB/s    eta 71s
+./mp2rage-01.nii     34%[=====&gt;              ] 503.30M  14.5MB/s    eta 71s
+./mp2rage-01.nii     34%[=====&gt;              ] 506.17M  14.3MB/s    eta 71s
+./mp2rage-01.nii     34%[=====&gt;              ] 508.98M  14.3MB/s    eta 71s
+./mp2rage-01.nii     34%[=====&gt;              ] 512.30M  14.4MB/s    eta 70s
+./mp2rage-01.nii     35%[======&gt;             ] 515.42M  14.5MB/s    eta 70s
+./mp2rage-01.nii     35%[======&gt;             ] 518.05M  14.4MB/s    eta 70s
+./mp2rage-01.nii     35%[======&gt;             ] 520.98M  14.4MB/s    eta 70s
+./mp2rage-01.nii     35%[======&gt;             ] 523.80M  14.4MB/s    eta 70s
+./mp2rage-01.nii     35%[======&gt;             ] 527.14M  14.4MB/s    eta 69s
+./mp2rage-01.nii     36%[======&gt;             ] 530.09M  14.3MB/s    eta 69s
+./mp2rage-01.nii     36%[======&gt;             ] 533.11M  14.3MB/s    eta 69s
+./mp2rage-01.nii     36%[======&gt;             ] 536.11M  14.3MB/s    eta 69s
+./mp2rage-01.nii     36%[======&gt;             ] 539.11M  14.3MB/s    eta 69s
+./mp2rage-01.nii     37%[======&gt;             ] 542.23M  14.2MB/s    eta 68s
+./mp2rage-01.nii     37%[======&gt;             ] 545.33M  14.1MB/s    eta 68s
+./mp2rage-01.nii     37%[======&gt;             ] 548.58M  14.1MB/s    eta 68s
+./mp2rage-01.nii     37%[======&gt;             ] 552.44M  14.2MB/s    eta 68s
+./mp2rage-01.nii     37%[======&gt;             ] 555.25M  14.2MB/s    eta 68s
+./mp2rage-01.nii     38%[======&gt;             ] 558.06M  14.2MB/s    eta 67s
+./mp2rage-01.nii     38%[======&gt;             ] 561.12M  14.3MB/s    eta 67s
+./mp2rage-01.nii     38%[======&gt;             ] 564.25M  14.3MB/s    eta 67s
+./mp2rage-01.nii     38%[======&gt;             ] 567.37M  14.4MB/s    eta 67s
+./mp2rage-01.nii     38%[======&gt;             ] 570.44M  14.4MB/s    eta 67s
+./mp2rage-01.nii     39%[======&gt;             ] 574.33M  14.5MB/s    eta 65s
+./mp2rage-01.nii     39%[======&gt;             ] 577.51M  14.5MB/s    eta 65s
+./mp2rage-01.nii     39%[======&gt;             ] 581.14M  14.7MB/s    eta 65s
+./mp2rage-01.nii     39%[======&gt;             ] 584.64M  14.8MB/s    eta 65s
+./mp2rage-01.nii     40%[=======&gt;            ] 588.08M  14.9MB/s    eta 65s
+./mp2rage-01.nii     40%[=======&gt;            ] 590.89M  14.9MB/s    eta 64s
+./mp2rage-01.nii     40%[=======&gt;            ] 593.73M  14.9MB/s    eta 64s
+./mp2rage-01.nii     40%[=======&gt;            ] 597.42M  15.0MB/s    eta 64s
+./mp2rage-01.nii     41%[=======&gt;            ] 600.61M  15.0MB/s    eta 64s
+./mp2rage-01.nii     41%[=======&gt;            ] 603.42M  15.0MB/s    eta 64s
+./mp2rage-01.nii     41%[=======&gt;            ] 606.11M  14.9MB/s    eta 63s
+./mp2rage-01.nii     41%[=======&gt;            ] 609.36M  14.9MB/s    eta 63s
+./mp2rage-01.nii     41%[=======&gt;            ] 612.91M  15.0MB/s    eta 63s
+./mp2rage-01.nii     42%[=======&gt;            ] 616.53M  15.0MB/s    eta 63s
+./mp2rage-01.nii     42%[=======&gt;            ] 619.47M  15.0MB/s    eta 63s
+./mp2rage-01.nii     42%[=======&gt;            ] 622.66M  15.1MB/s    eta 61s
+./mp2rage-01.nii     42%[=======&gt;            ] 625.91M  15.1MB/s    eta 61s
+./mp2rage-01.nii     42%[=======&gt;            ] 628.92M  15.1MB/s    eta 61s
+./mp2rage-01.nii     43%[=======&gt;            ] 631.67M  15.0MB/s    eta 61s
+./mp2rage-01.nii     43%[=======&gt;            ] 634.86M  15.0MB/s    eta 61s
+./mp2rage-01.nii     43%[=======&gt;            ] 637.73M  14.8MB/s    eta 60s
+./mp2rage-01.nii     43%[=======&gt;            ] 640.36M  14.7MB/s    eta 60s
+./mp2rage-01.nii     43%[=======&gt;            ] 643.73M  14.6MB/s    eta 60s
+./mp2rage-01.nii     44%[=======&gt;            ] 646.86M  14.6MB/s    eta 60s
+./mp2rage-01.nii     44%[=======&gt;            ] 649.98M  14.5MB/s    eta 60s
+./mp2rage-01.nii     44%[=======&gt;            ] 653.05M  14.5MB/s    eta 59s
+./mp2rage-01.nii     44%[=======&gt;            ] 656.11M  14.5MB/s    eta 59s
+./mp2rage-01.nii     44%[=======&gt;            ] 658.98M  14.4MB/s    eta 59s
+./mp2rage-01.nii     45%[========&gt;           ] 662.23M  14.4MB/s    eta 59s
+./mp2rage-01.nii     45%[========&gt;           ] 665.42M  14.5MB/s    eta 59s
+./mp2rage-01.nii     45%[========&gt;           ] 668.61M  14.5MB/s    eta 58s
+./mp2rage-01.nii     45%[========&gt;           ] 671.23M  14.5MB/s    eta 58s
+./mp2rage-01.nii     46%[========&gt;           ] 674.48M  14.4MB/s    eta 58s
+./mp2rage-01.nii     46%[========&gt;           ] 677.98M  14.4MB/s    eta 58s
+./mp2rage-01.nii     46%[========&gt;           ] 681.05M  14.4MB/s    eta 58s
+./mp2rage-01.nii     46%[========&gt;           ] 684.30M  14.4MB/s    eta 56s
+./mp2rage-01.nii     46%[========&gt;           ] 687.11M  14.4MB/s    eta 56s
+./mp2rage-01.nii     47%[========&gt;           ] 689.86M  14.3MB/s    eta 56s
+./mp2rage-01.nii     47%[========&gt;           ] 692.73M  14.3MB/s    eta 56s
+./mp2rage-01.nii     47%[========&gt;           ] 695.61M  14.3MB/s    eta 56s
+./mp2rage-01.nii     47%[========&gt;           ] 699.17M  14.5MB/s    eta 55s
+./mp2rage-01.nii     47%[========&gt;           ] 702.17M  14.5MB/s    eta 55s
+./mp2rage-01.nii     48%[========&gt;           ] 705.36M  14.5MB/s    eta 55s
+./mp2rage-01.nii     48%[========&gt;           ] 708.17M  14.5MB/s    eta 55s
+./mp2rage-01.nii     48%[========&gt;           ] 711.84M  14.6MB/s    eta 55s
+./mp2rage-01.nii     48%[========&gt;           ] 714.66M  14.5MB/s    eta 54s
+./mp2rage-01.nii     48%[========&gt;           ] 717.53M  14.5MB/s    eta 54s
+./mp2rage-01.nii     49%[========&gt;           ] 720.47M  14.5MB/s    eta 54s
+./mp2rage-01.nii     49%[========&gt;           ] 723.34M  14.5MB/s    eta 54s
+./mp2rage-01.nii     49%[========&gt;           ] 726.47M  14.5MB/s    eta 54s
+./mp2rage-01.nii     49%[========&gt;           ] 729.97M  14.5MB/s    eta 53s
+./mp2rage-01.nii     50%[=========&gt;          ] 732.72M  14.5MB/s    eta 53s
+./mp2rage-01.nii     50%[=========&gt;          ] 735.34M  14.4MB/s    eta 53s
+./mp2rage-01.nii     50%[=========&gt;          ] 738.44M  14.3MB/s    eta 53s
+./mp2rage-01.nii     50%[=========&gt;          ] 741.37M  14.3MB/s    eta 53s
+./mp2rage-01.nii     50%[=========&gt;          ] 744.00M  14.2MB/s    eta 52s
+./mp2rage-01.nii     50%[=========&gt;          ] 746.69M  14.2MB/s    eta 52s
+./mp2rage-01.nii     51%[=========&gt;          ] 749.62M  14.2MB/s    eta 52s
+./mp2rage-01.nii     51%[=========&gt;          ] 752.25M  14.1MB/s    eta 52s
+./mp2rage-01.nii     51%[=========&gt;          ] 755.00M  14.1MB/s    eta 52s
+./mp2rage-01.nii     51%[=========&gt;          ] 758.00M  14.0MB/s    eta 51s
+./mp2rage-01.nii     51%[=========&gt;          ] 760.81M  13.9MB/s    eta 51s
+./mp2rage-01.nii     52%[=========&gt;          ] 763.94M  13.9MB/s    eta 51s
+./mp2rage-01.nii     52%[=========&gt;          ] 767.12M  14.0MB/s    eta 51s
+./mp2rage-01.nii     52%[=========&gt;          ] 770.12M  13.8MB/s    eta 51s
+./mp2rage-01.nii     52%[=========&gt;          ] 773.44M  13.9MB/s    eta 50s
+./mp2rage-01.nii     52%[=========&gt;          ] 776.25M  13.9MB/s    eta 50s
+./mp2rage-01.nii     53%[=========&gt;          ] 779.12M  13.9MB/s    eta 50s
+./mp2rage-01.nii     53%[=========&gt;          ] 781.94M  13.9MB/s    eta 50s
+./mp2rage-01.nii     53%[=========&gt;          ] 785.25M  13.9MB/s    eta 50s
+./mp2rage-01.nii     53%[=========&gt;          ] 788.37M  13.9MB/s    eta 49s
+./mp2rage-01.nii     54%[=========&gt;          ] 791.56M  14.0MB/s    eta 49s
+./mp2rage-01.nii     54%[=========&gt;          ] 794.25M  14.0MB/s    eta 49s
+./mp2rage-01.nii     54%[=========&gt;          ] 796.94M  13.9MB/s    eta 49s
+./mp2rage-01.nii     54%[=========&gt;          ] 799.75M  13.9MB/s    eta 49s
+./mp2rage-01.nii     54%[=========&gt;          ] 802.87M  14.0MB/s    eta 48s
+./mp2rage-01.nii     55%[==========&gt;         ] 806.41M  14.1MB/s    eta 48s
+./mp2rage-01.nii     55%[==========&gt;         ] 809.78M  14.2MB/s    eta 48s
+./mp2rage-01.nii     55%[==========&gt;         ] 812.59M  14.2MB/s    eta 48s
+./mp2rage-01.nii     55%[==========&gt;         ] 815.34M  14.2MB/s    eta 48s
+./mp2rage-01.nii     55%[==========&gt;         ] 818.03M  14.2MB/s    eta 47s
+./mp2rage-01.nii     56%[==========&gt;         ] 821.09M  14.2MB/s    eta 47s
+./mp2rage-01.nii     56%[==========&gt;         ] 823.91M  14.2MB/s    eta 47s
+./mp2rage-01.nii     56%[==========&gt;         ] 827.34M  14.2MB/s    eta 47s
+./mp2rage-01.nii     56%[==========&gt;         ] 830.75M  14.3MB/s    eta 47s
+./mp2rage-01.nii     56%[==========&gt;         ] 834.01M  14.3MB/s    eta 45s
+./mp2rage-01.nii     57%[==========&gt;         ] 836.89M  14.3MB/s    eta 45s
+./mp2rage-01.nii     57%[==========&gt;         ] 839.70M  14.3MB/s    eta 45s
+./mp2rage-01.nii     57%[==========&gt;         ] 842.58M  14.4MB/s    eta 45s
+./mp2rage-01.nii     57%[==========&gt;         ] 845.45M  14.3MB/s    eta 45s
+./mp2rage-01.nii     57%[==========&gt;         ] 848.58M  14.2MB/s    eta 44s
+./mp2rage-01.nii     58%[==========&gt;         ] 851.89M  14.3MB/s    eta 44s
+./mp2rage-01.nii     58%[==========&gt;         ] 855.14M  14.4MB/s    eta 44s
+./mp2rage-01.nii     58%[==========&gt;         ] 857.89M  14.4MB/s    eta 44s
+./mp2rage-01.nii     58%[==========&gt;         ] 860.94M  14.4MB/s    eta 44s
+./mp2rage-01.nii     58%[==========&gt;         ] 863.81M  14.3MB/s    eta 43s
+./mp2rage-01.nii     59%[==========&gt;         ] 866.69M  14.2MB/s    eta 43s
+./mp2rage-01.nii     59%[==========&gt;         ] 869.62M  14.1MB/s    eta 43s
+./mp2rage-01.nii     59%[==========&gt;         ] 872.50M  14.1MB/s    eta 43s
+./mp2rage-01.nii     59%[==========&gt;         ] 875.50M  14.2MB/s    eta 43s
+./mp2rage-01.nii     59%[==========&gt;         ] 878.62M  14.3MB/s    eta 42s
+./mp2rage-01.nii     60%[===========&gt;        ] 881.94M  14.3MB/s    eta 42s
+./mp2rage-01.nii     60%[===========&gt;        ] 884.62M  14.3MB/s    eta 42s
+./mp2rage-01.nii     60%[===========&gt;        ] 887.75M  14.2MB/s    eta 42s
+./mp2rage-01.nii     60%[===========&gt;        ] 890.69M  14.1MB/s    eta 42s
+./mp2rage-01.nii     60%[===========&gt;        ] 893.50M  14.0MB/s    eta 41s
+./mp2rage-01.nii     61%[===========&gt;        ] 896.37M  14.0MB/s    eta 41s
+./mp2rage-01.nii     61%[===========&gt;        ] 899.06M  14.0MB/s    eta 41s
+./mp2rage-01.nii     61%[===========&gt;        ] 902.19M  14.1MB/s    eta 41s
+./mp2rage-01.nii     61%[===========&gt;        ] 905.37M  14.1MB/s    eta 41s
+./mp2rage-01.nii     62%[===========&gt;        ] 908.37M  14.1MB/s    eta 40s
+./mp2rage-01.nii     62%[===========&gt;        ] 911.44M  14.0MB/s    eta 40s
+./mp2rage-01.nii     62%[===========&gt;        ] 914.78M  14.0MB/s    eta 40s
+./mp2rage-01.nii     62%[===========&gt;        ] 917.72M  14.1MB/s    eta 40s
+./mp2rage-01.nii     62%[===========&gt;        ] 921.20M  14.2MB/s    eta 40s
+./mp2rage-01.nii     63%[===========&gt;        ] 924.08M  14.2MB/s    eta 39s
+./mp2rage-01.nii     63%[===========&gt;        ] 927.01M  14.2MB/s    eta 39s
+./mp2rage-01.nii     63%[===========&gt;        ] 930.01M  14.2MB/s    eta 39s
+./mp2rage-01.nii     63%[===========&gt;        ] 932.76M  14.2MB/s    eta 39s
+./mp2rage-01.nii     63%[===========&gt;        ] 935.83M  14.2MB/s    eta 39s
+./mp2rage-01.nii     64%[===========&gt;        ] 938.64M  14.1MB/s    eta 38s
+./mp2rage-01.nii     64%[===========&gt;        ] 941.39M  14.0MB/s    eta 38s
+./mp2rage-01.nii     64%[===========&gt;        ] 944.39M  14.1MB/s    eta 38s
+./mp2rage-01.nii     64%[===========&gt;        ] 947.76M  14.2MB/s    eta 38s
+./mp2rage-01.nii     64%[===========&gt;        ] 951.50M  14.4MB/s    eta 38s
+./mp2rage-01.nii     65%[============&gt;       ] 955.42M  14.5MB/s    eta 37s
+./mp2rage-01.nii     65%[============&gt;       ] 958.05M  14.5MB/s    eta 37s
+./mp2rage-01.nii     65%[============&gt;       ] 960.80M  14.5MB/s    eta 37s
+./mp2rage-01.nii     65%[============&gt;       ] 963.89M  14.4MB/s    eta 37s
+./mp2rage-01.nii     66%[============&gt;       ] 967.06M  14.4MB/s    eta 37s
+./mp2rage-01.nii     66%[============&gt;       ] 970.00M  14.4MB/s    eta 36s
+./mp2rage-01.nii     66%[============&gt;       ] 972.87M  14.4MB/s    eta 36s
+./mp2rage-01.nii     66%[============&gt;       ] 976.00M  14.4MB/s    eta 36s
+./mp2rage-01.nii     66%[============&gt;       ] 978.62M  14.3MB/s    eta 36s
+./mp2rage-01.nii     67%[============&gt;       ] 981.50M  14.2MB/s    eta 36s
+./mp2rage-01.nii     67%[============&gt;       ] 984.89M  14.3MB/s    eta 34s
+./mp2rage-01.nii     67%[============&gt;       ] 987.89M  14.3MB/s    eta 34s
+./mp2rage-01.nii     67%[============&gt;       ] 991.06M  14.4MB/s    eta 34s
+./mp2rage-01.nii     67%[============&gt;       ] 994.98M  14.5MB/s    eta 34s
+./mp2rage-01.nii     68%[============&gt;       ] 997.91M  14.4MB/s    eta 34s
+./mp2rage-01.nii     68%[============&gt;       ]   1001M  14.5MB/s    eta 33s
+./mp2rage-01.nii     68%[============&gt;       ]   1004M  14.5MB/s    eta 33s
+./mp2rage-01.nii     68%[============&gt;       ]   1007M  14.5MB/s    eta 33s
+./mp2rage-01.nii     68%[============&gt;       ]   1011M  14.6MB/s    eta 33s
+./mp2rage-01.nii     69%[============&gt;       ]   1014M  14.4MB/s    eta 33s
+./mp2rage-01.nii     69%[============&gt;       ]   1017M  14.4MB/s    eta 32s
+./mp2rage-01.nii     69%[============&gt;       ]   1020M  14.4MB/s    eta 32s
+./mp2rage-01.nii     69%[============&gt;       ]   1023M  14.4MB/s    eta 32s
+./mp2rage-01.nii     70%[=============&gt;      ]   1.00G  14.4MB/s    eta 32s
+./mp2rage-01.nii     70%[=============&gt;      ]   1.00G  14.4MB/s    eta 32s
+./mp2rage-01.nii     70%[=============&gt;      ]   1.01G  14.3MB/s    eta 31s
+./mp2rage-01.nii     70%[=============&gt;      ]   1.01G  14.3MB/s    eta 31s
+./mp2rage-01.nii     70%[=============&gt;      ]   1.01G  14.3MB/s    eta 31s
+./mp2rage-01.nii     71%[=============&gt;      ]   1.02G  14.4MB/s    eta 31s
+./mp2rage-01.nii     71%[=============&gt;      ]   1.02G  14.3MB/s    eta 31s
+./mp2rage-01.nii     71%[=============&gt;      ]   1.02G  14.3MB/s    eta 30s
+./mp2rage-01.nii     71%[=============&gt;      ]   1.02G  14.3MB/s    eta 30s
+./mp2rage-01.nii     71%[=============&gt;      ]   1.03G  14.3MB/s    eta 30s
+./mp2rage-01.nii     72%[=============&gt;      ]   1.03G  14.1MB/s    eta 30s
+./mp2rage-01.nii     72%[=============&gt;      ]   1.03G  14.1MB/s    eta 30s
+./mp2rage-01.nii     72%[=============&gt;      ]   1.04G  14.1MB/s    eta 29s
+./mp2rage-01.nii     72%[=============&gt;      ]   1.04G  14.1MB/s    eta 29s
+./mp2rage-01.nii     72%[=============&gt;      ]   1.04G  14.1MB/s    eta 29s
+./mp2rage-01.nii     73%[=============&gt;      ]   1.04G  13.9MB/s    eta 29s
+./mp2rage-01.nii     73%[=============&gt;      ]   1.05G  13.8MB/s    eta 29s
+./mp2rage-01.nii     73%[=============&gt;      ]   1.05G  13.8MB/s    eta 28s
+./mp2rage-01.nii     73%[=============&gt;      ]   1.05G  13.8MB/s    eta 28s
+./mp2rage-01.nii     73%[=============&gt;      ]   1.06G  13.8MB/s    eta 28s
+./mp2rage-01.nii     74%[=============&gt;      ]   1.06G  13.9MB/s    eta 28s
+./mp2rage-01.nii     74%[=============&gt;      ]   1.06G  13.8MB/s    eta 28s
+./mp2rage-01.nii     74%[=============&gt;      ]   1.06G  13.9MB/s    eta 27s
+./mp2rage-01.nii     74%[=============&gt;      ]   1.07G  13.9MB/s    eta 27s
+./mp2rage-01.nii     74%[=============&gt;      ]   1.07G  14.0MB/s    eta 27s
+./mp2rage-01.nii     75%[==============&gt;     ]   1.07G  14.1MB/s    eta 27s
+./mp2rage-01.nii     75%[==============&gt;     ]   1.08G  14.1MB/s    eta 27s
+./mp2rage-01.nii     75%[==============&gt;     ]   1.08G  14.1MB/s    eta 26s
+./mp2rage-01.nii     75%[==============&gt;     ]   1.08G  14.1MB/s    eta 26s
+./mp2rage-01.nii     75%[==============&gt;     ]   1.09G  14.1MB/s    eta 26s
+./mp2rage-01.nii     76%[==============&gt;     ]   1.09G  14.2MB/s    eta 26s
+./mp2rage-01.nii     76%[==============&gt;     ]   1.09G  14.2MB/s    eta 26s
+./mp2rage-01.nii     76%[==============&gt;     ]   1.09G  14.2MB/s    eta 25s
+./mp2rage-01.nii     76%[==============&gt;     ]   1.10G  14.2MB/s    eta 25s
+./mp2rage-01.nii     76%[==============&gt;     ]   1.10G  14.2MB/s    eta 25s
+./mp2rage-01.nii     77%[==============&gt;     ]   1.10G  14.2MB/s    eta 25s
+./mp2rage-01.nii     77%[==============&gt;     ]   1.11G  14.2MB/s    eta 25s
+./mp2rage-01.nii     77%[==============&gt;     ]   1.11G  14.2MB/s    eta 24s
+./mp2rage-01.nii     77%[==============&gt;     ]   1.11G  14.2MB/s    eta 24s
+./mp2rage-01.nii     77%[==============&gt;     ]   1.11G  14.3MB/s    eta 24s
+./mp2rage-01.nii     78%[==============&gt;     ]   1.12G  14.2MB/s    eta 24s
+./mp2rage-01.nii     78%[==============&gt;     ]   1.12G  14.2MB/s    eta 24s
+./mp2rage-01.nii     78%[==============&gt;     ]   1.12G  14.2MB/s    eta 23s
+./mp2rage-01.nii     78%[==============&gt;     ]   1.13G  14.3MB/s    eta 23s
+./mp2rage-01.nii     79%[==============&gt;     ]   1.13G  14.3MB/s    eta 23s
+./mp2rage-01.nii     79%[==============&gt;     ]   1.13G  14.4MB/s    eta 23s
+./mp2rage-01.nii     79%[==============&gt;     ]   1.14G  14.5MB/s    eta 23s
+./mp2rage-01.nii     79%[==============&gt;     ]   1.14G  14.5MB/s    eta 21s
+./mp2rage-01.nii     79%[==============&gt;     ]   1.14G  14.4MB/s    eta 21s
+./mp2rage-01.nii     80%[===============&gt;    ]   1.15G  14.4MB/s    eta 21s
+./mp2rage-01.nii     80%[===============&gt;    ]   1.15G  14.3MB/s    eta 21s
+./mp2rage-01.nii     80%[===============&gt;    ]   1.15G  14.3MB/s    eta 21s
+./mp2rage-01.nii     80%[===============&gt;    ]   1.15G  14.5MB/s    eta 20s
+./mp2rage-01.nii     80%[===============&gt;    ]   1.16G  14.6MB/s    eta 20s
+./mp2rage-01.nii     81%[===============&gt;    ]   1.16G  14.6MB/s    eta 20s
+./mp2rage-01.nii     81%[===============&gt;    ]   1.16G  14.6MB/s    eta 20s
+./mp2rage-01.nii     81%[===============&gt;    ]   1.17G  14.6MB/s    eta 20s
+./mp2rage-01.nii     81%[===============&gt;    ]   1.17G  14.6MB/s    eta 19s
+./mp2rage-01.nii     81%[===============&gt;    ]   1.17G  14.5MB/s    eta 19s
+./mp2rage-01.nii     82%[===============&gt;    ]   1.17G  14.4MB/s    eta 19s
+./mp2rage-01.nii     82%[===============&gt;    ]   1.18G  14.5MB/s    eta 19s
+./mp2rage-01.nii     82%[===============&gt;    ]   1.18G  14.5MB/s    eta 19s
+./mp2rage-01.nii     82%[===============&gt;    ]   1.18G  14.4MB/s    eta 18s
+./mp2rage-01.nii     82%[===============&gt;    ]   1.19G  14.3MB/s    eta 18s
+./mp2rage-01.nii     83%[===============&gt;    ]   1.19G  14.2MB/s    eta 18s
+./mp2rage-01.nii     83%[===============&gt;    ]   1.19G  14.0MB/s    eta 18s
+./mp2rage-01.nii     83%[===============&gt;    ]   1.19G  13.9MB/s    eta 18s
+./mp2rage-01.nii     83%[===============&gt;    ]   1.20G  13.9MB/s    eta 17s
+./mp2rage-01.nii     83%[===============&gt;    ]   1.20G  13.9MB/s    eta 17s
+./mp2rage-01.nii     84%[===============&gt;    ]   1.20G  13.9MB/s    eta 17s
+./mp2rage-01.nii     84%[===============&gt;    ]   1.21G  14.0MB/s    eta 17s
+./mp2rage-01.nii     84%[===============&gt;    ]   1.21G  14.1MB/s    eta 17s
+./mp2rage-01.nii     84%[===============&gt;    ]   1.21G  13.9MB/s    eta 16s
+./mp2rage-01.nii     84%[===============&gt;    ]   1.21G  13.8MB/s    eta 16s
+./mp2rage-01.nii     85%[================&gt;   ]   1.22G  13.8MB/s    eta 16s
+./mp2rage-01.nii     85%[================&gt;   ]   1.22G  13.8MB/s    eta 16s
+./mp2rage-01.nii     85%[================&gt;   ]   1.22G  13.8MB/s    eta 16s
+./mp2rage-01.nii     85%[================&gt;   ]   1.23G  13.8MB/s    eta 15s
+./mp2rage-01.nii     85%[================&gt;   ]   1.23G  13.8MB/s    eta 15s
+./mp2rage-01.nii     86%[================&gt;   ]   1.23G  13.8MB/s    eta 15s
+./mp2rage-01.nii     86%[================&gt;   ]   1.23G  13.8MB/s    eta 15s
+./mp2rage-01.nii     86%[================&gt;   ]   1.24G  13.9MB/s    eta 15s
+./mp2rage-01.nii     86%[================&gt;   ]   1.24G  13.9MB/s    eta 14s
+./mp2rage-01.nii     86%[================&gt;   ]   1.24G  13.9MB/s    eta 14s
+./mp2rage-01.nii     87%[================&gt;   ]   1.25G  13.9MB/s    eta 14s
+./mp2rage-01.nii     87%[================&gt;   ]   1.25G  13.9MB/s    eta 14s
+./mp2rage-01.nii     87%[================&gt;   ]   1.25G  13.9MB/s    eta 14s
+./mp2rage-01.nii     87%[================&gt;   ]   1.25G  13.9MB/s    eta 13s
+./mp2rage-01.nii     87%[================&gt;   ]   1.26G  13.9MB/s    eta 13s
+./mp2rage-01.nii     88%[================&gt;   ]   1.26G  13.9MB/s    eta 13s
+./mp2rage-01.nii     88%[================&gt;   ]   1.26G  13.9MB/s    eta 13s
+./mp2rage-01.nii     88%[================&gt;   ]   1.27G  13.8MB/s    eta 13s
+./mp2rage-01.nii     88%[================&gt;   ]   1.27G  13.8MB/s    eta 12s
+./mp2rage-01.nii     88%[================&gt;   ]   1.27G  13.9MB/s    eta 12s
+./mp2rage-01.nii     89%[================&gt;   ]   1.27G  13.8MB/s    eta 12s
+./mp2rage-01.nii     89%[================&gt;   ]   1.28G  13.8MB/s    eta 12s
+./mp2rage-01.nii     89%[================&gt;   ]   1.28G  13.9MB/s    eta 12s
+./mp2rage-01.nii     89%[================&gt;   ]   1.28G  13.9MB/s    eta 11s
+./mp2rage-01.nii     89%[================&gt;   ]   1.29G  13.9MB/s    eta 11s
+./mp2rage-01.nii     90%[=================&gt;  ]   1.29G  13.9MB/s    eta 11s
+./mp2rage-01.nii     90%[=================&gt;  ]   1.29G  13.9MB/s    eta 11s
+./mp2rage-01.nii     90%[=================&gt;  ]   1.29G  14.0MB/s    eta 11s
+./mp2rage-01.nii     90%[=================&gt;  ]   1.30G  14.0MB/s    eta 10s
+./mp2rage-01.nii     90%[=================&gt;  ]   1.30G  14.1MB/s    eta 10s
+./mp2rage-01.nii     91%[=================&gt;  ]   1.30G  14.2MB/s    eta 10s
+./mp2rage-01.nii     91%[=================&gt;  ]   1.31G  14.2MB/s    eta 10s
+./mp2rage-01.nii     91%[=================&gt;  ]   1.31G  14.4MB/s    eta 10s
+./mp2rage-01.nii     91%[=================&gt;  ]   1.31G  14.5MB/s    eta 9s
+./mp2rage-01.nii     92%[=================&gt;  ]   1.32G  14.5MB/s    eta 9s
+./mp2rage-01.nii     92%[=================&gt;  ]   1.32G  14.5MB/s    eta 9s
+./mp2rage-01.nii     92%[=================&gt;  ]   1.32G  14.5MB/s    eta 9s
+./mp2rage-01.nii     92%[=================&gt;  ]   1.33G  14.5MB/s    eta 9s
+./mp2rage-01.nii     92%[=================&gt;  ]   1.33G  14.4MB/s    eta 8s
+./mp2rage-01.nii     93%[=================&gt;  ]   1.33G  14.3MB/s    eta 8s
+./mp2rage-01.nii     93%[=================&gt;  ]   1.33G  14.4MB/s    eta 8s
+./mp2rage-01.nii     93%[=================&gt;  ]   1.34G  14.4MB/s    eta 8s
+./mp2rage-01.nii     93%[=================&gt;  ]   1.34G  14.3MB/s    eta 8s
+./mp2rage-01.nii     93%[=================&gt;  ]   1.34G  14.3MB/s    eta 7s
+./mp2rage-01.nii     93%[=================&gt;  ]   1.34G  14.3MB/s    eta 7s
+./mp2rage-01.nii     94%[=================&gt;  ]   1.35G  14.4MB/s    eta 7s
+./mp2rage-01.nii     94%[=================&gt;  ]   1.35G  14.4MB/s    eta 7s
+./mp2rage-01.nii     94%[=================&gt;  ]   1.35G  14.4MB/s    eta 7s
+./mp2rage-01.nii     94%[=================&gt;  ]   1.36G  14.2MB/s    eta 5s
+./mp2rage-01.nii     95%[==================&gt; ]   1.36G  14.2MB/s    eta 5s
+./mp2rage-01.nii     95%[==================&gt; ]   1.36G  14.2MB/s    eta 5s
+./mp2rage-01.nii     95%[==================&gt; ]   1.37G  14.1MB/s    eta 5s
+./mp2rage-01.nii     95%[==================&gt; ]   1.37G  14.0MB/s    eta 5s
+./mp2rage-01.nii     95%[==================&gt; ]   1.37G  14.0MB/s    eta 4s
+./mp2rage-01.nii     96%[==================&gt; ]   1.37G  13.9MB/s    eta 4s
+./mp2rage-01.nii     96%[==================&gt; ]   1.38G  13.8MB/s    eta 4s
+./mp2rage-01.nii     96%[==================&gt; ]   1.38G  13.8MB/s    eta 4s
+./mp2rage-01.nii     96%[==================&gt; ]   1.38G  13.9MB/s    eta 4s
+./mp2rage-01.nii     96%[==================&gt; ]   1.39G  14.0MB/s    eta 3s
+./mp2rage-01.nii     97%[==================&gt; ]   1.39G  14.1MB/s    eta 3s
+./mp2rage-01.nii     97%[==================&gt; ]   1.39G  14.0MB/s    eta 3s
+./mp2rage-01.nii     97%[==================&gt; ]   1.39G  14.0MB/s    eta 3s
+./mp2rage-01.nii     97%[==================&gt; ]   1.40G  14.0MB/s    eta 3s
+./mp2rage-01.nii     97%[==================&gt; ]   1.40G  14.2MB/s    eta 2s
+./mp2rage-01.nii     98%[==================&gt; ]   1.40G  14.2MB/s    eta 2s
+./mp2rage-01.nii     98%[==================&gt; ]   1.41G  14.3MB/s    eta 2s
+./mp2rage-01.nii     98%[==================&gt; ]   1.41G  14.3MB/s    eta 2s
+./mp2rage-01.nii     98%[==================&gt; ]   1.41G  14.2MB/s    eta 2s
+./mp2rage-01.nii     99%[==================&gt; ]   1.42G  14.3MB/s    eta 1s
+./mp2rage-01.nii     99%[==================&gt; ]   1.42G  14.2MB/s    eta 1s
+./mp2rage-01.nii     99%[==================&gt; ]   1.42G  14.4MB/s    eta 1s
+./mp2rage-01.nii     99%[==================&gt; ]   1.43G  14.4MB/s    eta 1s
+./mp2rage-01.nii     99%[==================&gt; ]   1.43G  14.4MB/s    eta 1s
+./mp2rage-01.nii    100%[===================&gt;]   1.43G  14.6MB/s    in 1m 44s  
+
+2026-02-22 02:03:58 (14.0 MB/s) - ‘./mp2rage-01.nii’ saved [1536000352/1536000352]
 </pre></div>
 </div>
 </div>
@@ -702,11 +1196,6 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>bet<span class="w"> </span>mp2rage-<span class="o">{</span>subject_id<span class="o">}</span>.nii<span class="w"> </span>mask-sub-<span class="o">{</span>subject_id<span class="o">}</span>.nii<span class="w"> </span>-R
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mp2rage-01.nii mask-sub-01.nii -R
 </pre></div>
 </div>
 </div>
@@ -752,18 +1241,18 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: 2025-12-05T00:19:16.020071+00:00
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: 2026-02-22T02:05:38.091853+00:00
 
 Python implementation: CPython
-Python version       : 3.11.6
-IPython version      : 8.16.1
+Python version       : 3.13.11
+IPython version      : 9.9.0
 
-Compiler    : GCC 12.3.0
+Compiler    : GCC 14.3.0
 OS          : Linux
-Release     : 5.4.0-204-generic
+Release     : 6.8.0-1044-azure
 Machine     : x86_64
 Processor   : x86_64
-CPU cores   : 32
+CPU cores   : 4
 Architecture: 64bit
 </pre></div>
 </div>
@@ -804,20 +1293,20 @@ Architecture: 64bit
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="nextflow_neurodesk.html"
+       href="nipype_short.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Nextflow in Neurodesk: Minimal BIDS T1w QC</p>
+        <p class="prev-next-title">Basic Nipype</p>
       </div>
     </a>
     <a class="right-next"
-       href="PyBIDS.html"
+       href="pydra_preproc_ants.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">PyBIDS</p>
+        <p class="prev-next-title">Pydra</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
