@@ -64,8 +64,8 @@
     <link rel="icon" href="../../_static/neurodesk_logo.svg"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="RISE Slideshow" href="RISE_slideshow.html" />
-    <link rel="prev" title="Magic Commands" href="Magic_commands.html" />
+    <link rel="next" title="Pydra" href="pydra_preproc_ants.html" />
+    <link rel="prev" title="Papermill Slurm Job Submission" href="papermill-slurm-submission-example.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -192,10 +192,7 @@
     <div class="bd-toc-item navbar-nav active">
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../intro.html">Examples</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../template.html">Example Notebook Template</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../diffusion_imaging/intro.html">Diffusion Imaging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../diffusion_imaging/DIPY_1.html">Basic Tracking with DIPY</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../diffusion_imaging/DIPY_2.html">Advanced Tracking with DIPY</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../diffusion_imaging/Diffusion_TBSS_Demo.html">TBSS Tutorial</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../diffusion_imaging/MRtrix_1.html">MRtrix: Part 1</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../diffusion_imaging/MRtrix_2.html">MRtrix: Part 2</a></li>
@@ -211,24 +208,24 @@
 <li class="toctree-l3"><a class="reference internal" href="../functional_imaging/AFNI_preprocessing_only.html">AFNI Preprocessing</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../functional_imaging/AFNI_preprocessing_plus_glm.html">AFNI Preprocessing and GLM</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../functional_imaging/AFNI_preprocessing_plus_glm_group.html">AFNI Preprocessing &amp; Group Analysis</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/AFNI_processing_task_based.html">Processing task-based FMRI with AFNI and afni_proc.py</a></li>
-
-
-
-<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/FSL_preproc_glm.html">FSL Preprocessing and GLM</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/FSLnets_course_practical.html">Resting state with FSLnets</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/NiWrap.html">NiWrap and Connectome Workbench</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../functional_imaging/deepretinotopy.html">DeepRetinotopy Toolbox</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/fMRI_tutorial_in_R_magic.html">Resting-State fMRI Analysis in R</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../functional_imaging/first_and_second_level_spm.html">Nipype-SPM fMRI Analysis</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../functional_imaging/fmriprep.html">fMRIprep</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../functional_imaging/fsl_all_levels_flanker_nipype.html">Nipype-FSL fMRI Analysis</a></li>
 
 
 
+<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/FSL_preproc_glm.html">FSL Preprocessing and GLM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/FSLnets_course_practical.html">Resting state with FSLnets</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../functional_imaging/intro_to_preprocessing.html">Introduction to Preprocessing</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../functional_imaging/mri_vol2surf.html">FreeSurfer: mri_vol2surf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/NiWrap.html">NiWrap and Connectome Workbench</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../functional_imaging/process_five_echo_dataset.html">tedana: TE Dependent ANAlysis</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../spectroscopy/intro.html">Spectroscopy</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../spectroscopy/lcmodel.html">MR Spectroscopy with LCModel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../spectroscopy/osprey.html">MR Spectroscopy with Osprey</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../quantitative_imaging/intro.html">Quantitative Imaging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -243,36 +240,26 @@
 
 </ul>
 </details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../spectroscopy/intro.html">Spectroscopy</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../spectroscopy/lcmodel.html">MR Spectroscopy with LCModel</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../spectroscopy/osprey.html">MR Spectroscopy with Osprey</a></li>
-</ul>
-</details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../structural_imaging/intro.html">Structural Imaging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../structural_imaging/FSL_course_bet.html">FSL course - BET</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../structural_imaging/SYNcro.html">SYNcro</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../structural_imaging/brain_extraction_different_tools.html">Brain Extraction Tools</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../structural_imaging/freesurfer-recon-all-clinical.html">FreeSurfer: recon-all-clinical</a></li>
-
 <li class="toctree-l3"><a class="reference internal" href="../structural_imaging/freesurfer.html">FreeSurfer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../structural_imaging/FSL_course_bet.html">FSL course - BET</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../structural_imaging/sct_toolbox.html">SCT Toolbox</a></li>
 
 </ul>
 </details></li>
 <li class="toctree-l2 current active has-children"><a class="reference internal" href="intro.html">Workflows</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="AA_Neurodesk_demo_tour.html">Neurodesk Tools Demo</a></li>
-<li class="toctree-l3"><a class="reference internal" href="MRIQC.html">MRIQC</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Magic_commands.html">Magic Commands</a></li>
-<li class="toctree-l3 current active"><a class="current reference internal" href="#">PyBIDS</a></li>
-<li class="toctree-l3"><a class="reference internal" href="RISE_slideshow.html">RISE Slideshow</a></li>
 <li class="toctree-l3"><a class="reference internal" href="bids_conversion.html">BIDS conversion</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ipyniivue_ipywidgets.html">Ipyniivue and Ipywidgets</a></li>
-<li class="toctree-l3"><a class="reference internal" href="nextflow_neurodesk.html">Nextflow in Neurodesk: Minimal BIDS T1w QC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MRIQC.html">MRIQC</a></li>
 <li class="toctree-l3"><a class="reference internal" href="nipype_full.html">Nipype on Neurodesk</a></li>
 <li class="toctree-l3"><a class="reference internal" href="nipype_short.html">Basic Nipype</a></li>
 
+<li class="toctree-l3"><a class="reference internal" href="nextflow_neurodesk.html">Nextflow in Neurodesk: Minimal BIDS T1w QC</a></li>
 <li class="toctree-l3"><a class="reference internal" href="papermill-slurm-submission-example.html">Papermill Slurm Job Submission</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">PyBIDS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pydra_preproc_ants.html">Pydra</a></li>
+<li class="toctree-l3"><a class="reference internal" href="RISE_slideshow.html">RISE Slideshow</a></li>
 <li class="toctree-l3"><a class="reference internal" href="review_system_test.html">Review System Test Notebook</a></li>
 </ul>
 </details></li>
@@ -692,7 +679,6 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cloning:   0%|                             | 0.00/2.00 [00:00&lt;?, ? candidates/s]
-
 Enumerating: 0.00 Objects [00:00, ? Objects/s]
                                               
 Counting:   0%|                                | 0.00/820 [00:00&lt;?, ? Objects/s]
@@ -700,1462 +686,956 @@ Counting:   0%|                                | 0.00/820 [00:00&lt;?, ? Objects
 Compressing:   0%|                             | 0.00/616 [00:00&lt;?, ? Objects/s]
                                                                                 
 Receiving:   0%|                             | 0.00/2.17k [00:00&lt;?, ? Objects/s]
-
                                                                                 
 Resolving:   0%|                                | 0.00/147 [00:00&lt;?, ? Deltas/s]
-                                                                                
+[INFO   ] scanning for unlocked files (this may take some time)                 
 [INFO   ] Remote origin not usable by git-annex; setting annex-ignore 
-[INFO   ] https://github.com/OpenNeuroDatasets/ds000114.git/config download failed: Not Found 
 [INFO   ] access to 1 dataset sibling s3-PRIVATE not auto-enabled, enable with:
-| 		datalad siblings -d &quot;/home/jovyan/workspace/books/examples/workflows/ds000114&quot; enable -s s3-PRIVATE 
-<span class=" -Color -Color-Bold">install</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): /home/jovyan/workspace/books/examples/workflows/ds000114 (<span class=" -Color -Color-Bold -Color-Bold-Magenta">dataset</span>)
-
+| 		datalad siblings -d &quot;/home/jovyan/Git_repositories/neurodeskedu/books/workflows/ds000114&quot; enable -s s3-PRIVATE 
+<span class=" -Color -Color-Bold">install</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): /home/jovyan/Git_repositories/neurodeskedu/books/workflows/ds000114 (<span class=" -Color -Color-Bold -Color-Bold-Magenta">dataset</span>)
 Total:   0%|                                   | 0.00/2.17G [00:00&lt;?, ? Bytes/s]
-
 Get sub-02/s .. t_T1w.nii.gz:   0%|            | 0.00/8.90M [00:00&lt;?, ? Bytes/s]
-
-Get sub-02/s .. t_T1w.nii.gz:   2%|    | 173k/8.90M [00:00&lt;00:06, 1.39M Bytes/s]
-
-Get sub-02/s .. t_T1w.nii.gz:  14%|▍  | 1.25M/8.90M [00:00&lt;00:01, 6.43M Bytes/s]
-
-Get sub-02/s .. t_T1w.nii.gz:  42%|█▎ | 3.77M/8.90M [00:00&lt;00:00, 14.5M Bytes/s]
-
-Get sub-02/s .. t_T1w.nii.gz:  78%|██▎| 6.98M/8.90M [00:00&lt;00:00, 21.2M Bytes/s]
-
-                                                                                
-Get sub-02/s .. t_T1w.nii.gz:   0%|            | 0.00/8.90M [00:00&lt;?, ? Bytes/s]
-Total:   0%|                          | 8.90M/2.17G [00:00&lt;03:42, 9.72M Bytes/s]
-
+Get sub-02/s .. t_T1w.nii.gz:   2%|     | 139k/8.90M [00:00&lt;00:18, 479k Bytes/s]
+Get sub-02/s .. t_T1w.nii.gz:   4%|▏   | 400k/8.90M [00:00&lt;00:07, 1.18M Bytes/s]
+Get sub-02/s .. t_T1w.nii.gz:   9%|▎   | 766k/8.90M [00:00&lt;00:04, 1.97M Bytes/s]
+Get sub-02/s .. t_T1w.nii.gz:  14%|▍  | 1.22M/8.90M [00:00&lt;00:02, 2.77M Bytes/s]
+Get sub-02/s .. t_T1w.nii.gz:  28%|▊  | 2.46M/8.90M [00:00&lt;00:01, 5.76M Bytes/s]
+Get sub-02/s .. t_T1w.nii.gz:  41%|█▏ | 3.66M/8.90M [00:00&lt;00:00, 7.66M Bytes/s]
+Get sub-02/s .. t_T1w.nii.gz:  53%|█▌ | 4.69M/8.90M [00:00&lt;00:00, 8.46M Bytes/s]
+Get sub-02/s .. t_T1w.nii.gz:  75%|██▎| 6.71M/8.90M [00:00&lt;00:00, 12.0M Bytes/s]
+Get sub-02/s .. t_T1w.nii.gz:  99%|██▉| 8.79M/8.90M [00:01&lt;00:00, 14.6M Bytes/s]
+Total:   0%|                          | 8.90M/2.17G [00:01&lt;07:15, 4.97M Bytes/s]
 Get sub-02/s .. t_dwi.nii.gz:   0%|             | 0.00/101M [00:00&lt;?, ? Bytes/s]
-
-Get sub-02/s .. t_dwi.nii.gz:   3%|    | 2.96M/101M [00:00&lt;00:03, 29.6M Bytes/s]
-
-Get sub-02/s .. t_dwi.nii.gz:   6%|▏   | 6.13M/101M [00:00&lt;00:03, 30.8M Bytes/s]
-
-Get sub-02/s .. t_dwi.nii.gz:   9%|▎   | 9.29M/101M [00:00&lt;00:02, 31.1M Bytes/s]
-
-Get sub-02/s .. t_dwi.nii.gz:  12%|▍   | 12.5M/101M [00:00&lt;00:02, 31.4M Bytes/s]
-
-Get sub-02/s .. t_dwi.nii.gz:  15%|▌   | 15.6M/101M [00:00&lt;00:02, 31.4M Bytes/s]
-
-Get sub-02/s .. t_dwi.nii.gz:  19%|▋   | 18.8M/101M [00:00&lt;00:02, 31.5M Bytes/s]
-
-Get sub-02/s .. t_dwi.nii.gz:  22%|▊   | 22.0M/101M [00:00&lt;00:02, 31.5M Bytes/s]
-
-Get sub-02/s .. t_dwi.nii.gz:  25%|▉   | 25.1M/101M [00:00&lt;00:02, 31.5M Bytes/s]
-
-Get sub-02/s .. t_dwi.nii.gz:  28%|█   | 28.3M/101M [00:00&lt;00:02, 31.5M Bytes/s]
-
-Get sub-02/s .. t_dwi.nii.gz:  31%|█▏  | 31.5M/101M [00:01&lt;00:02, 31.5M Bytes/s]
-
-Get sub-02/s .. t_dwi.nii.gz:  34%|█▎  | 34.6M/101M [00:01&lt;00:02, 31.5M Bytes/s]
-
-Get sub-02/s .. t_dwi.nii.gz:  40%|█▌  | 40.9M/101M [00:01&lt;00:01, 31.4M Bytes/s]
-
-Get sub-02/s .. t_dwi.nii.gz:  43%|█▋  | 44.0M/101M [00:01&lt;00:01, 31.4M Bytes/s]
-
-Get sub-02/s .. t_dwi.nii.gz:  50%|█▉  | 50.3M/101M [00:01&lt;00:01, 31.4M Bytes/s]
-
-Get sub-02/s .. t_dwi.nii.gz:  56%|██▏ | 56.5M/101M [00:01&lt;00:01, 31.2M Bytes/s]
-
-Get sub-02/s .. t_dwi.nii.gz:  62%|██▍ | 62.7M/101M [00:02&lt;00:01, 31.1M Bytes/s]
-
-Get sub-02/s .. t_dwi.nii.gz:  65%|██▌ | 65.8M/101M [00:02&lt;00:01, 31.2M Bytes/s]
-
-Get sub-02/s .. t_dwi.nii.gz:  68%|██▋ | 69.0M/101M [00:02&lt;00:01, 31.2M Bytes/s]
-
-Get sub-02/s .. t_dwi.nii.gz:  74%|██▉ | 75.3M/101M [00:02&lt;00:00, 31.3M Bytes/s]
-
-Get sub-02/s .. t_dwi.nii.gz:  80%|███▏| 81.5M/101M [00:02&lt;00:00, 31.2M Bytes/s]
-
-Get sub-02/s .. t_dwi.nii.gz:  84%|███▎| 84.6M/101M [00:02&lt;00:00, 31.2M Bytes/s]
-
-Get sub-02/s .. t_dwi.nii.gz:  87%|███▍| 87.8M/101M [00:02&lt;00:00, 31.2M Bytes/s]
-
-Get sub-02/s .. t_dwi.nii.gz:  90%|███▌| 90.9M/101M [00:02&lt;00:00, 31.2M Bytes/s]
-
-Get sub-02/s .. t_dwi.nii.gz:  96%|███▊| 97.1M/101M [00:03&lt;00:00, 31.1M Bytes/s]
-
-Get sub-02/s .. t_dwi.nii.gz:  99%|████▉| 100M/101M [00:03&lt;00:00, 31.2M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:   2%|    | 1.75M/101M [00:00&lt;00:05, 16.6M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:   5%|▏   | 4.75M/101M [00:00&lt;00:06, 15.3M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:   7%|▎   | 6.63M/101M [00:00&lt;00:05, 16.5M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:   9%|▎   | 8.79M/101M [00:00&lt;00:05, 18.2M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  12%|▍   | 11.7M/101M [00:00&lt;00:05, 16.5M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  14%|▌   | 14.4M/101M [00:00&lt;00:04, 19.1M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  18%|▋   | 18.6M/101M [00:01&lt;00:04, 19.9M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  20%|▊   | 20.8M/101M [00:01&lt;00:03, 20.2M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  23%|▉   | 22.9M/101M [00:01&lt;00:04, 19.6M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  25%|▉   | 25.0M/101M [00:01&lt;00:03, 20.0M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  27%|█   | 27.2M/101M [00:01&lt;00:03, 20.4M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  29%|█▏  | 29.4M/101M [00:01&lt;00:03, 20.9M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  31%|█▏  | 31.6M/101M [00:01&lt;00:03, 21.2M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  33%|█▎  | 33.8M/101M [00:01&lt;00:03, 21.4M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  38%|█▌  | 38.3M/101M [00:01&lt;00:02, 21.8M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  40%|█▌  | 40.5M/101M [00:02&lt;00:02, 21.9M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  44%|█▊  | 44.7M/101M [00:02&lt;00:02, 21.5M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  47%|█▉  | 48.0M/101M [00:02&lt;00:02, 19.6M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  50%|█▉  | 50.2M/101M [00:02&lt;00:02, 20.2M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  52%|██  | 52.9M/101M [00:02&lt;00:02, 21.7M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  56%|██▎ | 57.2M/101M [00:02&lt;00:02, 21.9M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  59%|██▎ | 59.8M/101M [00:02&lt;00:01, 22.4M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  64%|██▌ | 64.5M/101M [00:03&lt;00:01, 22.8M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  66%|██▋ | 66.9M/101M [00:03&lt;00:01, 23.1M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  71%|██▊ | 71.6M/101M [00:03&lt;00:01, 22.7M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  73%|██▉ | 73.9M/101M [00:03&lt;00:01, 22.8M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  75%|███ | 76.3M/101M [00:03&lt;00:01, 23.0M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  78%|███ | 78.7M/101M [00:03&lt;00:00, 23.2M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  80%|███▏| 81.1M/101M [00:03&lt;00:00, 23.4M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  85%|███▍| 85.9M/101M [00:04&lt;00:00, 23.6M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  87%|███▍| 88.3M/101M [00:04&lt;00:00, 23.7M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  90%|███▌| 90.7M/101M [00:04&lt;00:00, 23.9M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  94%|███▊| 95.4M/101M [00:04&lt;00:00, 23.7M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  97%|███▊| 98.0M/101M [00:04&lt;00:00, 24.2M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  99%|████▉| 100M/101M [00:04&lt;00:00, 24.2M Bytes/s]
                                                                                 
 Get sub-02/s .. t_dwi.nii.gz:   0%|             | 0.00/101M [00:00&lt;?, ? Bytes/s]
-
-Total:   5%|█▎                         | 110M/2.17G [00:04&lt;01:22, 25.1M Bytes/s]
-
+Total:   5%|█▎                         | 110M/2.17G [00:07&lt;02:17, 15.0M Bytes/s]
 Get sub-02/s .. _bold.nii.gz:   0%|            | 0.00/22.7M [00:00&lt;?, ? Bytes/s]
-
-Get sub-02/s .. _bold.nii.gz:  14%|▍  | 3.12M/22.7M [00:00&lt;00:00, 31.2M Bytes/s]
-
-Get sub-02/s .. _bold.nii.gz:  28%|▊  | 6.25M/22.7M [00:00&lt;00:00, 31.3M Bytes/s]
-
-Get sub-02/s .. _bold.nii.gz:  42%|█▏ | 9.44M/22.7M [00:00&lt;00:00, 31.5M Bytes/s]
-
-Get sub-02/s .. _bold.nii.gz:  69%|██ | 15.7M/22.7M [00:00&lt;00:00, 31.4M Bytes/s]
-
-Get sub-02/s .. _bold.nii.gz:  83%|██▍| 18.9M/22.7M [00:00&lt;00:00, 31.4M Bytes/s]
-
-                                                                                
-Get sub-02/s .. _bold.nii.gz:   0%|            | 0.00/22.7M [00:00&lt;?, ? Bytes/s]
-                                                                                
-
-Get sub-02/s .. _bold.nii.gz:   0%|            | 0.00/24.4M [00:00&lt;?, ? Bytes/s]
-
-Get sub-02/s .. _bold.nii.gz:  13%|▍  | 3.09M/24.4M [00:00&lt;00:00, 30.9M Bytes/s]
-
-Get sub-02/s .. _bold.nii.gz:  26%|▊  | 6.23M/24.4M [00:00&lt;00:00, 31.2M Bytes/s]
-
-Get sub-02/s .. _bold.nii.gz:  39%|█▏ | 9.41M/24.4M [00:00&lt;00:00, 31.4M Bytes/s]
-
-Get sub-02/s .. _bold.nii.gz:  52%|█▌ | 12.6M/24.4M [00:00&lt;00:00, 31.5M Bytes/s]
-
-Get sub-02/s .. _bold.nii.gz:  65%|█▉ | 15.8M/24.4M [00:00&lt;00:00, 31.6M Bytes/s]
-
-Get sub-02/s .. _bold.nii.gz:  87%|██▌| 21.1M/24.4M [00:00&lt;00:00, 29.0M Bytes/s]
-
+Get sub-02/s .. _bold.nii.gz:  22%|▋  | 4.89M/22.7M [00:00&lt;00:00, 24.5M Bytes/s]
+Get sub-02/s .. _bold.nii.gz:  33%|▉  | 7.56M/22.7M [00:00&lt;00:00, 24.3M Bytes/s]
+Get sub-02/s .. _bold.nii.gz:  53%|█▌ | 12.1M/22.7M [00:00&lt;00:00, 24.2M Bytes/s]
+Get sub-02/s .. _bold.nii.gz:  74%|██▏| 16.8M/22.7M [00:00&lt;00:00, 23.8M Bytes/s]
+Get sub-02/s .. _bold.nii.gz:  85%|██▌| 19.4M/22.7M [00:00&lt;00:00, 24.2M Bytes/s]
+Get sub-02/s .. _bold.nii.gz:  96%|██▉| 21.9M/22.7M [00:00&lt;00:00, 24.5M Bytes/s]
                                                                                 
 Get sub-02/s .. _bold.nii.gz:   0%|            | 0.00/24.4M [00:00&lt;?, ? Bytes/s]
-                                                                                
-
-Get sub-02/s .. _bold.nii.gz:   0%|            | 0.00/31.2M [00:00&lt;?, ? Bytes/s]
-
-Get sub-02/s .. _bold.nii.gz:  20%|▌  | 6.12M/31.2M [00:00&lt;00:00, 30.7M Bytes/s]
-
-Get sub-02/s .. _bold.nii.gz:  30%|▉  | 9.30M/31.2M [00:00&lt;00:00, 31.1M Bytes/s]
-
-Get sub-02/s .. _bold.nii.gz:  40%|█▏ | 12.4M/31.2M [00:00&lt;00:00, 31.1M Bytes/s]
-
-Get sub-02/s .. _bold.nii.gz:  59%|█▊ | 18.6M/31.2M [00:00&lt;00:00, 30.9M Bytes/s]
-
-Get sub-02/s .. _bold.nii.gz:  70%|██ | 21.7M/31.2M [00:00&lt;00:00, 31.1M Bytes/s]
-
-Get sub-02/s .. _bold.nii.gz:  80%|██▍| 24.9M/31.2M [00:00&lt;00:00, 31.1M Bytes/s]
-
-Get sub-02/s .. _bold.nii.gz:  90%|██▋| 28.1M/31.2M [00:00&lt;00:00, 31.3M Bytes/s]
-
+Get sub-02/s .. _bold.nii.gz:   7%|▏  | 1.71M/24.4M [00:00&lt;00:01, 16.1M Bytes/s]
+Get sub-02/s .. _bold.nii.gz:  17%|▌  | 4.25M/24.4M [00:00&lt;00:01, 13.6M Bytes/s]
+Get sub-02/s .. _bold.nii.gz:  25%|▊  | 6.19M/24.4M [00:00&lt;00:01, 15.3M Bytes/s]
+Get sub-02/s .. _bold.nii.gz:  34%|█  | 8.21M/24.4M [00:00&lt;00:00, 16.8M Bytes/s]
+Get sub-02/s .. _bold.nii.gz:  41%|█▏ | 10.0M/24.4M [00:00&lt;00:00, 17.0M Bytes/s]
+Get sub-02/s .. _bold.nii.gz:  49%|█▍ | 11.9M/24.4M [00:00&lt;00:00, 17.5M Bytes/s]
+Get sub-02/s .. _bold.nii.gz:  64%|█▉ | 15.7M/24.4M [00:00&lt;00:00, 18.2M Bytes/s]
+Get sub-02/s .. _bold.nii.gz:  78%|██▎| 19.1M/24.4M [00:01&lt;00:00, 17.6M Bytes/s]
+Get sub-02/s .. _bold.nii.gz:  87%|██▌| 21.3M/24.4M [00:01&lt;00:00, 18.7M Bytes/s]
                                                                                 
 Get sub-02/s .. _bold.nii.gz:   0%|            | 0.00/31.2M [00:00&lt;?, ? Bytes/s]
+Get sub-02/s .. _bold.nii.gz:  12%|▎  | 3.79M/31.2M [00:00&lt;00:01, 19.0M Bytes/s]
+Get sub-02/s .. _bold.nii.gz:  25%|▋  | 7.74M/31.2M [00:00&lt;00:01, 19.2M Bytes/s]
+Get sub-02/s .. _bold.nii.gz:  31%|▉  | 9.68M/31.2M [00:00&lt;00:01, 19.2M Bytes/s]
+Get sub-02/s .. _bold.nii.gz:  43%|█▎ | 13.6M/31.2M [00:00&lt;00:00, 19.3M Bytes/s]
+Get sub-02/s .. _bold.nii.gz:  55%|█▋ | 17.1M/31.2M [00:00&lt;00:00, 18.7M Bytes/s]
+Get sub-02/s .. _bold.nii.gz:  62%|█▊ | 19.3M/31.2M [00:01&lt;00:00, 19.2M Bytes/s]
+Get sub-02/s .. _bold.nii.gz:  68%|██ | 21.4M/31.2M [00:01&lt;00:00, 19.7M Bytes/s]
+Get sub-02/s .. _bold.nii.gz:  77%|██▎| 23.9M/31.2M [00:01&lt;00:00, 19.0M Bytes/s]
+Get sub-02/s .. _bold.nii.gz:  87%|██▌| 27.2M/31.2M [00:01&lt;00:00, 19.6M Bytes/s]
+Get sub-02/s .. _bold.nii.gz:  98%|██▉| 30.7M/31.2M [00:01&lt;00:00, 18.7M Bytes/s]
                                                                                 
-
 Get sub-02/s .. _bold.nii.gz:   0%|            | 0.00/12.0M [00:00&lt;?, ? Bytes/s]
-
-Get sub-02/s .. _bold.nii.gz:  52%|█▌ | 6.21M/12.0M [00:00&lt;00:00, 31.2M Bytes/s]
-
-Get sub-02/s .. _bold.nii.gz:  78%|██▎| 9.38M/12.0M [00:00&lt;00:00, 31.3M Bytes/s]
-
-                                                                                
-Get sub-02/s .. _bold.nii.gz:   0%|            | 0.00/12.0M [00:00&lt;?, ? Bytes/s]
-                                                                                
-
-Get sub-02/s .. _bold.nii.gz:   0%|            | 0.00/10.4M [00:00&lt;?, ? Bytes/s]
-
-Get sub-02/s .. _bold.nii.gz:  30%|▉  | 3.07M/10.4M [00:00&lt;00:00, 30.6M Bytes/s]
-
-Get sub-02/s .. _bold.nii.gz:  60%|█▊ | 6.22M/10.4M [00:00&lt;00:00, 31.1M Bytes/s]
-
-Get sub-02/s .. _bold.nii.gz:  91%|██▋| 9.40M/10.4M [00:00&lt;00:00, 31.3M Bytes/s]
-
+Get sub-02/s .. _bold.nii.gz:  30%|▉  | 3.66M/12.0M [00:00&lt;00:00, 18.3M Bytes/s]
+Get sub-02/s .. _bold.nii.gz:  48%|█▍ | 5.73M/12.0M [00:00&lt;00:00, 19.2M Bytes/s]
+Get sub-02/s .. _bold.nii.gz:  77%|██▎| 9.32M/12.0M [00:00&lt;00:00, 18.5M Bytes/s]
                                                                                 
 Get sub-02/s .. _bold.nii.gz:   0%|            | 0.00/10.4M [00:00&lt;?, ? Bytes/s]
-                                                                                
-
-Get sub-02/s .. t_T1w.nii.gz:   0%|            | 0.00/10.0M [00:00&lt;?, ? Bytes/s]
-
-Get sub-02/s .. t_T1w.nii.gz:  63%|█▉ | 6.27M/10.0M [00:00&lt;00:00, 31.3M Bytes/s]
-
-Get sub-02/s .. t_T1w.nii.gz:  94%|██▊| 9.46M/10.0M [00:00&lt;00:00, 31.5M Bytes/s]
+Get sub-02/s .. _bold.nii.gz:  39%|█▏ | 4.04M/10.4M [00:00&lt;00:00, 20.2M Bytes/s]
+Get sub-02/s .. _bold.nii.gz:  76%|██▎| 7.91M/10.4M [00:00&lt;00:00, 19.7M Bytes/s]
                                                                                 
 Get sub-02/s .. t_T1w.nii.gz:   0%|            | 0.00/10.0M [00:00&lt;?, ? Bytes/s]
-Total:  10%|██▋                        | 221M/2.17G [00:08&lt;01:18, 24.8M Bytes/s]
-
+Get sub-02/s .. t_T1w.nii.gz:  39%|█▏ | 3.88M/10.0M [00:00&lt;00:00, 19.4M Bytes/s]
+Get sub-02/s .. t_T1w.nii.gz:  59%|█▊ | 5.92M/10.0M [00:00&lt;00:00, 19.5M Bytes/s]
+Get sub-02/s .. t_T1w.nii.gz:  80%|██▍| 7.98M/10.0M [00:00&lt;00:00, 19.9M Bytes/s]
+Total:  10%|██▋                        | 221M/2.17G [00:14&lt;02:10, 15.0M Bytes/s]
 Get sub-02/s .. t_dwi.nii.gz:   0%|             | 0.00/104M [00:00&lt;?, ? Bytes/s]
-
-Get sub-02/s .. t_dwi.nii.gz:   6%|▏   | 6.22M/104M [00:00&lt;00:03, 31.1M Bytes/s]
-
-Get sub-02/s .. t_dwi.nii.gz:   9%|▎   | 9.38M/104M [00:00&lt;00:03, 31.3M Bytes/s]
-
-Get sub-02/s .. t_dwi.nii.gz:  12%|▍   | 12.5M/104M [00:00&lt;00:02, 31.4M Bytes/s]
-
-Get sub-02/s .. t_dwi.nii.gz:  15%|▌   | 15.7M/104M [00:00&lt;00:02, 31.4M Bytes/s]
-
-Get sub-02/s .. t_dwi.nii.gz:  18%|▋   | 18.9M/104M [00:00&lt;00:02, 31.6M Bytes/s]
-
-Get sub-02/s .. t_dwi.nii.gz:  21%|▊   | 22.1M/104M [00:00&lt;00:02, 31.7M Bytes/s]
-
-Get sub-02/s .. t_dwi.nii.gz:  24%|▉   | 25.3M/104M [00:00&lt;00:02, 31.8M Bytes/s]
-
-Get sub-02/s .. t_dwi.nii.gz:  27%|█   | 28.5M/104M [00:00&lt;00:02, 31.8M Bytes/s]
-
-Get sub-02/s .. t_dwi.nii.gz:  30%|█▏  | 31.7M/104M [00:01&lt;00:02, 31.9M Bytes/s]
-
-Get sub-02/s .. t_dwi.nii.gz:  33%|█▎  | 34.9M/104M [00:01&lt;00:02, 31.9M Bytes/s]
-
-Get sub-02/s .. t_dwi.nii.gz:  37%|█▍  | 38.1M/104M [00:01&lt;00:02, 31.9M Bytes/s]
-
-Get sub-02/s .. t_dwi.nii.gz:  40%|█▌  | 41.3M/104M [00:01&lt;00:01, 31.9M Bytes/s]
-
-Get sub-02/s .. t_dwi.nii.gz:  43%|█▋  | 44.5M/104M [00:01&lt;00:01, 32.0M Bytes/s]
-
-Get sub-02/s .. t_dwi.nii.gz:  49%|█▉  | 50.9M/104M [00:01&lt;00:01, 32.0M Bytes/s]
-
-Get sub-02/s .. t_dwi.nii.gz:  52%|██  | 54.2M/104M [00:01&lt;00:01, 32.0M Bytes/s]
-
-Get sub-02/s .. t_dwi.nii.gz:  58%|██▎ | 60.6M/104M [00:01&lt;00:01, 32.0M Bytes/s]
-
-Get sub-02/s .. t_dwi.nii.gz:  61%|██▍ | 63.8M/104M [00:02&lt;00:01, 32.0M Bytes/s]
-
-Get sub-02/s .. t_dwi.nii.gz:  67%|██▋ | 70.2M/104M [00:02&lt;00:01, 31.9M Bytes/s]
-
-Get sub-02/s .. t_dwi.nii.gz:  70%|██▊ | 73.4M/104M [00:02&lt;00:00, 31.9M Bytes/s]
-
-Get sub-02/s .. t_dwi.nii.gz:  77%|███ | 79.7M/104M [00:02&lt;00:00, 31.9M Bytes/s]
-
-Get sub-02/s .. t_dwi.nii.gz:  80%|███▏| 82.9M/104M [00:02&lt;00:00, 31.9M Bytes/s]
-
-Get sub-02/s .. t_dwi.nii.gz:  83%|███▎| 86.1M/104M [00:02&lt;00:00, 31.9M Bytes/s]
-
-Get sub-02/s .. t_dwi.nii.gz:  86%|███▍| 89.3M/104M [00:02&lt;00:00, 31.9M Bytes/s]
-
-Get sub-02/s .. t_dwi.nii.gz:  89%|███▌| 92.5M/104M [00:02&lt;00:00, 31.9M Bytes/s]
-
-Get sub-02/s .. t_dwi.nii.gz:  92%|███▋| 95.8M/104M [00:03&lt;00:00, 31.9M Bytes/s]
-
-Get sub-02/s .. t_dwi.nii.gz:  95%|███▊| 99.0M/104M [00:03&lt;00:00, 32.0M Bytes/s]
-
-Get sub-02/s .. t_dwi.nii.gz:  98%|████▉| 102M/104M [00:03&lt;00:00, 32.1M Bytes/s]
-
+Get sub-02/s .. t_dwi.nii.gz:   2%|    | 1.94M/104M [00:00&lt;00:05, 18.5M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:   4%|▏   | 4.06M/104M [00:00&lt;00:05, 20.0M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:   8%|▎   | 7.88M/104M [00:00&lt;00:04, 19.4M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  10%|▍   | 9.92M/104M [00:00&lt;00:04, 19.7M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  12%|▍   | 12.2M/104M [00:00&lt;00:04, 20.7M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  15%|▌   | 15.6M/104M [00:00&lt;00:04, 20.4M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  18%|▋   | 18.3M/104M [00:00&lt;00:04, 20.4M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  20%|▊   | 20.6M/104M [00:01&lt;00:03, 20.9M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  24%|▉   | 24.8M/104M [00:01&lt;00:03, 20.9M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  28%|█   | 28.9M/104M [00:01&lt;00:03, 20.6M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  30%|█▏  | 31.1M/104M [00:01&lt;00:03, 21.0M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  34%|█▎  | 35.2M/104M [00:01&lt;00:03, 20.8M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  38%|█▌  | 39.2M/104M [00:01&lt;00:03, 20.4M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  40%|█▌  | 41.5M/104M [00:02&lt;00:02, 21.0M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  44%|█▊  | 45.6M/104M [00:02&lt;00:02, 20.8M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  48%|█▉  | 49.7M/104M [00:02&lt;00:02, 20.3M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  50%|█▉  | 51.8M/104M [00:02&lt;00:02, 20.5M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  53%|██▏ | 55.7M/104M [00:02&lt;00:02, 20.0M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  56%|██▏ | 58.2M/104M [00:02&lt;00:02, 20.9M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  58%|██▎ | 60.4M/104M [00:02&lt;00:02, 21.2M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  62%|██▍ | 64.4M/104M [00:03&lt;00:01, 20.7M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  65%|██▌ | 67.3M/104M [00:03&lt;00:01, 20.3M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  68%|██▋ | 70.7M/104M [00:03&lt;00:01, 20.6M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  72%|██▊ | 74.8M/104M [00:03&lt;00:01, 20.5M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  74%|██▉ | 77.1M/104M [00:03&lt;00:01, 21.0M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  78%|███ | 81.3M/104M [00:03&lt;00:01, 21.1M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  82%|███▎| 85.6M/104M [00:04&lt;00:00, 21.1M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  85%|███▍| 88.3M/104M [00:04&lt;00:00, 20.7M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  88%|███▌| 91.8M/104M [00:04&lt;00:00, 21.1M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  92%|███▋| 95.8M/104M [00:04&lt;00:00, 20.7M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  95%|███▊| 98.5M/104M [00:04&lt;00:00, 20.3M Bytes/s]
+Get sub-02/s .. t_dwi.nii.gz:  98%|████▉| 102M/104M [00:04&lt;00:00, 20.5M Bytes/s]
                                                                                 
 Get sub-02/s .. t_dwi.nii.gz:   0%|             | 0.00/104M [00:00&lt;?, ? Bytes/s]
-
-                                                                                
-
-Get sub-02/s .. _bold.nii.gz:   0%|            | 0.00/23.3M [00:00&lt;?, ? Bytes/s]
-
-Get sub-02/s .. _bold.nii.gz:  26%|▊  | 6.15M/23.3M [00:00&lt;00:00, 30.8M Bytes/s]
-
-Get sub-02/s .. _bold.nii.gz:  40%|█▏ | 9.35M/23.3M [00:00&lt;00:00, 31.2M Bytes/s]
-
-Get sub-02/s .. _bold.nii.gz:  54%|█▌ | 12.6M/23.3M [00:00&lt;00:00, 31.6M Bytes/s]
-
-Get sub-02/s .. _bold.nii.gz:  68%|██ | 15.8M/23.3M [00:00&lt;00:00, 31.8M Bytes/s]
-
-Get sub-02/s .. _bold.nii.gz:  81%|██▍| 19.0M/23.3M [00:00&lt;00:00, 31.8M Bytes/s]
-
-Get sub-02/s .. _bold.nii.gz:  95%|██▊| 22.2M/23.3M [00:00&lt;00:00, 32.0M Bytes/s]
                                                                                 
 Get sub-02/s .. _bold.nii.gz:   0%|            | 0.00/23.3M [00:00&lt;?, ? Bytes/s]
-Total:  16%|████▎                      | 349M/2.17G [00:13&lt;01:09, 26.2M Bytes/s]
-
+Get sub-02/s .. _bold.nii.gz:  17%|▌  | 3.98M/23.3M [00:00&lt;00:00, 19.9M Bytes/s]
+Get sub-02/s .. _bold.nii.gz:  34%|█  | 7.93M/23.3M [00:00&lt;00:00, 19.8M Bytes/s]
+Get sub-02/s .. _bold.nii.gz:  52%|█▌ | 12.1M/23.3M [00:00&lt;00:00, 20.3M Bytes/s]
+Get sub-02/s .. _bold.nii.gz:  69%|██ | 16.1M/23.3M [00:00&lt;00:00, 20.3M Bytes/s]
+Get sub-02/s .. _bold.nii.gz:  78%|██▎| 18.2M/23.3M [00:00&lt;00:00, 20.3M Bytes/s]
+Get sub-02/s .. _bold.nii.gz:  96%|██▉| 22.5M/23.3M [00:01&lt;00:00, 20.6M Bytes/s]
+Total:  16%|████▎                      | 349M/2.17G [00:22&lt;01:55, 15.8M Bytes/s]
 Get sub-02/s .. _bold.nii.gz:   0%|            | 0.00/24.9M [00:00&lt;?, ? Bytes/s]
-
-Get sub-02/s .. _bold.nii.gz:  26%|▊  | 6.36M/24.9M [00:00&lt;00:00, 31.8M Bytes/s]
-
-Get sub-02/s .. _bold.nii.gz:  38%|█▏ | 9.58M/24.9M [00:00&lt;00:00, 31.9M Bytes/s]
-
-Get sub-02/s .. _bold.nii.gz:  51%|█▌ | 12.8M/24.9M [00:00&lt;00:00, 32.0M Bytes/s]
-
-Get sub-02/s .. _bold.nii.gz:  64%|█▉ | 16.0M/24.9M [00:00&lt;00:00, 32.1M Bytes/s]
-
-Get sub-02/s .. _bold.nii.gz:  77%|██▎| 19.3M/24.9M [00:00&lt;00:00, 32.2M Bytes/s]
-
-                                                                                
-Get sub-02/s .. _bold.nii.gz:   0%|            | 0.00/24.9M [00:00&lt;?, ? Bytes/s]
-                                                                                
-
-Get sub-02/s .. _bold.nii.gz:   0%|            | 0.00/32.2M [00:00&lt;?, ? Bytes/s]
-
-Get sub-02/s .. _bold.nii.gz:  10%|▎  | 3.16M/32.2M [00:00&lt;00:00, 31.6M Bytes/s]
-
-Get sub-02/s .. _bold.nii.gz:  20%|▌  | 6.36M/32.2M [00:00&lt;00:00, 31.8M Bytes/s]
-
-Get sub-02/s .. _bold.nii.gz:  30%|▉  | 9.61M/32.2M [00:00&lt;00:00, 32.1M Bytes/s]
-
-Get sub-02/s .. _bold.nii.gz:  40%|█▏ | 12.9M/32.2M [00:00&lt;00:00, 32.2M Bytes/s]
-
-Get sub-02/s .. _bold.nii.gz:  50%|█▍ | 16.1M/32.2M [00:00&lt;00:00, 32.3M Bytes/s]
-
-Get sub-02/s .. _bold.nii.gz:  60%|█▊ | 19.4M/32.2M [00:00&lt;00:00, 32.4M Bytes/s]
-
-Get sub-02/s .. _bold.nii.gz:  80%|██▍| 25.8M/32.2M [00:00&lt;00:00, 32.2M Bytes/s]
-
-Get sub-02/s .. _bold.nii.gz:  90%|██▋| 29.0M/32.2M [00:00&lt;00:00, 32.2M Bytes/s]
-
+Get sub-02/s .. _bold.nii.gz:   7%|▏  | 1.79M/24.9M [00:00&lt;00:01, 17.8M Bytes/s]
+Get sub-02/s .. _bold.nii.gz:  15%|▍  | 3.70M/24.9M [00:00&lt;00:01, 18.6M Bytes/s]
+Get sub-02/s .. _bold.nii.gz:  23%|▋  | 5.78M/24.9M [00:00&lt;00:00, 19.5M Bytes/s]
+Get sub-02/s .. _bold.nii.gz:  31%|▉  | 7.79M/24.9M [00:00&lt;00:00, 19.8M Bytes/s]
+Get sub-02/s .. _bold.nii.gz:  40%|█▏ | 9.94M/24.9M [00:00&lt;00:00, 20.3M Bytes/s]
+Get sub-02/s .. _bold.nii.gz:  48%|█▍ | 12.0M/24.9M [00:00&lt;00:00, 20.1M Bytes/s]
+Get sub-02/s .. _bold.nii.gz:  58%|█▋ | 14.3M/24.9M [00:00&lt;00:00, 21.0M Bytes/s]
+Get sub-02/s .. _bold.nii.gz:  66%|█▉ | 16.4M/24.9M [00:00&lt;00:00, 21.1M Bytes/s]
+Get sub-02/s .. _bold.nii.gz:  75%|██▏| 18.6M/24.9M [00:00&lt;00:00, 21.1M Bytes/s]
+Get sub-02/s .. _bold.nii.gz:  91%|██▋| 22.5M/24.9M [00:01&lt;00:00, 20.5M Bytes/s]
                                                                                 
 Get sub-02/s .. _bold.nii.gz:   0%|            | 0.00/32.2M [00:00&lt;?, ? Bytes/s]
-
+Get sub-02/s .. _bold.nii.gz:   6%|▏  | 1.78M/32.2M [00:00&lt;00:01, 17.6M Bytes/s]
+Get sub-02/s .. _bold.nii.gz:  12%|▎  | 3.86M/32.2M [00:00&lt;00:01, 19.4M Bytes/s]
+Get sub-02/s .. _bold.nii.gz:  18%|▌  | 5.88M/32.2M [00:00&lt;00:01, 19.8M Bytes/s]
+Get sub-02/s .. _bold.nii.gz:  31%|▉  | 9.99M/32.2M [00:00&lt;00:01, 20.2M Bytes/s]
+Get sub-02/s .. _bold.nii.gz:  38%|█▏ | 12.1M/32.2M [00:00&lt;00:00, 20.4M Bytes/s]
+Get sub-02/s .. _bold.nii.gz:  48%|█▍ | 15.4M/32.2M [00:00&lt;00:00, 19.9M Bytes/s]
+Get sub-02/s .. _bold.nii.gz:  56%|█▋ | 17.9M/32.2M [00:00&lt;00:00, 19.9M Bytes/s]
+Get sub-02/s .. _bold.nii.gz:  63%|█▉ | 20.4M/32.2M [00:01&lt;00:00, 21.0M Bytes/s]
+Get sub-02/s .. _bold.nii.gz:  76%|██▎| 24.6M/32.2M [00:01&lt;00:00, 20.9M Bytes/s]
+Get sub-02/s .. _bold.nii.gz:  89%|██▋| 28.6M/32.2M [00:01&lt;00:00, 20.5M Bytes/s]
                                                                                 
-
 Get sub-02/s .. _bold.nii.gz:   0%|            | 0.00/12.3M [00:00&lt;?, ? Bytes/s]
-
-Get sub-02/s .. _bold.nii.gz:  48%|█▍ | 5.96M/12.3M [00:00&lt;00:00, 29.8M Bytes/s]
-
-Get sub-02/s .. _bold.nii.gz:  73%|██▏| 9.00M/12.3M [00:00&lt;00:00, 30.0M Bytes/s]
-
-Get sub-02/s .. _bold.nii.gz:  98%|██▉| 12.2M/12.3M [00:00&lt;00:00, 30.6M Bytes/s]
-                                                                                
-Get sub-02/s .. _bold.nii.gz:   0%|            | 0.00/12.3M [00:00&lt;?, ? Bytes/s]
-                                                                                
-
-Get sub-02/s .. _bold.nii.gz:   0%|            | 0.00/10.5M [00:00&lt;?, ? Bytes/s]
-
-Get sub-02/s .. _bold.nii.gz:  59%|█▊ | 6.23M/10.5M [00:00&lt;00:00, 31.2M Bytes/s]
-
-Get sub-02/s .. _bold.nii.gz:  90%|██▋| 9.46M/10.5M [00:00&lt;00:00, 31.6M Bytes/s]
-
+Get sub-02/s .. _bold.nii.gz:  17%|▌  | 2.07M/12.3M [00:00&lt;00:00, 20.7M Bytes/s]
+Get sub-02/s .. _bold.nii.gz:  45%|█▎ | 5.58M/12.3M [00:00&lt;00:00, 19.2M Bytes/s]
+Get sub-02/s .. _bold.nii.gz:  62%|█▊ | 7.61M/12.3M [00:00&lt;00:00, 18.5M Bytes/s]
+Get sub-02/s .. _bold.nii.gz:  87%|██▌| 10.8M/12.3M [00:00&lt;00:00, 17.2M Bytes/s]
                                                                                 
 Get sub-02/s .. _bold.nii.gz:   0%|            | 0.00/10.5M [00:00&lt;?, ? Bytes/s]
-                                                                                
-
-Get sub-05/s .. t_T1w.nii.gz:   0%|            | 0.00/9.51M [00:00&lt;?, ? Bytes/s]
-
-Get sub-05/s .. t_T1w.nii.gz:  67%|██ | 6.38M/9.51M [00:00&lt;00:00, 31.9M Bytes/s]
-
-                                                                                
-Get sub-05/s .. t_T1w.nii.gz:   0%|            | 0.00/9.51M [00:00&lt;?, ? Bytes/s]
-                                                                                
-
-Get sub-05/s .. t_dwi.nii.gz:   0%|             | 0.00/104M [00:00&lt;?, ? Bytes/s]
-
-Get sub-05/s .. t_dwi.nii.gz:   6%|▏   | 6.16M/104M [00:00&lt;00:03, 30.8M Bytes/s]
-
-Get sub-05/s .. t_dwi.nii.gz:   9%|▎   | 9.30M/104M [00:00&lt;00:03, 31.0M Bytes/s]
-
-Get sub-05/s .. t_dwi.nii.gz:  12%|▍   | 12.5M/104M [00:00&lt;00:02, 31.3M Bytes/s]
-
-Get sub-05/s .. t_dwi.nii.gz:  15%|▌   | 15.6M/104M [00:00&lt;00:02, 31.3M Bytes/s]
-
-Get sub-05/s .. t_dwi.nii.gz:  18%|▋   | 18.8M/104M [00:00&lt;00:02, 31.4M Bytes/s]
-
-Get sub-05/s .. t_dwi.nii.gz:  21%|▊   | 22.0M/104M [00:00&lt;00:02, 31.5M Bytes/s]
-
-Get sub-05/s .. t_dwi.nii.gz:  24%|▉   | 25.1M/104M [00:00&lt;00:02, 31.6M Bytes/s]
-
-Get sub-05/s .. t_dwi.nii.gz:  27%|█   | 28.3M/104M [00:00&lt;00:02, 31.6M Bytes/s]
-
-Get sub-05/s .. t_dwi.nii.gz:  30%|█▏  | 31.5M/104M [00:01&lt;00:02, 31.6M Bytes/s]
-
-Get sub-05/s .. t_dwi.nii.gz:  36%|█▍  | 37.8M/104M [00:01&lt;00:02, 31.6M Bytes/s]
-
-Get sub-05/s .. t_dwi.nii.gz:  42%|█▋  | 44.2M/104M [00:01&lt;00:01, 31.7M Bytes/s]
-
-Get sub-05/s .. t_dwi.nii.gz:  49%|█▉  | 50.5M/104M [00:01&lt;00:01, 31.6M Bytes/s]
-
-Get sub-05/s .. t_dwi.nii.gz:  52%|██  | 53.7M/104M [00:01&lt;00:01, 31.6M Bytes/s]
-
-Get sub-05/s .. t_dwi.nii.gz:  55%|██▏ | 56.9M/104M [00:01&lt;00:01, 31.6M Bytes/s]
-
-Get sub-05/s .. t_dwi.nii.gz:  61%|██▍ | 63.0M/104M [00:02&lt;00:01, 31.3M Bytes/s]
-
-Get sub-05/s .. t_dwi.nii.gz:  67%|██▋ | 69.2M/104M [00:02&lt;00:01, 31.2M Bytes/s]
-
-Get sub-05/s .. t_dwi.nii.gz:  70%|██▊ | 72.4M/104M [00:02&lt;00:01, 31.2M Bytes/s]
-
-Get sub-05/s .. t_dwi.nii.gz:  73%|██▉ | 75.5M/104M [00:02&lt;00:00, 31.3M Bytes/s]
-
-Get sub-05/s .. t_dwi.nii.gz:  76%|███ | 78.7M/104M [00:02&lt;00:00, 31.3M Bytes/s]
-
-Get sub-05/s .. t_dwi.nii.gz:  82%|███▎| 84.9M/104M [00:02&lt;00:00, 31.3M Bytes/s]
-
-Get sub-05/s .. t_dwi.nii.gz:  88%|███▌| 91.2M/104M [00:02&lt;00:00, 31.3M Bytes/s]
-
-Get sub-05/s .. t_dwi.nii.gz:  91%|███▋| 94.3M/104M [00:03&lt;00:00, 31.2M Bytes/s]
-
-Get sub-05/s .. t_dwi.nii.gz:  97%|████▊| 101M/104M [00:03&lt;00:00, 31.2M Bytes/s]
-
-Get sub-05/s .. t_dwi.nii.gz: 100%|████▉| 104M/104M [00:03&lt;00:00, 31.4M Bytes/s]
-                                                                                
-Get sub-05/s .. t_dwi.nii.gz:   0%|             | 0.00/104M [00:00&lt;?, ? Bytes/s]
-
-Total:  25%|██████▋                    | 542M/2.17G [00:20&lt;01:01, 26.5M Bytes/s]
-
-Get sub-05/s .. _bold.nii.gz:   0%|            | 0.00/24.2M [00:00&lt;?, ? Bytes/s]
-
-Get sub-05/s .. _bold.nii.gz:  26%|▊  | 6.25M/24.2M [00:00&lt;00:00, 31.3M Bytes/s]
-
-Get sub-05/s .. _bold.nii.gz:  39%|█▏ | 9.44M/24.2M [00:00&lt;00:00, 31.6M Bytes/s]
-
-Get sub-05/s .. _bold.nii.gz:  64%|█▉ | 15.6M/24.2M [00:00&lt;00:00, 31.1M Bytes/s]
-
-Get sub-05/s .. _bold.nii.gz:  77%|██▎| 18.7M/24.2M [00:00&lt;00:00, 31.2M Bytes/s]
-
-Get sub-05/s .. _bold.nii.gz:  91%|██▋| 21.9M/24.2M [00:00&lt;00:00, 31.4M Bytes/s]
-
-                                                                                
-
-Get sub-05/s .. _bold.nii.gz:   0%|            | 0.00/24.2M [00:00&lt;?, ? Bytes/s]
-
-                                                                                
-
-Get sub-05/s .. _bold.nii.gz:   0%|            | 0.00/26.0M [00:00&lt;?, ? Bytes/s]
-
-Get sub-05/s .. _bold.nii.gz:  23%|▋  | 6.07M/26.0M [00:00&lt;00:00, 30.4M Bytes/s]
-
-Get sub-05/s .. _bold.nii.gz:  35%|█  | 9.20M/26.0M [00:00&lt;00:00, 30.7M Bytes/s]
-
-Get sub-05/s .. _bold.nii.gz:  47%|█▍ | 12.3M/26.0M [00:00&lt;00:00, 30.9M Bytes/s]
-
-Get sub-05/s .. _bold.nii.gz:  71%|██ | 18.4M/26.0M [00:00&lt;00:00, 30.5M Bytes/s]
-
-Get sub-05/s .. _bold.nii.gz:  95%|██▊| 24.6M/26.0M [00:00&lt;00:00, 30.8M Bytes/s]
-                                                                                
-Get sub-05/s .. _bold.nii.gz:   0%|            | 0.00/26.0M [00:00&lt;?, ? Bytes/s]
-
-                                                                                
-
-Get sub-05/s .. _bold.nii.gz:   0%|            | 0.00/33.6M [00:00&lt;?, ? Bytes/s]
-
-Get sub-05/s .. _bold.nii.gz:  19%|▌  | 6.25M/33.6M [00:00&lt;00:00, 31.3M Bytes/s]
-
-Get sub-05/s .. _bold.nii.gz:  28%|▊  | 9.43M/33.6M [00:00&lt;00:00, 31.5M Bytes/s]
-
-Get sub-05/s .. _bold.nii.gz:  38%|█▏ | 12.6M/33.6M [00:00&lt;00:00, 31.6M Bytes/s]
-
-Get sub-05/s .. _bold.nii.gz:  47%|█▍ | 15.8M/33.6M [00:00&lt;00:00, 31.7M Bytes/s]
-
-Get sub-05/s .. _bold.nii.gz:  57%|█▋ | 19.0M/33.6M [00:00&lt;00:00, 31.7M Bytes/s]
-
-Get sub-05/s .. _bold.nii.gz:  66%|█▉ | 22.2M/33.6M [00:00&lt;00:00, 31.8M Bytes/s]
-
-Get sub-05/s .. _bold.nii.gz:  76%|██▎| 25.4M/33.6M [00:00&lt;00:00, 31.8M Bytes/s]
-
-Get sub-05/s .. _bold.nii.gz:  85%|██▌| 28.6M/33.6M [00:00&lt;00:00, 31.9M Bytes/s]
-
-Get sub-05/s .. _bold.nii.gz:  95%|██▊| 31.8M/33.6M [00:01&lt;00:00, 31.9M Bytes/s]
-
-                                                                                
-Get sub-05/s .. _bold.nii.gz:   0%|            | 0.00/33.6M [00:00&lt;?, ? Bytes/s]
-                                                                                
-
-Get sub-05/s .. _bold.nii.gz:   0%|            | 0.00/12.9M [00:00&lt;?, ? Bytes/s]
-
-Get sub-05/s .. _bold.nii.gz:  25%|▋  | 3.19M/12.9M [00:00&lt;00:00, 31.9M Bytes/s]
-
-Get sub-05/s .. _bold.nii.gz:  50%|█▍ | 6.43M/12.9M [00:00&lt;00:00, 32.1M Bytes/s]
-
-Get sub-05/s .. _bold.nii.gz:  74%|██▏| 9.64M/12.9M [00:00&lt;00:00, 32.1M Bytes/s]
-
-Get sub-05/s .. _bold.nii.gz: 100%|██▉| 12.9M/12.9M [00:00&lt;00:00, 32.3M Bytes/s]
-                                                                                
-Get sub-05/s .. _bold.nii.gz:   0%|            | 0.00/12.9M [00:00&lt;?, ? Bytes/s]
-                                                                                
-
-Get sub-05/s .. _bold.nii.gz:   0%|            | 0.00/11.1M [00:00&lt;?, ? Bytes/s]
-
-Get sub-05/s .. _bold.nii.gz:  27%|▊  | 3.03M/11.1M [00:00&lt;00:00, 30.3M Bytes/s]
-
-Get sub-05/s .. _bold.nii.gz:  55%|█▋ | 6.13M/11.1M [00:00&lt;00:00, 30.7M Bytes/s]
-
-Get sub-05/s .. _bold.nii.gz:  84%|██▌| 9.31M/11.1M [00:00&lt;00:00, 31.2M Bytes/s]
-
-Get sub-05/s .. _bold.nii.gz:   0%|            | 0.00/11.1M [00:00&lt;?, ? Bytes/s]
-                                                                                
-
-Get sub-05/s .. t_T1w.nii.gz:   0%|            | 0.00/9.94M [00:00&lt;?, ? Bytes/s]
-
-Get sub-05/s .. t_T1w.nii.gz:  32%|▉  | 3.16M/9.94M [00:00&lt;00:00, 31.6M Bytes/s]
-
-Get sub-05/s .. t_T1w.nii.gz:  64%|█▉ | 6.36M/9.94M [00:00&lt;00:00, 31.8M Bytes/s]
-
-Get sub-05/s .. t_T1w.nii.gz:  97%|██▉| 9.61M/9.94M [00:00&lt;00:00, 32.0M Bytes/s]
-                                                                                
-Get sub-05/s .. t_T1w.nii.gz:   0%|            | 0.00/9.94M [00:00&lt;?, ? Bytes/s]
-                                                                                
-
-Get sub-05/s .. t_dwi.nii.gz:   0%|             | 0.00/108M [00:00&lt;?, ? Bytes/s]
-
-Get sub-05/s .. t_dwi.nii.gz:   5%|▏   | 5.82M/108M [00:00&lt;00:03, 29.1M Bytes/s]
-
-Get sub-05/s .. t_dwi.nii.gz:   8%|▎   | 8.98M/108M [00:00&lt;00:03, 30.1M Bytes/s]
-
-Get sub-05/s .. t_dwi.nii.gz:  11%|▍   | 12.2M/108M [00:00&lt;00:03, 30.7M Bytes/s]
-
-Get sub-05/s .. t_dwi.nii.gz:  14%|▌   | 15.3M/108M [00:00&lt;00:02, 31.0M Bytes/s]
-
-Get sub-05/s .. t_dwi.nii.gz:  17%|▋   | 18.5M/108M [00:00&lt;00:02, 31.2M Bytes/s]
-
-Get sub-05/s .. t_dwi.nii.gz:  20%|▊   | 21.7M/108M [00:00&lt;00:02, 31.4M Bytes/s]
-
-Get sub-05/s .. t_dwi.nii.gz:  26%|█   | 28.0M/108M [00:00&lt;00:02, 31.5M Bytes/s]
-
-Get sub-05/s .. t_dwi.nii.gz:  29%|█▏  | 31.2M/108M [00:01&lt;00:02, 31.6M Bytes/s]
-
-Get sub-05/s .. t_dwi.nii.gz:  32%|█▎  | 34.4M/108M [00:01&lt;00:02, 31.6M Bytes/s]
-
-Get sub-05/s .. t_dwi.nii.gz:  38%|█▌  | 40.6M/108M [00:01&lt;00:02, 31.4M Bytes/s]
-
-Get sub-05/s .. t_dwi.nii.gz:  41%|█▌  | 43.8M/108M [00:01&lt;00:02, 31.5M Bytes/s]
-
-Get sub-05/s .. t_dwi.nii.gz:  43%|█▋  | 47.0M/108M [00:01&lt;00:01, 31.5M Bytes/s]
-
-Get sub-05/s .. t_dwi.nii.gz:  46%|█▊  | 50.1M/108M [00:01&lt;00:01, 31.5M Bytes/s]
-
-Get sub-05/s .. t_dwi.nii.gz:  52%|██  | 56.4M/108M [00:01&lt;00:01, 31.5M Bytes/s]
-
-Get sub-05/s .. t_dwi.nii.gz:  58%|██▎ | 62.6M/108M [00:02&lt;00:01, 31.2M Bytes/s]
-
-Get sub-05/s .. t_dwi.nii.gz:  64%|██▌ | 68.9M/108M [00:02&lt;00:01, 31.2M Bytes/s]
-
-Get sub-05/s .. t_dwi.nii.gz:  69%|██▊ | 75.0M/108M [00:02&lt;00:01, 31.0M Bytes/s]
-
-Get sub-05/s .. t_dwi.nii.gz:  72%|██▉ | 78.1M/108M [00:02&lt;00:00, 31.1M Bytes/s]
-
-Get sub-05/s .. t_dwi.nii.gz:  75%|███ | 81.3M/108M [00:02&lt;00:00, 31.1M Bytes/s]
-
-Get sub-05/s .. t_dwi.nii.gz:  81%|███▏| 87.5M/108M [00:02&lt;00:00, 31.0M Bytes/s]
-
-Get sub-05/s .. t_dwi.nii.gz:  87%|███▍| 93.7M/108M [00:03&lt;00:00, 31.0M Bytes/s]
-
-Get sub-05/s .. t_dwi.nii.gz:  92%|███▋| 99.8M/108M [00:03&lt;00:00, 30.8M Bytes/s]
-
-Get sub-05/s .. t_dwi.nii.gz:  98%|████▉| 106M/108M [00:03&lt;00:00, 30.7M Bytes/s]
-
-                                                                                
-Get sub-05/s .. t_dwi.nii.gz:   0%|             | 0.00/108M [00:00&lt;?, ? Bytes/s]
-Total:  35%|█████████▌                 | 768M/2.17G [00:28&lt;00:52, 26.6M Bytes/s]
-
-Get sub-05/s .. _bold.nii.gz:   0%|            | 0.00/24.9M [00:00&lt;?, ? Bytes/s]
-
-Get sub-05/s .. _bold.nii.gz:  25%|▋  | 6.21M/24.9M [00:00&lt;00:00, 31.1M Bytes/s]
-
-Get sub-05/s .. _bold.nii.gz:  38%|█▏ | 9.41M/24.9M [00:00&lt;00:00, 31.4M Bytes/s]
-
-Get sub-05/s .. _bold.nii.gz:  51%|█▌ | 12.6M/24.9M [00:00&lt;00:00, 31.6M Bytes/s]
-
-Get sub-05/s .. _bold.nii.gz:  63%|█▉ | 15.8M/24.9M [00:00&lt;00:00, 31.7M Bytes/s]
-
-Get sub-05/s .. _bold.nii.gz:  89%|██▋| 22.1M/24.9M [00:00&lt;00:00, 31.6M Bytes/s]
-
-                                                                                
-Get sub-05/s .. _bold.nii.gz:   0%|            | 0.00/24.9M [00:00&lt;?, ? Bytes/s]
-                                                                                
-
-Get sub-05/s .. _bold.nii.gz:   0%|            | 0.00/26.7M [00:00&lt;?, ? Bytes/s]
-
-Get sub-05/s .. _bold.nii.gz:  12%|▎  | 3.10M/26.7M [00:00&lt;00:00, 31.0M Bytes/s]
-
-Get sub-05/s .. _bold.nii.gz:  23%|▋  | 6.23M/26.7M [00:00&lt;00:00, 31.1M Bytes/s]
-
-Get sub-05/s .. _bold.nii.gz:  35%|█  | 9.39M/26.7M [00:00&lt;00:00, 31.3M Bytes/s]
-
-Get sub-05/s .. _bold.nii.gz:  47%|█▍ | 12.6M/26.7M [00:00&lt;00:00, 31.5M Bytes/s]
-
-Get sub-05/s .. _bold.nii.gz:  59%|█▊ | 15.8M/26.7M [00:00&lt;00:00, 31.6M Bytes/s]
-
-Get sub-05/s .. _bold.nii.gz:  83%|██▍| 22.1M/26.7M [00:00&lt;00:00, 31.6M Bytes/s]
-
-Get sub-05/s .. _bold.nii.gz:  95%|██▊| 25.3M/26.7M [00:00&lt;00:00, 31.8M Bytes/s]
-
-                                                                                
-Get sub-05/s .. _bold.nii.gz:   0%|            | 0.00/26.7M [00:00&lt;?, ? Bytes/s]
-                                                                                
-
-Get sub-05/s .. _bold.nii.gz:   0%|            | 0.00/34.4M [00:00&lt;?, ? Bytes/s]
-
-Get sub-05/s .. _bold.nii.gz:   9%|▎  | 3.11M/34.4M [00:00&lt;00:01, 31.1M Bytes/s]
-
-Get sub-05/s .. _bold.nii.gz:  18%|▌  | 6.23M/34.4M [00:00&lt;00:00, 31.1M Bytes/s]
-
-Get sub-05/s .. _bold.nii.gz:  27%|▊  | 9.36M/34.4M [00:00&lt;00:00, 31.2M Bytes/s]
-
-Get sub-05/s .. _bold.nii.gz:  36%|█  | 12.5M/34.4M [00:00&lt;00:00, 31.2M Bytes/s]
-
-Get sub-05/s .. _bold.nii.gz:  54%|█▋ | 18.7M/34.4M [00:00&lt;00:00, 31.1M Bytes/s]
-
-Get sub-05/s .. _bold.nii.gz:  72%|██▏| 24.7M/34.4M [00:00&lt;00:00, 30.5M Bytes/s]
-
-Get sub-05/s .. _bold.nii.gz:  81%|██▍| 27.8M/34.4M [00:00&lt;00:00, 30.7M Bytes/s]
-
-Get sub-05/s .. _bold.nii.gz:  99%|██▉| 34.1M/34.4M [00:01&lt;00:00, 31.0M Bytes/s]
-
-                                                                                
-Get sub-05/s .. _bold.nii.gz:   0%|            | 0.00/34.4M [00:00&lt;?, ? Bytes/s]
-                                                                                
-
-Get sub-05/s .. _bold.nii.gz:   0%|            | 0.00/13.1M [00:00&lt;?, ? Bytes/s]
-
-Get sub-05/s .. _bold.nii.gz:  47%|█▍ | 6.20M/13.1M [00:00&lt;00:00, 31.0M Bytes/s]
-
-Get sub-05/s .. _bold.nii.gz:  71%|██▏| 9.36M/13.1M [00:00&lt;00:00, 31.2M Bytes/s]
-
-Get sub-05/s .. _bold.nii.gz:  96%|██▉| 12.6M/13.1M [00:00&lt;00:00, 31.6M Bytes/s]
-
-                                                                                
-Get sub-05/s .. _bold.nii.gz:   0%|            | 0.00/13.1M [00:00&lt;?, ? Bytes/s]
-                                                                                
-
-Get sub-05/s .. _bold.nii.gz:   0%|            | 0.00/11.5M [00:00&lt;?, ? Bytes/s]
-
-Get sub-05/s .. _bold.nii.gz:  27%|▊  | 3.06M/11.5M [00:00&lt;00:00, 30.6M Bytes/s]
-
-Get sub-05/s .. _bold.nii.gz:  54%|█▌ | 6.17M/11.5M [00:00&lt;00:00, 30.9M Bytes/s]
-
-Get sub-05/s .. _bold.nii.gz:  81%|██▍| 9.33M/11.5M [00:00&lt;00:00, 31.2M Bytes/s]
-
-                                                                                
-Get sub-05/s .. _bold.nii.gz:   0%|            | 0.00/11.5M [00:00&lt;?, ? Bytes/s]
-                                                                                
-
-Get sub-01/s .. t_T1w.nii.gz:   0%|            | 0.00/8.50M [00:00&lt;?, ? Bytes/s]
-
-Get sub-01/s .. t_T1w.nii.gz:  74%|██▏| 6.30M/8.50M [00:00&lt;00:00, 31.5M Bytes/s]
-
+Get sub-02/s .. _bold.nii.gz:  31%|▉  | 3.28M/10.5M [00:00&lt;00:00, 16.4M Bytes/s]
+Get sub-02/s .. _bold.nii.gz:  47%|█▍ | 4.96M/10.5M [00:00&lt;00:00, 16.6M Bytes/s]
+Get sub-02/s .. _bold.nii.gz:  80%|██▍| 8.37M/10.5M [00:00&lt;00:00, 16.7M Bytes/s]
                                                                                 
 Get sub-01/s .. t_T1w.nii.gz:   0%|            | 0.00/8.50M [00:00&lt;?, ? Bytes/s]
-                                                                                
-
-Get sub-01/s .. t_dwi.nii.gz:   0%|            | 0.00/99.9M [00:00&lt;?, ? Bytes/s]
-
-Get sub-01/s .. t_dwi.nii.gz:   6%|▏  | 6.35M/99.9M [00:00&lt;00:02, 31.8M Bytes/s]
-
-Get sub-01/s .. t_dwi.nii.gz:  10%|▎  | 9.58M/99.9M [00:00&lt;00:02, 31.9M Bytes/s]
-
-Get sub-01/s .. t_dwi.nii.gz:  13%|▍  | 12.8M/99.9M [00:00&lt;00:02, 32.0M Bytes/s]
-
-Get sub-01/s .. t_dwi.nii.gz:  16%|▍  | 16.0M/99.9M [00:00&lt;00:02, 32.1M Bytes/s]
-
-Get sub-01/s .. t_dwi.nii.gz:  19%|▌  | 19.3M/99.9M [00:00&lt;00:02, 32.1M Bytes/s]
-
-Get sub-01/s .. t_dwi.nii.gz:  23%|▋  | 22.5M/99.9M [00:00&lt;00:02, 32.2M Bytes/s]
-
-Get sub-01/s .. t_dwi.nii.gz:  29%|▊  | 28.9M/99.9M [00:00&lt;00:02, 32.2M Bytes/s]
-
-Get sub-01/s .. t_dwi.nii.gz:  32%|▉  | 32.2M/99.9M [00:01&lt;00:02, 32.2M Bytes/s]
-
-Get sub-01/s .. t_dwi.nii.gz:  35%|█  | 35.4M/99.9M [00:01&lt;00:02, 32.2M Bytes/s]
-
-Get sub-01/s .. t_dwi.nii.gz:  42%|█▎ | 41.7M/99.9M [00:01&lt;00:01, 31.8M Bytes/s]
-
-Get sub-01/s .. t_dwi.nii.gz:  48%|█▍ | 48.0M/99.9M [00:01&lt;00:01, 31.7M Bytes/s]
-
-Get sub-01/s .. t_dwi.nii.gz:  51%|█▌ | 51.2M/99.9M [00:01&lt;00:01, 31.8M Bytes/s]
-
-Get sub-01/s .. t_dwi.nii.gz:  57%|█▋ | 57.4M/99.9M [00:01&lt;00:01, 31.3M Bytes/s]
-
-Get sub-01/s .. t_dwi.nii.gz:  61%|█▊ | 60.6M/99.9M [00:01&lt;00:01, 31.5M Bytes/s]
-
-Get sub-01/s .. t_dwi.nii.gz:  64%|█▉ | 63.8M/99.9M [00:02&lt;00:01, 31.7M Bytes/s]
-
-Get sub-01/s .. t_dwi.nii.gz:  67%|██ | 67.0M/99.9M [00:02&lt;00:01, 31.8M Bytes/s]
-
-Get sub-01/s .. t_dwi.nii.gz:  70%|██ | 70.3M/99.9M [00:02&lt;00:00, 31.9M Bytes/s]
-
-Get sub-01/s .. t_dwi.nii.gz:  74%|██▏| 73.5M/99.9M [00:02&lt;00:00, 32.0M Bytes/s]
-
-Get sub-01/s .. t_dwi.nii.gz:  77%|██▎| 76.8M/99.9M [00:02&lt;00:00, 32.1M Bytes/s]
-
-Get sub-01/s .. t_dwi.nii.gz:  80%|██▍| 80.0M/99.9M [00:02&lt;00:00, 32.1M Bytes/s]
-
-Get sub-01/s .. t_dwi.nii.gz:  83%|██▍| 83.2M/99.9M [00:02&lt;00:00, 32.2M Bytes/s]
-Get sub-01/s .. t_dwi.nii.gz:  87%|██▌| 86.4M/99.9M [00:02&lt;00:00, 32.1M Bytes/s]
-
-Get sub-01/s .. t_dwi.nii.gz:  93%|██▊| 92.9M/99.9M [00:02&lt;00:00, 32.2M Bytes/s]
-
-Get sub-01/s .. t_dwi.nii.gz:  96%|██▉| 96.1M/99.9M [00:03&lt;00:00, 32.2M Bytes/s]
-
-Get sub-01/s .. t_dwi.nii.gz:  99%|██▉| 99.4M/99.9M [00:03&lt;00:00, 32.2M Bytes/s]
-
+Get sub-01/s .. t_T1w.nii.gz:  39%|█▏ | 3.31M/8.50M [00:00&lt;00:00, 16.4M Bytes/s]
+Get sub-01/s .. t_T1w.nii.gz:  61%|█▊ | 5.21M/8.50M [00:00&lt;00:00, 17.4M Bytes/s]
                                                                                 
 Get sub-01/s .. t_dwi.nii.gz:   0%|            | 0.00/99.9M [00:00&lt;?, ? Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:   4%|   | 3.59M/99.9M [00:00&lt;00:05, 17.9M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:   5%|▏  | 5.38M/99.9M [00:00&lt;00:05, 17.9M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:   7%|▏  | 7.28M/99.9M [00:00&lt;00:05, 18.3M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  11%|▎  | 10.8M/99.9M [00:00&lt;00:04, 17.9M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  13%|▍  | 12.7M/99.9M [00:00&lt;00:04, 18.1M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  15%|▍  | 14.8M/99.9M [00:00&lt;00:04, 18.8M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  19%|▌  | 18.5M/99.9M [00:01&lt;00:04, 18.8M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  22%|▋  | 22.2M/99.9M [00:01&lt;00:04, 18.5M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  24%|▋  | 24.1M/99.9M [00:01&lt;00:04, 18.7M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  26%|▊  | 26.0M/99.9M [00:01&lt;00:03, 18.9M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  30%|▉  | 30.0M/99.9M [00:01&lt;00:03, 19.3M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  32%|▉  | 32.1M/99.9M [00:01&lt;00:03, 19.5M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  36%|█  | 35.9M/99.9M [00:01&lt;00:03, 19.3M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  40%|█▏ | 39.7M/99.9M [00:02&lt;00:03, 19.0M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  42%|█▏ | 41.6M/99.9M [00:02&lt;00:03, 19.0M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  46%|█▎ | 45.6M/99.9M [00:02&lt;00:02, 19.4M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  48%|█▍ | 47.7M/99.9M [00:02&lt;00:02, 19.5M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  50%|█▍ | 49.7M/99.9M [00:02&lt;00:02, 19.7M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  52%|█▌ | 51.8M/99.9M [00:02&lt;00:02, 19.9M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  56%|█▋ | 55.9M/99.9M [00:02&lt;00:02, 20.1M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  60%|█▊ | 59.8M/99.9M [00:03&lt;00:02, 19.9M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  62%|█▊ | 61.9M/99.9M [00:03&lt;00:01, 19.9M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  64%|█▉ | 64.1M/99.9M [00:03&lt;00:01, 20.4M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  66%|█▉ | 66.2M/99.9M [00:03&lt;00:01, 20.5M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  71%|██ | 70.5M/99.9M [00:03&lt;00:01, 20.8M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  73%|██▏| 73.0M/99.9M [00:03&lt;00:01, 19.8M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  77%|██▎| 76.5M/99.9M [00:03&lt;00:01, 20.5M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  79%|██▎| 78.8M/99.9M [00:04&lt;00:01, 21.1M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  83%|██▍| 82.7M/99.9M [00:04&lt;00:00, 20.4M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  85%|██▌| 84.8M/99.9M [00:04&lt;00:00, 20.6M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  89%|██▋| 88.9M/99.9M [00:04&lt;00:00, 19.9M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  93%|██▊| 93.2M/99.9M [00:04&lt;00:00, 20.2M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  97%|██▉| 97.2M/99.9M [00:04&lt;00:00, 20.2M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  99%|██▉| 99.4M/99.9M [00:05&lt;00:00, 20.4M Bytes/s]
                                                                                 
-
+Get sub-01/s .. t_dwi.nii.gz:   0%|            | 0.00/99.9M [00:00&lt;?, ? Bytes/s]
+Total:  25%|██████▋                    | 537M/2.17G [00:34&lt;01:43, 15.7M Bytes/s]
 Get sub-01/s .. _bold.nii.gz:   0%|            | 0.00/22.3M [00:00&lt;?, ? Bytes/s]
-
-Get sub-01/s .. _bold.nii.gz:  27%|▊  | 6.04M/22.3M [00:00&lt;00:00, 30.2M Bytes/s]
-
-Get sub-01/s .. _bold.nii.gz:  41%|█▏ | 9.18M/22.3M [00:00&lt;00:00, 30.7M Bytes/s]
-
-Get sub-01/s .. _bold.nii.gz:  55%|█▋ | 12.4M/22.3M [00:00&lt;00:00, 31.1M Bytes/s]
-
-Get sub-01/s .. _bold.nii.gz:  70%|██ | 15.5M/22.3M [00:00&lt;00:00, 31.2M Bytes/s]
-
-Get sub-01/s .. _bold.nii.gz:  98%|██▉| 21.8M/22.3M [00:00&lt;00:00, 31.4M Bytes/s]
-                                                                                
-Get sub-01/s .. _bold.nii.gz:   0%|            | 0.00/22.3M [00:00&lt;?, ? Bytes/s]
-Total:  46%|████████████              | 1.01G/2.17G [00:37&lt;00:43, 26.7M Bytes/s]
-
+Get sub-01/s .. _bold.nii.gz:   7%|▏  | 1.66M/22.3M [00:00&lt;00:01, 15.6M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  16%|▍  | 3.63M/22.3M [00:00&lt;00:01, 11.4M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  23%|▋  | 5.19M/22.3M [00:00&lt;00:01, 12.5M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  31%|▉  | 6.96M/22.3M [00:00&lt;00:01, 14.1M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  44%|█▎ | 9.73M/22.3M [00:00&lt;00:00, 14.0M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  52%|█▌ | 11.7M/22.3M [00:00&lt;00:00, 15.4M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  67%|██ | 14.9M/22.3M [00:01&lt;00:00, 15.7M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  80%|██▍| 17.8M/22.3M [00:01&lt;00:00, 15.2M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  87%|██▌| 19.4M/22.3M [00:01&lt;00:00, 15.4M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  95%|██▊| 21.2M/22.3M [00:01&lt;00:00, 15.9M Bytes/s]
+Total:  26%|██████▉                    | 559M/2.17G [00:35&lt;01:43, 15.6M Bytes/s]
 Get sub-01/s .. _bold.nii.gz:   0%|            | 0.00/23.8M [00:00&lt;?, ? Bytes/s]
-
-Get sub-01/s .. _bold.nii.gz:  27%|▊  | 6.38M/23.8M [00:00&lt;00:00, 31.9M Bytes/s]
-
-Get sub-01/s .. _bold.nii.gz:  53%|█▌ | 12.7M/23.8M [00:00&lt;00:00, 31.7M Bytes/s]
-
-Get sub-01/s .. _bold.nii.gz:  67%|██ | 15.9M/23.8M [00:00&lt;00:00, 31.7M Bytes/s]
-
-Get sub-01/s .. _bold.nii.gz:  80%|██▍| 19.1M/23.8M [00:00&lt;00:00, 31.8M Bytes/s]
-
-Get sub-01/s .. _bold.nii.gz:  94%|██▊| 22.3M/23.8M [00:00&lt;00:00, 31.9M Bytes/s]
-
-                                                                                
-Get sub-01/s .. _bold.nii.gz:   0%|            | 0.00/23.8M [00:00&lt;?, ? Bytes/s]
-                                                                                
-
+Get sub-01/s .. _bold.nii.gz:   7%|▏  | 1.58M/23.8M [00:00&lt;00:01, 15.1M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  14%|▍  | 3.41M/23.8M [00:00&lt;00:01, 17.0M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  28%|▊  | 6.77M/23.8M [00:00&lt;00:01, 16.8M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  36%|█  | 8.48M/23.8M [00:00&lt;00:00, 16.9M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  49%|█▍ | 11.7M/23.8M [00:00&lt;00:00, 16.6M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  64%|█▉ | 15.2M/23.8M [00:00&lt;00:00, 16.7M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  78%|██▎| 18.6M/23.8M [00:01&lt;00:00, 16.9M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  87%|██▌| 20.7M/23.8M [00:01&lt;00:00, 16.3M Bytes/s]
+Get sub-01/s .. _bold.nii.gz: 100%|██▉| 23.7M/23.8M [00:01&lt;00:00, 17.0M Bytes/s]
+Total:  27%|███████▏                   | 583M/2.17G [00:37&lt;01:42, 15.5M Bytes/s]
 Get sub-01/s .. _bold.nii.gz:   0%|            | 0.00/30.7M [00:00&lt;?, ? Bytes/s]
-
-Get sub-01/s .. _bold.nii.gz:  10%|▎  | 3.11M/30.7M [00:00&lt;00:00, 31.1M Bytes/s]
-
-Get sub-01/s .. _bold.nii.gz:  20%|▌  | 6.29M/30.7M [00:00&lt;00:00, 31.4M Bytes/s]
-
-Get sub-01/s .. _bold.nii.gz:  31%|▉  | 9.45M/30.7M [00:00&lt;00:00, 31.5M Bytes/s]
-
-Get sub-01/s .. _bold.nii.gz:  41%|█▏ | 12.6M/30.7M [00:00&lt;00:00, 31.6M Bytes/s]
-
-Get sub-01/s .. _bold.nii.gz:  51%|█▌ | 15.8M/30.7M [00:00&lt;00:00, 31.6M Bytes/s]
-
-Get sub-01/s .. _bold.nii.gz:  72%|██▏| 22.1M/30.7M [00:00&lt;00:00, 31.6M Bytes/s]
-
-Get sub-01/s .. _bold.nii.gz:  82%|██▍| 25.3M/30.7M [00:00&lt;00:00, 31.6M Bytes/s]
-
-Get sub-01/s .. _bold.nii.gz:  93%|██▊| 28.5M/30.7M [00:00&lt;00:00, 31.7M Bytes/s]
-
-                                                                                
-Get sub-01/s .. _bold.nii.gz:   0%|            | 0.00/30.7M [00:00&lt;?, ? Bytes/s]
-                                                                                
-
+Get sub-01/s .. _bold.nii.gz:   5%|▏  | 1.65M/30.7M [00:00&lt;00:01, 16.1M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  11%|▎  | 3.42M/30.7M [00:00&lt;00:01, 17.0M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  23%|▋  | 7.00M/30.7M [00:00&lt;00:01, 17.4M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  34%|█  | 10.5M/30.7M [00:00&lt;00:01, 17.5M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  40%|█▏ | 12.3M/30.7M [00:00&lt;00:01, 17.5M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  46%|█▍ | 14.1M/30.7M [00:00&lt;00:00, 17.6M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  52%|█▌ | 15.9M/30.7M [00:00&lt;00:00, 17.7M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  58%|█▋ | 17.7M/30.7M [00:01&lt;00:00, 17.7M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  63%|█▉ | 19.5M/30.7M [00:01&lt;00:00, 17.8M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  73%|██▏| 22.6M/30.7M [00:01&lt;00:00, 17.4M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  81%|██▍| 24.8M/30.7M [00:01&lt;00:00, 17.8M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  91%|██▋| 28.0M/30.7M [00:01&lt;00:00, 17.1M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  98%|██▉| 30.1M/30.7M [00:01&lt;00:00, 18.0M Bytes/s]
+Total:  28%|███████▋                   | 614M/2.17G [00:39&lt;01:40, 15.5M Bytes/s]
 Get sub-01/s .. _bold.nii.gz:   0%|            | 0.00/11.8M [00:00&lt;?, ? Bytes/s]
-
-Get sub-01/s .. _bold.nii.gz:  26%|▊  | 3.12M/11.8M [00:00&lt;00:00, 31.2M Bytes/s]
-
-Get sub-01/s .. _bold.nii.gz:  53%|█▌ | 6.28M/11.8M [00:00&lt;00:00, 31.4M Bytes/s]
-
-Get sub-01/s .. _bold.nii.gz:  80%|██▍| 9.49M/11.8M [00:00&lt;00:00, 31.6M Bytes/s]
-
-                                                                                
-Get sub-01/s .. _bold.nii.gz:   0%|            | 0.00/11.8M [00:00&lt;?, ? Bytes/s]
-                                                                                
-
-Get sub-01/s .. _bold.nii.gz:   0%|            | 0.00/10.2M [00:00&lt;?, ? Bytes/s]
-
-Get sub-01/s .. _bold.nii.gz:  31%|▉  | 3.10M/10.2M [00:00&lt;00:00, 31.0M Bytes/s]
-
-Get sub-01/s .. _bold.nii.gz:  61%|█▊ | 6.25M/10.2M [00:00&lt;00:00, 31.2M Bytes/s]
-
-Get sub-01/s .. _bold.nii.gz:  93%|██▊| 9.49M/10.2M [00:00&lt;00:00, 31.7M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  30%|▉  | 3.52M/11.8M [00:00&lt;00:00, 17.3M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  47%|█▍ | 5.53M/11.8M [00:00&lt;00:00, 18.4M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  76%|██▎| 9.02M/11.8M [00:00&lt;00:00, 17.9M Bytes/s]
                                                                                 
 Get sub-01/s .. _bold.nii.gz:   0%|            | 0.00/10.2M [00:00&lt;?, ? Bytes/s]
-                                                                                
-
-Get sub-01/s .. t_T1w.nii.gz:   0%|            | 0.00/8.68M [00:00&lt;?, ? Bytes/s]
-
-Get sub-01/s .. t_T1w.nii.gz:  35%|█  | 3.07M/8.68M [00:00&lt;00:00, 30.6M Bytes/s]
-
-Get sub-01/s .. t_T1w.nii.gz:  72%|██▏| 6.23M/8.68M [00:00&lt;00:00, 31.1M Bytes/s]
-
+Get sub-01/s .. _bold.nii.gz:  17%|▌  | 1.74M/10.2M [00:00&lt;00:00, 16.6M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  37%|█  | 3.74M/10.2M [00:00&lt;00:00, 18.5M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  72%|██▏| 7.29M/10.2M [00:00&lt;00:00, 17.9M Bytes/s]
                                                                                 
 Get sub-01/s .. t_T1w.nii.gz:   0%|            | 0.00/8.68M [00:00&lt;?, ? Bytes/s]
-                                                                                
-
-Get sub-01/s .. t_dwi.nii.gz:   0%|             | 0.00/104M [00:00&lt;?, ? Bytes/s]
-
-Get sub-01/s .. t_dwi.nii.gz:   3%|    | 2.73M/104M [00:00&lt;00:03, 27.2M Bytes/s]
-
-Get sub-01/s .. t_dwi.nii.gz:   6%|▏   | 5.86M/104M [00:00&lt;00:03, 29.6M Bytes/s]
-
-Get sub-01/s .. t_dwi.nii.gz:   9%|▎   | 9.01M/104M [00:00&lt;00:03, 30.4M Bytes/s]
-
-Get sub-01/s .. t_dwi.nii.gz:  12%|▍   | 12.2M/104M [00:00&lt;00:02, 30.9M Bytes/s]
-
-Get sub-01/s .. t_dwi.nii.gz:  15%|▌   | 15.3M/104M [00:00&lt;00:02, 31.2M Bytes/s]
-
-Get sub-01/s .. t_dwi.nii.gz:  18%|▋   | 18.5M/104M [00:00&lt;00:02, 31.3M Bytes/s]
-
-Get sub-01/s .. t_dwi.nii.gz:  21%|▊   | 21.7M/104M [00:00&lt;00:02, 31.4M Bytes/s]
-
-Get sub-01/s .. t_dwi.nii.gz:  24%|▉   | 24.8M/104M [00:00&lt;00:02, 31.4M Bytes/s]
-
-Get sub-01/s .. t_dwi.nii.gz:  27%|█   | 28.0M/104M [00:00&lt;00:02, 31.5M Bytes/s]
-
-Get sub-01/s .. t_dwi.nii.gz:  30%|█▏  | 31.2M/104M [00:01&lt;00:02, 31.6M Bytes/s]
-
-Get sub-01/s .. t_dwi.nii.gz:  33%|█▎  | 34.4M/104M [00:01&lt;00:02, 31.6M Bytes/s]
-
-Get sub-01/s .. t_dwi.nii.gz:  36%|█▍  | 37.5M/104M [00:01&lt;00:02, 31.6M Bytes/s]
-
-Get sub-01/s .. t_dwi.nii.gz:  39%|█▌  | 40.7M/104M [00:01&lt;00:02, 31.6M Bytes/s]
-
-Get sub-01/s .. t_dwi.nii.gz:  42%|█▋  | 43.9M/104M [00:01&lt;00:01, 31.7M Bytes/s]
-
-Get sub-01/s .. t_dwi.nii.gz:  45%|█▊  | 47.1M/104M [00:01&lt;00:01, 31.7M Bytes/s]
-
-Get sub-01/s .. t_dwi.nii.gz:  48%|█▉  | 50.3M/104M [00:01&lt;00:01, 31.7M Bytes/s]
-
-Get sub-01/s .. t_dwi.nii.gz:  51%|██  | 53.4M/104M [00:01&lt;00:01, 31.7M Bytes/s]
-
-Get sub-01/s .. t_dwi.nii.gz:  54%|██▏ | 56.6M/104M [00:01&lt;00:01, 31.7M Bytes/s]
-
-Get sub-01/s .. t_dwi.nii.gz:  57%|██▎ | 59.8M/104M [00:01&lt;00:01, 31.8M Bytes/s]
-Get sub-01/s .. t_dwi.nii.gz:  60%|██▍ | 63.0M/104M [00:02&lt;00:01, 31.7M Bytes/s]
-
-Get sub-01/s .. t_dwi.nii.gz:  66%|██▋ | 69.3M/104M [00:02&lt;00:01, 31.7M Bytes/s]
-
-Get sub-01/s .. t_dwi.nii.gz:  70%|██▊ | 72.5M/104M [00:02&lt;00:01, 31.6M Bytes/s]
-
-Get sub-01/s .. t_dwi.nii.gz:  76%|███ | 78.8M/104M [00:02&lt;00:00, 31.6M Bytes/s]
-
-Get sub-01/s .. t_dwi.nii.gz:  79%|███▏| 82.0M/104M [00:02&lt;00:00, 31.6M Bytes/s]
-
-Get sub-01/s .. t_dwi.nii.gz:  85%|███▍| 88.2M/104M [00:02&lt;00:00, 31.5M Bytes/s]
-
-Get sub-01/s .. t_dwi.nii.gz:  88%|███▌| 91.4M/104M [00:02&lt;00:00, 31.5M Bytes/s]
-
-Get sub-01/s .. t_dwi.nii.gz:  94%|███▋| 97.6M/104M [00:03&lt;00:00, 31.4M Bytes/s]
-
-Get sub-01/s .. t_dwi.nii.gz: 100%|████▉| 104M/104M [00:03&lt;00:00, 31.2M Bytes/s]
+Get sub-01/s .. t_T1w.nii.gz:  21%|▋  | 1.85M/8.68M [00:00&lt;00:00, 18.5M Bytes/s]
+Get sub-01/s .. t_T1w.nii.gz:  60%|█▊ | 5.18M/8.68M [00:00&lt;00:00, 18.1M Bytes/s]
+Get sub-01/s .. t_T1w.nii.gz:  83%|██▌| 7.24M/8.68M [00:00&lt;00:00, 18.0M Bytes/s]
                                                                                 
 Get sub-01/s .. t_dwi.nii.gz:   0%|             | 0.00/104M [00:00&lt;?, ? Bytes/s]
-
-                                                                                
-
+Get sub-01/s .. t_dwi.nii.gz:   2%|    | 1.82M/104M [00:00&lt;00:05, 18.2M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:   4%|▏   | 3.67M/104M [00:00&lt;00:05, 18.4M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:   5%|▏   | 5.53M/104M [00:00&lt;00:05, 18.4M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:   9%|▎   | 9.01M/104M [00:00&lt;00:05, 17.8M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  11%|▍   | 11.0M/104M [00:00&lt;00:05, 18.5M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  13%|▌   | 13.3M/104M [00:00&lt;00:04, 18.7M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  16%|▋   | 16.3M/104M [00:00&lt;00:04, 17.8M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  17%|▋   | 18.2M/104M [00:01&lt;00:04, 17.9M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  19%|▊   | 20.2M/104M [00:01&lt;00:04, 18.5M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  21%|▊   | 22.2M/104M [00:01&lt;00:04, 18.3M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  24%|▉   | 25.2M/104M [00:01&lt;00:04, 17.3M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  27%|█   | 28.4M/104M [00:01&lt;00:04, 16.7M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  29%|█▏  | 30.7M/104M [00:01&lt;00:04, 18.1M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  33%|█▎  | 34.8M/104M [00:01&lt;00:03, 18.4M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  37%|█▍  | 38.0M/104M [00:02&lt;00:03, 17.6M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  38%|█▌  | 40.0M/104M [00:02&lt;00:03, 18.0M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  42%|█▋  | 43.6M/104M [00:02&lt;00:03, 17.9M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  44%|█▋  | 45.5M/104M [00:02&lt;00:03, 18.0M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  45%|█▊  | 47.3M/104M [00:02&lt;00:03, 18.1M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  49%|█▉  | 51.0M/104M [00:02&lt;00:02, 18.2M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  52%|██  | 54.7M/104M [00:03&lt;00:02, 18.2M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  54%|██▏ | 56.5M/104M [00:03&lt;00:02, 18.3M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  58%|██▎ | 60.2M/104M [00:03&lt;00:02, 18.3M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  61%|██▍ | 63.7M/104M [00:03&lt;00:02, 18.0M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  63%|██▌ | 65.8M/104M [00:03&lt;00:02, 18.5M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  67%|██▋ | 69.5M/104M [00:03&lt;00:01, 18.5M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  70%|██▊ | 73.1M/104M [00:04&lt;00:01, 17.9M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  73%|██▉ | 76.5M/104M [00:04&lt;00:01, 18.4M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  75%|███ | 78.4M/104M [00:04&lt;00:01, 17.6M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  77%|███ | 80.1M/104M [00:04&lt;00:01, 17.6M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  79%|███▏| 82.0M/104M [00:04&lt;00:01, 17.7M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  80%|███▏| 83.8M/104M [00:04&lt;00:01, 17.9M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  82%|███▎| 85.7M/104M [00:04&lt;00:01, 18.1M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  84%|███▎| 87.5M/104M [00:04&lt;00:00, 18.2M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  86%|███▍| 89.4M/104M [00:04&lt;00:00, 18.3M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  88%|███▌| 91.3M/104M [00:05&lt;00:00, 18.4M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  90%|███▌| 94.3M/104M [00:05&lt;00:00, 17.9M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  93%|███▋| 96.8M/104M [00:05&lt;00:00, 18.6M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  96%|████▊| 101M/104M [00:05&lt;00:00, 18.6M Bytes/s]
+Get sub-01/s .. t_dwi.nii.gz:  99%|████▉| 103M/104M [00:05&lt;00:00, 17.9M Bytes/s]
+Total:  34%|█████████▎                 | 749M/2.17G [00:48&lt;01:32, 15.3M Bytes/s]
 Get sub-01/s .. _bold.nii.gz:   0%|            | 0.00/22.9M [00:00&lt;?, ? Bytes/s]
-
-Get sub-01/s .. _bold.nii.gz:  27%|▊  | 6.25M/22.9M [00:00&lt;00:00, 31.2M Bytes/s]
-
-Get sub-01/s .. _bold.nii.gz:  41%|█▏ | 9.40M/22.9M [00:00&lt;00:00, 31.3M Bytes/s]
-
-Get sub-01/s .. _bold.nii.gz:  55%|█▋ | 12.6M/22.9M [00:00&lt;00:00, 31.5M Bytes/s]
-
-Get sub-01/s .. _bold.nii.gz:  69%|██ | 15.8M/22.9M [00:00&lt;00:00, 31.5M Bytes/s]
-
-Get sub-01/s .. _bold.nii.gz:  83%|██▍| 19.0M/22.9M [00:00&lt;00:00, 31.7M Bytes/s]
-
-Get sub-01/s .. _bold.nii.gz:  97%|██▉| 22.2M/22.9M [00:00&lt;00:00, 31.8M Bytes/s]
-                                                                                
-Get sub-01/s .. _bold.nii.gz:   0%|            | 0.00/22.9M [00:00&lt;?, ? Bytes/s]
-                                                                                
-
-Get sub-01/s .. _bold.nii.gz:   0%|            | 0.00/24.5M [00:00&lt;?, ? Bytes/s]
-
-Get sub-01/s .. _bold.nii.gz:  25%|▊  | 6.17M/24.5M [00:00&lt;00:00, 30.9M Bytes/s]
-
-Get sub-01/s .. _bold.nii.gz:  38%|█▏ | 9.36M/24.5M [00:00&lt;00:00, 31.3M Bytes/s]
-
-Get sub-01/s .. _bold.nii.gz:  51%|█▌ | 12.6M/24.5M [00:00&lt;00:00, 31.6M Bytes/s]
-
-Get sub-01/s .. _bold.nii.gz:  64%|█▉ | 15.8M/24.5M [00:00&lt;00:00, 31.7M Bytes/s]
-
-Get sub-01/s .. _bold.nii.gz:  78%|██▎| 19.0M/24.5M [00:00&lt;00:00, 31.8M Bytes/s]
-
-Get sub-01/s .. _bold.nii.gz:  91%|██▋| 22.2M/24.5M [00:00&lt;00:00, 31.9M Bytes/s]
-
+Get sub-01/s .. _bold.nii.gz:   8%|▏  | 1.88M/22.9M [00:00&lt;00:01, 18.7M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  24%|▋  | 5.61M/22.9M [00:00&lt;00:00, 18.7M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  33%|▉  | 7.48M/22.9M [00:00&lt;00:00, 18.7M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  41%|█▏ | 9.37M/22.9M [00:00&lt;00:00, 18.7M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  55%|█▋ | 12.6M/22.9M [00:00&lt;00:00, 18.1M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  65%|█▉ | 14.9M/22.9M [00:00&lt;00:00, 18.5M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  73%|██▏| 16.8M/22.9M [00:00&lt;00:00, 18.8M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  82%|██▍| 18.8M/22.9M [00:01&lt;00:00, 19.1M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  96%|██▊| 21.9M/22.9M [00:01&lt;00:00, 18.3M Bytes/s]
                                                                                 
 Get sub-01/s .. _bold.nii.gz:   0%|            | 0.00/24.5M [00:00&lt;?, ? Bytes/s]
-                                                                                
-
-Get sub-01/s .. _bold.nii.gz:   0%|            | 0.00/31.6M [00:00&lt;?, ? Bytes/s]
-
-Get sub-01/s .. _bold.nii.gz:  10%|▎  | 3.17M/31.6M [00:00&lt;00:00, 31.7M Bytes/s]
-
-Get sub-01/s .. _bold.nii.gz:  20%|▌  | 6.38M/31.6M [00:00&lt;00:00, 31.9M Bytes/s]
-
-Get sub-01/s .. _bold.nii.gz:  30%|▉  | 9.63M/31.6M [00:00&lt;00:00, 32.1M Bytes/s]
-
-Get sub-01/s .. _bold.nii.gz:  41%|█▏ | 12.9M/31.6M [00:00&lt;00:00, 32.2M Bytes/s]
-
-Get sub-01/s .. _bold.nii.gz:  61%|█▊ | 19.3M/31.6M [00:00&lt;00:00, 32.1M Bytes/s]
-
-Get sub-01/s .. _bold.nii.gz:  71%|██▏| 22.5M/31.6M [00:00&lt;00:00, 32.1M Bytes/s]
-
-Get sub-01/s .. _bold.nii.gz:  81%|██▍| 25.7M/31.6M [00:00&lt;00:00, 32.2M Bytes/s]
-
-Get sub-01/s .. _bold.nii.gz:  92%|██▋| 29.0M/31.6M [00:00&lt;00:00, 32.2M Bytes/s]
-
+Get sub-01/s .. _bold.nii.gz:   8%|▏  | 1.90M/24.5M [00:00&lt;00:01, 18.9M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  18%|▌  | 4.49M/24.5M [00:00&lt;00:01, 19.7M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  30%|▉  | 7.43M/24.5M [00:00&lt;00:00, 18.2M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  47%|█▍ | 11.5M/24.5M [00:00&lt;00:00, 19.1M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  55%|█▋ | 13.4M/24.5M [00:00&lt;00:00, 19.1M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  63%|█▉ | 15.3M/24.5M [00:00&lt;00:00, 19.2M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  78%|██▎| 19.2M/24.5M [00:01&lt;00:00, 19.2M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  86%|██▌| 21.1M/24.5M [00:01&lt;00:00, 19.2M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  96%|██▊| 23.4M/24.5M [00:01&lt;00:00, 18.9M Bytes/s]
                                                                                 
 Get sub-01/s .. _bold.nii.gz:   0%|            | 0.00/31.6M [00:00&lt;?, ? Bytes/s]
-Total:  59%|███████████████▎          | 1.28G/2.17G [00:47&lt;00:33, 26.7M Bytes/s]
-
-Get sub-01/s .. _bold.nii.gz:   0%|            | 0.00/12.0M [00:00&lt;?, ? Bytes/s]
-
-Get sub-01/s .. _bold.nii.gz:  51%|█▌ | 6.16M/12.0M [00:00&lt;00:00, 30.8M Bytes/s]
-
-Get sub-01/s .. _bold.nii.gz:  78%|██▎| 9.37M/12.0M [00:00&lt;00:00, 31.3M Bytes/s]
-
+Get sub-01/s .. _bold.nii.gz:   6%|▏  | 1.89M/31.6M [00:00&lt;00:01, 18.0M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  12%|▎  | 3.88M/31.6M [00:00&lt;00:01, 19.1M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  19%|▌  | 5.99M/31.6M [00:00&lt;00:01, 19.9M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  31%|▉  | 9.77M/31.6M [00:00&lt;00:01, 19.3M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  44%|█▎ | 13.8M/31.6M [00:00&lt;00:00, 19.6M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  56%|█▋ | 17.8M/31.6M [00:00&lt;00:00, 19.8M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  69%|██ | 21.7M/31.6M [00:01&lt;00:00, 19.7M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  80%|██▍| 25.3M/31.6M [00:01&lt;00:00, 19.7M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  87%|██▌| 27.6M/31.6M [00:01&lt;00:00, 14.8M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  93%|██▊| 29.5M/31.6M [00:01&lt;00:00, 15.6M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  99%|██▉| 31.4M/31.6M [00:01&lt;00:00, 16.2M Bytes/s]
                                                                                 
 Get sub-01/s .. _bold.nii.gz:   0%|            | 0.00/12.0M [00:00&lt;?, ? Bytes/s]
-                                                                                
-
-Get sub-01/s .. _bold.nii.gz:   0%|            | 0.00/10.4M [00:00&lt;?, ? Bytes/s]
-
-Get sub-01/s .. _bold.nii.gz:  31%|▉  | 3.17M/10.4M [00:00&lt;00:00, 31.7M Bytes/s]
-
-Get sub-01/s .. _bold.nii.gz:  62%|█▊ | 6.38M/10.4M [00:00&lt;00:00, 31.8M Bytes/s]
-
-Get sub-01/s .. _bold.nii.gz:  93%|██▊| 9.64M/10.4M [00:00&lt;00:00, 32.1M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  12%|▎  | 1.50M/12.0M [00:00&lt;00:00, 15.0M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  25%|▊  | 3.04M/12.0M [00:00&lt;00:00, 15.2M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  49%|█▍ | 5.90M/12.0M [00:00&lt;00:00, 14.6M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  62%|█▊ | 7.49M/12.0M [00:00&lt;00:00, 15.0M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  87%|██▌| 10.5M/12.0M [00:00&lt;00:00, 15.0M Bytes/s]
                                                                                 
 Get sub-01/s .. _bold.nii.gz:   0%|            | 0.00/10.4M [00:00&lt;?, ? Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  31%|▉  | 3.24M/10.4M [00:00&lt;00:00, 16.3M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  63%|█▉ | 6.48M/10.4M [00:00&lt;00:00, 15.9M Bytes/s]
+Get sub-01/s .. _bold.nii.gz:  97%|██▉| 10.0M/10.4M [00:00&lt;00:00, 16.7M Bytes/s]
                                                                                 
-
+Get sub-05/s .. t_T1w.nii.gz:   0%|            | 0.00/9.51M [00:00&lt;?, ? Bytes/s]
+Get sub-05/s .. t_T1w.nii.gz:  36%|█  | 3.42M/9.51M [00:00&lt;00:00, 17.1M Bytes/s]
+Get sub-05/s .. t_T1w.nii.gz:  70%|██ | 6.70M/9.51M [00:00&lt;00:00, 16.6M Bytes/s]
+Get sub-05/s .. t_T1w.nii.gz:  88%|██▋| 8.41M/9.51M [00:00&lt;00:00, 16.7M Bytes/s]
+                                                                                
+Get sub-05/s .. t_dwi.nii.gz:   0%|             | 0.00/104M [00:00&lt;?, ? Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:   2%|    | 1.77M/104M [00:00&lt;00:06, 16.8M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:   4%|▏   | 3.71M/104M [00:00&lt;00:05, 18.2M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:   7%|▎   | 7.29M/104M [00:00&lt;00:05, 18.0M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  10%|▍   | 10.6M/104M [00:00&lt;00:05, 17.3M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  12%|▍   | 12.5M/104M [00:00&lt;00:05, 17.7M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  14%|▌   | 14.3M/104M [00:00&lt;00:05, 17.8M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  15%|▌   | 16.1M/104M [00:00&lt;00:04, 17.8M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  19%|▊   | 19.7M/104M [00:01&lt;00:04, 17.9M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  21%|▊   | 21.6M/104M [00:01&lt;00:04, 18.0M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  23%|▉   | 23.6M/104M [00:01&lt;00:04, 18.7M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  26%|█   | 27.3M/104M [00:01&lt;00:04, 18.5M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  28%|█   | 29.2M/104M [00:01&lt;00:04, 18.4M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  32%|█▎  | 32.9M/104M [00:01&lt;00:03, 18.3M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  33%|█▎  | 34.7M/104M [00:01&lt;00:03, 18.1M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  35%|█▍  | 36.6M/104M [00:02&lt;00:03, 18.0M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  37%|█▍  | 38.5M/104M [00:02&lt;00:03, 18.3M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  41%|█▋  | 42.3M/104M [00:02&lt;00:03, 18.5M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  43%|█▋  | 44.3M/104M [00:02&lt;00:03, 18.7M Bytes/s]
+Total:  40%|██████████▋                | 860M/2.17G [01:00&lt;01:31, 14.3M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  50%|██  | 52.1M/104M [00:02&lt;00:02, 19.0M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  52%|██  | 54.0M/104M [00:02&lt;00:02, 19.2M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  55%|██▏ | 57.7M/104M [00:03&lt;00:02, 18.8M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  58%|██▎ | 60.0M/104M [00:03&lt;00:02, 19.7M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  62%|██▍ | 64.0M/104M [00:03&lt;00:02, 19.5M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  65%|██▌ | 68.0M/104M [00:03&lt;00:01, 19.6M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  69%|██▊ | 71.9M/104M [00:03&lt;00:01, 19.5M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  73%|██▉ | 75.7M/104M [00:04&lt;00:01, 19.3M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  75%|██▉ | 77.6M/104M [00:04&lt;00:01, 19.0M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  77%|███ | 79.7M/104M [00:04&lt;00:01, 19.3M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  79%|███▏| 81.7M/104M [00:04&lt;00:01, 19.5M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  80%|███▏| 83.7M/104M [00:04&lt;00:01, 19.5M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  82%|███▎| 85.8M/104M [00:04&lt;00:00, 19.8M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  84%|███▍| 87.8M/104M [00:04&lt;00:00, 19.9M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  86%|███▍| 89.8M/104M [00:04&lt;00:00, 20.0M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  88%|███▌| 91.9M/104M [00:04&lt;00:00, 20.1M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  92%|███▋| 95.8M/104M [00:05&lt;00:00, 19.8M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  94%|███▊| 97.8M/104M [00:05&lt;00:00, 19.9M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  97%|████▊| 101M/104M [00:05&lt;00:00, 17.8M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  99%|████▉| 103M/104M [00:05&lt;00:00, 18.2M Bytes/s]
+                                                                                
+Get sub-05/s .. t_dwi.nii.gz:   0%|             | 0.00/104M [00:00&lt;?, ? Bytes/s]
+Total:  44%|███████████▉               | 964M/2.17G [01:03&lt;01:19, 15.2M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:   0%|            | 0.00/24.2M [00:00&lt;?, ? Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  17%|▍  | 4.02M/24.2M [00:00&lt;00:01, 20.1M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  25%|▊  | 6.07M/24.2M [00:00&lt;00:00, 20.2M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  33%|█  | 8.12M/24.2M [00:00&lt;00:00, 20.3M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  42%|█▎ | 10.2M/24.2M [00:00&lt;00:00, 20.4M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  50%|█▌ | 12.2M/24.2M [00:00&lt;00:00, 20.4M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  64%|█▉ | 15.5M/24.2M [00:00&lt;00:00, 20.6M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  75%|██▏| 18.1M/24.2M [00:00&lt;00:00, 19.6M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  83%|██▍| 20.1M/24.2M [00:01&lt;00:00, 19.5M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  91%|██▋| 22.1M/24.2M [00:01&lt;00:00, 19.8M Bytes/s]
+Get sub-05/s .. _bold.nii.gz: 100%|██▉| 24.2M/24.2M [00:01&lt;00:00, 19.9M Bytes/s]
+Total:  45%|████████████▎              | 988M/2.17G [01:04&lt;01:17, 15.2M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:   0%|            | 0.00/26.0M [00:00&lt;?, ? Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  14%|▍  | 3.60M/26.0M [00:00&lt;00:01, 17.8M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  26%|▊  | 6.69M/26.0M [00:00&lt;00:01, 16.4M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  32%|▉  | 8.37M/26.0M [00:00&lt;00:01, 16.5M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  43%|█▎ | 11.1M/26.0M [00:00&lt;00:00, 15.2M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  49%|█▍ | 12.7M/26.0M [00:00&lt;00:00, 15.4M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  61%|█▊ | 15.8M/26.0M [00:01&lt;00:00, 15.5M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  72%|██▏| 18.8M/26.0M [00:01&lt;00:00, 15.1M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  79%|██▎| 20.5M/26.0M [00:01&lt;00:00, 15.6M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  85%|██▌| 22.1M/26.0M [00:01&lt;00:00, 15.7M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  92%|██▋| 23.8M/26.0M [00:01&lt;00:00, 15.7M Bytes/s]
+Total:  47%|████████████▏             | 1.01G/2.17G [01:06&lt;01:16, 15.2M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:   0%|            | 0.00/33.6M [00:00&lt;?, ? Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  10%|▎  | 3.30M/33.6M [00:00&lt;00:01, 16.5M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  15%|▍  | 4.95M/33.6M [00:00&lt;00:01, 16.2M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  25%|▊  | 8.56M/33.6M [00:00&lt;00:01, 17.2M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  31%|▉  | 10.3M/33.6M [00:00&lt;00:01, 17.1M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  41%|█▏ | 13.8M/33.6M [00:00&lt;00:01, 17.1M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  51%|█▌ | 17.2M/33.6M [00:01&lt;00:00, 17.1M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  57%|█▋ | 19.0M/33.6M [00:01&lt;00:00, 17.4M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  67%|██ | 22.4M/33.6M [00:01&lt;00:00, 17.1M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  72%|██▏| 24.2M/33.6M [00:01&lt;00:00, 17.3M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  78%|██▎| 26.1M/33.6M [00:01&lt;00:00, 17.6M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  83%|██▌| 28.0M/33.6M [00:01&lt;00:00, 18.0M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  94%|██▊| 31.5M/33.6M [00:01&lt;00:00, 17.7M Bytes/s]
+Total:  48%|████████████▌             | 1.05G/2.17G [01:09&lt;01:14, 15.2M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:   0%|            | 0.00/12.9M [00:00&lt;?, ? Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  29%|▊  | 3.70M/12.9M [00:00&lt;00:00, 18.5M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  43%|█▎ | 5.59M/12.9M [00:00&lt;00:00, 18.7M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  72%|██▏| 9.33M/12.9M [00:00&lt;00:00, 18.6M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  87%|██▌| 11.2M/12.9M [00:00&lt;00:00, 18.7M Bytes/s]
+                                                                                
+Get sub-05/s .. _bold.nii.gz:   0%|            | 0.00/11.1M [00:00&lt;?, ? Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  34%|█  | 3.73M/11.1M [00:00&lt;00:00, 18.2M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  52%|█▌ | 5.74M/11.1M [00:00&lt;00:00, 19.0M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  85%|██▌| 9.46M/11.1M [00:00&lt;00:00, 18.7M Bytes/s]
+                                                                                
+Get sub-05/s .. t_T1w.nii.gz:   0%|            | 0.00/9.94M [00:00&lt;?, ? Bytes/s]
+Get sub-05/s .. t_T1w.nii.gz:  39%|█▏ | 3.91M/9.94M [00:00&lt;00:00, 19.6M Bytes/s]
+Get sub-05/s .. t_T1w.nii.gz:  79%|██▎| 7.84M/9.94M [00:00&lt;00:00, 19.6M Bytes/s]
+Get sub-05/s .. t_T1w.nii.gz:  99%|██▉| 9.82M/9.94M [00:00&lt;00:00, 19.6M Bytes/s]
+Total:  50%|████████████▉             | 1.08G/2.17G [01:11&lt;01:12, 15.1M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:   0%|             | 0.00/108M [00:00&lt;?, ? Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:   4%|▏   | 3.89M/108M [00:00&lt;00:05, 19.4M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:   5%|▏   | 5.89M/108M [00:00&lt;00:05, 19.6M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:   9%|▎   | 9.89M/108M [00:00&lt;00:04, 19.8M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  11%|▍   | 11.9M/108M [00:00&lt;00:04, 19.9M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  13%|▌   | 13.9M/108M [00:00&lt;00:04, 19.9M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  16%|▋   | 17.7M/108M [00:00&lt;00:04, 19.5M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  18%|▋   | 19.8M/108M [00:01&lt;00:04, 19.8M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  22%|▉   | 23.7M/108M [00:01&lt;00:04, 19.8M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  24%|▉   | 25.9M/108M [00:01&lt;00:04, 20.2M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  27%|█   | 29.5M/108M [00:01&lt;00:04, 19.3M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  31%|█▎  | 33.8M/108M [00:01&lt;00:03, 20.0M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  35%|█▍  | 37.9M/108M [00:01&lt;00:03, 19.8M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  39%|█▌  | 41.9M/108M [00:02&lt;00:03, 19.4M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  42%|█▋  | 45.1M/108M [00:02&lt;00:03, 19.3M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  44%|█▊  | 48.0M/108M [00:02&lt;00:03, 20.0M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  48%|█▉  | 52.1M/108M [00:02&lt;00:02, 20.1M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  50%|██  | 54.2M/108M [00:02&lt;00:02, 20.2M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  54%|██▏ | 58.2M/108M [00:02&lt;00:02, 20.0M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  56%|██▏ | 60.3M/108M [00:03&lt;00:02, 20.1M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  58%|██▎ | 62.4M/108M [00:03&lt;00:02, 20.0M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  61%|██▍ | 65.6M/108M [00:03&lt;00:02, 20.2M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  63%|██▌ | 68.5M/108M [00:03&lt;00:01, 20.2M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  67%|██▋ | 72.5M/108M [00:03&lt;00:01, 20.0M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  69%|██▊ | 74.8M/108M [00:03&lt;00:01, 19.7M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  71%|██▊ | 76.8M/108M [00:03&lt;00:01, 19.9M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  73%|██▉ | 78.9M/108M [00:03&lt;00:01, 20.1M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  75%|██▉ | 81.0M/108M [00:04&lt;00:01, 20.2M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  77%|███ | 83.0M/108M [00:04&lt;00:01, 20.2M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  79%|███▏| 85.8M/108M [00:04&lt;00:01, 20.6M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  82%|███▎| 89.0M/108M [00:04&lt;00:00, 19.9M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  84%|███▍| 91.2M/108M [00:04&lt;00:00, 20.5M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  88%|███▌| 95.3M/108M [00:04&lt;00:00, 20.5M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  92%|███▋| 99.3M/108M [00:04&lt;00:00, 20.1M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  94%|████▋| 102M/108M [00:05&lt;00:00, 20.6M Bytes/s]
+Get sub-05/s .. t_dwi.nii.gz:  98%|████▉| 105M/108M [00:05&lt;00:00, 20.2M Bytes/s]
+Total:  55%|██████████████▏           | 1.19G/2.17G [01:17&lt;01:04, 15.3M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:   0%|            | 0.00/24.9M [00:00&lt;?, ? Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  15%|▍  | 3.86M/24.9M [00:00&lt;00:01, 19.2M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  24%|▋  | 6.03M/24.9M [00:00&lt;00:00, 20.3M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  41%|█▏ | 10.2M/24.9M [00:00&lt;00:00, 20.5M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  56%|█▋ | 14.0M/24.9M [00:00&lt;00:00, 19.9M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  71%|██▏| 17.7M/24.9M [00:00&lt;00:00, 19.3M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  87%|██▌| 21.8M/24.9M [00:01&lt;00:00, 19.6M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  95%|██▊| 23.8M/24.9M [00:01&lt;00:00, 19.7M Bytes/s]
+                                                                                
+Get sub-05/s .. _bold.nii.gz:   0%|            | 0.00/26.7M [00:00&lt;?, ? Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  15%|▍  | 4.06M/26.7M [00:00&lt;00:01, 20.3M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  23%|▋  | 6.14M/26.7M [00:00&lt;00:01, 20.5M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  38%|█▏ | 10.2M/26.7M [00:00&lt;00:00, 20.3M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  46%|█▍ | 12.3M/26.7M [00:00&lt;00:00, 20.2M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  54%|█▋ | 14.5M/26.7M [00:00&lt;00:00, 20.7M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  69%|██ | 18.4M/26.7M [00:00&lt;00:00, 20.1M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  77%|██▎| 20.6M/26.7M [00:01&lt;00:00, 20.4M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  86%|██▌| 22.9M/26.7M [00:01&lt;00:00, 20.9M Bytes/s]
+Get sub-05/s .. _bold.nii.gz: 100%|██▉| 26.7M/26.7M [00:01&lt;00:00, 20.3M Bytes/s]
+                                                                                
+Get sub-05/s .. _bold.nii.gz:   0%|            | 0.00/34.4M [00:00&lt;?, ? Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  12%|▎  | 4.12M/34.4M [00:00&lt;00:01, 20.5M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  18%|▌  | 6.18M/34.4M [00:00&lt;00:01, 20.5M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  24%|▋  | 8.26M/34.4M [00:00&lt;00:01, 20.6M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  36%|█  | 12.3M/34.4M [00:00&lt;00:01, 20.2M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  42%|█▎ | 14.5M/34.4M [00:00&lt;00:00, 20.7M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  54%|█▋ | 18.7M/34.4M [00:00&lt;00:00, 20.7M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  66%|█▉ | 22.6M/34.4M [00:01&lt;00:00, 20.4M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  72%|██▏| 24.7M/34.4M [00:01&lt;00:00, 20.5M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  78%|██▎| 26.9M/34.4M [00:01&lt;00:00, 20.5M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  89%|██▋| 30.6M/34.4M [00:01&lt;00:00, 19.9M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  95%|██▊| 32.7M/34.4M [00:01&lt;00:00, 20.0M Bytes/s]
+                                                                                
+Get sub-05/s .. _bold.nii.gz:   0%|            | 0.00/13.1M [00:00&lt;?, ? Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  30%|▉  | 3.97M/13.1M [00:00&lt;00:00, 19.8M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  47%|█▍ | 6.21M/13.1M [00:00&lt;00:00, 20.9M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  78%|██▎| 10.3M/13.1M [00:00&lt;00:00, 20.6M Bytes/s]
+                                                                                
+Get sub-05/s .. _bold.nii.gz:   0%|            | 0.00/11.5M [00:00&lt;?, ? Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  17%|▌  | 2.00M/11.5M [00:00&lt;00:00, 20.0M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  35%|█  | 4.04M/11.5M [00:00&lt;00:00, 20.2M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  53%|█▌ | 6.12M/11.5M [00:00&lt;00:00, 20.0M Bytes/s]
+Get sub-05/s .. _bold.nii.gz:  90%|██▋| 10.4M/11.5M [00:00&lt;00:00, 20.6M Bytes/s]
+Total:  60%|███████████████▌          | 1.30G/2.17G [01:24&lt;00:56, 15.3M Bytes/s]
 Get sub-03/s .. t_T1w.nii.gz:   0%|            | 0.00/8.13M [00:00&lt;?, ? Bytes/s]
-
-Get sub-03/s .. t_T1w.nii.gz:  78%|██▎| 6.38M/8.13M [00:00&lt;00:00, 31.9M Bytes/s]
-
-                                                                                
-Get sub-03/s .. t_T1w.nii.gz:   0%|            | 0.00/8.13M [00:00&lt;?, ? Bytes/s]
-                                                                                
-
-Get sub-03/s .. t_dwi.nii.gz:   0%|             | 0.00/102M [00:00&lt;?, ? Bytes/s]
-
-Get sub-03/s .. t_dwi.nii.gz:   3%|    | 3.17M/102M [00:00&lt;00:03, 31.7M Bytes/s]
-
-Get sub-03/s .. t_dwi.nii.gz:   6%|▎   | 6.38M/102M [00:00&lt;00:02, 31.9M Bytes/s]
-
-Get sub-03/s .. t_dwi.nii.gz:   9%|▍   | 9.61M/102M [00:00&lt;00:02, 32.1M Bytes/s]
-
-Get sub-03/s .. t_dwi.nii.gz:  13%|▌   | 12.9M/102M [00:00&lt;00:02, 32.2M Bytes/s]
-
-Get sub-03/s .. t_dwi.nii.gz:  16%|▋   | 16.1M/102M [00:00&lt;00:02, 32.3M Bytes/s]
-
-Get sub-03/s .. t_dwi.nii.gz:  19%|▊   | 19.3M/102M [00:00&lt;00:02, 32.3M Bytes/s]
-
-Get sub-03/s .. t_dwi.nii.gz:  22%|▉   | 22.6M/102M [00:00&lt;00:02, 32.4M Bytes/s]
-
-Get sub-03/s .. t_dwi.nii.gz:  29%|█▏  | 29.1M/102M [00:00&lt;00:02, 32.4M Bytes/s]
-
-Get sub-03/s .. t_dwi.nii.gz:  32%|█▎  | 32.3M/102M [00:01&lt;00:02, 32.4M Bytes/s]
-
-Get sub-03/s .. t_dwi.nii.gz:  35%|█▍  | 35.6M/102M [00:01&lt;00:02, 32.4M Bytes/s]
-
-Get sub-03/s .. t_dwi.nii.gz:  38%|█▌  | 38.8M/102M [00:01&lt;00:01, 32.4M Bytes/s]
-
-Get sub-03/s .. t_dwi.nii.gz:  41%|█▋  | 42.1M/102M [00:01&lt;00:01, 32.3M Bytes/s]
-Get sub-03/s .. t_dwi.nii.gz:  45%|█▊  | 45.3M/102M [00:01&lt;00:01, 32.4M Bytes/s]
-
-Get sub-03/s .. t_dwi.nii.gz:  48%|█▉  | 48.6M/102M [00:01&lt;00:01, 32.3M Bytes/s]
-
-Get sub-03/s .. t_dwi.nii.gz:  51%|██  | 51.8M/102M [00:01&lt;00:01, 32.3M Bytes/s]
-
-Get sub-03/s .. t_dwi.nii.gz:  57%|██▎ | 58.1M/102M [00:01&lt;00:01, 31.9M Bytes/s]
-
-Get sub-03/s .. t_dwi.nii.gz:  60%|██▍ | 61.3M/102M [00:01&lt;00:01, 32.0M Bytes/s]
-
-Get sub-03/s .. t_dwi.nii.gz:  64%|██▌ | 64.6M/102M [00:02&lt;00:01, 32.1M Bytes/s]
-
-Get sub-03/s .. t_dwi.nii.gz:  67%|██▋ | 67.8M/102M [00:02&lt;00:01, 32.1M Bytes/s]
-
-Get sub-03/s .. t_dwi.nii.gz:  70%|██▊ | 71.1M/102M [00:02&lt;00:00, 32.2M Bytes/s]
-
-Get sub-03/s .. t_dwi.nii.gz:  73%|██▉ | 74.3M/102M [00:02&lt;00:00, 32.2M Bytes/s]
-
-Get sub-03/s .. t_dwi.nii.gz:  76%|███ | 77.5M/102M [00:02&lt;00:00, 32.2M Bytes/s]
-
-Get sub-03/s .. t_dwi.nii.gz:  79%|███▏| 80.8M/102M [00:02&lt;00:00, 32.3M Bytes/s]
-
-Get sub-03/s .. t_dwi.nii.gz:  83%|███▎| 84.0M/102M [00:02&lt;00:00, 32.3M Bytes/s]
-
-Get sub-03/s .. t_dwi.nii.gz:  86%|███▍| 87.3M/102M [00:02&lt;00:00, 32.2M Bytes/s]
-
-Get sub-03/s .. t_dwi.nii.gz:  92%|███▋| 93.7M/102M [00:02&lt;00:00, 32.2M Bytes/s]
-
-Get sub-03/s .. t_dwi.nii.gz:  95%|███▊| 96.9M/102M [00:03&lt;00:00, 32.2M Bytes/s]
-
-Get sub-03/s .. t_dwi.nii.gz:  99%|████▉| 100M/102M [00:03&lt;00:00, 32.2M Bytes/s]
-
+Get sub-03/s .. t_T1w.nii.gz:  22%|▋  | 1.81M/8.13M [00:00&lt;00:00, 16.7M Bytes/s]
+Get sub-03/s .. t_T1w.nii.gz:  58%|█▋ | 4.72M/8.13M [00:00&lt;00:00, 15.3M Bytes/s]
+Get sub-03/s .. t_T1w.nii.gz:  85%|██▌| 6.91M/8.13M [00:00&lt;00:00, 17.4M Bytes/s]
                                                                                 
 Get sub-03/s .. t_dwi.nii.gz:   0%|             | 0.00/102M [00:00&lt;?, ? Bytes/s]
-
+Get sub-03/s .. t_dwi.nii.gz:   3%|▏   | 3.20M/102M [00:00&lt;00:06, 16.0M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:   6%|▎   | 6.55M/102M [00:00&lt;00:05, 16.2M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  10%|▍   | 9.97M/102M [00:00&lt;00:05, 16.4M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  11%|▍   | 11.7M/102M [00:00&lt;00:05, 16.6M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  13%|▌   | 13.3M/102M [00:00&lt;00:05, 16.6M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  15%|▌   | 15.0M/102M [00:00&lt;00:05, 16.6M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  18%|▋   | 18.3M/102M [00:01&lt;00:05, 16.4M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  21%|▊   | 21.1M/102M [00:01&lt;00:04, 16.6M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  23%|▉   | 23.4M/102M [00:01&lt;00:04, 16.7M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  27%|█   | 27.1M/102M [00:01&lt;00:04, 16.7M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  28%|█▏  | 28.8M/102M [00:01&lt;00:04, 16.9M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  30%|█▏  | 30.7M/102M [00:01&lt;00:04, 17.1M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  32%|█▎  | 32.5M/102M [00:01&lt;00:03, 17.4M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  34%|█▎  | 34.3M/102M [00:02&lt;00:03, 17.6M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  37%|█▍  | 37.3M/102M [00:02&lt;00:03, 16.4M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  39%|█▌  | 39.6M/102M [00:02&lt;00:04, 14.3M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  41%|█▌  | 41.3M/102M [00:02&lt;00:04, 14.9M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  43%|█▋  | 43.5M/102M [00:02&lt;00:03, 16.5M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  45%|█▊  | 45.8M/102M [00:02&lt;00:03, 18.2M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  49%|█▉  | 50.2M/102M [00:02&lt;00:02, 19.8M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  53%|██▏ | 54.1M/102M [00:03&lt;00:02, 19.6M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  55%|██▏ | 56.3M/102M [00:03&lt;00:02, 18.6M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  59%|██▎ | 59.9M/102M [00:03&lt;00:02, 19.1M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  61%|██▍ | 61.8M/102M [00:03&lt;00:02, 19.2M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  63%|██▌ | 63.8M/102M [00:03&lt;00:01, 19.3M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  65%|██▌ | 65.8M/102M [00:03&lt;00:01, 18.4M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  67%|██▋ | 68.1M/102M [00:03&lt;00:02, 16.3M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  69%|██▋ | 69.9M/102M [00:04&lt;00:01, 16.6M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  72%|██▊ | 72.8M/102M [00:04&lt;00:01, 15.9M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  74%|██▉ | 74.8M/102M [00:04&lt;00:01, 16.8M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  76%|███ | 77.2M/102M [00:04&lt;00:01, 18.3M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  80%|███▏| 80.9M/102M [00:04&lt;00:01, 18.3M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  83%|███▎| 84.7M/102M [00:04&lt;00:00, 18.4M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  85%|███▍| 86.6M/102M [00:04&lt;00:00, 18.6M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  88%|███▌| 89.5M/102M [00:05&lt;00:00, 16.8M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  91%|███▋| 92.8M/102M [00:05&lt;00:00, 16.4M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  93%|███▋| 95.0M/102M [00:05&lt;00:00, 17.4M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  96%|███▊| 97.7M/102M [00:05&lt;00:00, 16.0M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  98%|███▉| 99.9M/102M [00:05&lt;00:00, 17.2M Bytes/s]
                                                                                 
-
+Get sub-03/s .. t_dwi.nii.gz:   0%|             | 0.00/102M [00:00&lt;?, ? Bytes/s]
+                                                                                
 Get sub-03/s .. _bold.nii.gz:   0%|            | 0.00/22.7M [00:00&lt;?, ? Bytes/s]
-
-Get sub-03/s .. _bold.nii.gz:  28%|▊  | 6.45M/22.7M [00:00&lt;00:00, 32.3M Bytes/s]
-
-Get sub-03/s .. _bold.nii.gz:  43%|█▎ | 9.73M/22.7M [00:00&lt;00:00, 32.4M Bytes/s]
-
-Get sub-03/s .. _bold.nii.gz:  71%|██▏| 16.2M/22.7M [00:00&lt;00:00, 32.4M Bytes/s]
-
-Get sub-03/s .. _bold.nii.gz:  86%|██▌| 19.5M/22.7M [00:00&lt;00:00, 32.4M Bytes/s]
-
-                                                                                
-Get sub-03/s .. _bold.nii.gz:   0%|            | 0.00/22.7M [00:00&lt;?, ? Bytes/s]
-
-                                                                                
-
+Get sub-03/s .. _bold.nii.gz:   5%|▏  | 1.21M/22.7M [00:00&lt;00:01, 11.4M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  12%|▎  | 2.73M/22.7M [00:00&lt;00:01, 13.2M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  22%|▋  | 4.99M/22.7M [00:00&lt;00:01, 11.9M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  30%|▉  | 6.79M/22.7M [00:00&lt;00:01, 13.7M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  38%|█▏ | 8.73M/22.7M [00:00&lt;00:00, 15.4M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  49%|█▍ | 11.1M/22.7M [00:00&lt;00:00, 17.8M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  66%|█▉ | 14.9M/22.7M [00:00&lt;00:00, 18.1M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  76%|██▎| 17.2M/22.7M [00:01&lt;00:00, 19.5M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  86%|██▌| 19.4M/22.7M [00:01&lt;00:00, 20.1M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  96%|██▊| 21.7M/22.7M [00:01&lt;00:00, 20.8M Bytes/s]
+Total:  66%|█████████████████▏        | 1.43G/2.17G [01:34&lt;00:48, 15.2M Bytes/s]
 Get sub-03/s .. _bold.nii.gz:   0%|            | 0.00/24.2M [00:00&lt;?, ? Bytes/s]
-
-Get sub-03/s .. _bold.nii.gz:  26%|▊  | 6.36M/24.2M [00:00&lt;00:00, 31.8M Bytes/s]
-
-Get sub-03/s .. _bold.nii.gz:  40%|█▏ | 9.62M/24.2M [00:00&lt;00:00, 32.1M Bytes/s]
-
-Get sub-03/s .. _bold.nii.gz:  53%|█▌ | 12.9M/24.2M [00:00&lt;00:00, 32.3M Bytes/s]
-
-Get sub-03/s .. _bold.nii.gz:  67%|██ | 16.1M/24.2M [00:00&lt;00:00, 32.3M Bytes/s]
-
-Get sub-03/s .. _bold.nii.gz:  80%|██▍| 19.4M/24.2M [00:00&lt;00:00, 32.3M Bytes/s]
-
-                                                                                
-Get sub-03/s .. _bold.nii.gz:   0%|            | 0.00/24.2M [00:00&lt;?, ? Bytes/s]
-                                                                                
-
-Get sub-03/s .. _bold.nii.gz:   0%|            | 0.00/31.2M [00:00&lt;?, ? Bytes/s]
-
-Get sub-03/s .. _bold.nii.gz:  20%|▌  | 6.33M/31.2M [00:00&lt;00:00, 31.7M Bytes/s]
-
-Get sub-03/s .. _bold.nii.gz:  31%|▉  | 9.56M/31.2M [00:00&lt;00:00, 31.9M Bytes/s]
-
-Get sub-03/s .. _bold.nii.gz:  41%|█▏ | 12.8M/31.2M [00:00&lt;00:00, 32.1M Bytes/s]
-
-Get sub-03/s .. _bold.nii.gz:  51%|█▌ | 16.0M/31.2M [00:00&lt;00:00, 32.2M Bytes/s]
-
-Get sub-03/s .. _bold.nii.gz:  62%|█▊ | 19.3M/31.2M [00:00&lt;00:00, 32.2M Bytes/s]
-
-Get sub-03/s .. _bold.nii.gz:  72%|██▏| 22.5M/31.2M [00:00&lt;00:00, 32.2M Bytes/s]
-
-Get sub-03/s .. _bold.nii.gz:  83%|██▍| 25.8M/31.2M [00:00&lt;00:00, 32.3M Bytes/s]
-
-Get sub-03/s .. _bold.nii.gz:  93%|██▊| 29.0M/31.2M [00:00&lt;00:00, 32.3M Bytes/s]
-
+Get sub-03/s .. _bold.nii.gz:   7%|▏  | 1.80M/24.2M [00:00&lt;00:02, 9.39M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  15%|▍  | 3.51M/24.2M [00:00&lt;00:01, 12.7M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  23%|▋  | 5.58M/24.2M [00:00&lt;00:01, 11.4M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  38%|█▏ | 9.18M/24.2M [00:00&lt;00:01, 14.3M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  49%|█▍ | 11.8M/24.2M [00:00&lt;00:00, 17.1M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  62%|█▊ | 15.0M/24.2M [00:01&lt;00:00, 15.3M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  75%|██▏| 18.1M/24.2M [00:01&lt;00:00, 15.4M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  88%|██▋| 21.3M/24.2M [00:01&lt;00:00, 15.6M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  96%|██▊| 23.1M/24.2M [00:01&lt;00:00, 16.0M Bytes/s]
                                                                                 
 Get sub-03/s .. _bold.nii.gz:   0%|            | 0.00/31.2M [00:00&lt;?, ? Bytes/s]
-
+Get sub-03/s .. _bold.nii.gz:  10%|▎  | 3.27M/31.2M [00:00&lt;00:01, 16.4M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  21%|▋  | 6.55M/31.2M [00:00&lt;00:01, 16.3M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  30%|▉  | 9.45M/31.2M [00:00&lt;00:01, 15.5M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  37%|█  | 11.5M/31.2M [00:00&lt;00:01, 16.7M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  48%|█▍ | 15.1M/31.2M [00:00&lt;00:00, 17.2M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  59%|█▊ | 18.4M/31.2M [00:01&lt;00:00, 16.7M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  65%|█▉ | 20.3M/31.2M [00:01&lt;00:00, 17.2M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  76%|██▎| 23.7M/31.2M [00:01&lt;00:00, 17.0M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  87%|██▌| 27.0M/31.2M [00:01&lt;00:00, 16.8M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  92%|██▊| 28.8M/31.2M [00:01&lt;00:00, 16.7M Bytes/s]
                                                                                 
-
 Get sub-03/s .. _bold.nii.gz:   0%|            | 0.00/12.0M [00:00&lt;?, ? Bytes/s]
-
-Get sub-03/s .. _bold.nii.gz:  51%|█▌ | 6.15M/12.0M [00:00&lt;00:00, 30.8M Bytes/s]
-
-Get sub-03/s .. _bold.nii.gz:  78%|██▎| 9.33M/12.0M [00:00&lt;00:00, 31.2M Bytes/s]
-
-                                                                                
-Get sub-03/s .. _bold.nii.gz:   0%|            | 0.00/12.0M [00:00&lt;?, ? Bytes/s]
-                                                                                
-
-Get sub-03/s .. _bold.nii.gz:   0%|            | 0.00/10.4M [00:00&lt;?, ? Bytes/s]
-
-Get sub-03/s .. _bold.nii.gz:  59%|█▊ | 6.12M/10.4M [00:00&lt;00:00, 30.7M Bytes/s]
-
-Get sub-03/s .. _bold.nii.gz:  90%|██▋| 9.33M/10.4M [00:00&lt;00:00, 31.3M Bytes/s]
-
+Get sub-03/s .. _bold.nii.gz:  14%|▍  | 1.74M/12.0M [00:00&lt;00:00, 16.6M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  39%|█▏ | 4.63M/12.0M [00:00&lt;00:00, 14.9M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  54%|█▋ | 6.53M/12.0M [00:00&lt;00:00, 16.0M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  72%|██▏| 8.60M/12.0M [00:00&lt;00:00, 17.5M Bytes/s]
                                                                                 
 Get sub-03/s .. _bold.nii.gz:   0%|            | 0.00/10.4M [00:00&lt;?, ? Bytes/s]
-                                                                                
-
-Get sub-03/s .. t_T1w.nii.gz:   0%|            | 0.00/7.97M [00:00&lt;?, ? Bytes/s]
-
-Get sub-03/s .. t_T1w.nii.gz:  76%|██▎| 6.02M/7.97M [00:00&lt;00:00, 30.1M Bytes/s]
-
+Get sub-03/s .. _bold.nii.gz:  16%|▍  | 1.71M/10.4M [00:00&lt;00:01, 8.58M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  25%|▊  | 2.63M/10.4M [00:00&lt;00:00, 8.68M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  35%|█  | 3.62M/10.4M [00:00&lt;00:00, 9.12M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  59%|█▊ | 6.12M/10.4M [00:00&lt;00:00, 14.5M Bytes/s]
                                                                                 
 Get sub-03/s .. t_T1w.nii.gz:   0%|            | 0.00/7.97M [00:00&lt;?, ? Bytes/s]
-                                                                                
-
-Get sub-03/s .. t_dwi.nii.gz:   0%|             | 0.00/107M [00:00&lt;?, ? Bytes/s]
-
-Get sub-03/s .. t_dwi.nii.gz:   6%|▏   | 6.10M/107M [00:00&lt;00:03, 30.6M Bytes/s]
-
-Get sub-03/s .. t_dwi.nii.gz:   9%|▎   | 9.22M/107M [00:00&lt;00:03, 30.8M Bytes/s]
-
-Get sub-03/s .. t_dwi.nii.gz:  14%|▌   | 15.3M/107M [00:00&lt;00:02, 30.6M Bytes/s]
-
-Get sub-03/s .. t_dwi.nii.gz:  17%|▋   | 18.4M/107M [00:00&lt;00:02, 30.7M Bytes/s]
-
-Get sub-03/s .. t_dwi.nii.gz:  20%|▊   | 21.5M/107M [00:00&lt;00:02, 30.8M Bytes/s]
-
-Get sub-03/s .. t_dwi.nii.gz:  23%|▉   | 24.7M/107M [00:00&lt;00:02, 31.0M Bytes/s]
-
-Get sub-03/s .. t_dwi.nii.gz:  26%|█   | 27.8M/107M [00:00&lt;00:02, 31.1M Bytes/s]
-
-Get sub-03/s .. t_dwi.nii.gz:  29%|█▏  | 31.0M/107M [00:01&lt;00:02, 31.1M Bytes/s]
-
-Get sub-03/s .. t_dwi.nii.gz:  32%|█▎  | 34.1M/107M [00:01&lt;00:02, 31.2M Bytes/s]
-
-Get sub-03/s .. t_dwi.nii.gz:  35%|█▍  | 37.3M/107M [00:01&lt;00:02, 31.4M Bytes/s]
-
-Get sub-03/s .. t_dwi.nii.gz:  38%|█▌  | 40.5M/107M [00:01&lt;00:02, 31.5M Bytes/s]
-
-Get sub-03/s .. t_dwi.nii.gz:  41%|█▋  | 43.7M/107M [00:01&lt;00:01, 31.7M Bytes/s]
-
-Get sub-03/s .. t_dwi.nii.gz:  44%|█▊  | 46.9M/107M [00:01&lt;00:01, 31.7M Bytes/s]
-
-Get sub-03/s .. t_dwi.nii.gz:  47%|█▉  | 50.1M/107M [00:01&lt;00:01, 31.7M Bytes/s]
-
-Get sub-03/s .. t_dwi.nii.gz:  50%|█▉  | 53.2M/107M [00:01&lt;00:01, 31.7M Bytes/s]
-
-Get sub-03/s .. t_dwi.nii.gz:  56%|██▏ | 59.5M/107M [00:01&lt;00:01, 31.6M Bytes/s]
-
-Get sub-03/s .. t_dwi.nii.gz:  62%|██▍ | 65.8M/107M [00:02&lt;00:01, 31.4M Bytes/s]
-Get sub-03/s .. t_dwi.nii.gz:  65%|██▌ | 69.0M/107M [00:02&lt;00:01, 31.4M Bytes/s]
-
-Get sub-03/s .. t_dwi.nii.gz:  71%|██▊ | 75.3M/107M [00:02&lt;00:00, 31.4M Bytes/s]
-
-Get sub-03/s .. t_dwi.nii.gz:  77%|███ | 81.6M/107M [00:02&lt;00:00, 31.4M Bytes/s]
-
-Get sub-03/s .. t_dwi.nii.gz:  79%|███▏| 84.7M/107M [00:02&lt;00:00, 31.4M Bytes/s]
-Total:  70%|██████████████████▏       | 1.52G/2.17G [01:00&lt;00:25, 25.3M Bytes/s]
-
-Get sub-03/s .. t_dwi.nii.gz:  85%|███▍| 90.9M/107M [00:02&lt;00:00, 31.3M Bytes/s]
-
-Get sub-03/s .. t_dwi.nii.gz:  88%|███▌| 94.1M/107M [00:03&lt;00:00, 31.3M Bytes/s]
-
-Get sub-03/s .. t_dwi.nii.gz:  94%|████▋| 100M/107M [00:03&lt;00:00, 31.3M Bytes/s]
-
+Get sub-03/s .. t_T1w.nii.gz:  23%|▋  | 1.81M/7.97M [00:00&lt;00:00, 17.6M Bytes/s]
+Get sub-03/s .. t_T1w.nii.gz:  45%|█▎ | 3.59M/7.97M [00:00&lt;00:00, 17.7M Bytes/s]
+Get sub-03/s .. t_T1w.nii.gz:  80%|██▍| 6.41M/7.97M [00:00&lt;00:00, 15.4M Bytes/s]
                                                                                 
 Get sub-03/s .. t_dwi.nii.gz:   0%|             | 0.00/107M [00:00&lt;?, ? Bytes/s]
-
-Total:  75%|███████████████████▍      | 1.62G/2.17G [01:00&lt;00:20, 26.8M Bytes/s]
-
+Get sub-03/s .. t_dwi.nii.gz:   1%|    | 1.01M/107M [00:00&lt;00:11, 9.26M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:   2%|    | 1.95M/107M [00:00&lt;00:12, 8.69M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:   3%|▏   | 3.65M/107M [00:00&lt;00:11, 8.67M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:   4%|▏   | 4.55M/107M [00:00&lt;00:11, 8.76M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:   6%|▏   | 6.51M/107M [00:00&lt;00:08, 12.0M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:   8%|▎   | 8.84M/107M [00:00&lt;00:08, 11.8M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  11%|▍   | 11.3M/107M [00:00&lt;00:06, 15.1M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  13%|▌   | 14.0M/107M [00:01&lt;00:05, 17.9M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  17%|▋   | 17.6M/107M [00:01&lt;00:04, 18.1M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  20%|▊   | 21.0M/107M [00:01&lt;00:04, 17.7M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  22%|▊   | 22.9M/107M [00:01&lt;00:04, 17.2M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  25%|▉   | 26.4M/107M [00:01&lt;00:04, 17.7M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  27%|█   | 28.3M/107M [00:01&lt;00:04, 17.4M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  28%|█▏  | 30.1M/107M [00:01&lt;00:04, 17.6M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  30%|█▏  | 32.0M/107M [00:02&lt;00:04, 17.8M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  32%|█▎  | 33.8M/107M [00:02&lt;00:04, 17.9M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  33%|█▎  | 35.6M/107M [00:02&lt;00:03, 18.0M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  35%|█▍  | 37.5M/107M [00:02&lt;00:03, 18.0M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  37%|█▍  | 39.3M/107M [00:02&lt;00:03, 18.1M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  39%|█▌  | 41.1M/107M [00:02&lt;00:03, 18.1M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  42%|█▋  | 44.2M/107M [00:02&lt;00:03, 17.7M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  44%|█▋  | 46.6M/107M [00:02&lt;00:03, 18.2M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  45%|█▊  | 48.4M/107M [00:02&lt;00:03, 18.3M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  49%|█▉  | 52.1M/107M [00:03&lt;00:02, 18.3M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  52%|██  | 55.7M/107M [00:03&lt;00:02, 17.7M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  56%|██▏ | 59.3M/107M [00:03&lt;00:02, 17.6M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  59%|██▎ | 62.6M/107M [00:03&lt;00:02, 18.4M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  61%|██▍ | 64.6M/107M [00:03&lt;00:02, 17.5M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  62%|██▍ | 66.5M/107M [00:03&lt;00:02, 17.6M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  64%|██▌ | 68.3M/107M [00:04&lt;00:02, 17.8M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  66%|██▋ | 70.2M/107M [00:04&lt;00:02, 18.0M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  68%|██▋ | 72.0M/107M [00:04&lt;00:01, 18.1M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  71%|██▊ | 75.7M/107M [00:04&lt;00:01, 18.1M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  73%|██▉ | 77.5M/107M [00:04&lt;00:01, 18.2M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  74%|██▉ | 79.3M/107M [00:04&lt;00:01, 18.2M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  78%|███ | 83.0M/107M [00:04&lt;00:01, 18.2M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  80%|███▏| 84.8M/107M [00:04&lt;00:01, 18.3M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  83%|███▎| 88.2M/107M [00:05&lt;00:01, 17.6M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  86%|███▍| 91.9M/107M [00:05&lt;00:00, 17.9M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  89%|███▌| 95.2M/107M [00:05&lt;00:00, 17.3M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  91%|███▋| 97.2M/107M [00:05&lt;00:00, 17.7M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  95%|████▋| 101M/107M [00:05&lt;00:00, 17.6M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  96%|████▊| 103M/107M [00:05&lt;00:00, 17.7M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz:  98%|████▉| 104M/107M [00:06&lt;00:00, 17.9M Bytes/s]
+Get sub-03/s .. t_dwi.nii.gz: 100%|████▉| 106M/107M [00:06&lt;00:00, 18.0M Bytes/s]
+                                                                                
+Get sub-03/s .. t_dwi.nii.gz:   0%|             | 0.00/107M [00:00&lt;?, ? Bytes/s]
+Total:  75%|███████████████████▍      | 1.62G/2.17G [01:47&lt;00:36, 15.1M Bytes/s]
 Get sub-03/s .. _bold.nii.gz:   0%|            | 0.00/23.1M [00:00&lt;?, ? Bytes/s]
-
-Get sub-03/s .. _bold.nii.gz:  13%|▍  | 2.92M/23.1M [00:00&lt;00:00, 29.1M Bytes/s]
-
-Get sub-03/s .. _bold.nii.gz:  26%|▊  | 6.07M/23.1M [00:00&lt;00:00, 30.5M Bytes/s]
-
-Get sub-03/s .. _bold.nii.gz:  40%|█▏ | 9.20M/23.1M [00:00&lt;00:00, 30.8M Bytes/s]
-
-Get sub-03/s .. _bold.nii.gz:  53%|█▌ | 12.3M/23.1M [00:00&lt;00:00, 31.0M Bytes/s]
-
-Get sub-03/s .. _bold.nii.gz:  80%|██▍| 18.4M/23.1M [00:00&lt;00:00, 30.7M Bytes/s]
-
-Get sub-03/s .. _bold.nii.gz:  93%|██▊| 21.6M/23.1M [00:00&lt;00:00, 31.0M Bytes/s]
-
-                                                                                
-Get sub-03/s .. _bold.nii.gz:   0%|            | 0.00/23.1M [00:00&lt;?, ? Bytes/s]
-Total:  76%|███████████████████▋      | 1.65G/2.17G [01:01&lt;00:19, 26.8M Bytes/s]
-
+Get sub-03/s .. _bold.nii.gz:   8%|▏  | 1.81M/23.1M [00:00&lt;00:01, 18.0M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  16%|▍  | 3.64M/23.1M [00:00&lt;00:01, 18.2M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  32%|▉  | 7.33M/23.1M [00:00&lt;00:00, 18.3M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  40%|█▏ | 9.18M/23.1M [00:00&lt;00:00, 18.4M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  48%|█▍ | 11.0M/23.1M [00:00&lt;00:00, 18.4M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  56%|█▋ | 12.9M/23.1M [00:00&lt;00:00, 18.5M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  64%|█▉ | 14.8M/23.1M [00:00&lt;00:00, 18.5M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  72%|██▏| 16.6M/23.1M [00:00&lt;00:00, 18.6M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  80%|██▍| 18.5M/23.1M [00:01&lt;00:00, 18.6M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  96%|██▉| 22.2M/23.1M [00:01&lt;00:00, 18.5M Bytes/s]
+Total:  76%|███████████████████▋      | 1.65G/2.17G [01:49&lt;00:34, 15.1M Bytes/s]
 Get sub-03/s .. _bold.nii.gz:   0%|            | 0.00/24.5M [00:00&lt;?, ? Bytes/s]
-
-Get sub-03/s .. _bold.nii.gz:  25%|▊  | 6.21M/24.5M [00:00&lt;00:00, 31.2M Bytes/s]
-
-Get sub-03/s .. _bold.nii.gz:  38%|█▏ | 9.41M/24.5M [00:00&lt;00:00, 31.5M Bytes/s]
-
-Get sub-03/s .. _bold.nii.gz:  52%|█▌ | 12.6M/24.5M [00:00&lt;00:00, 31.7M Bytes/s]
-
-Get sub-03/s .. _bold.nii.gz:  65%|█▉ | 15.8M/24.5M [00:00&lt;00:00, 31.8M Bytes/s]
-
-Get sub-03/s .. _bold.nii.gz:  91%|██▋| 22.2M/24.5M [00:00&lt;00:00, 31.8M Bytes/s]
-
-                                                                                
-Get sub-03/s .. _bold.nii.gz:   0%|            | 0.00/24.5M [00:00&lt;?, ? Bytes/s]
-Total:  77%|████████████████████      | 1.67G/2.17G [01:02&lt;00:18, 26.8M Bytes/s]
-
+Get sub-03/s .. _bold.nii.gz:  14%|▍  | 3.46M/24.5M [00:00&lt;00:01, 19.6M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  23%|▋  | 5.66M/24.5M [00:00&lt;00:01, 18.6M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  31%|▉  | 7.54M/24.5M [00:00&lt;00:00, 18.7M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  46%|█▎ | 11.2M/24.5M [00:00&lt;00:00, 18.5M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  61%|█▊ | 15.1M/24.5M [00:00&lt;00:00, 18.8M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  75%|██▏| 18.4M/24.5M [00:01&lt;00:00, 17.9M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  82%|██▍| 20.2M/24.5M [00:01&lt;00:00, 18.0M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  91%|██▋| 22.4M/24.5M [00:01&lt;00:00, 18.9M Bytes/s]
+Total:  77%|████████████████████      | 1.67G/2.17G [01:51&lt;00:33, 15.1M Bytes/s]
 Get sub-03/s .. _bold.nii.gz:   0%|            | 0.00/31.8M [00:00&lt;?, ? Bytes/s]
-
-Get sub-03/s .. _bold.nii.gz:  20%|▌  | 6.30M/31.8M [00:00&lt;00:00, 31.5M Bytes/s]
-
-Get sub-03/s .. _bold.nii.gz:  30%|▉  | 9.51M/31.8M [00:00&lt;00:00, 31.7M Bytes/s]
-
-Get sub-03/s .. _bold.nii.gz:  40%|█▏ | 12.7M/31.8M [00:00&lt;00:00, 31.9M Bytes/s]
-
-Get sub-03/s .. _bold.nii.gz:  50%|█▌ | 15.9M/31.8M [00:00&lt;00:00, 31.9M Bytes/s]
-
-Get sub-03/s .. _bold.nii.gz:  70%|██ | 22.3M/31.8M [00:00&lt;00:00, 31.9M Bytes/s]
-
-Get sub-03/s .. _bold.nii.gz:  90%|██▋| 28.7M/31.8M [00:00&lt;00:00, 31.8M Bytes/s]
-
-                                                                                
-Get sub-03/s .. _bold.nii.gz:   0%|            | 0.00/31.8M [00:00&lt;?, ? Bytes/s]
-Total:  78%|████████████████████▍     | 1.70G/2.17G [01:03&lt;00:17, 26.8M Bytes/s]
-
+Get sub-03/s .. _bold.nii.gz:   6%|▏  | 1.82M/31.8M [00:00&lt;00:01, 17.7M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  12%|▎  | 3.73M/31.8M [00:00&lt;00:01, 18.4M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  18%|▌  | 5.63M/31.8M [00:00&lt;00:01, 18.6M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  24%|▋  | 7.62M/31.8M [00:00&lt;00:01, 19.1M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  30%|▉  | 9.57M/31.8M [00:00&lt;00:01, 19.3M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  42%|█▎ | 13.3M/31.8M [00:00&lt;00:00, 18.9M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  49%|█▍ | 15.5M/31.8M [00:00&lt;00:00, 19.6M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  61%|█▊ | 19.4M/31.8M [00:01&lt;00:00, 19.6M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  72%|██▏| 22.9M/31.8M [00:01&lt;00:00, 18.7M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  79%|██▎| 25.0M/31.8M [00:01&lt;00:00, 19.3M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  91%|██▋| 28.9M/31.8M [00:01&lt;00:00, 19.3M Bytes/s]
+Total:  78%|████████████████████▍     | 1.70G/2.17G [01:53&lt;00:31, 15.1M Bytes/s]
 Get sub-03/s .. _bold.nii.gz:   0%|            | 0.00/12.2M [00:00&lt;?, ? Bytes/s]
-
-Get sub-03/s .. _bold.nii.gz:  50%|█▍ | 6.05M/12.2M [00:00&lt;00:00, 30.2M Bytes/s]
-
-Get sub-03/s .. _bold.nii.gz:  75%|██▎| 9.13M/12.2M [00:00&lt;00:00, 30.5M Bytes/s]
-
-                                                                                
-Get sub-03/s .. _bold.nii.gz:   0%|            | 0.00/12.2M [00:00&lt;?, ? Bytes/s]
-
-                                                                                
-
-Get sub-03/s .. _bold.nii.gz:   0%|            | 0.00/10.6M [00:00&lt;?, ? Bytes/s]
-
-Get sub-03/s .. _bold.nii.gz:  30%|▉  | 3.17M/10.6M [00:00&lt;00:00, 31.7M Bytes/s]
-
-Get sub-03/s .. _bold.nii.gz:  60%|█▊ | 6.38M/10.6M [00:00&lt;00:00, 31.9M Bytes/s]
-
-Get sub-03/s .. _bold.nii.gz:  91%|██▋| 9.64M/10.6M [00:00&lt;00:00, 32.2M Bytes/s]
-
+Get sub-03/s .. _bold.nii.gz:  24%|▋  | 2.92M/12.2M [00:00&lt;00:00, 15.4M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  49%|█▍ | 5.94M/12.2M [00:00&lt;00:00, 15.2M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  74%|██▏| 8.95M/12.2M [00:00&lt;00:00, 15.1M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  93%|██▊| 11.3M/12.2M [00:00&lt;00:00, 14.6M Bytes/s]
                                                                                 
 Get sub-03/s .. _bold.nii.gz:   0%|            | 0.00/10.6M [00:00&lt;?, ? Bytes/s]
-                                                                                
-
-Get sub-04/s .. t_T1w.nii.gz:   0%|            | 0.00/10.1M [00:00&lt;?, ? Bytes/s]
-
-Get sub-04/s .. t_T1w.nii.gz:  62%|█▊ | 6.30M/10.1M [00:00&lt;00:00, 31.5M Bytes/s]
-
-Get sub-04/s .. t_T1w.nii.gz:  94%|██▊| 9.54M/10.1M [00:00&lt;00:00, 31.9M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  29%|▉  | 3.10M/10.6M [00:00&lt;00:00, 16.5M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  59%|█▊ | 6.25M/10.6M [00:00&lt;00:00, 16.0M Bytes/s]
+Get sub-03/s .. _bold.nii.gz:  91%|██▋| 9.61M/10.6M [00:00&lt;00:00, 16.4M Bytes/s]
                                                                                 
 Get sub-04/s .. t_T1w.nii.gz:   0%|            | 0.00/10.1M [00:00&lt;?, ? Bytes/s]
-Total:  80%|████████████████████▊     | 1.74G/2.17G [01:05&lt;00:16, 26.7M Bytes/s]
-
+Get sub-04/s .. t_T1w.nii.gz:  31%|▉  | 3.17M/10.1M [00:00&lt;00:00, 15.6M Bytes/s]
+Get sub-04/s .. t_T1w.nii.gz:  48%|█▍ | 4.87M/10.1M [00:00&lt;00:00, 16.2M Bytes/s]
+Get sub-04/s .. t_T1w.nii.gz:  65%|█▉ | 6.56M/10.1M [00:00&lt;00:00, 16.4M Bytes/s]
+Get sub-04/s .. t_T1w.nii.gz:  82%|██▍| 8.27M/10.1M [00:00&lt;00:00, 16.6M Bytes/s]
+Get sub-04/s .. t_T1w.nii.gz:  99%|██▉| 10.0M/10.1M [00:00&lt;00:00, 17.0M Bytes/s]
+Total:  80%|████████████████████▊     | 1.74G/2.17G [01:56&lt;00:29, 15.0M Bytes/s]
 Get sub-04/s .. t_dwi.nii.gz:   0%|             | 0.00/102M [00:00&lt;?, ? Bytes/s]
-
-Get sub-04/s .. t_dwi.nii.gz:   3%|    | 3.12M/102M [00:00&lt;00:03, 31.2M Bytes/s]
-
-Get sub-04/s .. t_dwi.nii.gz:   6%|▏   | 6.28M/102M [00:00&lt;00:03, 31.4M Bytes/s]
-
-Get sub-04/s .. t_dwi.nii.gz:   9%|▎   | 9.48M/102M [00:00&lt;00:02, 31.6M Bytes/s]
-
-Get sub-04/s .. t_dwi.nii.gz:  12%|▍   | 12.7M/102M [00:00&lt;00:02, 31.6M Bytes/s]
-
-Get sub-04/s .. t_dwi.nii.gz:  15%|▌   | 15.8M/102M [00:00&lt;00:02, 31.7M Bytes/s]
-
-Get sub-04/s .. t_dwi.nii.gz:  22%|▊   | 22.2M/102M [00:00&lt;00:02, 31.7M Bytes/s]
-
-Get sub-04/s .. t_dwi.nii.gz:  25%|▉   | 25.4M/102M [00:00&lt;00:02, 31.8M Bytes/s]
-
-Get sub-04/s .. t_dwi.nii.gz:  28%|█   | 28.6M/102M [00:00&lt;00:02, 31.8M Bytes/s]
-
-Get sub-04/s .. t_dwi.nii.gz:  31%|█▏  | 31.8M/102M [00:01&lt;00:02, 31.8M Bytes/s]
-
-Get sub-04/s .. t_dwi.nii.gz:  34%|█▎  | 35.0M/102M [00:01&lt;00:02, 31.8M Bytes/s]
-
-Get sub-04/s .. t_dwi.nii.gz:  37%|█▍  | 38.1M/102M [00:01&lt;00:02, 31.8M Bytes/s]
-
-Get sub-04/s .. t_dwi.nii.gz:  40%|█▌  | 41.3M/102M [00:01&lt;00:01, 31.8M Bytes/s]
-
-Get sub-04/s .. t_dwi.nii.gz:  43%|█▋  | 44.5M/102M [00:01&lt;00:01, 31.7M Bytes/s]
-
-Get sub-04/s .. t_dwi.nii.gz:  50%|█▉  | 50.8M/102M [00:01&lt;00:01, 31.7M Bytes/s]
-
-Get sub-04/s .. t_dwi.nii.gz:  56%|██▏ | 57.1M/102M [00:01&lt;00:01, 31.5M Bytes/s]
-
-Get sub-04/s .. t_dwi.nii.gz:  62%|██▍ | 63.0M/102M [00:02&lt;00:01, 30.8M Bytes/s]
-
-Get sub-04/s .. t_dwi.nii.gz:  65%|██▌ | 66.1M/102M [00:02&lt;00:01, 30.8M Bytes/s]
-
-Get sub-04/s .. t_dwi.nii.gz:  68%|██▋ | 69.3M/102M [00:02&lt;00:01, 31.1M Bytes/s]
-
-Get sub-04/s .. t_dwi.nii.gz:  71%|██▊ | 72.5M/102M [00:02&lt;00:00, 31.4M Bytes/s]
-
-Get sub-04/s .. t_dwi.nii.gz:  74%|██▉ | 75.8M/102M [00:02&lt;00:00, 31.6M Bytes/s]
-
-Get sub-04/s .. t_dwi.nii.gz:  77%|███ | 79.0M/102M [00:02&lt;00:00, 31.7M Bytes/s]
-
-Get sub-04/s .. t_dwi.nii.gz:  80%|███▏| 82.2M/102M [00:02&lt;00:00, 31.9M Bytes/s]
-
-Get sub-04/s .. t_dwi.nii.gz:  84%|███▎| 85.4M/102M [00:02&lt;00:00, 32.0M Bytes/s]
-
-Get sub-04/s .. t_dwi.nii.gz:  87%|███▍| 88.7M/102M [00:02&lt;00:00, 32.1M Bytes/s]
-
-Get sub-04/s .. t_dwi.nii.gz:  93%|███▋| 95.1M/102M [00:03&lt;00:00, 32.1M Bytes/s]
-
-Get sub-04/s .. t_dwi.nii.gz:  96%|███▊| 98.3M/102M [00:03&lt;00:00, 32.1M Bytes/s]
-
-Get sub-04/s .. t_dwi.nii.gz:  99%|████▉| 102M/102M [00:03&lt;00:00, 32.2M Bytes/s]
-
+Get sub-04/s .. t_dwi.nii.gz:   3%|▏   | 3.31M/102M [00:00&lt;00:06, 16.3M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:   5%|▏   | 5.23M/102M [00:00&lt;00:05, 17.5M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:   9%|▎   | 8.75M/102M [00:00&lt;00:05, 17.5M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  12%|▍   | 12.1M/102M [00:00&lt;00:05, 17.1M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  14%|▌   | 13.8M/102M [00:00&lt;00:06, 13.7M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  16%|▌   | 15.9M/102M [00:01&lt;00:06, 12.4M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  17%|▋   | 17.6M/102M [00:01&lt;00:07, 11.4M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  19%|▋   | 19.1M/102M [00:01&lt;00:07, 11.4M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  21%|▊   | 21.1M/102M [00:01&lt;00:07, 10.9M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  22%|▉   | 22.5M/102M [00:01&lt;00:07, 10.3M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  23%|▉   | 23.9M/102M [00:01&lt;00:07, 10.1M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  25%|█   | 25.6M/102M [00:02&lt;00:08, 9.39M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  26%|█   | 26.9M/102M [00:02&lt;00:08, 9.24M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  28%|█   | 28.3M/102M [00:02&lt;00:08, 9.15M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  29%|█▏  | 29.4M/102M [00:02&lt;00:07, 9.45M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  30%|█▏  | 30.6M/102M [00:02&lt;00:07, 9.97M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  31%|█▎  | 32.0M/102M [00:02&lt;00:06, 10.1M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  33%|█▎  | 33.6M/102M [00:02&lt;00:07, 9.77M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  34%|█▎  | 34.6M/102M [00:03&lt;00:06, 9.91M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  35%|█▍  | 35.6M/102M [00:03&lt;00:06, 9.84M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  36%|█▍  | 37.0M/102M [00:03&lt;00:06, 10.1M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  38%|█▌  | 38.5M/102M [00:03&lt;00:06, 9.45M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  39%|█▌  | 39.5M/102M [00:03&lt;00:06, 9.48M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  40%|█▌  | 40.6M/102M [00:03&lt;00:06, 9.84M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  41%|█▋  | 41.7M/102M [00:03&lt;00:06, 9.60M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  43%|█▋  | 43.6M/102M [00:03&lt;00:05, 10.0M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  45%|█▊  | 45.5M/102M [00:04&lt;00:05, 9.86M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  46%|█▊  | 46.7M/102M [00:04&lt;00:05, 9.68M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  47%|█▉  | 48.4M/102M [00:04&lt;00:05, 9.60M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  48%|█▉  | 49.4M/102M [00:04&lt;00:05, 9.64M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  50%|██  | 51.3M/102M [00:04&lt;00:05, 9.60M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  52%|██  | 53.3M/102M [00:04&lt;00:04, 11.7M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  55%|██▏ | 55.8M/102M [00:04&lt;00:03, 14.9M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  57%|██▎ | 58.1M/102M [00:05&lt;00:02, 16.9M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  59%|██▎ | 60.2M/102M [00:05&lt;00:02, 17.9M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  61%|██▍ | 62.2M/102M [00:05&lt;00:02, 18.4M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  63%|██▌ | 64.6M/102M [00:05&lt;00:02, 15.3M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  65%|██▌ | 66.5M/102M [00:05&lt;00:02, 13.0M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  67%|██▋ | 68.6M/102M [00:05&lt;00:02, 12.0M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  70%|██▊ | 72.1M/102M [00:06&lt;00:02, 13.8M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  73%|██▉ | 74.7M/102M [00:06&lt;00:01, 16.3M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  76%|███ | 77.4M/102M [00:06&lt;00:01, 18.4M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  78%|███ | 79.5M/102M [00:06&lt;00:01, 19.0M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  80%|███▏| 82.1M/102M [00:06&lt;00:01, 13.7M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  83%|███▎| 84.4M/102M [00:06&lt;00:01, 13.1M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  85%|███▍| 86.9M/102M [00:07&lt;00:01, 15.3M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  87%|███▍| 89.5M/102M [00:07&lt;00:00, 17.4M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  90%|███▌| 92.2M/102M [00:07&lt;00:00, 19.7M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  94%|███▊| 96.2M/102M [00:07&lt;00:00, 19.8M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  98%|████▉| 100M/102M [00:07&lt;00:00, 19.9M Bytes/s]
                                                                                 
 Get sub-04/s .. t_dwi.nii.gz:   0%|             | 0.00/102M [00:00&lt;?, ? Bytes/s]
-Total:  85%|██████████████████████    | 1.84G/2.17G [01:08&lt;00:12, 26.8M Bytes/s]
-
+Total:  85%|██████████████████████    | 1.84G/2.17G [02:04&lt;00:22, 14.8M Bytes/s]
 Get sub-04/s .. _bold.nii.gz:   0%|            | 0.00/24.6M [00:00&lt;?, ? Bytes/s]
-
-Get sub-04/s .. _bold.nii.gz:  26%|▊  | 6.39M/24.6M [00:00&lt;00:00, 31.9M Bytes/s]
-
-Get sub-04/s .. _bold.nii.gz:  39%|█▏ | 9.61M/24.6M [00:00&lt;00:00, 32.0M Bytes/s]
-
-Get sub-04/s .. _bold.nii.gz:  52%|█▌ | 12.9M/24.6M [00:00&lt;00:00, 32.2M Bytes/s]
-
-Get sub-04/s .. _bold.nii.gz:  65%|█▉ | 16.1M/24.6M [00:00&lt;00:00, 32.2M Bytes/s]
-
-Get sub-04/s .. _bold.nii.gz:  91%|██▋| 22.5M/24.6M [00:00&lt;00:00, 32.2M Bytes/s]
-
-                                                                                
-Get sub-04/s .. _bold.nii.gz:   0%|            | 0.00/24.6M [00:00&lt;?, ? Bytes/s]
-                                                                                
-
-Get sub-04/s .. _bold.nii.gz:   0%|            | 0.00/26.2M [00:00&lt;?, ? Bytes/s]
-
-Get sub-04/s .. _bold.nii.gz:  24%|▋  | 6.39M/26.2M [00:00&lt;00:00, 31.9M Bytes/s]
-
-Get sub-04/s .. _bold.nii.gz:  37%|█  | 9.63M/26.2M [00:00&lt;00:00, 32.1M Bytes/s]
-Get sub-04/s .. _bold.nii.gz:  58%|█▋ | 15.2M/26.2M [00:00&lt;00:00, 29.6M Bytes/s]
-
-Get sub-04/s .. _bold.nii.gz:  70%|██ | 18.4M/26.2M [00:00&lt;00:00, 30.3M Bytes/s]
-
-Get sub-04/s .. _bold.nii.gz:  93%|██▊| 24.4M/26.2M [00:00&lt;00:00, 30.3M Bytes/s]
-
+Get sub-04/s .. _bold.nii.gz:   7%|▏  | 1.75M/24.6M [00:00&lt;00:01, 16.6M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  16%|▍  | 4.03M/24.6M [00:00&lt;00:01, 20.1M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  28%|▊  | 6.83M/24.6M [00:00&lt;00:01, 16.2M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  40%|█▏ | 9.81M/24.6M [00:00&lt;00:00, 15.6M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  52%|█▌ | 12.7M/24.6M [00:00&lt;00:00, 15.2M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  64%|█▉ | 15.8M/24.6M [00:01&lt;00:00, 15.3M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  71%|██▏| 17.6M/24.6M [00:01&lt;00:00, 15.7M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  83%|██▌| 20.5M/24.6M [00:01&lt;00:00, 15.4M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  91%|██▋| 22.4M/24.6M [00:01&lt;00:00, 15.0M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  97%|██▉| 24.0M/24.6M [00:01&lt;00:00, 15.2M Bytes/s]
                                                                                 
 Get sub-04/s .. _bold.nii.gz:   0%|            | 0.00/26.2M [00:00&lt;?, ? Bytes/s]
-                                                                                
-
-Get sub-04/s .. _bold.nii.gz:   0%|            | 0.00/33.7M [00:00&lt;?, ? Bytes/s]
-
-Get sub-04/s .. _bold.nii.gz:  19%|▌  | 6.33M/33.7M [00:00&lt;00:00, 31.7M Bytes/s]
-
-Get sub-04/s .. _bold.nii.gz:  28%|▊  | 9.56M/33.7M [00:00&lt;00:00, 31.9M Bytes/s]
-
-Get sub-04/s .. _bold.nii.gz:  38%|█▏ | 12.8M/33.7M [00:00&lt;00:00, 32.0M Bytes/s]
-
-Get sub-04/s .. _bold.nii.gz:  47%|█▍ | 16.0M/33.7M [00:00&lt;00:00, 32.1M Bytes/s]
-
-Get sub-04/s .. _bold.nii.gz:  57%|█▋ | 19.2M/33.7M [00:00&lt;00:00, 32.1M Bytes/s]
-
-Get sub-04/s .. _bold.nii.gz:  67%|█▉ | 22.5M/33.7M [00:00&lt;00:00, 32.1M Bytes/s]
-
-Get sub-04/s .. _bold.nii.gz:  76%|██▎| 25.7M/33.7M [00:00&lt;00:00, 32.2M Bytes/s]
-
-Get sub-04/s .. _bold.nii.gz:  86%|██▌| 28.9M/33.7M [00:00&lt;00:00, 32.2M Bytes/s]
-
-Get sub-04/s .. _bold.nii.gz:  95%|██▊| 32.2M/33.7M [00:01&lt;00:00, 32.3M Bytes/s]
-
+Get sub-04/s .. _bold.nii.gz:   6%|▏  | 1.67M/26.2M [00:00&lt;00:01, 16.7M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  18%|▌  | 4.67M/26.2M [00:00&lt;00:01, 17.1M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  26%|▊  | 6.70M/26.2M [00:00&lt;00:01, 16.6M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  38%|█▏ | 9.98M/26.2M [00:00&lt;00:00, 16.5M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  44%|█▎ | 11.6M/26.2M [00:00&lt;00:00, 16.5M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  52%|█▌ | 13.6M/26.2M [00:00&lt;00:00, 17.3M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  59%|█▊ | 15.4M/26.2M [00:00&lt;00:00, 17.4M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  72%|██▏| 18.8M/26.2M [00:01&lt;00:00, 17.4M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  79%|██▎| 20.6M/26.2M [00:01&lt;00:00, 17.5M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  92%|██▊| 24.2M/26.2M [00:01&lt;00:00, 17.5M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  99%|██▉| 26.0M/26.2M [00:01&lt;00:00, 17.8M Bytes/s]
                                                                                 
 Get sub-04/s .. _bold.nii.gz:   0%|            | 0.00/33.7M [00:00&lt;?, ? Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  11%|▎  | 3.60M/33.7M [00:00&lt;00:01, 18.0M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  16%|▍  | 5.45M/33.7M [00:00&lt;00:01, 18.2M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  27%|▊  | 9.14M/33.7M [00:00&lt;00:01, 18.3M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  38%|█▏ | 12.7M/33.7M [00:00&lt;00:01, 18.1M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  49%|█▍ | 16.5M/33.7M [00:00&lt;00:00, 18.2M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  55%|█▋ | 18.5M/33.7M [00:01&lt;00:00, 18.6M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  60%|█▊ | 20.4M/33.7M [00:01&lt;00:00, 18.7M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  66%|█▉ | 22.3M/33.7M [00:01&lt;00:00, 18.7M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  77%|██▎| 26.0M/33.7M [00:01&lt;00:00, 18.7M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  83%|██▍| 28.0M/33.7M [00:01&lt;00:00, 18.9M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  89%|██▋| 29.9M/33.7M [00:01&lt;00:00, 19.0M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  97%|██▉| 32.8M/33.7M [00:01&lt;00:00, 18.2M Bytes/s]
                                                                                 
-
 Get sub-04/s .. _bold.nii.gz:   0%|            | 0.00/12.9M [00:00&lt;?, ? Bytes/s]
-
-Get sub-04/s .. _bold.nii.gz:  50%|█▍ | 6.41M/12.9M [00:00&lt;00:00, 32.1M Bytes/s]
-
-Get sub-04/s .. _bold.nii.gz:  75%|██▎| 9.65M/12.9M [00:00&lt;00:00, 32.2M Bytes/s]
-
-                                                                                
-Get sub-04/s .. _bold.nii.gz:   0%|            | 0.00/12.9M [00:00&lt;?, ? Bytes/s]
-                                                                                
-
-Get sub-04/s .. _bold.nii.gz:   0%|            | 0.00/11.2M [00:00&lt;?, ? Bytes/s]
-
-Get sub-04/s .. _bold.nii.gz:  57%|█▋ | 6.36M/11.2M [00:00&lt;00:00, 31.8M Bytes/s]
-
-Get sub-04/s .. _bold.nii.gz:  86%|██▌| 9.63M/11.2M [00:00&lt;00:00, 32.1M Bytes/s]
-
+Get sub-04/s .. _bold.nii.gz:  27%|▊  | 3.50M/12.9M [00:00&lt;00:00, 17.5M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  42%|█▎ | 5.37M/12.9M [00:00&lt;00:00, 18.0M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  58%|█▋ | 7.42M/12.9M [00:00&lt;00:00, 18.3M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  72%|██▏| 9.32M/12.9M [00:00&lt;00:00, 18.5M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  88%|██▋| 11.3M/12.9M [00:00&lt;00:00, 18.8M Bytes/s]
                                                                                 
 Get sub-04/s .. _bold.nii.gz:   0%|            | 0.00/11.2M [00:00&lt;?, ? Bytes/s]
-Total:  90%|███████████████████████▎  | 1.95G/2.17G [01:12&lt;00:08, 26.8M Bytes/s]
-
+Get sub-04/s .. _bold.nii.gz:  35%|█  | 3.93M/11.2M [00:00&lt;00:00, 20.9M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  70%|██ | 7.87M/11.2M [00:00&lt;00:00, 20.2M Bytes/s]
+Total:  90%|███████████████████████▎  | 1.95G/2.17G [02:12&lt;00:15, 14.7M Bytes/s]
 Get sub-04/s .. t_T1w.nii.gz:   0%|            | 0.00/9.72M [00:00&lt;?, ? Bytes/s]
-
-Get sub-04/s .. t_T1w.nii.gz:  66%|█▉ | 6.41M/9.72M [00:00&lt;00:00, 32.1M Bytes/s]
-
-Get sub-04/s .. t_T1w.nii.gz:  99%|██▉| 9.66M/9.72M [00:00&lt;00:00, 32.2M Bytes/s]
-                                                                                
-Get sub-04/s .. t_T1w.nii.gz:   0%|            | 0.00/9.72M [00:00&lt;?, ? Bytes/s]
-                                                                                
-
-Get sub-04/s .. t_dwi.nii.gz:   0%|             | 0.00/105M [00:00&lt;?, ? Bytes/s]
-
-Get sub-04/s .. t_dwi.nii.gz:   6%|▏   | 6.27M/105M [00:00&lt;00:03, 31.3M Bytes/s]
-
-Get sub-04/s .. t_dwi.nii.gz:   9%|▎   | 9.45M/105M [00:00&lt;00:03, 31.5M Bytes/s]
-
-Get sub-04/s .. t_dwi.nii.gz:  12%|▍   | 12.6M/105M [00:00&lt;00:02, 31.6M Bytes/s]
-
-Get sub-04/s .. t_dwi.nii.gz:  17%|▋   | 18.1M/105M [00:00&lt;00:02, 29.5M Bytes/s]
-
-Get sub-04/s .. t_dwi.nii.gz:  20%|▊   | 21.3M/105M [00:00&lt;00:02, 30.1M Bytes/s]
-Get sub-04/s .. t_dwi.nii.gz:  23%|▉   | 24.5M/105M [00:00&lt;00:02, 30.6M Bytes/s]
-
-Get sub-04/s .. t_dwi.nii.gz:  26%|█   | 27.8M/105M [00:00&lt;00:02, 31.1M Bytes/s]
-
-Get sub-04/s .. t_dwi.nii.gz:  30%|█▏  | 31.0M/105M [00:01&lt;00:02, 31.5M Bytes/s]
-
-Get sub-04/s .. t_dwi.nii.gz:  33%|█▎  | 34.3M/105M [00:01&lt;00:02, 31.8M Bytes/s]
-
-Get sub-04/s .. t_dwi.nii.gz:  36%|█▍  | 37.5M/105M [00:01&lt;00:02, 31.9M Bytes/s]
-
-Get sub-04/s .. t_dwi.nii.gz:  39%|█▌  | 40.8M/105M [00:01&lt;00:02, 32.0M Bytes/s]
-
-Get sub-04/s .. t_dwi.nii.gz:  42%|█▋  | 44.0M/105M [00:01&lt;00:01, 32.1M Bytes/s]
-
-Get sub-04/s .. t_dwi.nii.gz:  45%|█▊  | 47.2M/105M [00:01&lt;00:01, 32.1M Bytes/s]
-
-Get sub-04/s .. t_dwi.nii.gz:  51%|██  | 53.6M/105M [00:01&lt;00:01, 32.0M Bytes/s]
-
-Get sub-04/s .. t_dwi.nii.gz:  54%|██▏ | 56.8M/105M [00:01&lt;00:01, 32.1M Bytes/s]
-
-Get sub-04/s .. t_dwi.nii.gz:  60%|██▍ | 63.3M/105M [00:02&lt;00:01, 32.1M Bytes/s]
-
-Get sub-04/s .. t_dwi.nii.gz:  63%|██▌ | 66.5M/105M [00:02&lt;00:01, 32.1M Bytes/s]
-
-Get sub-04/s .. t_dwi.nii.gz:  67%|██▋ | 69.8M/105M [00:02&lt;00:01, 32.2M Bytes/s]
-
-Get sub-04/s .. t_dwi.nii.gz:  73%|██▉ | 76.2M/105M [00:02&lt;00:00, 32.2M Bytes/s]
-
-Get sub-04/s .. t_dwi.nii.gz:  79%|███▏| 82.7M/105M [00:02&lt;00:00, 32.2M Bytes/s]
-
-Get sub-04/s .. t_dwi.nii.gz:  82%|███▎| 85.9M/105M [00:02&lt;00:00, 32.2M Bytes/s]
-
-Get sub-04/s .. t_dwi.nii.gz:  85%|███▍| 89.2M/105M [00:02&lt;00:00, 32.2M Bytes/s]
-
-Get sub-04/s .. t_dwi.nii.gz:  88%|███▌| 92.4M/105M [00:02&lt;00:00, 32.2M Bytes/s]
-
-Get sub-04/s .. t_dwi.nii.gz:  91%|███▋| 95.6M/105M [00:03&lt;00:00, 32.2M Bytes/s]
-
-Get sub-04/s .. t_dwi.nii.gz:  97%|████▊| 102M/105M [00:03&lt;00:00, 31.6M Bytes/s]
-
+Get sub-04/s .. t_T1w.nii.gz:  40%|█▏ | 3.93M/9.72M [00:00&lt;00:00, 19.6M Bytes/s]
+Get sub-04/s .. t_T1w.nii.gz:  61%|█▊ | 5.92M/9.72M [00:00&lt;00:00, 19.7M Bytes/s]
                                                                                 
 Get sub-04/s .. t_dwi.nii.gz:   0%|             | 0.00/105M [00:00&lt;?, ? Bytes/s]
-Total:  95%|████████████████████████▋ | 2.06G/2.17G [01:16&lt;00:04, 26.9M Bytes/s]
-
+Get sub-04/s .. t_dwi.nii.gz:   4%|▏   | 3.96M/105M [00:00&lt;00:05, 19.7M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:   8%|▎   | 7.95M/105M [00:00&lt;00:04, 19.9M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  10%|▍   | 9.97M/105M [00:00&lt;00:04, 19.9M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  13%|▌   | 13.9M/105M [00:00&lt;00:04, 19.9M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  17%|▋   | 18.0M/105M [00:00&lt;00:04, 20.0M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  19%|▊   | 20.0M/105M [00:01&lt;00:04, 20.0M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  23%|▉   | 23.9M/105M [00:01&lt;00:04, 19.8M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  26%|█   | 27.6M/105M [00:01&lt;00:04, 19.3M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  28%|█▏  | 29.7M/105M [00:01&lt;00:03, 19.7M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  30%|█▏  | 31.8M/105M [00:01&lt;00:03, 19.9M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  32%|█▎  | 34.1M/105M [00:01&lt;00:03, 19.6M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  34%|█▍  | 36.1M/105M [00:01&lt;00:03, 19.7M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  38%|█▌  | 40.1M/105M [00:02&lt;00:03, 19.7M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  40%|█▌  | 42.1M/105M [00:02&lt;00:03, 19.8M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  43%|█▋  | 45.5M/105M [00:02&lt;00:02, 20.2M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  46%|█▊  | 48.1M/105M [00:02&lt;00:02, 19.8M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  48%|█▉  | 50.1M/105M [00:02&lt;00:02, 19.9M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  50%|█▉  | 52.2M/105M [00:02&lt;00:02, 20.0M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  52%|██  | 54.2M/105M [00:02&lt;00:02, 20.0M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  54%|██▏ | 56.2M/105M [00:02&lt;00:02, 20.1M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  57%|██▎ | 60.3M/105M [00:03&lt;00:02, 20.1M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  59%|██▍ | 62.3M/105M [00:03&lt;00:02, 20.2M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  61%|██▍ | 64.3M/105M [00:03&lt;00:02, 20.2M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  65%|██▌ | 67.9M/105M [00:03&lt;00:01, 19.1M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  67%|██▋ | 70.4M/105M [00:03&lt;00:01, 19.8M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  71%|██▊ | 74.3M/105M [00:03&lt;00:01, 19.5M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  73%|██▉ | 76.3M/105M [00:03&lt;00:01, 19.6M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  77%|███ | 80.3M/105M [00:04&lt;00:01, 19.2M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  78%|███▏| 82.3M/105M [00:04&lt;00:01, 15.3M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  81%|███▏| 84.6M/105M [00:04&lt;00:01, 14.5M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  82%|███▎| 86.5M/105M [00:04&lt;00:01, 12.7M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  84%|███▎| 88.4M/105M [00:04&lt;00:01, 11.5M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  86%|███▍| 90.0M/105M [00:05&lt;00:01, 10.4M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  87%|███▍| 91.4M/105M [00:05&lt;00:01, 10.8M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  89%|███▌| 93.3M/105M [00:05&lt;00:01, 10.4M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  90%|███▌| 94.8M/105M [00:05&lt;00:00, 11.2M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  92%|███▋| 96.2M/105M [00:05&lt;00:00, 11.5M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  93%|███▋| 97.8M/105M [00:05&lt;00:00, 10.7M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  94%|███▊| 99.0M/105M [00:05&lt;00:00, 10.3M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  96%|████▊| 100M/105M [00:06&lt;00:00, 10.8M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  97%|████▊| 102M/105M [00:06&lt;00:00, 9.91M Bytes/s]
+Get sub-04/s .. t_dwi.nii.gz:  99%|████▉| 104M/105M [00:06&lt;00:00, 9.92M Bytes/s]
+                                                                                
+Get sub-04/s .. t_dwi.nii.gz:   0%|             | 0.00/105M [00:00&lt;?, ? Bytes/s]
+Total:  95%|████████████████████████▋ | 2.06G/2.17G [02:20&lt;00:07, 14.7M Bytes/s]
 Get sub-04/s .. _bold.nii.gz:   0%|            | 0.00/24.7M [00:00&lt;?, ? Bytes/s]
-
-Get sub-04/s .. _bold.nii.gz:  24%|▋  | 6.01M/24.7M [00:00&lt;00:00, 30.1M Bytes/s]
-
-Get sub-04/s .. _bold.nii.gz:  37%|█  | 9.22M/24.7M [00:00&lt;00:00, 30.9M Bytes/s]
-
-Get sub-04/s .. _bold.nii.gz:  50%|█▌ | 12.4M/24.7M [00:00&lt;00:00, 31.2M Bytes/s]
-
-Get sub-04/s .. _bold.nii.gz:  63%|█▉ | 15.6M/24.7M [00:00&lt;00:00, 31.4M Bytes/s]
-
-Get sub-04/s .. _bold.nii.gz:  76%|██▎| 18.8M/24.7M [00:00&lt;00:00, 31.7M Bytes/s]
-
-Get sub-04/s .. _bold.nii.gz:  89%|██▋| 22.1M/24.7M [00:00&lt;00:00, 31.8M Bytes/s]
-
-                                                                                
-Get sub-04/s .. _bold.nii.gz:   0%|            | 0.00/24.7M [00:00&lt;?, ? Bytes/s]
-                                                                                
-
-Get sub-04/s .. _bold.nii.gz:   0%|            | 0.00/26.3M [00:00&lt;?, ? Bytes/s]
-
-Get sub-04/s .. _bold.nii.gz:  21%|▋  | 5.47M/26.3M [00:00&lt;00:00, 27.4M Bytes/s]
-
-Get sub-04/s .. _bold.nii.gz:  33%|▉  | 8.70M/26.3M [00:00&lt;00:00, 29.4M Bytes/s]
-
-Get sub-04/s .. _bold.nii.gz:  45%|█▎ | 11.9M/26.3M [00:00&lt;00:00, 30.5M Bytes/s]
-
-Get sub-04/s .. _bold.nii.gz:  58%|█▋ | 15.2M/26.3M [00:00&lt;00:00, 31.2M Bytes/s]
-
-Get sub-04/s .. _bold.nii.gz:  70%|██ | 18.4M/26.3M [00:00&lt;00:00, 31.6M Bytes/s]
-
-Get sub-04/s .. _bold.nii.gz:  83%|██▍| 21.7M/26.3M [00:00&lt;00:00, 31.8M Bytes/s]
-
-Get sub-04/s .. _bold.nii.gz:  95%|██▊| 24.9M/26.3M [00:00&lt;00:00, 31.9M Bytes/s]
-
+Get sub-04/s .. _bold.nii.gz:   7%|▏  | 1.81M/24.7M [00:00&lt;00:02, 9.05M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  14%|▍  | 3.48M/24.7M [00:00&lt;00:02, 8.58M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  18%|▌  | 4.35M/24.7M [00:00&lt;00:02, 8.53M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  29%|▊  | 7.04M/24.7M [00:00&lt;00:01, 10.6M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  47%|█▍ | 11.5M/24.7M [00:00&lt;00:00, 15.2M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  56%|█▋ | 13.8M/24.7M [00:01&lt;00:00, 16.9M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  63%|█▉ | 15.6M/24.7M [00:01&lt;00:00, 17.1M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  71%|██▏| 17.5M/24.7M [00:01&lt;00:00, 17.6M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  89%|██▋| 22.0M/24.7M [00:01&lt;00:00, 19.6M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  98%|██▉| 24.1M/24.7M [00:01&lt;00:00, 18.9M Bytes/s]
                                                                                 
 Get sub-04/s .. _bold.nii.gz:   0%|            | 0.00/26.3M [00:00&lt;?, ? Bytes/s]
-                                                                                
-
-Get sub-04/s .. _bold.nii.gz:   0%|            | 0.00/33.8M [00:00&lt;?, ? Bytes/s]
-
-Get sub-04/s .. _bold.nii.gz:   9%|▎  | 3.04M/33.8M [00:00&lt;00:01, 30.4M Bytes/s]
-
-Get sub-04/s .. _bold.nii.gz:  18%|▌  | 6.19M/33.8M [00:00&lt;00:00, 31.0M Bytes/s]
-
-Get sub-04/s .. _bold.nii.gz:  28%|▊  | 9.31M/33.8M [00:00&lt;00:00, 31.1M Bytes/s]
-
-Get sub-04/s .. _bold.nii.gz:  37%|█  | 12.4M/33.8M [00:00&lt;00:00, 31.1M Bytes/s]
-
-Get sub-04/s .. _bold.nii.gz:  46%|█▍ | 15.5M/33.8M [00:00&lt;00:00, 31.1M Bytes/s]
-
-Get sub-04/s .. _bold.nii.gz:  55%|█▋ | 18.7M/33.8M [00:00&lt;00:00, 31.3M Bytes/s]
-
-Get sub-04/s .. _bold.nii.gz:  65%|█▉ | 21.9M/33.8M [00:00&lt;00:00, 31.4M Bytes/s]
-
-Get sub-04/s .. _bold.nii.gz:  74%|██▏| 25.0M/33.8M [00:00&lt;00:00, 31.4M Bytes/s]
-
-Get sub-04/s .. _bold.nii.gz:  83%|██▌| 28.2M/33.8M [00:00&lt;00:00, 31.6M Bytes/s]
-
-Get sub-04/s .. _bold.nii.gz:  93%|██▊| 31.4M/33.8M [00:01&lt;00:00, 31.7M Bytes/s]
-
+Get sub-04/s .. _bold.nii.gz:  15%|▍  | 4.00M/26.3M [00:00&lt;00:01, 20.0M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  23%|▋  | 6.06M/26.3M [00:00&lt;00:01, 19.7M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  39%|█▏ | 10.1M/26.3M [00:00&lt;00:00, 20.4M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  46%|█▍ | 12.2M/26.3M [00:00&lt;00:00, 20.4M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  62%|█▊ | 16.3M/26.3M [00:00&lt;00:00, 20.4M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  70%|██ | 18.4M/26.3M [00:00&lt;00:00, 20.6M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  78%|██▎| 20.5M/26.3M [00:01&lt;00:00, 20.7M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  86%|██▌| 22.6M/26.3M [00:01&lt;00:00, 20.7M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  94%|██▊| 24.7M/26.3M [00:01&lt;00:00, 20.8M Bytes/s]
                                                                                 
 Get sub-04/s .. _bold.nii.gz:   0%|            | 0.00/33.8M [00:00&lt;?, ? Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  12%|▎  | 3.95M/33.8M [00:00&lt;00:01, 19.7M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  18%|▌  | 6.04M/33.8M [00:00&lt;00:01, 20.2M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  24%|▋  | 8.15M/33.8M [00:00&lt;00:01, 20.5M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  36%|█  | 12.2M/33.8M [00:00&lt;00:01, 20.3M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  47%|█▍ | 16.0M/33.8M [00:00&lt;00:00, 19.7M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  53%|█▌ | 18.0M/33.8M [00:00&lt;00:00, 19.9M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  60%|█▊ | 20.2M/33.8M [00:01&lt;00:00, 20.1M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  67%|█▉ | 22.5M/33.8M [00:01&lt;00:00, 21.0M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  73%|██▏| 24.7M/33.8M [00:01&lt;00:00, 21.1M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  85%|██▌| 28.9M/33.8M [00:01&lt;00:00, 21.0M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  97%|██▉| 33.0M/33.8M [00:01&lt;00:00, 20.8M Bytes/s]
                                                                                 
-
 Get sub-04/s .. _bold.nii.gz:   0%|            | 0.00/12.9M [00:00&lt;?, ? Bytes/s]
-
-Get sub-04/s .. _bold.nii.gz:  47%|█▍ | 6.12M/12.9M [00:00&lt;00:00, 30.7M Bytes/s]
-
-Get sub-04/s .. _bold.nii.gz:  72%|██▏| 9.32M/12.9M [00:00&lt;00:00, 31.2M Bytes/s]
-
-Get sub-04/s .. _bold.nii.gz:  97%|██▉| 12.5M/12.9M [00:00&lt;00:00, 31.5M Bytes/s]
-                                                                                
-Get sub-04/s .. _bold.nii.gz:   0%|            | 0.00/12.9M [00:00&lt;?, ? Bytes/s]
-                                                                                
-
-Get sub-04/s .. _bold.nii.gz:   0%|            | 0.00/11.2M [00:00&lt;?, ? Bytes/s]
-
-Get sub-04/s .. _bold.nii.gz:  57%|█▋ | 6.36M/11.2M [00:00&lt;00:00, 31.8M Bytes/s]
-
-Get sub-04/s .. _bold.nii.gz:  86%|██▌| 9.60M/11.2M [00:00&lt;00:00, 32.1M Bytes/s]
-
+Get sub-04/s .. _bold.nii.gz:  31%|▉  | 4.05M/12.9M [00:00&lt;00:00, 20.2M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  48%|█▍ | 6.24M/12.9M [00:00&lt;00:00, 20.9M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  78%|██▎| 10.1M/12.9M [00:00&lt;00:00, 20.0M Bytes/s]
                                                                                 
 Get sub-04/s .. _bold.nii.gz:   0%|            | 0.00/11.2M [00:00&lt;?, ? Bytes/s]
-                                                                                
+Get sub-04/s .. _bold.nii.gz:  19%|▌  | 2.15M/11.2M [00:00&lt;00:00, 10.6M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  55%|█▋ | 6.10M/11.2M [00:00&lt;00:00, 15.8M Bytes/s]
+Get sub-04/s .. _bold.nii.gz:  84%|██▌| 9.35M/11.2M [00:00&lt;00:00, 16.1M Bytes/s]
 <span class=" -Color -Color-Bold">get</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): sub-02/ses-retest/anat/sub-02_ses-retest_T1w.nii.gz (<span class=" -Color -Color-Bold -Color-Bold-Magenta">file</span>) [from s3-PUBLIC...]
 <span class=" -Color -Color-Bold">get</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): sub-02/ses-retest/dwi/sub-02_ses-retest_dwi.nii.gz (<span class=" -Color -Color-Bold -Color-Bold-Magenta">file</span>) [from s3-PUBLIC...]
 <span class=" -Color -Color-Bold">get</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): sub-02/ses-retest/func/sub-02_ses-retest_task-covertverbgeneration_bold.nii.gz (<span class=" -Color -Color-Bold -Color-Bold-Magenta">file</span>) [from s3-PUBLIC...]
@@ -2168,8 +1648,8 @@ Get sub-04/s .. _bold.nii.gz:   0%|            | 0.00/11.2M [00:00&lt;?, ? Bytes
 <span class=" -Color -Color-Bold">get</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): sub-02/ses-test/func/sub-02_ses-test_task-covertverbgeneration_bold.nii.gz (<span class=" -Color -Color-Bold -Color-Bold-Magenta">file</span>) [from s3-PUBLIC...]
   [60 similar messages have been suppressed; disable with datalad.ui.suppress-similar-results=off]
 <span class=" -Color -Color-Bold">get</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): sub-02 (<span class=" -Color -Color-Bold -Color-Bold-Magenta">directory</span>)
-<span class=" -Color -Color-Bold">get</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): sub-05 (<span class=" -Color -Color-Bold -Color-Bold-Magenta">directory</span>)
 <span class=" -Color -Color-Bold">get</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): sub-01 (<span class=" -Color -Color-Bold -Color-Bold-Magenta">directory</span>)
+<span class=" -Color -Color-Bold">get</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): sub-05 (<span class=" -Color -Color-Bold -Color-Bold-Magenta">directory</span>)
 <span class=" -Color -Color-Bold">get</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): sub-03 (<span class=" -Color -Color-Bold -Color-Bold-Magenta">directory</span>)
 <span class=" -Color -Color-Bold">get</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): sub-04 (<span class=" -Color -Color-Bold -Color-Bold-Magenta">directory</span>)
 action summary:
@@ -2452,7 +1932,7 @@ action summary:
 ├── task-overtwordrepetition_bold.json
 └── task-overtwordrepetition_events.tsv
 
-91 directories, 174 files
+90 directories, 174 files
 </pre></div>
 </div>
 </div>
@@ -2490,9 +1970,9 @@ action summary:
 The first 3 files are:
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;BIDSFile filename=&#39;/home/jovyan/workspace/books/examples/workflows/ds000114/CHANGES&#39;&gt;,
- &lt;BIDSJSONFile filename=&#39;/home/jovyan/workspace/books/examples/workflows/ds000114/dataset_description.json&#39;&gt;,
- &lt;BIDSFile filename=&#39;/home/jovyan/workspace/books/examples/workflows/ds000114/dwi.bval&#39;&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;BIDSFile filename=&#39;/home/jovyan/Git_repositories/neurodeskedu/books/workflows/ds000114/CHANGES&#39;&gt;,
+ &lt;BIDSJSONFile filename=&#39;/home/jovyan/Git_repositories/neurodeskedu/books/workflows/ds000114/dataset_description.json&#39;&gt;,
+ &lt;BIDSFile filename=&#39;/home/jovyan/Git_repositories/neurodeskedu/books/workflows/ds000114/dwi.bval&#39;&gt;]
 </pre></div>
 </div>
 </div>
@@ -2505,9 +1985,9 @@ The first 3 files are:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;/home/jovyan/workspace/books/examples/workflows/ds000114/CHANGES&#39;,
- &#39;/home/jovyan/workspace/books/examples/workflows/ds000114/dataset_description.json&#39;,
- &#39;/home/jovyan/workspace/books/examples/workflows/ds000114/dwi.bval&#39;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;/home/jovyan/Git_repositories/neurodeskedu/books/workflows/ds000114/CHANGES&#39;,
+ &#39;/home/jovyan/Git_repositories/neurodeskedu/books/workflows/ds000114/dataset_description.json&#39;,
+ &#39;/home/jovyan/Git_repositories/neurodeskedu/books/workflows/ds000114/dwi.bval&#39;]
 </pre></div>
 </div>
 </div>
@@ -2616,16 +2096,16 @@ The first 3 files are:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;/home/jovyan/workspace/books/examples/workflows/ds000114/sub-02/ses-retest/func/sub-02_ses-retest_task-covertverbgeneration_bold.nii.gz&#39;,
- &#39;/home/jovyan/workspace/books/examples/workflows/ds000114/sub-02/ses-retest/func/sub-02_ses-retest_task-fingerfootlips_bold.nii.gz&#39;,
- &#39;/home/jovyan/workspace/books/examples/workflows/ds000114/sub-02/ses-retest/func/sub-02_ses-retest_task-linebisection_bold.nii.gz&#39;,
- &#39;/home/jovyan/workspace/books/examples/workflows/ds000114/sub-02/ses-retest/func/sub-02_ses-retest_task-overtverbgeneration_bold.nii.gz&#39;,
- &#39;/home/jovyan/workspace/books/examples/workflows/ds000114/sub-02/ses-retest/func/sub-02_ses-retest_task-overtwordrepetition_bold.nii.gz&#39;,
- &#39;/home/jovyan/workspace/books/examples/workflows/ds000114/sub-02/ses-test/func/sub-02_ses-test_task-covertverbgeneration_bold.nii.gz&#39;,
- &#39;/home/jovyan/workspace/books/examples/workflows/ds000114/sub-02/ses-test/func/sub-02_ses-test_task-fingerfootlips_bold.nii.gz&#39;,
- &#39;/home/jovyan/workspace/books/examples/workflows/ds000114/sub-02/ses-test/func/sub-02_ses-test_task-linebisection_bold.nii.gz&#39;,
- &#39;/home/jovyan/workspace/books/examples/workflows/ds000114/sub-02/ses-test/func/sub-02_ses-test_task-overtverbgeneration_bold.nii.gz&#39;,
- &#39;/home/jovyan/workspace/books/examples/workflows/ds000114/sub-02/ses-test/func/sub-02_ses-test_task-overtwordrepetition_bold.nii.gz&#39;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;/home/jovyan/Git_repositories/neurodeskedu/books/workflows/ds000114/sub-02/ses-retest/func/sub-02_ses-retest_task-covertverbgeneration_bold.nii.gz&#39;,
+ &#39;/home/jovyan/Git_repositories/neurodeskedu/books/workflows/ds000114/sub-02/ses-retest/func/sub-02_ses-retest_task-fingerfootlips_bold.nii.gz&#39;,
+ &#39;/home/jovyan/Git_repositories/neurodeskedu/books/workflows/ds000114/sub-02/ses-retest/func/sub-02_ses-retest_task-linebisection_bold.nii.gz&#39;,
+ &#39;/home/jovyan/Git_repositories/neurodeskedu/books/workflows/ds000114/sub-02/ses-retest/func/sub-02_ses-retest_task-overtverbgeneration_bold.nii.gz&#39;,
+ &#39;/home/jovyan/Git_repositories/neurodeskedu/books/workflows/ds000114/sub-02/ses-retest/func/sub-02_ses-retest_task-overtwordrepetition_bold.nii.gz&#39;,
+ &#39;/home/jovyan/Git_repositories/neurodeskedu/books/workflows/ds000114/sub-02/ses-test/func/sub-02_ses-test_task-covertverbgeneration_bold.nii.gz&#39;,
+ &#39;/home/jovyan/Git_repositories/neurodeskedu/books/workflows/ds000114/sub-02/ses-test/func/sub-02_ses-test_task-fingerfootlips_bold.nii.gz&#39;,
+ &#39;/home/jovyan/Git_repositories/neurodeskedu/books/workflows/ds000114/sub-02/ses-test/func/sub-02_ses-test_task-linebisection_bold.nii.gz&#39;,
+ &#39;/home/jovyan/Git_repositories/neurodeskedu/books/workflows/ds000114/sub-02/ses-test/func/sub-02_ses-test_task-overtverbgeneration_bold.nii.gz&#39;,
+ &#39;/home/jovyan/Git_repositories/neurodeskedu/books/workflows/ds000114/sub-02/ses-test/func/sub-02_ses-test_task-overtwordrepetition_bold.nii.gz&#39;]
 </pre></div>
 </div>
 </div>
@@ -2646,14 +2126,14 @@ The first 3 files are:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;BIDSImageFile filename=&#39;/home/jovyan/workspace/books/examples/workflows/ds000114/sub-01/ses-retest/func/sub-01_ses-retest_task-covertverbgeneration_bold.nii.gz&#39;&gt;,
- &lt;BIDSImageFile filename=&#39;/home/jovyan/workspace/books/examples/workflows/ds000114/sub-01/ses-retest/func/sub-01_ses-retest_task-fingerfootlips_bold.nii.gz&#39;&gt;,
- &lt;BIDSImageFile filename=&#39;/home/jovyan/workspace/books/examples/workflows/ds000114/sub-01/ses-test/func/sub-01_ses-test_task-covertverbgeneration_bold.nii.gz&#39;&gt;,
- &lt;BIDSImageFile filename=&#39;/home/jovyan/workspace/books/examples/workflows/ds000114/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_bold.nii.gz&#39;&gt;,
- &lt;BIDSImageFile filename=&#39;/home/jovyan/workspace/books/examples/workflows/ds000114/sub-02/ses-retest/func/sub-02_ses-retest_task-covertverbgeneration_bold.nii.gz&#39;&gt;,
- &lt;BIDSImageFile filename=&#39;/home/jovyan/workspace/books/examples/workflows/ds000114/sub-02/ses-retest/func/sub-02_ses-retest_task-fingerfootlips_bold.nii.gz&#39;&gt;,
- &lt;BIDSImageFile filename=&#39;/home/jovyan/workspace/books/examples/workflows/ds000114/sub-02/ses-test/func/sub-02_ses-test_task-covertverbgeneration_bold.nii.gz&#39;&gt;,
- &lt;BIDSImageFile filename=&#39;/home/jovyan/workspace/books/examples/workflows/ds000114/sub-02/ses-test/func/sub-02_ses-test_task-fingerfootlips_bold.nii.gz&#39;&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;BIDSImageFile filename=&#39;/home/jovyan/Git_repositories/neurodeskedu/books/workflows/ds000114/sub-01/ses-retest/func/sub-01_ses-retest_task-covertverbgeneration_bold.nii.gz&#39;&gt;,
+ &lt;BIDSImageFile filename=&#39;/home/jovyan/Git_repositories/neurodeskedu/books/workflows/ds000114/sub-01/ses-retest/func/sub-01_ses-retest_task-fingerfootlips_bold.nii.gz&#39;&gt;,
+ &lt;BIDSImageFile filename=&#39;/home/jovyan/Git_repositories/neurodeskedu/books/workflows/ds000114/sub-01/ses-test/func/sub-01_ses-test_task-covertverbgeneration_bold.nii.gz&#39;&gt;,
+ &lt;BIDSImageFile filename=&#39;/home/jovyan/Git_repositories/neurodeskedu/books/workflows/ds000114/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_bold.nii.gz&#39;&gt;,
+ &lt;BIDSImageFile filename=&#39;/home/jovyan/Git_repositories/neurodeskedu/books/workflows/ds000114/sub-02/ses-retest/func/sub-02_ses-retest_task-covertverbgeneration_bold.nii.gz&#39;&gt;,
+ &lt;BIDSImageFile filename=&#39;/home/jovyan/Git_repositories/neurodeskedu/books/workflows/ds000114/sub-02/ses-retest/func/sub-02_ses-retest_task-fingerfootlips_bold.nii.gz&#39;&gt;,
+ &lt;BIDSImageFile filename=&#39;/home/jovyan/Git_repositories/neurodeskedu/books/workflows/ds000114/sub-02/ses-test/func/sub-02_ses-test_task-covertverbgeneration_bold.nii.gz&#39;&gt;,
+ &lt;BIDSImageFile filename=&#39;/home/jovyan/Git_repositories/neurodeskedu/books/workflows/ds000114/sub-02/ses-test/func/sub-02_ses-test_task-fingerfootlips_bold.nii.gz&#39;&gt;]
 </pre></div>
 </div>
 </div>
@@ -2674,7 +2154,7 @@ The first 3 files are:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;BIDSImageFile filename=&#39;/home/jovyan/workspace/books/examples/workflows/ds000114/sub-01/ses-retest/func/sub-01_ses-retest_task-overtverbgeneration_bold.nii.gz&#39;&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;BIDSImageFile filename=&#39;/home/jovyan/Git_repositories/neurodeskedu/books/workflows/ds000114/sub-01/ses-retest/func/sub-01_ses-retest_task-overtverbgeneration_bold.nii.gz&#39;&gt;
 </pre></div>
 </div>
 </div>
@@ -2813,7 +2293,7 @@ The first 3 files are:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;BIDSJSONFile filename=&#39;/home/jovyan/workspace/books/examples/workflows/ds000114/task-overtverbgeneration_bold.json&#39;&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;BIDSJSONFile filename=&#39;/home/jovyan/Git_repositories/neurodeskedu/books/workflows/ds000114/task-overtverbgeneration_bold.json&#39;&gt;]
 </pre></div>
 </div>
 </div>
@@ -2860,7 +2340,7 @@ The first 3 files are:
   <tbody>
     <tr>
       <th>0</th>
-      <td>/home/jovyan/workspace/books/examples/workflow...</td>
+      <td>/home/jovyan/Git_repositories/example-notebook...</td>
       <td>NaN</td>
       <td>.json</td>
       <td>NaN</td>
@@ -2870,7 +2350,7 @@ The first 3 files are:
     </tr>
     <tr>
       <th>1</th>
-      <td>/home/jovyan/workspace/books/examples/workflow...</td>
+      <td>/home/jovyan/Git_repositories/example-notebook...</td>
       <td>NaN</td>
       <td>.bval</td>
       <td>NaN</td>
@@ -2880,7 +2360,7 @@ The first 3 files are:
     </tr>
     <tr>
       <th>2</th>
-      <td>/home/jovyan/workspace/books/examples/workflow...</td>
+      <td>/home/jovyan/Git_repositories/example-notebook...</td>
       <td>NaN</td>
       <td>.bvec</td>
       <td>NaN</td>
@@ -2890,7 +2370,7 @@ The first 3 files are:
     </tr>
     <tr>
       <th>3</th>
-      <td>/home/jovyan/workspace/books/examples/workflow...</td>
+      <td>/home/jovyan/Git_repositories/example-notebook...</td>
       <td>NaN</td>
       <td>.tsv</td>
       <td>NaN</td>
@@ -2900,7 +2380,7 @@ The first 3 files are:
     </tr>
     <tr>
       <th>4</th>
-      <td>/home/jovyan/workspace/books/examples/workflow...</td>
+      <td>/home/jovyan/Git_repositories/example-notebook...</td>
       <td>anat</td>
       <td>.nii.gz</td>
       <td>retest</td>
@@ -2955,7 +2435,7 @@ The first 3 files are:
   <tbody>
     <tr>
       <th>0</th>
-      <td>/home/jovyan/workspace/books/examples/workflow...</td>
+      <td>/home/jovyan/Git_repositories/example-notebook...</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -2970,7 +2450,7 @@ The first 3 files are:
     </tr>
     <tr>
       <th>1</th>
-      <td>/home/jovyan/workspace/books/examples/workflow...</td>
+      <td>/home/jovyan/Git_repositories/example-notebook...</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -2985,7 +2465,7 @@ The first 3 files are:
     </tr>
     <tr>
       <th>2</th>
-      <td>/home/jovyan/workspace/books/examples/workflow...</td>
+      <td>/home/jovyan/Git_repositories/example-notebook...</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -3000,7 +2480,7 @@ The first 3 files are:
     </tr>
     <tr>
       <th>3</th>
-      <td>/home/jovyan/workspace/books/examples/workflow...</td>
+      <td>/home/jovyan/Git_repositories/example-notebook...</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -3015,7 +2495,7 @@ The first 3 files are:
     </tr>
     <tr>
       <th>4</th>
-      <td>/home/jovyan/workspace/books/examples/workflow...</td>
+      <td>/home/jovyan/Git_repositories/example-notebook...</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -3030,7 +2510,7 @@ The first 3 files are:
     </tr>
     <tr>
       <th>5</th>
-      <td>/home/jovyan/workspace/books/examples/workflow...</td>
+      <td>/home/jovyan/Git_repositories/example-notebook...</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -3045,7 +2525,7 @@ The first 3 files are:
     </tr>
     <tr>
       <th>6</th>
-      <td>/home/jovyan/workspace/books/examples/workflow...</td>
+      <td>/home/jovyan/Git_repositories/example-notebook...</td>
       <td>0.05</td>
       <td>90</td>
       <td>2.5</td>
@@ -3060,7 +2540,7 @@ The first 3 files are:
     </tr>
     <tr>
       <th>7</th>
-      <td>/home/jovyan/workspace/books/examples/workflow...</td>
+      <td>/home/jovyan/Git_repositories/example-notebook...</td>
       <td>0.05</td>
       <td>90</td>
       <td>2.5</td>
@@ -3075,7 +2555,7 @@ The first 3 files are:
     </tr>
     <tr>
       <th>8</th>
-      <td>/home/jovyan/workspace/books/examples/workflow...</td>
+      <td>/home/jovyan/Git_repositories/example-notebook...</td>
       <td>0.05</td>
       <td>90</td>
       <td>2.5</td>
@@ -3090,7 +2570,7 @@ The first 3 files are:
     </tr>
     <tr>
       <th>9</th>
-      <td>/home/jovyan/workspace/books/examples/workflow...</td>
+      <td>/home/jovyan/Git_repositories/example-notebook...</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -3201,22 +2681,22 @@ The first 3 files are:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: 2026-02-22T02:16:07.598129+00:00
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: 2025-10-30T23:38:55.548583+00:00
 
 Python implementation: CPython
-Python version       : 3.13.11
-IPython version      : 9.9.0
+Python version       : 3.11.6
+IPython version      : 8.16.1
 
-Compiler    : GCC 14.3.0
+Compiler    : GCC 12.3.0
 OS          : Linux
-Release     : 6.8.0-1044-azure
+Release     : 5.4.0-204-generic
 Machine     : x86_64
 Processor   : x86_64
-CPU cores   : 4
+CPU cores   : 32
 Architecture: 64bit
 
-bids          : 0.21.0
 bids_validator: 1.14.7.post0
+bids          : 0.21.0
 </pre></div>
 </div>
 </div>
@@ -3256,20 +2736,20 @@ bids_validator: 1.14.7.post0
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="Magic_commands.html"
+       href="papermill-slurm-submission-example.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Magic Commands</p>
+        <p class="prev-next-title">Papermill Slurm Job Submission</p>
       </div>
     </a>
     <a class="right-next"
-       href="RISE_slideshow.html"
+       href="pydra_preproc_ants.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">RISE Slideshow</p>
+        <p class="prev-next-title">Pydra</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
