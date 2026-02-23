@@ -1,21 +1,20 @@
 {
   "version": 2,
-  "generated_at": "2026-02-23T00:04:04+00:00",
+  "generated_at": "2026-02-22T23:38:39+00:00",
   "source": {
     "type": "github-issues",
     "repo": "neurodesk/neurodeskedu-reviews-test"
   },
   "reviews": {
     "d013c05e-58ec-4f9a-96ee-e913dae8f2a8": {
-      "state": "stale",
+      "state": "reviewed",
       "review_issue_url": "https://github.com/neurodesk/neurodeskedu-reviews-test/issues/15",
       "reviewers": [
         "kylemaps"
       ],
       "reviewed_at": "2026-02-22",
       "review_commit_sha": "6b82fbfb30302b274d9e9a40dba1f4b6754f84c8",
-      "source_path": "examples/workflows/review_system_test.ipynb",
-      "stale_reason": "File modified after review (latest: f865756e7ba2, reviewed at: 6b82fbfb3030)"
+      "source_path": "examples/workflows/review_system_test.ipynb"
     },
     "209b2271-0aab-4985-b8c0-97a9dd2c2bd6": {
       "state": "queued",
