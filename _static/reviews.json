@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "generated_at": "2026-02-23T03:25:17+00:00",
+  "generated_at": "2026-02-23T07:39:17+00:00",
   "source": {
     "type": "github-issues",
     "repo": "neurodesk/neurodeskedu-reviews-test"
@@ -10,6 +10,7 @@
       "state": "reviewed",
       "review_issue_url": "https://github.com/neurodesk/neurodeskedu-reviews-test/issues/15",
       "reviewers": [
+        "stebo85",
         "kylemaps"
       ],
       "reviewed_at": "2026-02-23",
@@ -41,15 +42,15 @@
       "review_issue_url": "https://github.com/neurodesk/neurodeskedu-reviews-test/issues/10",
       "source_path": "examples/workflows/nipype_short.ipynb"
     },
-    "b1d863fa-f12e-4681-bdd8-c913a24a599d": {
-      "state": "queued",
-      "review_issue_url": "https://github.com/neurodesk/neurodeskedu-reviews-test/issues/7",
-      "source_path": "examples/workflows/RISE_slideshow.ipynb"
-    },
     "ba6e43a8-8274-4617-8c6f-fc7a3b9050e6": {
       "state": "queued",
       "review_issue_url": "https://github.com/neurodesk/neurodeskedu-reviews-test/issues/8",
       "source_path": "examples/workflows/nipype_full.ipynb"
+    },
+    "b1d863fa-f12e-4681-bdd8-c913a24a599d": {
+      "state": "queued",
+      "review_issue_url": "https://github.com/neurodesk/neurodeskedu-reviews-test/issues/7",
+      "source_path": "examples/workflows/RISE_slideshow.ipynb"
     },
     "1be11289-f5ea-44fc-a700-574305f0411f": {
       "state": "queued",
