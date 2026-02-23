@@ -87,6 +87,12 @@ jobs:
         run: |
           BRANCH="review/inject-${REVIEW_ID:0:8}"
 
+          # Check if branch already exists on remote (duplicate dispatch)
+          if git ls-remote --heads origin "$BRANCH" | grep -q "$BRANCH"; then
+            echo "Branch $BRANCH already exists on remote — skipping (likely duplicate dispatch)."
+            exit 0
+          fi
+
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 

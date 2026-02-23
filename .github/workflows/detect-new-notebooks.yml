@@ -28,7 +28,7 @@ on:
 
 concurrency:
   group: detect-new-notebooks
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   detect:
@@ -95,6 +95,16 @@ jobs:
               f.write(f"count={len(missing)}\n")
           PYEOF
 
+      - name: Verify cross-repo token
+        if: fromJSON(steps.scan.outputs.count) > 0 && inputs.dry_run != 'true'
+        env:
+          HAS_TOKEN: ${{ secrets.REVIEWS_REPO_TOKEN != '' }}
+        run: |
+          if [ "$HAS_TOKEN" != "true" ]; then
+            echo "::error::REVIEWS_REPO_TOKEN is not set. Cannot create issues in the reviews repo."
+            exit 1
+          fi
+
       - name: Reconcile UUIDs with existing review issues
         if: fromJSON(steps.scan.outputs.count) > 0 && inputs.dry_run != 'true'
         id: reconcile
@@ -104,7 +114,7 @@ jobs:
           REVIEWS_REPO_NAME: neurodeskedu-reviews-test
           MISSING_JSON: ${{ steps.scan.outputs.missing }}
         with:
-          github-token: ${{ secrets.REVIEWS_REPO_TOKEN || secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.REVIEWS_REPO_TOKEN }}
           script: |
             const missing = JSON.parse(process.env.MISSING_JSON);
             const repoOwner = process.env.REVIEWS_REPO_OWNER;
@@ -250,11 +260,12 @@ jobs:
           REVIEWS_REPO_NAME: neurodeskedu-reviews-test
           RECONCILED_JSON: ${{ steps.reconcile.outputs.reconciled }}
         with:
-          github-token: ${{ secrets.REVIEWS_REPO_TOKEN || secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.REVIEWS_REPO_TOKEN }}
           script: |
             const reconciled = JSON.parse(process.env.RECONCILED_JSON);
             const repoOwner = process.env.REVIEWS_REPO_OWNER;
             const repoName = process.env.REVIEWS_REPO_NAME;
+            const failed = [];
 
             for (const item of reconciled) {
               if (item.issue_exists) {
@@ -265,30 +276,44 @@ jobs:
                 continue;
               }
 
-              const body = [
-                `### Source path (relative to books/)`,
-                ``,
-                item.source_path,
-                ``,
-                `### Notes`,
-                ``,
-                `Automatically opened by the detect-new-notebooks workflow.`,
-                ``,
-                ``,
-                `<!-- nd-review`,
-                `review_id: ${item.review_id}`,
-                `source_path: ${item.source_path}`,
-                `-->`,
-              ].join('\n');
+              try {
+                const body = [
+                  `### Source path (relative to books/)`,
+                  ``,
+                  item.source_path,
+                  ``,
+                  `### Notes`,
+                  ``,
+                  `Automatically opened by the detect-new-notebooks workflow.`,
+                  ``,
+                  ``,
+                  `<!-- nd-review`,
+                  `review_id: ${item.review_id}`,
+                  `source_path: ${item.source_path}`,
+                  `-->`,
+                ].join('\n');
 
-              const { data: issue } = await github.rest.issues.create({
-                owner: repoOwner,
-                repo: repoName,
-                title: `Review: ${item.source_path}`,
-                labels: ['review:queued'],
-                body: body,
-              });
+                const { data: issue } = await github.rest.issues.create({
+                  owner: repoOwner,
+                  repo: repoName,
+                  title: `Review: ${item.source_path}`,
+                  labels: ['review:queued'],
+                  body: body,
+                });
 
-              core.info(`Created issue #${issue.number} for ${item.source_path}`);
+                core.info(`Created issue #${issue.number} for ${item.source_path}`);
+              } catch (err) {
+                core.warning(
+                  `Failed to create issue for ${item.source_path}: ${err.message}`
+                );
+                failed.push(item.source_path);
+              }
               await new Promise(r => setTimeout(r, 1000));
+            }
+
+            if (failed.length > 0) {
+              core.setFailed(
+                `Failed to create ${failed.length} issue(s): ${failed.join(', ')}. ` +
+                `Re-run this workflow to retry.`
+              );
             }

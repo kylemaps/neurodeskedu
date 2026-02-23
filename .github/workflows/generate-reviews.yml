@@ -21,6 +21,10 @@ on:
   # Or manually
   workflow_dispatch:
 
+concurrency:
+  group: generate-reviews
+  cancel-in-progress: true
+
 jobs:
   generate:
     runs-on: ubuntu-22.04
@@ -52,4 +56,5 @@ jobs:
           git add books/_static/reviews.json
           git diff --cached --quiet && echo "No changes" && exit 0
           git commit -m "chore: update review registry [skip ci]"
+          git pull --rebase origin main || true
           git push

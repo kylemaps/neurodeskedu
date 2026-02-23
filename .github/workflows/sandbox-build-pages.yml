@@ -60,7 +60,13 @@ jobs:
             --out books/_static/reviews.json \
             --repo-dir .
           echo "✅ reviews.json updated"
-          cat books/_static/reviews.json | python -c "import sys,json; d=json.load(sys.stdin); print(f'  {len(d[\"reviews\"])} review(s) loaded')"
+
+          # Validate the output
+          if [ ! -s books/_static/reviews.json ]; then
+            echo "::error::reviews.json is empty or missing"
+            exit 1
+          fi
+          python -c "import json; d=json.load(open('books/_static/reviews.json')); print(f'  {len(d[\"reviews\"])} review(s) loaded')"
 
       - name: Patch config — disable notebook execution
         # We only want static HTML; notebooks have already been run/committed.
