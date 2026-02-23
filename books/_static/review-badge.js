@@ -156,11 +156,17 @@
         // Normalize: "queued" is displayed as "unreviewed" (grey badge)
         if (state === "queued") state = "unreviewed";
 
+        // Only show reviewer names on the badge when fully reviewed
+        var showReviewers =
+          state === "reviewed" || state === "stale"
+            ? entry && entry.reviewers
+            : null;
+
         var badge = createBadge(
           state,
           entry && entry.review_issue_url,
           entry && entry.doi_url,
-          entry && entry.reviewers
+          showReviewers
         );
 
         var wrapper = document.createElement("div");
