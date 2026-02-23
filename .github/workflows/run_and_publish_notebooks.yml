@@ -83,6 +83,8 @@ jobs:
   # ---------------------------------------------------------------------------
   setup:
     name: Setup Environment
+    # Only run on the production repo — sandbox uses sandbox-build-pages.yml
+    if: github.repository == 'neurodesk/neurodeskedu'
     runs-on: ubuntu-22.04
     outputs:
       runner: ${{ steps.select_runner.outputs.runner }}
