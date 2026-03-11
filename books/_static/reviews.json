@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "generated_at": "2026-03-11T12:49:04+00:00",
+  "generated_at": "2026-03-11T18:50:03+00:00",
   "source": {
     "type": "github-issues",
     "repo": "neurodesk/neurodeskedu-reviews-test"
@@ -36,15 +36,15 @@
       "review_issue_url": "https://github.com/neurodesk/neurodeskedu-reviews-test/issues/54",
       "source_path": "tutorials/electrophysiology/fieldtrip.md"
     },
-    "d5117fbf-ca98-4de5-9ce7-01e3dbad65c9": {
-      "state": "queued",
-      "review_issue_url": "https://github.com/neurodesk/neurodeskedu-reviews-test/issues/67",
-      "source_path": "tutorials/programming/conda.md"
-    },
     "bcc1ff72-3f6d-4030-b5fd-63bf1ebada7e": {
       "state": "queued",
       "review_issue_url": "https://github.com/neurodesk/neurodeskedu-reviews-test/issues/68",
       "source_path": "tutorials/programming/matlab.md"
+    },
+    "d5117fbf-ca98-4de5-9ce7-01e3dbad65c9": {
+      "state": "queued",
+      "review_issue_url": "https://github.com/neurodesk/neurodeskedu-reviews-test/issues/67",
+      "source_path": "tutorials/programming/conda.md"
     },
     "feb5a77c-6955-45fe-95b5-fd8df5b33baa": {
       "state": "queued",
@@ -244,15 +244,15 @@
       "review_issue_url": "https://github.com/neurodesk/neurodeskedu-reviews-test/issues/22",
       "source_path": "examples/functional_imaging/AFNI_preprocessing_only.ipynb"
     },
-    "6eb408b0-efc3-40fc-91be-71006506d715": {
-      "state": "queued",
-      "review_issue_url": "https://github.com/neurodesk/neurodeskedu-reviews-test/issues/30",
-      "source_path": "examples/functional_imaging/FSLnets_course_practical.ipynb"
-    },
     "b5391fbd-fab4-4253-89e2-b0362606734d": {
       "state": "queued",
       "review_issue_url": "https://github.com/neurodesk/neurodeskedu-reviews-test/issues/29",
       "source_path": "examples/functional_imaging/FSL_preproc_glm.ipynb"
+    },
+    "6eb408b0-efc3-40fc-91be-71006506d715": {
+      "state": "queued",
+      "review_issue_url": "https://github.com/neurodesk/neurodeskedu-reviews-test/issues/30",
+      "source_path": "examples/functional_imaging/FSLnets_course_practical.ipynb"
     },
     "e317f9c8-7b25-47eb-9c3f-24629acaf5c0": {
       "state": "queued",
